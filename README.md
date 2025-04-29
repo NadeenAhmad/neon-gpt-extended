@@ -8,6 +8,7 @@ This stage begins with structured inputs: a domain description, a curated set of
 
 <div align="center">
   <img src="./images/ontology_draft_gen.png" width="600" alt="Ontology Draft Generation"/>
+ Figure: Ontology draft generation pipeline guided by domain description, few-shot examples, and expert role-play prompting.
 </div>
 
 
