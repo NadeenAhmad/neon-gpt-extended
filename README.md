@@ -29,3 +29,4 @@ We evaluate generated ontologies against expert-developed gold standards using a
 <div align="center">
   <img src="./images/evalNeON.png" width="600" alt="NeOn-GPT Evaluation Framework"/>
 </div>
+Figure 3: Ontology evaluation framework combining structural analysis, lexical matching, and semantic similarity to compare LLM-generated ontologies against expert-developed gold standards.
