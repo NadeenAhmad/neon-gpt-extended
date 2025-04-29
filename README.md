@@ -35,13 +35,12 @@ Figure 3: Ontology evaluation framework combining structural analysis, lexical m
 
  **🗂️ Directory Overview**
 
-- **`aquadiva/`**: Ontology files related to the AquaDiva domain.
-- **`wine/`**: Ontology files related to the Wine domain.
-- **`code/`**: Python scripts for ontology generation, validation, and utilities.
-- **`data/`**:
-  - **`prompts/`**: Text prompts used in LLM-guided ontology generation.
-  - **`examples/`**: Sample data for ontology construction.
-- **`results/`**: Output files and evaluation results.
-- **`README.md`**: This file.
-- **`LICENSE`**: Project licensing information.
+- **`images/`**: Visual assets and figures used in documentation and analysis.
+- **`neon-gpt/`**:
+  - Core scripts for ontology generation and validation.
+  - Includes the HermiT reasoner JAR and validation pipeline.
+- **`results/`**:
+  - Output ontologies generated using different LLMs (GPT-4o, Mistral).
+- **`LICENSE`**: Project license.
+- **`README.md`**: Project description and usage instructions.
 
