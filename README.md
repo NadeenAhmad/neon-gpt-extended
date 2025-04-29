@@ -30,3 +30,28 @@ We evaluate generated ontologies against expert-developed gold standards using a
   <img src="./images/evalNeON.png" width="600" alt="NeOn-GPT Evaluation Framework"/>
 </div>
 Figure 3: Ontology evaluation framework combining structural analysis, lexical matching, and semantic similarity to compare LLM-generated ontologies against expert-developed gold standards.
+
+neon-gpt-extended/
+├── aquadiva/
+│   ├── aquadiva_gpt_4o.ttl
+│   └── aquadiva_gpt_4o.owl
+├── wine/
+│   ├── wine_gpt_4o.ttl
+│   └── wine_gpt_4o.owl
+├── code/
+│   ├── ontology_generator.py
+│   ├── validator.py
+│   └── utils.py
+├── data/
+│   ├── prompts/
+│   │   ├── aquadiva_prompt.txt
+│   │   └── wine_prompt.txt
+│   └── examples/
+│       ├── aquadiva_example.json
+│       └── wine_example.json
+├── results/
+│   ├── aquadiva_results.md
+│   └── wine_results.md
+├── README.md
+└── LICENSE
+
