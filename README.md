@@ -35,12 +35,14 @@ Figure 3: Ontology evaluation framework combining structural analysis, lexical m
 
  **🗂️ Directory Overview**
 
-- **`images/`**: Visual assets and figures used in documentation and analysis.
-- **`neon-gpt/`**:
-  - Core scripts for ontology generation and validation.
-  - Includes the HermiT reasoner JAR and validation pipeline.
+- **`images/`**: Visual figures used in `README.md`.
+- **`neon-gpt/`**: Core scripts for ontology generation and validation.
+  - **`neon_gpt_extended.py`**: Script for generating ontology drafts from structured NeOn-GPT prompts and inputs, with output saved in Turtle (`.ttl`) format.
+  - **`ontology_validation_syntax_consistency_pitfall.py`**: Performs ontology validation including syntax checking (RDFLib), logical consistency (OWL reasoners: HermiT, Pellet), and modeling pitfall detection (e.g., missing labels, cyclic subclassing, disjointness) using our custom built module and OOPS!.
+  - Includes the HermiT reasoner JAR.
 - **`results/`**:
-  - Output ontologies generated using different LLMs (GPT-4o, Mistral).
+  - **`gpt-4o-ontologies/`**: Ontologies generated using GPT-4o across multiple domains, including environmental microbiology (AquaDiva), cheminformatics, urban infrastructure (SewerNet), and viticulture (wine).
+  - **`mistral-ontologies/`**: Ontologies generated using Mistral across multiple domains, including environmental microbiology (AquaDiva), cheminformatics, urban infrastructure (SewerNet), and viticulture (wine).
 - **`LICENSE`**: Project license.
 - **`README.md`**: Project description and usage instructions.
 
