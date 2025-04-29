@@ -26,3 +26,6 @@ Once the draft is generated, it is passed through a three-stage validation and r
 
 We evaluate generated ontologies against expert-developed gold standards using a three-part framework: (a) Structural metrics: Entity counts, hierarchy depth, and axiom coverage; (b) Lexical analysis: Name overlap and string similarity; and (c) Semantic similarity, Embedding-based comparisons via Sentence Transformers.
 
+<div align="center">
+  <img src="./images/evalNeON.png" width="600" alt="NeOn-GPT Evaluation Framework"/>
+</div>
