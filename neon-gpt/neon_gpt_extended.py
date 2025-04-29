@@ -24,7 +24,7 @@ def send_prompt(prompt):
             "Content-Type": "application/json"
         },
         json={
-            "model": "open-mistral-7b",
+            "model": "mistral-large-latest",
             "messages": chat_history
         }
     )
@@ -84,7 +84,7 @@ def send_prompt(prompt, max_retries=3):
       response = requests.post(
         MISTRAL_API_URL,
         headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
-        json={"model": "open-mistral-7b", "messages": chat_history}
+        json={"model": "mistral-large-latest", "messages": chat_history}
     )
 
       if response.status_code == 200:
@@ -138,7 +138,7 @@ def send_prompt_with_ontology(prompt, max_retries=3):
         response = requests.post(
             MISTRAL_API_URL,
             headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
-            json={"model": "open-mistral-7b", "messages": [system_prompt, user_prompt]}
+            json={"model": "mistral-large-latest", "messages": [system_prompt, user_prompt]}
         )
 
         if response.status_code == 200:
@@ -846,7 +846,7 @@ def send_prompt(prompt, max_retries=3):
       response = requests.post(
         MISTRAL_API_URL,
         headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
-        json={"model": "open-mistral-7b", "messages": chat_history}
+        json={"model": "mistral-large-latest", "messages": chat_history}
     )
 
       if response.status_code == 200:
@@ -900,7 +900,7 @@ def send_prompt_with_ontology(prompt, max_retries=3):
         response = requests.post(
             MISTRAL_API_URL,
             headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
-            json={"model": "open-mistral-7b", "messages": [system_prompt, user_prompt]}
+            json={"model": "mistral-large-latest", "messages": [system_prompt, user_prompt]}
         )
 
         if response.status_code == 200:
