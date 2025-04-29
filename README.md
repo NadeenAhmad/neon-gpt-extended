@@ -6,6 +6,8 @@ Large Language Models (LLMs) offer promising capabilities for automating ontolog
 
 This stage begins with structured inputs: a domain description, a curated set of few-shot examples, and a carefully crafted role-play persona that primes the LLM to act as a domain expert. Guided by these inputs, the model is prompted to define the ontology’s purpose, scope, and intended users, which leads to the generation of competency questions—natural language queries that the final ontology should be able to answer. From these questions, the LLM extracts key domain entities and relations, building a conceptual model with hierarchical class structures. The pipeline then supports the partial reuse of existing ontologies by integrating relevant fragments directly into the prompt. Finally, the model enriches this conceptual representation with formal axioms, descriptive metadata, and named individuals. The result of this stage is a complete ontology draft serialized in Turtle syntax, serving as the foundation for downstream validation and refinement. 
 
-<img src="./images/ontology_draft_gen.png" width="600"/>
+<div align="center">
+  <img src="./images/ontology_draft_gen.png" width="600" alt="Ontology Draft Generation"/>
+</div>
 
 
