@@ -1,0 +1,1296 @@
+# Ontology Metadata
+@prefix : <http://example.org/wine#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+<http://example.org/wine> rdf:type owl:Ontology ;
+                          rdfs:label "Wine Ontology" ;
+                          dc:description "An ontology describing the domain of wine, including its classification, characteristics, production methods, regions, producers, and more." ;
+                          owl:versionInfo "1.0" .
+
+
+# Maceration Processes and Wine Types
+:MacerationProcess rdfs:subClassOf :Process .
+:TotalMaceration rdfs:subClassOf :MacerationProcess .
+:HalfMaceration rdfs:subClassOf :MacerationProcess .
+:WithoutMaceration rdfs:subClassOf :MacerationProcess .
+
+:RedWine rdfs:subClassOf :Wine .
+:RedWine :usedToProduce :TotalMaceration .
+:RedWine :hasVariety :RedVariety .
+:RedWine :hasVariety :WhiteRedVarietyCombination .
+
+:RoseWine rdfs:subClassOf :Wine .
+:RoseWine :usedToProduce :HalfMaceration .
+:RoseWine :hasVariety :RedVariety .
+:RoseWine :hasVariety :WhiteRedVarietyCombination .
+
+:WhiteWine rdfs:subClassOf :Wine .
+:WhiteWine :usedToProduce :WithoutMaceration .
+:WhiteWine :hasVariety :RedVariety .
+:WhiteWine :hasVariety :WhiteVariety .
+
+# Grape Maturity States
+:GrapeMaturityState rdfs:subClassOf :State .
+:Unripe rdfs:subClassOf :GrapeMaturityState .
+:Mature rdfs:subClassOf :GrapeMaturityState .
+:Overmature rdfs:subClassOf :GrapeMaturityState .
+
+:Overmature :achievedBy :DehydratedGrapes .
+:Overmature :achievedBy :FrozenGrapes .
+:Overmature :achievedBy :NobleRot .
+
+:GrapeMaturityState :affects :WineCharacteristic .
+
+# Fermentation Processes and Wine Types
+:FermentationProcess rdfs:subClassOf :Process .
+:NormalFermentation rdfs:subClassOf :FermentationProcess .
+:DoubleFermentation rdfs:subClassOf :FermentationProcess .
+:InterruptedFermentation rdfs:subClassOf :FermentationProcess .
+
+:TableWine rdfs:subClassOf :Wine .
+:TableWine :producedBy :NormalFermentation .
+
+:SparklingWine rdfs:subClassOf :Wine .
+:SparklingWine :producedBy :DoubleFermentation .
+:SparklingWine :distinguishedBy :Bubbles .
+
+:SweetWine rdfs:subClassOf :Wine .
+:SweetWine :producedBy :InterruptedFermentation .
+:SweetWine :interruptedBy :Fortification .
+:SweetWine :interruptedBy :SulphurousAddition .
+:SweetWine :interruptedBy :Filtration .
+
+# Wine Characteristics
+:WineCharacteristic rdfs:subClassOf :Characteristic .
+:AlcoholPercentage rdfs:subClassOf :WineCharacteristic .
+:TanninLevel rdfs:subClassOf :WineCharacteristic .
+:DegreeOfAcidity rdfs:subClassOf :WineCharacteristic .
+
+:AmbiguousCharacteristic rdfs:subClassOf :Characteristic .
+:Vision rdfs:subClassOf :AmbiguousCharacteristic .
+:Aroma rdfs:subClassOf :AmbiguousCharacteristic .
+:Flavour rdfs:subClassOf :AmbiguousCharacteristic .
+
+:Vision :categorizedBy :Aspect .
+:Vision :categorizedBy :Colour .
+:Vision :categorizedBy :Intensity .
+:Vision :categorizedBy :Foam .
+:Vision :categorizedBy :Bubble .
+
+:Aroma :categorizedBy :Condition .
+:Aroma :categorizedBy :Intensity .
+:Aroma :categorizedBy :Evolution .
+:Aroma :categorizedBy :DominantCharacter .
+
+:Flavour :categorizedBy :Sweetness .
+:Flavour :categorizedBy :Acidity .
+:Flavour :categorizedBy :Tannin .
+:Flavour :categorizedBy :Structure .
+:Flavour :categorizedBy :Intensity .
+:Flavour :categorizedBy :Persistence .
+
+:WineCharacteristic :contributesTo :WineEvaluation .
+
+# Regional and Classification Systems
+:ClassificationSystem rdfs:subClassOf :System .
+:EuropeanClassification rdfs:subClassOf :ClassificationSystem .
+:DOC rdfs:subClassOf :EuropeanClassification .
+:VQPRD rdfs:subClassOf :EuropeanClassification .
+:RegionalWine rdfs:subClassOf :EuropeanClassification .
+:TableWine rdfs:subClassOf :EuropeanClassification .
+
+:Region rdfs:subClassOf :GeographicalEntity .
+:Region :partOf :Country .
+:Region :influences :WineCharacteristic .
+
+:Wine :producedIn :Region .
+
+# Producer, Varieties, and Year of Production
+:Producer rdfs:subClassOf :Entity .
+:Wine :producedBy :Producer .
+:Producer :hasReputation :Reputation .
+
+:GrapeVariety rdfs:subClassOf :Variety .
+:RedVariety rdfs:subClassOf :GrapeVariety .
+:WhiteVariety rdfs:subClassOf :GrapeVariety .
+:WhiteRedVarietyCombination rdfs:subClassOf :GrapeVariety .
+
+:GrapeVariety :contributesTo :WineQuality .
+:Wine :hasVariety :GrapeVariety .
+
+:YearOfProduction rdfs:subClassOf :TimeEntity .
+:Wine :producedInYear :YearOfProduction .
+:YearOfProduction :hasCharacteristic :WineCharacteristic .
+
+# Specific Wine Types and Production Methods
+:PortWine rdfs:subClassOf :SweetWine .
+:PortWine :producedBy :FortifiedWine .
+:PortWine :hasVariety :TintaRoriz .
+:PortWine :hasVariety :TourigaNacional .
+:PortWine :hasVariety :TourigaFrancesa .
+
+:BarcaVelha rdfs:subClassOf :Wine .
+:BarcaVelha :producedInYear :YearOfProduction .
+:BarcaVelha :hasSignificance :Significance .
+
+# Query and Retrieval
+:Wine :hasCharacteristic :AlcoholPercentage .
+:Wine :hasCharacteristic :TanninLevel .
+:Wine :producedIn :Region .
+:Wine :producedBy :Producer .
+:Wine :producedInYear :YearOfProduction .
+
+# Interoperability and Knowledge Management
+:WineOntology :facilitatesInteroperabilityWith :WineDatabase .
+:WineOntology :facilitatesInteroperabilityWith :System .
+:WineOntology :manages :WineKnowledge .
+:WineOntology :retrieves :WineKnowledge .
+:WineOntology :supportsIntegrationOf :Wine .
+:WineOntology :supportsIntegrationOf :Region .
+:WineOntology :supportsIntegrationOf :ClassificationSystem .
+
+# User-Specific Queries
+:Wine :recommendedBasedOn :UserPreference .
+:UserPreference :hasPreference :Taste .
+:UserPreference :hasPreference :Color .
+:UserPreference :hasPreference :Smell .
+### fine ###
+
+
+
+###  ###
+# Inverse Properties and Domain/Range Restrictions
+
+# Maceration Processes and Wine Types
+:usedToProduce rdfs:domain :Wine ;
+               rdfs:range :MacerationProcess ;
+               owl:inverseOf :producesWine .
+
+:hasVariety rdfs:domain :Wine ;
+            rdfs:range :GrapeVariety ;
+            owl:inverseOf :isVarietyOf .
+
+:producesWine rdfs:domain :MacerationProcess ;
+              rdfs:range :Wine .
+
+:isVarietyOf rdfs:domain :GrapeVariety ;
+             rdfs:range :Wine .
+
+# Grape Maturity States
+:achievedBy rdfs:domain :Overmature ;
+            rdfs:range :GrapeState ;
+            owl:inverseOf :achieves .
+
+:affects rdfs:domain :GrapeMaturityState ;
+         rdfs:range :WineCharacteristic ;
+         owl:inverseOf :isAffectedBy .
+
+:achieves rdfs:domain :GrapeState ;
+          rdfs:range :Overmature .
+
+:isAffectedBy rdfs:domain :WineCharacteristic ;
+              rdfs:range :GrapeMaturityState .
+
+# Fermentation Processes and Wine Types
+:producedBy rdfs:domain :Wine ;
+            rdfs:range :FermentationProcess ;
+            owl:inverseOf :produces .
+
+:distinguishedBy rdfs:domain :SparklingWine ;
+                 rdfs:range :Characteristic ;
+                 owl:inverseOf :distinguishes .
+
+:interruptedBy rdfs:domain :SweetWine ;
+               rdfs:range :InterruptionMethod ;
+               owl:inverseOf :interrupts .
+
+:produces rdfs:domain :FermentationProcess ;
+          rdfs:range :Wine .
+
+:distinguishes rdfs:domain :Characteristic ;
+               rdfs:range :SparklingWine .
+
+:interrupts rdfs:domain :InterruptionMethod ;
+            rdfs:range :SweetWine .
+
+# Wine Characteristics
+:categorizedBy rdfs:domain :AmbiguousCharacteristic ;
+               rdfs:range :CharacteristicCategory ;
+               owl:inverseOf :categorizes .
+
+:contributesTo rdfs:domain :WineCharacteristic ;
+               rdfs:range :WineEvaluation ;
+               owl:inverseOf :isContributedBy .
+
+:categorizes rdfs:domain :CharacteristicCategory ;
+             rdfs:range :AmbiguousCharacteristic .
+
+:isContributedBy rdfs:domain :WineEvaluation ;
+                 rdfs:range :WineCharacteristic .
+
+# Regional and Classification Systems
+:partOf rdfs:domain :Region ;
+        rdfs:range :Country ;
+        owl:inverseOf :hasPart .
+
+:influences rdfs:domain :Region ;
+            rdfs:range :WineCharacteristic ;
+            owl:inverseOf :isInfluencedBy .
+
+:hasPart rdfs:domain :Country ;
+         rdfs:range :Region .
+
+:isInfluencedBy rdfs:domain :WineCharacteristic ;
+                rdfs:range :Region .
+
+# Producer, Varieties, and Year of Production
+:hasReputation rdfs:domain :Producer ;
+               rdfs:range :Reputation ;
+               owl:inverseOf :isReputationOf .
+
+:contributesTo rdfs:domain :GrapeVariety ;
+               rdfs:range :WineQuality ;
+               owl:inverseOf :isContributedByVariety .
+
+:producedInYear rdfs:domain :Wine ;
+                rdfs:range :YearOfProduction ;
+                owl:inverseOf :producesWineInYear .
+
+:isReputationOf rdfs:domain :Reputation ;
+                rdfs:range :Producer .
+
+:isContributedByVariety rdfs:domain :WineQuality ;
+                        rdfs:range :GrapeVariety .
+
+:producesWineInYear rdfs:domain :YearOfProduction ;
+                    rdfs:range :Wine .
+
+# Specific Wine Types and Production Methods
+:hasSignificance rdfs:domain :BarcaVelha ;
+                 rdfs:range :Significance ;
+                 owl:inverseOf :isSignificanceOf .
+
+:isSignificanceOf rdfs:domain :Significance ;
+                  rdfs:range :BarcaVelha .
+
+# Query and Retrieval
+:hasCharacteristic rdfs:domain :Wine ;
+                   rdfs:range :WineCharacteristic ;
+                   owl:inverseOf :isCharacteristicOf .
+
+:isCharacteristicOf rdfs:domain :WineCharacteristic ;
+                    rdfs:range :Wine .
+
+# Interoperability and Knowledge Management
+:facilitatesInteroperabilityWith rdfs:domain :WineOntology ;
+                                 rdfs:range :Entity ;
+                                 owl:inverseOf :interoperatesWith .
+
+:manages rdfs:domain :WineOntology ;
+         rdfs:range :WineKnowledge ;
+         owl:inverseOf :isManagedBy .
+
+:retrieves rdfs:domain :WineOntology ;
+           rdfs:range :WineKnowledge ;
+           owl:inverseOf :isRetrievedBy .
+
+:supportsIntegrationOf rdfs:domain :WineOntology ;
+                       rdfs:range :Entity ;
+                       owl:inverseOf :isIntegratedBy .
+
+:interoperatesWith rdfs:domain :Entity ;
+                   rdfs:range :WineOntology .
+
+:isManagedBy rdfs:domain :WineKnowledge ;
+             rdfs:range :WineOntology .
+
+:isRetrievedBy rdfs:domain :WineKnowledge ;
+               rdfs:range :WineOntology .
+
+:isIntegratedBy rdfs:domain :Entity ;
+                rdfs:range :WineOntology .
+
+# User-Specific Queries
+:recommendedBasedOn rdfs:domain :Wine ;
+                    rdfs:range :UserPreference ;
+                    owl:inverseOf :recommendsWine .
+
+:hasPreference rdfs:domain :UserPreference ;
+               rdfs:range :PreferenceCategory ;
+               owl:inverseOf :isPreferenceOf .
+
+:recommendsWine rdfs:domain :UserPreference ;
+                rdfs:range :Wine .
+
+:isPreferenceOf rdfs:domain :PreferenceCategory ;
+                rdfs:range :UserPreference .
+### fine ###
+
+
+###  ###
+# Data Properties
+
+# Wine Characteristics
+:hasAlcoholPercentage rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :Wine ;
+                      rdfs:range xsd:decimal .
+
+:hasTanninLevel rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range xsd:string .
+
+:hasDegreeOfAcidity rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Wine ;
+                    rdfs:range xsd:decimal .
+
+# Grape Maturity States
+:hasSugarLevel rdf:type owl:DatatypeProperty ;
+               rdfs:domain :GrapeMaturityState ;
+               rdfs:range xsd:decimal .
+
+# Wine Production
+:hasPriceValue rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range xsd:positiveInteger .
+
+:hasVintageYear rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range xsd:gYear .
+
+# Producer Reputation
+:hasReputationScore rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Producer ;
+                    rdfs:range xsd:integer .
+
+# Wine Evaluation
+:hasFlavourIntensity rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Flavour ;
+                     rdfs:range xsd:string .
+
+:hasAromaIntensity rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Aroma ;
+                   rdfs:range xsd:string .
+
+:hasVisionIntensity rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Vision ;
+                    rdfs:range xsd:string .
+
+# Specific Wine Types
+:hasProductionYear rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :BarcaVelha ;
+                   rdfs:range xsd:gYear .
+
+# User Preferences
+:hasPreferredTaste rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :UserPreference ;
+                   rdfs:range xsd:string .
+
+:hasPreferredColor rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :UserPreference ;
+                   rdfs:range xsd:string .
+
+:hasPreferredSmell rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :UserPreference ;
+                   rdfs:range xsd:string .
+### fine ###
+###  ###
+# Transitive Properties
+
+# Maceration Processes and Wine Types
+:usedToProduce rdf:type owl:TransitiveProperty .
+
+# Grape Maturity States
+:achievedBy rdf:type owl:TransitiveProperty .
+
+# Fermentation Processes and Wine Types
+:producedBy rdf:type owl:TransitiveProperty .
+
+# Wine Characteristics
+:categorizedBy rdf:type owl:TransitiveProperty .
+
+# Regional and Classification Systems
+:partOf rdf:type owl:TransitiveProperty .
+
+# Producer, Varieties, and Year of Production
+:hasReputation rdf:type owl:TransitiveProperty .
+
+# Interoperability and Knowledge Management
+:facilitatesInteroperabilityWith rdf:type owl:TransitiveProperty .
+
+# User-Specific Queries
+:recommendedBasedOn rdf:type owl:TransitiveProperty .
+### fine ###
+
+
+###  ###
+# Functional Properties
+
+# Maceration Processes and Wine Types
+:usedToProduce rdf:type owl:FunctionalProperty .
+
+# Grape Maturity States
+:achievedBy rdf:type owl:FunctionalProperty .
+
+# Fermentation Processes and Wine Types
+:producedBy rdf:type owl:FunctionalProperty .
+:distinguishedBy rdf:type owl:FunctionalProperty .
+:interruptedBy rdf:type owl:FunctionalProperty .
+
+# Wine Characteristics
+:categorizedBy rdf:type owl:FunctionalProperty .
+:contributesTo rdf:type owl:FunctionalProperty .
+
+# Regional and Classification Systems
+:partOf rdf:type owl:FunctionalProperty .
+:influences rdf:type owl:FunctionalProperty .
+
+# Producer, Varieties, and Year of Production
+:hasReputation rdf:type owl:FunctionalProperty .
+:contributesTo rdf:type owl:FunctionalProperty .
+:producedInYear rdf:type owl:FunctionalProperty .
+
+# Specific Wine Types and Production Methods
+:hasSignificance rdf:type owl:FunctionalProperty .
+
+# Query and Retrieval
+:hasCharacteristic rdf:type owl:FunctionalProperty .
+
+# Interoperability and Knowledge Management
+:facilitatesInteroperabilityWith rdf:type owl:FunctionalProperty .
+:manages rdf:type owl:FunctionalProperty .
+:retrieves rdf:type owl:FunctionalProperty .
+:supportsIntegrationOf rdf:type owl:FunctionalProperty .
+
+# User-Specific Queries
+:recommendedBasedOn rdf:type owl:FunctionalProperty .
+:hasPreference rdf:type owl:FunctionalProperty .
+### fine ###
+
+###  ###
+# Reflexive Properties
+
+# Maceration Processes and Wine Types
+:hasVariety rdf:type owl:ReflexiveProperty .
+
+# Grape Maturity States
+:affects rdf:type owl:ReflexiveProperty .
+
+# Fermentation Processes and Wine Types
+:producedBy rdf:type owl:ReflexiveProperty .
+
+# Wine Characteristics
+:contributesTo rdf:type owl:ReflexiveProperty .
+
+# Regional and Classification Systems
+:influences rdf:type owl:ReflexiveProperty .
+
+# Producer, Varieties, and Year of Production
+:hasReputation rdf:type owl:ReflexiveProperty .
+
+# Specific Wine Types and Production Methods
+:hasSignificance rdf:type owl:ReflexiveProperty .
+
+# Query and Retrieval
+:hasCharacteristic rdf:type owl:ReflexiveProperty .
+
+# Interoperability and Knowledge Management
+:facilitatesInteroperabilityWith rdf:type owl:ReflexiveProperty .
+:manages rdf:type owl:ReflexiveProperty .
+:retrieves rdf:type owl:ReflexiveProperty .
+:supportsIntegrationOf rdf:type owl:ReflexiveProperty .
+
+# User-Specific Queries
+:hasPreference rdf:type owl:ReflexiveProperty .
+### fine ###
+
+###  ###
+# Class Descriptions
+
+:MacerationProcess rdfs:comment "A process that involves the contact between grape solid parts and must." .
+:TotalMaceration rdfs:comment "A maceration process where the grape solid parts and must are in full contact." .
+:HalfMaceration rdfs:comment "A maceration process where the grape solid parts and must are in partial contact." .
+:WithoutMaceration rdfs:comment "A maceration process where there is no contact between grape solid parts and must." .
+
+:Wine rdfs:comment "A beverage made from the fermented juice of grapes." .
+:RedWine rdfs:comment "A type of wine produced from red grape varieties with total maceration." .
+:RoseWine rdfs:comment "A type of wine produced from red grape varieties with half maceration." .
+:WhiteWine rdfs:comment "A type of wine produced from white grape varieties or without maceration." .
+
+:GrapeMaturityState rdfs:comment "The state of grape maturity which affects the sugar, alcohol, and acidity levels of the wine." .
+:Unripe rdfs:comment "A grape maturity state where grapes are captured early and are more acidic." .
+:Mature rdfs:comment "A grape maturity state where grapes are captured at their peak ripeness, resulting in sweeter juice." .
+:Overmature rdfs:comment "A grape maturity state achieved through dehydration, freezing, or noble rot, resulting in higher sugar concentration." .
+
+:FermentationProcess rdfs:comment "The process by which yeast converts sugar into alcohol and carbon dioxide." .
+:NormalFermentation rdfs:comment "A standard fermentation process resulting in table wines." .
+:DoubleFermentation rdfs:comment "A fermentation process involving two stages, resulting in sparkling wines." .
+:InterruptedFermentation rdfs:comment "A fermentation process that is stopped before completion, resulting in sweet wines." .
+
+:WineCharacteristic rdfs:comment "Measurable or ambiguous characteristics of a wine." .
+:AlcoholPercentage rdfs:comment "The percentage of alcohol in a wine." .
+:TanninLevel rdfs:comment "The level of tannins in a wine, affecting its astringency." .
+:DegreeOfAcidity rdfs:comment "The level of acidity in a wine, affecting its tartness." .
+
+:AmbiguousCharacteristic rdfs:comment "Characteristics of a wine that are subjective and depend on personal perception." .
+:Vision rdfs:comment "Visual characteristics of a wine, including color, intensity, and clarity." .
+:Aroma rdfs:comment "The smell of a wine, including its intensity, condition, and dominant character." .
+:Flavour rdfs:comment "The taste of a wine, including its sweetness, acidity, tannin level, and persistence." .
+
+:ClassificationSystem rdfs:comment "A system used to classify wines based on quality and regional standards." .
+:EuropeanClassification rdfs:comment "A classification system used in the European Union to ensure wine quality." .
+:DOC rdfs:comment "The highest quality classification for wines in the European Union." .
+:VQPRD rdfs:comment "A quality classification for wines in the European Union, below DOC." .
+:RegionalWine rdfs:comment "A classification for wines that meet regional standards but are below VQPRD in quality." .
+:TableWine rdfs:comment "A classification for basic wines that do not meet higher quality standards." .
+
+:Region rdfs:comment "A geographical area where wine is produced, influencing its characteristics." .
+:Country rdfs:comment "A nation where wine regions are located." .
+
+:Producer rdfs:comment "An entity that produces wine, influencing its quality and reputation." .
+:GrapeVariety rdfs:comment "The type of grapes used in winemaking, influencing the wine's characteristics." .
+:RedVariety rdfs:comment "Grape varieties with red skin, used to produce red and rosé wines." .
+:WhiteVariety rdfs:comment "Grape varieties with white skin, used to produce white wines." .
+:WhiteRedVarietyCombination rdfs:comment "A combination of white and red grape varieties used in winemaking." .
+
+:YearOfProduction rdfs:comment "The year in which a wine was produced, influencing its characteristics and quality." .
+
+:PortWine rdfs:comment "A type of fortified wine produced in Portugal, known for its sweetness and high alcohol content." .
+:BarcaVelha rdfs:comment "A high-quality Portuguese wine produced only in exceptional years." .
+
+:WineOntology rdfs:comment "An ontology that describes the domain of wine, including its classification, characteristics, and production methods." .
+:WineDatabase rdfs:comment "A database containing information about wines." .
+:WineKnowledge rdfs:comment "Knowledge related to wines, including their characteristics, production methods, and classification." .
+
+:UserPreference rdfs:comment "Preferences of a user regarding wine characteristics, such as taste, color, and smell." .
+
+# Object Property Descriptions
+
+:usedToProduce rdfs:comment "Relates a wine to the maceration process used to produce it." .
+:hasVariety rdfs:comment "Relates a wine to the grape varieties used in its production." .
+:producesWine rdfs:comment "Relates a maceration process to the wine it produces." .
+:isVarietyOf rdfs:comment "Relates a grape variety to the wine it is used to produce." .
+
+:achievedBy rdfs:comment "Relates an overmature state to the method used to achieve it." .
+:affects rdfs:comment "Relates a grape maturity state to the wine characteristics it affects." .
+:achieves rdfs:comment "Relates a method to the overmature state it achieves." .
+:isAffectedBy rdfs:comment "Relates a wine characteristic to the grape maturity state that affects it." .
+
+:producedBy rdfs:comment "Relates a wine to the fermentation process used to produce it." .
+:distinguishedBy rdfs:comment "Relates a sparkling wine to the characteristic that distinguishes it." .
+:interruptedBy rdfs:comment "Relates a sweet wine to the method used to interrupt its fermentation." .
+:produces rdfs:comment "Relates a fermentation process to the wine it produces." .
+:distinguishes rdfs:comment "Relates a characteristic to the sparkling wine it distinguishes." .
+:interrupts rdfs:comment "Relates a method to the sweet wine whose fermentation it interrupts." .
+
+:categorizedBy rdfs:comment "Relates an ambiguous characteristic to the category it belongs to." .
+:contributesTo rdfs:comment "Relates a wine characteristic to the evaluation criteria it contributes to." .
+:categorizes rdfs:comment "Relates a category to the ambiguous characteristic it categorizes." .
+:isContributedBy rdfs:comment "Relates an evaluation criterion to the wine characteristic that contributes to it." .
+
+:partOf rdfs:comment "Relates a region to the country it is part of." .
+:influences rdfs:comment "Relates a region to the wine characteristics it influences." .
+:hasPart rdfs:comment "Relates a country to the region that is part of it." .
+:isInfluencedBy rdfs:comment "Relates a wine characteristic to the region that influences it." .
+
+:hasReputation rdfs:comment "Relates a producer to its reputation." .
+:contributesTo rdfs:comment "Relates a grape variety to the wine quality it contributes to." .
+:producedInYear rdfs:comment "Relates a wine to the year it was produced in." .
+:isReputationOf rdfs:comment "Relates a reputation to the producer it belongs to." .
+:isContributedByVariety rdfs:comment "Relates a wine quality to the grape variety that contributes to it." .
+:producesWineInYear rdfs:comment "Relates a year to the wine produced in it." .
+
+:hasSignificance rdfs:comment "Relates a specific wine to its significance." .
+:isSignificanceOf rdfs:comment "Relates a significance to the specific wine it belongs to." .
+
+:hasCharacteristic rdfs:comment "Relates a wine to its characteristics." .
+:isCharacteristicOf rdfs:comment "Relates a characteristic to the wine it belongs to." .
+
+:facilitatesInteroperabilityWith rdfs:comment "Relates the wine ontology to the databases and systems it facilitates interoperability with." .
+:manages rdfs:comment "Relates the wine ontology to the knowledge it manages." .
+:retrieves rdfs:comment "Relates the wine ontology to the knowledge it retrieves." .
+:supportsIntegrationOf rdfs:comment "Relates the wine ontology to the entities it supports integration of." .
+:interoperatesWith rdfs:comment "Relates a database or system to the wine ontology it interoperates with." .
+:isManagedBy rdfs:comment "Relates knowledge to the wine ontology that manages it." .
+:isRetrievedBy rdfs:comment "Relates knowledge to the wine ontology that retrieves it." .
+:isIntegratedBy rdfs:comment "Relates an entity to the wine ontology that supports its integration." .
+
+:recommendedBasedOn rdfs:comment "Relates a wine to the user preferences it is recommended based on." .
+:hasPreference rdfs:comment "Relates a user preference to the category it belongs to." .
+:recommendsWine rdfs:comment "Relates a user preference to the wine it recommends." .
+:isPreferenceOf rdfs:comment "Relates a category to the user preference it belongs to." .
+
+# Data Property Descriptions
+
+:hasAlcoholPercentage rdfs:comment "The percentage of alcohol in a wine." .
+:hasTanninLevel rdfs:comment "The level of tannins in a wine, described as a string (e.g., low, medium, high)." .
+:hasDegreeOfAcidity rdfs:comment "The degree of acidity in a wine, expressed as a decimal value." .
+
+:hasSugarLevel rdfs:comment "The level of sugar in a grape maturity state, expressed as a decimal value." .
+
+:hasPriceValue rdfs:comment "The price of a wine, expressed as a positive integer." .
+:hasVintageYear rdfs:comment "The year a wine was produced, expressed as a gYear." .
+
+:hasReputationScore rdfs:comment "The reputation score of a producer, expressed as an integer." .
+
+:hasFlavourIntensity rdfs:comment "The intensity of a wine's flavour, described as a string (e.g., light, medium, full)." .
+:hasAromaIntensity rdfs:comment "The intensity of a wine's aroma, described as a string (e.g., light, medium, strong)." .
+:hasVisionIntensity rdfs:comment "The intensity of a wine's visual characteristics, described as a string (e.g., pale, medium, deep)." .
+
+:hasProductionYear rdfs:comment "The year a specific wine (e.g., Barca Velha) was produced, expressed as a gYear." .
+
+:hasPreferredTaste rdfs:comment "The preferred taste of a user, described as a string (e.g., sweet, dry)." .
+:hasPreferredColor rdfs:comment "The preferred color of a user, described as a string (e.g., red, white)." .
+:hasPreferredSmell rdfs:comment "The preferred smell of a user, described as a string (e.g., fruity, floral)." .
+### fine ###
+###  ###
+# Individuals for Grape Varieties
+:RieslingGrape rdf:type :WhiteVariety .
+:CabernetSauvignonGrape rdf:type :RedVariety .
+:PinotNoirGrape rdf:type :RedVariety .
+:ChardonnayGrape rdf:type :WhiteVariety .
+:TintaRorizGrape rdf:type :RedVariety .
+:TourigaNacionalGrape rdf:type :RedVariety .
+:TourigaFrancesaGrape rdf:type :RedVariety .
+
+# Individuals for Wine Regions
+:SancerreRegion rdf:type :Region ;
+                :partOf :France .
+:BordeauxRegion rdf:type :Region ;
+                :partOf :France .
+:AlentejoRegion rdf:type :Region ;
+               :partOf :Portugal .
+:NapaValleyRegion rdf:type :Region ;
+                :partOf :USA .
+:ChampagneRegion rdf:type :Region ;
+                :partOf :France .
+
+# Individuals for Countries
+:France rdf:type :Country .
+:Portugal rdf:type :Country .
+:USA rdf:type :Country .
+
+# Individuals for Wines
+:BordeauxWine rdf:type :RedWine ;
+              :hasVariety :CabernetSauvignonGrape ;
+              :producedIn :BordeauxRegion ;
+              :producedInYear "2020"^^xsd:gYear ;
+              :hasAlcoholPercentage "13.5"^^xsd:decimal ;
+              :hasTanninLevel "high" ;
+              :hasDegreeOfAcidity "5.5"^^xsd:decimal ;
+              :hasPriceValue "30"^^xsd:positiveInteger .
+
+:SancerreWine rdf:type :WhiteWine ;
+              :hasVariety :RieslingGrape ;
+              :producedIn :SancerreRegion ;
+              :producedInYear "2021"^^xsd:gYear ;
+              :hasAlcoholPercentage "12.0"^^xsd:decimal ;
+              :hasTanninLevel "low" ;
+              :hasDegreeOfAcidity "6.0"^^xsd:decimal ;
+              :hasPriceValue "25"^^xsd:positiveInteger .
+
+:PortWineExample rdf:type :PortWine ;
+                 :hasVariety :TintaRorizGrape, :TourigaNacionalGrape, :TourigaFrancesaGrape ;
+                 :producedIn :AlentejoRegion ;
+                 :producedInYear "2019"^^xsd:gYear ;
+                 :hasAlcoholPercentage "20.0"^^xsd:decimal ;
+                 :hasTanninLevel "medium" ;
+                 :hasDegreeOfAcidity "4.5"^^xsd:decimal ;
+                 :hasPriceValue "50"^^xsd:positiveInteger .
+
+:ChampagneWine rdf:type :SparklingWine ;
+               :producedIn :ChampagneRegion ;
+               :producedInYear "2022"^^xsd:gYear ;
+               :hasAlcoholPercentage "12.5"^^xsd:decimal ;
+               :hasTanninLevel "low" ;
+               :hasDegreeOfAcidity "6.5"^^xsd:decimal ;
+               :hasPriceValue "40"^^xsd:positiveInteger .
+
+:BarcaVelhaWine rdf:type :RedWine ;
+                :producedIn :AlentejoRegion ;
+                :producedInYear "2018"^^xsd:gYear ;
+                :hasAlcoholPercentage "14.0"^^xsd:decimal ;
+                :hasTanninLevel "high" ;
+                :hasDegreeOfAcidity "5.0"^^xsd:decimal ;
+                :hasPriceValue "100"^^xsd:positiveInteger ;
+                :hasSignificance "High-quality wine produced only in exceptional years" .
+
+# Individuals for Producers
+:ChateauMargaux rdf:type :Producer ;
+                :hasReputationScore "95"^^xsd:integer ;
+                :producedBy :BordeauxWine .
+
+:DomaineVacheron rdf:type :Producer ;
+                 :hasReputationScore "90"^^xsd:integer ;
+                 :producedBy :SancerreWine .
+
+:TaylorFladgate rdf:type :Producer ;
+                :hasReputationScore "92"^^xsd:integer ;
+                :producedBy :PortWineExample .
+
+:MoetChandon rdf:type :Producer ;
+             :hasReputationScore "93"^^xsd:integer ;
+             :producedBy :ChampagneWine .
+
+:Niepoort rdf:type :Producer ;
+          :hasReputationScore "97"^^xsd:integer ;
+          :producedBy :BarcaVelhaWine .
+
+# Individuals for Grape Maturity States
+:UnripeGrapes rdf:type :Unripe ;
+              :affects :HighAcidity .
+
+:MatureGrapes rdf:type :Mature ;
+              :affects :BalancedSweetness .
+
+:OvermatureGrapes rdf:type :Overmature ;
+                  :achievedBy :DehydratedGrapesMethod ;
+                  :affects :HighSugarConcentration .
+
+# Individuals for Fermentation Processes
+:NormalFermentationProcess rdf:type :NormalFermentation ;
+                           :produces :BordeauxWine .
+
+:DoubleFermentationProcess rdf:type :DoubleFermentation ;
+                           :produces :ChampagneWine .
+
+:InterruptedFermentationProcess rdf:type :InterruptedFermentation ;
+                                :interrupts :PortWineExample .
+
+# Individuals for Wine Characteristics
+:HighAcidity rdf:type :DegreeOfAcidity ;
+             :isAffectedBy :UnripeGrapes .
+
+:BalancedSweetness rdf:type :Sweetness ;
+                   :isAffectedBy :MatureGrapes .
+
+:HighSugarConcentration rdf:type :SugarLevel ;
+                        :isAffectedBy :OvermatureGrapes .
+
+# Individuals for Ambiguous Characteristics
+:FruityAroma rdf:type :Aroma ;
+             :categorizedBy :FruitCategory .
+
+:DeepColor rdf:type :Vision ;
+           :categorizedBy :ColorIntensity .
+
+:FullFlavour rdf:type :Flavour ;
+             :categorizedBy :FlavourIntensity .
+
+# Individuals for Classification Systems
+:DOCClassification rdf:type :DOC .
+:VQPRDClassification rdf:type :VQPRD .
+:RegionalWineClassification rdf:type :RegionalWine .
+:TableWineClassification rdf:type :TableWine .
+
+# Individuals for User Preferences
+:User1Preference rdf:type :UserPreference ;
+                 :hasPreferredTaste "dry" ;
+                 :hasPreferredColor "red" ;
+                 :hasPreferredSmell "earthy" .
+
+:User2Preference rdf:type :UserPreference ;
+                 :hasPreferredTaste "sweet" ;
+                 :hasPreferredColor "white" ;
+                 :hasPreferredSmell "floral" .
+
+# Individuals for Wine Knowledge and Databases
+:WineKnowledgeBase rdf:type :WineKnowledge ;
+                   :isManagedBy :WineOntology ;
+                   :isRetrievedBy :WineOntology .
+
+:WineDatabaseExample rdf:type :WineDatabase ;
+                     :interoperatesWith :WineOntology .
+### fine ###
+
+###  ###
+# Individuals for Grape Varieties
+:RieslingGrape rdfs:comment "A white grape variety known for its high acidity and fruity flavors." .
+:CabernetSauvignonGrape rdfs:comment "A red grape variety known for its full-bodied wines with high tannins and dark fruit flavors." .
+:PinotNoirGrape rdfs:comment "A red grape variety known for its light-bodied wines with delicate flavors and aromas." .
+:ChardonnayGrape rdfs:comment "A white grape variety known for its versatility in producing both crisp and full-bodied wines." .
+:TintaRorizGrape rdfs:comment "A red grape variety commonly used in Port wine production, known for its dark fruit flavors." .
+:TourigaNacionalGrape rdfs:comment "A red grape variety known for its intense flavors and high tannins, often used in Port wine." .
+:TourigaFrancesaGrape rdfs:comment "A red grape variety known for its floral and spicy notes, used in Port wine production." .
+
+# Individuals for Wine Regions
+:SancerreRegion rdfs:comment "A wine region in France known for its crisp and refreshing white wines made from Sauvignon Blanc." .
+:BordeauxRegion rdfs:comment "A wine region in France known for its full-bodied red wines made from Cabernet Sauvignon and Merlot." .
+:AlentejoRegion rdfs:comment "A wine region in Portugal known for its robust red wines and hot, dry climate." .
+:NapaValleyRegion rdfs:comment "A wine region in California, USA, known for its high-quality Cabernet Sauvignon and Chardonnay wines." .
+:ChampagneRegion rdfs:comment "A wine region in France known for its sparkling wines made from Chardonnay, Pinot Noir, and Pinot Meunier." .
+
+# Individuals for Countries
+:France rdfs:comment "A country known for its diverse wine regions and high-quality wines." .
+:Portugal rdfs:comment "A country known for its Port wine and other robust red wines." .
+:USA rdfs:comment "A country with diverse wine regions, particularly known for its wines from California." .
+
+# Individuals for Wines
+:BordeauxWine rdfs:comment "A full-bodied red wine from the Bordeaux region, known for its high tannins and dark fruit flavors." .
+:SancerreWine rdfs:comment "A crisp and refreshing white wine from the Sancerre region, made from Sauvignon Blanc." .
+:PortWineExample rdfs:comment "A sweet and fortified wine from the Alentejo region, made from a blend of red grape varieties." .
+:ChampagneWine rdfs:comment "A sparkling wine from the Champagne region, known for its elegance and fine bubbles." .
+:BarcaVelhaWine rdfs:comment "A high-quality red wine from the Alentejo region, produced only in exceptional years." .
+
+# Individuals for Producers
+:ChateauMargaux rdfs:comment "A renowned wine producer in the Bordeaux region, known for its high-quality red wines." .
+:DomaineVacheron rdfs:comment "A wine producer in the Sancerre region, known for its crisp and refreshing white wines." .
+:TaylorFladgate rdfs:comment "A wine producer in the Alentejo region, known for its Port wines." .
+:MoetChandon rdfs:comment "A wine producer in the Champagne region, known for its high-quality sparkling wines." .
+:Niepoort rdfs:comment "A wine producer in the Alentejo region, known for its high-quality red wines." .
+
+# Individuals for Grape Maturity States
+:UnripeGrapes rdfs:comment "Grapes captured early, resulting in high acidity and less sugar." .
+:MatureGrapes rdfs:comment "Grapes captured at their peak ripeness, resulting in balanced sweetness and acidity." .
+:OvermatureGrapes rdfs:comment "Grapes captured late, resulting in high sugar concentration and rich flavors." .
+
+# Individuals for Fermentation Processes
+:NormalFermentationProcess rdfs:comment "A standard fermentation process resulting in table wines." .
+:DoubleFermentationProcess rdfs:comment "A fermentation process involving two stages, resulting in sparkling wines." .
+:InterruptedFermentationProcess rdfs:comment "A fermentation process that is stopped before completion, resulting in sweet wines." .
+
+# Individuals for Wine Characteristics
+:HighAcidity rdfs:comment "A high degree of acidity in a wine, resulting in a tart and refreshing taste." .
+:BalancedSweetness rdfs:comment "A balanced level of sweetness in a wine, resulting from mature grapes." .
+:HighSugarConcentration rdfs:comment "A high level of sugar in a wine, resulting from overmature grapes." .
+
+# Individuals for Ambiguous Characteristics
+:FruityAroma rdfs:comment "An aroma characterized by fruity notes, such as berries or citrus." .
+:DeepColor rdfs:comment "A deep and intense color in a wine, indicating high concentration and extraction." .
+:FullFlavour rdfs:comment "A full and rich flavor in a wine, indicating high intensity and complexity." .
+
+# Individuals for Classification Systems
+:DOCClassification rdfs:comment "The highest quality classification for wines in the European Union." .
+:VQPRDClassification rdfs:comment "A quality classification for wines in the European Union, below DOC." .
+:RegionalWineClassification rdfs:comment "A classification for wines that meet regional standards but are below VQPRD in quality." .
+:TableWineClassification rdfs:comment "A classification for basic wines that do not meet higher quality standards." .
+
+# Individuals for User Preferences
+:User1Preference rdfs:comment "A user preference for dry, red wines with an earthy smell." .
+:User2Preference rdfs:comment "A user preference for sweet, white wines with a floral smell." .
+
+# Individuals for Wine Knowledge and Databases
+:WineKnowledgeBase rdfs:comment "A knowledge base containing information about wines, managed and retrieved by the wine ontology." .
+:WineDatabaseExample rdfs:comment "A database containing information about wines, interoperable with the wine ontology." .
+### fine ###
+
+# New Concepts and Relationships
+
+# Wine Styles
+:WineStyle rdfs:subClassOf :Wine ;
+           rdfs:comment "A specific style of wine, such as dry, sweet, or sparkling." .
+
+:DryWine rdfs:subClassOf :WineStyle ;
+         rdfs:comment "A style of wine with low residual sugar, resulting in a dry taste." .
+
+:SweetWine rdfs:subClassOf :WineStyle ;
+           rdfs:comment "A style of wine with high residual sugar, resulting in a sweet taste." .
+
+:SparklingWine rdfs:subClassOf :WineStyle ;
+               rdfs:comment "A style of wine with carbonation, resulting in bubbles." .
+
+# Wine Aging
+:AgingProcess rdfs:subClassOf :Process ;
+              rdfs:comment "A process by which wine is aged to develop its flavors and characteristics." .
+
+:BarrelAging rdfs:subClassOf :AgingProcess ;
+             rdfs:comment "Aging wine in barrels to impart additional flavors and complexity." .
+
+:BottleAging rdfs:subClassOf :AgingProcess ;
+             rdfs:comment "Aging wine in bottles to allow it to develop over time." .
+
+:agedIn rdf:type owl:ObjectProperty ;
+        rdfs:domain :Wine ;
+        rdfs:range :AgingProcess ;
+        rdfs:comment "Relates a wine to the aging process it undergoes." ;
+        owl:inverseOf :agesWine .
+
+:agesWine rdf:type owl:ObjectProperty ;
+          rdfs:domain :AgingProcess ;
+          rdfs:range :Wine ;
+          rdfs:comment "Relates an aging process to the wine it ages." .
+
+# Wine Awards
+:WineAward rdfs:subClassOf :Award ;
+            rdfs:comment "An award given to a wine for its quality or characteristics." .
+
+:GoldMedal rdfs:subClassOf :WineAward ;
+            rdfs:comment "A gold medal awarded to a wine for its high quality." .
+
+:SilverMedal rdfs:subClassOf :WineAward ;
+             rdfs:comment "A silver medal awarded to a wine for its quality." .
+
+:BronzeMedal rdfs:subClassOf :WineAward ;
+             rdfs:comment "A bronze medal awarded to a wine for its quality." .
+
+:hasAward rdf:type owl:ObjectProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range :WineAward ;
+          rdfs:comment "Relates a wine to the awards it has received." ;
+          owl:inverseOf :isAwardedTo .
+
+:isAwardedTo rdf:type owl:ObjectProperty ;
+             rdfs:domain :WineAward ;
+             rdfs:range :Wine ;
+             rdfs:comment "Relates an award to the wine it is awarded to." .
+
+# Wine Tasting Notes
+:TastingNote rdfs:subClassOf :Note ;
+             rdfs:comment "A note describing the sensory characteristics of a wine during tasting." .
+
+:AromaNote rdfs:subClassOf :TastingNote ;
+            rdfs:comment "A note describing the aroma characteristics of a wine." .
+
+:FlavorNote rdfs:subClassOf :TastingNote ;
+            rdfs:comment "A note describing the flavor characteristics of a wine." .
+
+:TextureNote rdfs:subClassOf :TastingNote ;
+             rdfs:comment "A note describing the texture characteristics of a wine." .
+
+:hasTastingNote rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :TastingNote ;
+               rdfs:comment "Relates a wine to its tasting notes." ;
+               owl:inverseOf :isTastingNoteOf .
+
+:isTastingNoteOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :TastingNote ;
+                 rdfs:range :Wine ;
+                 rdfs:comment "Relates a tasting note to the wine it describes." .
+
+# Wine and Food Pairing
+:FoodPairing rdfs:subClassOf :Pairing ;
+             rdfs:comment "A recommendation for pairing a wine with a specific type of food." .
+
+:MeatPairing rdfs:subClassOf :FoodPairing ;
+             rdfs:comment "A recommendation for pairing a wine with meat dishes." .
+
+:SeafoodPairing rdfs:subClassOf :FoodPairing ;
+               rdfs:comment "A recommendation for pairing a wine with seafood dishes." .
+
+:VegetablePairing rdfs:subClassOf :FoodPairing ;
+                 rdfs:comment "A recommendation for pairing a wine with vegetable dishes." .
+
+:hasFoodPairing rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :FoodPairing ;
+               rdfs:comment "Relates a wine to its recommended food pairings." ;
+               owl:inverseOf :isFoodPairingOf .
+
+:isFoodPairingOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :FoodPairing ;
+                 rdfs:range :Wine ;
+                 rdfs:comment "Relates a food pairing to the wine it is recommended for." .
+
+# Wine Vintage
+:Vintage rdfs:subClassOf :Year ;
+         rdfs:comment "A specific year in which a wine is produced, often indicating its quality and characteristics." .
+
+:hasVintage rdf:type owl:ObjectProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :Vintage ;
+            rdfs:comment "Relates a wine to its vintage year." ;
+            owl:inverseOf :isVintageOf .
+
+:isVintageOf rdf:type owl:ObjectProperty ;
+             rdfs:domain :Vintage ;
+             rdfs:range :Wine ;
+             rdfs:comment "Relates a vintage year to the wine produced in that year." .
+
+# Wine Reviews
+:WineReview rdfs:subClassOf :Review ;
+            rdfs:comment "A review of a wine, providing an evaluation of its quality and characteristics." .
+
+:ExpertReview rdfs:subClassOf :WineReview ;
+              rdfs:comment "A review of a wine by an expert, providing a professional evaluation." .
+
+:UserReview rdfs:subClassOf :WineReview ;
+            rdfs:comment "A review of a wine by a user, providing a personal evaluation." .
+
+:hasReview rdf:type owl:ObjectProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range :WineReview ;
+           rdfs:comment "Relates a wine to its reviews." ;
+           owl:inverseOf :isReviewOf .
+
+:isReviewOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :WineReview ;
+            rdfs:range :Wine ;
+            rdfs:comment "Relates a review to the wine it evaluates." .
+# New Relationships
+
+# Wine and Grape Variety Relationships
+:primaryVariety rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :GrapeVariety ;
+                 rdfs:comment "Relates a wine to its primary grape variety." ;
+                 owl:inverseOf :isPrimaryVarietyOf .
+
+:isPrimaryVarietyOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain :GrapeVariety ;
+                    rdfs:range :Wine ;
+                    rdfs:comment "Relates a grape variety to the wine it is the primary variety of." .
+
+:secondaryVariety rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :GrapeVariety ;
+                  rdfs:comment "Relates a wine to its secondary grape variety." ;
+                  owl:inverseOf :isSecondaryVarietyOf .
+
+:isSecondaryVarietyOf rdf:type owl:ObjectProperty ;
+                      rdfs:domain :GrapeVariety ;
+                      rdfs:range :Wine ;
+                      rdfs:comment "Relates a grape variety to the wine it is the secondary variety of." .
+
+# Wine and Region Relationships
+:primaryRegion rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :Region ;
+               rdfs:comment "Relates a wine to its primary region of production." ;
+               owl:inverseOf :isPrimaryRegionOf .
+
+:isPrimaryRegionOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Region ;
+                   rdfs:range :Wine ;
+                   rdfs:comment "Relates a region to the wine it is the primary region of." .
+
+:secondaryRegion rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :Region ;
+                 rdfs:comment "Relates a wine to its secondary region of production." ;
+                 owl:inverseOf :isSecondaryRegionOf .
+
+:isSecondaryRegionOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Region ;
+                     rdfs:range :Wine ;
+                     rdfs:comment "Relates a region to the wine it is the secondary region of." .
+
+# Wine and Producer Relationships
+:primaryProducer rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :Producer ;
+                  rdfs:comment "Relates a wine to its primary producer." ;
+                  owl:inverseOf :isPrimaryProducerOf .
+
+:isPrimaryProducerOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Producer ;
+                     rdfs:range :Wine ;
+                     rdfs:comment "Relates a producer to the wine it is the primary producer of." .
+
+:secondaryProducer rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Wine ;
+                   rdfs:range :Producer ;
+                   rdfs:comment "Relates a wine to its secondary producer." ;
+                   owl:inverseOf :isSecondaryProducerOf .
+
+:isSecondaryProducerOf rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Producer ;
+                       rdfs:range :Wine ;
+                       rdfs:comment "Relates a producer to the wine it is the secondary producer of." .
+
+# Wine and Aging Process Relationships
+:primaryAgingProcess rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Wine ;
+                     rdfs:range :AgingProcess ;
+                     rdfs:comment "Relates a wine to its primary aging process." ;
+                     owl:inverseOf :isPrimaryAgingProcessOf .
+
+:isPrimaryAgingProcessOf rdf:type owl:ObjectProperty ;
+                        rdfs:domain :AgingProcess ;
+                        rdfs:range :Wine ;
+                        rdfs:comment "Relates an aging process to the wine it is the primary aging process of." .
+
+:secondaryAgingProcess rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Wine ;
+                       rdfs:range :AgingProcess ;
+                       rdfs:comment "Relates a wine to its secondary aging process." ;
+                       owl:inverseOf :isSecondaryAgingProcessOf .
+
+:isSecondaryAgingProcessOf rdf:type owl:ObjectProperty ;
+                          rdfs:domain :AgingProcess ;
+                          rdfs:range :Wine ;
+                          rdfs:comment "Relates an aging process to the wine it is the secondary aging process of." .
+
+# Wine and Award Relationships
+:primaryAward rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :WineAward ;
+               rdfs:comment "Relates a wine to its primary award." ;
+               owl:inverseOf :isPrimaryAwardOf .
+
+:isPrimaryAwardOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain :WineAward ;
+                  rdfs:range :Wine ;
+                  rdfs:comment "Relates an award to the wine it is the primary award of." .
+
+:secondaryAward rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :WineAward ;
+                 rdfs:comment "Relates a wine to its secondary award." ;
+                 owl:inverseOf :isSecondaryAwardOf .
+
+:isSecondaryAwardOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain :WineAward ;
+                    rdfs:range :Wine ;
+                    rdfs:comment "Relates an award to the wine it is the secondary award of." .
+
+# Wine and Tasting Note Relationships
+:primaryTastingNote rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Wine ;
+                    rdfs:range :TastingNote ;
+                    rdfs:comment "Relates a wine to its primary tasting note." ;
+                    owl:inverseOf :isPrimaryTastingNoteOf .
+
+:isPrimaryTastingNoteOf rdf:type owl:ObjectProperty ;
+                        rdfs:domain :TastingNote ;
+                        rdfs:range :Wine ;
+                        rdfs:comment "Relates a tasting note to the wine it is the primary tasting note of." .
+
+:secondaryTastingNote rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Wine ;
+                      rdfs:range :TastingNote ;
+                      rdfs:comment "Relates a wine to its secondary tasting note." ;
+                      owl:inverseOf :isSecondaryTastingNoteOf .
+
+:isSecondaryTastingNoteOf rdf:type owl:ObjectProperty ;
+                          rdfs:domain :TastingNote ;
+                          rdfs:range :Wine ;
+                          rdfs:comment "Relates a tasting note to the wine it is the secondary tasting note of." .
+
+# Wine and Food Pairing Relationships
+:primaryFoodPairing rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Wine ;
+                    rdfs:range :FoodPairing ;
+                    rdfs:comment "Relates a wine to its primary food pairing." ;
+                    owl:inverseOf :isPrimaryFoodPairingOf .
+
+:isPrimaryFoodPairingOf rdf:type owl:ObjectProperty ;
+                        rdfs:domain :FoodPairing ;
+                        rdfs:range :Wine ;
+                        rdfs:comment "Relates a food pairing to the wine it is the primary food pairing of." .
+
+:secondaryFoodPairing rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Wine ;
+                      rdfs:range :FoodPairing ;
+                      rdfs:comment "Relates a wine to its secondary food pairing." ;
+                      owl:inverseOf :isSecondaryFoodPairingOf .
+
+:isSecondaryFoodPairingOf rdf:type owl:ObjectProperty ;
+                         rdfs:domain :FoodPairing ;
+                         rdfs:range :Wine ;
+                         rdfs:comment "Relates a food pairing to the wine it is the secondary food pairing of." .
+
+# Wine and Review Relationships
+:primaryReview rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :WineReview ;
+               rdfs:comment "Relates a wine to its primary review." ;
+               owl:inverseOf :isPrimaryReviewOf .
+
+:isPrimaryReviewOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :WineReview ;
+                   rdfs:range :Wine ;
+                   rdfs:comment "Relates a review to the wine it is the primary review of." .
+
+:secondaryReview rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :WineReview ;
+                 rdfs:comment "Relates a wine to its secondary review." ;
+                 owl:inverseOf :isSecondaryReviewOf .
+
+:isSecondaryReviewOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain :WineReview ;
+                     rdfs:range :Wine ;
+                     rdfs:comment "Relates a review to the wine it is the secondary review of." .
+
+# Hierarchies for Wine Styles
+:DryRedWine rdfs:subClassOf :DryWine, :RedWine .
+:DryWhiteWine rdfs:subClassOf :DryWine, :WhiteWine .
+:SweetRedWine rdfs:subClassOf :SweetWine, :RedWine .
+:SweetWhiteWine rdfs:subClassOf :SweetWine, :WhiteWine .
+:SparklingRedWine rdfs:subClassOf :SparklingWine, :RedWine .
+:SparklingWhiteWine rdfs:subClassOf :SparklingWine, :WhiteWine .
+
+# Hierarchies for Aging Processes
+:OakBarrelAging rdfs:subClassOf :BarrelAging .
+:StainlessSteelAging rdfs:subClassOf :BarrelAging .
+:LongTermBottleAging rdfs:subClassOf :BottleAging .
+:ShortTermBottleAging rdfs:subClassOf :BottleAging .
+
+# Hierarchies for Wine Awards
+:InternationalGoldMedal rdfs:subClassOf :GoldMedal .
+:NationalGoldMedal rdfs:subClassOf :GoldMedal .
+:RegionalGoldMedal rdfs:subClassOf :GoldMedal .
+:InternationalSilverMedal rdfs:subClassOf :SilverMedal .
+:NationalSilverMedal rdfs:subClassOf :SilverMedal .
+:RegionalSilverMedal rdfs:subClassOf :SilverMedal .
+:InternationalBronzeMedal rdfs:subClassOf :BronzeMedal .
+:NationalBronzeMedal rdfs:subClassOf :BronzeMedal .
+:RegionalBronzeMedal rdfs:subClassOf :BronzeMedal .
+
+# Hierarchies for Tasting Notes
+:FruityAromaNote rdfs:subClassOf :AromaNote .
+:FloralAromaNote rdfs:subClassOf :AromaNote .
+:SpicyAromaNote rdfs:subClassOf :AromaNote .
+:SweetFlavorNote rdfs:subClassOf :FlavorNote .
+:AcidicFlavorNote rdfs:subClassOf :FlavorNote .
+:TannicFlavorNote rdfs:subClassOf :FlavorNote .
+:SmoothTextureNote rdfs:subClassOf :TextureNote .
+:CrispTextureNote rdfs:subClassOf :TextureNote .
+:RichTextureNote rdfs:subClassOf :TextureNote .
+
+# Hierarchies for Food Pairings
+:RedMeatPairing rdfs:subClassOf :MeatPairing .
+:WhiteMeatPairing rdfs:subClassOf :MeatPairing .
+:FishPairing rdfs:subClassOf :SeafoodPairing .
+:ShellfishPairing rdfs:subClassOf :SeafoodPairing .
+:LeafyGreenPairing rdfs:subClassOf :VegetablePairing .
+:RootVegetablePairing rdfs:subClassOf :VegetablePairing .
+
+# Hierarchies for Wine Reviews
+:ProfessionalExpertReview rdfs:subClassOf :ExpertReview .
+:AmateurExpertReview rdfs:subClassOf :ExpertReview .
+:CasualUserReview rdfs:subClassOf :UserReview .
+:EnthusiastUserReview rdfs:subClassOf :UserReview .
+
+# Hierarchies for Wine Characteristics
+:HighAlcoholWine rdfs:subClassOf :Wine ;
+                 rdfs:comment "A wine with high alcohol content." .
+:LowAlcoholWine rdfs:subClassOf :Wine ;
+                rdfs:comment "A wine with low alcohol content." .
+:HighTanninWine rdfs:subClassOf :Wine ;
+                rdfs:comment "A wine with high tannin levels." .
+:LowTanninWine rdfs:subClassOf :Wine ;
+               rdfs:comment "A wine with low tannin levels." .
+:HighAcidityWine rdfs:subClassOf :Wine ;
+                 rdfs:comment "A wine with high acidity levels." .
+:LowAcidityWine rdfs:subClassOf :Wine ;
+                rdfs:comment "A wine with low acidity levels." .
+
+# Hierarchies for Grape Varieties
+:HighSugarGrapeVariety rdfs:subClassOf :GrapeVariety ;
+                        rdfs:comment "A grape variety known for high sugar content." .
+:LowSugarGrapeVariety rdfs:subClassOf :GrapeVariety ;
+                       rdfs:comment "A grape variety known for low sugar content." .
+:HighAcidGrapeVariety rdfs:subClassOf :GrapeVariety ;
+                       rdfs:comment "A grape variety known for high acidity." .
+:LowAcidGrapeVariety rdfs:subClassOf :GrapeVariety ;
+                      rdfs:comment "A grape variety known for low acidity." .
+
+# Hierarchies for Wine Regions
+:CoolClimateRegion rdfs:subClassOf :Region ;
+                   rdfs:comment "A wine region with a cool climate, producing wines with high acidity." .
+:WarmClimateRegion rdfs:subClassOf :Region ;
+                   rdfs:comment "A wine region with a warm climate, producing wines with high sugar content." .
+:HotClimateRegion rdfs:subClassOf :Region ;
+                  rdfs:comment "A wine region with a hot climate, producing full-bodied wines." .
+
+# Hierarchies for Producers
+:LargeScaleProducer rdfs:subClassOf :Producer ;
+                     rdfs:comment "A producer known for large-scale wine production." .
+:SmallScaleProducer rdfs:subClassOf :Producer ;
+                     rdfs:comment "A producer known for small-scale, artisanal wine production." .
+:BoutiqueProducer rdfs:subClassOf :Producer ;
+                  rdfs:comment "A producer known for high-quality, limited-production wines." .
+
