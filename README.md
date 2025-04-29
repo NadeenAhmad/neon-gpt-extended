@@ -8,3 +8,4 @@ This stage begins with a combination of structured inputs: a domain description,
 
 ![Alt text](./images/ontology_draft_gen.png)
 
+<u>This text is underlined</u>
