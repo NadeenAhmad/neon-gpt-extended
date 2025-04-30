@@ -5,8 +5,7 @@ Ontology Analyzer and Comparator
 This module provides tools for analyzing and comparing ontologies represented as TTL files.
 It performs structural, lexical, and semantic analysis, generating comprehensive reports and visualizations.
 
-Author: [Your Name]
-License: [License Type]
+
 """
 
 import os
