@@ -182,14 +182,7 @@ def extract_and_save_turtle(response_text):
 send_prompt(f"""You are a {persona}. The {domain_name} describes {domain_description}.
 Use the following keywords: {keywords}. Use all the keywords, not just a snippet, and your own knowledge and domain understanding to generate the ontology based on the NeOn methodology for ontology engineering to build the {domain_name} ontology based on the NeOn methodology.
 
-The NeOn methodology starts by specifying the ontology requirements:
-- the Purpose of the ontology
-- the Scope of the ontology
-- the Target Group of the ontology
-- the implementation language
-- the intended uses
-- the Functional Requirements
-- the Non-functional Requirements
+The NeOn methodology starts by specifying the ontology requirements.
 
   """)
 
