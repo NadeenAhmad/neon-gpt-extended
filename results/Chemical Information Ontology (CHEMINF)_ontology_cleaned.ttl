@@ -1,0 +1,632 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://example.org/CHEMINF#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<file:///Users/nadeen/neon-gpt/> a owl:Ontology ;
+    rdfs:label "Chemical Information Ontology"@en ;
+    dcterms:description "Chemical information ontology for descriptors, algorithms, and data formats."@en,
+        "The Chemical Information ontology provides terms and definitions for descriptors, algorithms, and data formats related to chemical information."@en ;
+    rdfs:comment "An ontology for representing chemical information entities."@en .
+
+<http://example.org/Algorithm> a owl:Class ;
+    rdfs:label "Algorithm"@en .
+
+ns1:Aspirin a ns1:ChemicalEntity ;
+    ns1:hasDescriptor ns1:Aspirin_LogP,
+        ns1:Aspirin_MolecularWeight ;
+    ns1:hasRepresentation ns1:Aspirin_InChI,
+        ns1:Aspirin_SMILES ;
+    rdfs:comment "A chemical entity representing acetylsalicylic acid, a widely used analgesic drug."@en .
+
+
+ns1:Caffeine a ns1:ChemicalEntity ;
+    ns1:hasDescriptor ns1:Caffeine_LogP,
+        ns1:Caffeine_MolecularWeight ;
+    ns1:hasRepresentation ns1:Caffeine_InChI,
+        ns1:Caffeine_SMILES ;
+    rdfs:comment "A chemical entity representing the stimulant compound commonly found in coffee and tea."@en .
+
+ns1:MOLFileFormat a ns1:DataFormat ;
+    rdfs:comment "An instance of the MOL file format used for representing molecular structures."@en .
+
+ns1:MorganAlgorithm_Implementation a ns1:SoftwareImplementation ;
+    ns1:usesAlgorithm ns1:MorganAlgorithm .
+
+ns1:OpenBabel a ns1:SoftwareImplementation ;
+    ns1:usesAlgorithm ns1:OpenBabelConversionAlgorithm ;
+    rdfs:comment "A software tool for converting between various chemical file formats."@en .
+
+ns1:Penicillin a ns1:ChemicalEntity ;
+    ns1:hasDescriptor ns1:Penicillin_LogP,
+        ns1:Penicillin_MolecularWeight ;
+    ns1:hasRepresentation ns1:Penicillin_InChI,
+        ns1:Penicillin_SMILES ;
+    rdfs:comment "A chemical entity representing a group of beta-lactam antibiotics."@en .
+
+ns1:RDKit ns1:usesAlgorithm ns1:RDKitMorganAlgorithm .
+
+ns1:SDFFileFormat a ns1:DataFormat ;
+    rdfs:comment "An instance of the Structure Data Format (SDF) used for representing multiple molecular structures."@en .
+
+ns1:algorithmName a owl:DatatypeProperty ;
+    rdfs:label "algorithm Name"@en ;
+    rdfs:comment "The name of the algorithm used for calculation."@en ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:calculationDate a owl:DatatypeProperty ;
+    rdfs:label "calculation Date"@en ;
+    rdfs:comment "The date when the chemical data was calculated."@en ;
+    rdfs:domain ns1:Provenance ;
+    rdfs:range xsd:date .
+
+ns1:conformsTo a owl:ObjectProperty ;
+    rdfs:label "conforms To"@en ;
+    rdfs:comment "Relates a chemical descriptor to its data format specification."@en ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:DataFormatSpecification .
+
+ns1:encodedIn a owl:ObjectProperty ;
+    rdfs:label "encoded In"@en ;
+    rdfs:comment "Relates a chemical graph to its encoding format."@en ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat .
+
+ns1:ethanol_MOL a ns1:MOL ;
+    ns1:hasProvenance ns1:provenance_1 .
+
+ns1:ethanol_SDF a ns1:SDF .
+
+ns1:ethanol_TPSA a ns1:TopologicalPolarSurfaceArea ;
+    ns1:hasValue "20.23"^^xsd:float .
+
+ns1:fileExtension a owl:DatatypeProperty ;
+    rdfs:label "file Extension"@en ;
+    rdfs:comment "The file extension associated with a data format."@en ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range xsd:string .
+
+ns1:hasData a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has Data"@en ;
+    rdfs:comment "Relates a data format to the chemical data it represents."@en ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range ns1:ChemicalData ;
+    owl:inverseOf ns1:hasFormat .
+
+ns1:hasInChIString a owl:DatatypeProperty ;
+    rdfs:label "has InChI String"@en ;
+    rdfs:comment "The InChI string representation of a chemical entity."@en ;
+    rdfs:domain ns1:InChI ;
+    rdfs:range xsd:string .
+
+ns1:hasLogPValue a owl:DatatypeProperty ;
+    rdfs:label "has LogP Value"@en ;
+    rdfs:comment "The value of the octanol-water partition coefficient."@en ;
+    rdfs:domain ns1:LogP ;
+    rdfs:range xsd:float .
+
+ns1:hasMolecularWeightValue a owl:DatatypeProperty ;
+    rdfs:label "has Molecular Weight Value"@en ;
+    rdfs:comment "The value of the molecular weight of a chemical entity."@en ;
+    rdfs:domain ns1:MolecularWeight ;
+    rdfs:range xsd:float .
+
+ns1:hasSMILESString a owl:DatatypeProperty ;
+    rdfs:label "has SMILES String"@en ;
+    rdfs:comment "The SMILES string representation of a chemical entity."@en ;
+    rdfs:domain ns1:SMILES ;
+    rdfs:range xsd:string .
+
+ns1:hasStringValue a owl:DatatypeProperty ;
+    rdfs:label "has String Value"@en ;
+    rdfs:comment "The string value associated with a chemical descriptor or property."@en ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+ns1:hasValue a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has Value"@en ;
+    rdfs:comment "Relates a chemical descriptor to its value."@en,
+        "The value of a chemical descriptor or property."@en ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:DescriptorValue,
+        xsd:float .
+
+ns1:hasVersion a owl:ObjectProperty ;
+    rdfs:label "has Version"@en ;
+    rdfs:comment "Relates a software implementation to its version."@en ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion .
+
+ns1:isAlgorithmUsedBy a owl:ObjectProperty ;
+    rdfs:label "is Algorithm Used By"@en ;
+    rdfs:comment "Relates an algorithm to the software implementation that uses it."@en ;
+    owl:inverseOf ns1:usesAlgorithm .
+
+ns1:isCalculatedBy a owl:ObjectProperty ;
+    rdfs:label "is Calculated By"@en ;
+    rdfs:comment "Relates a chemical descriptor to the algorithm used for its calculation."@en ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:Algorithm .
+
+ns1:isDescribedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is Described By"@en ;
+    rdfs:comment "Relates a chemical descriptor to the chemical entity it describes."@en ;
+    owl:inverseOf ns1:hasDescriptor .
+
+ns1:isDescriptorOf a owl:ObjectProperty ;
+    rdfs:label "is Descriptor Of"@en ;
+    rdfs:comment "Relates a chemical descriptor to a chemical entity."@en,
+        "Relates a descriptor to the chemical entity it describes."@en ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:hasDescriptor .
+
+ns1:isFormatOf a owl:ObjectProperty ;
+    rdfs:label "is Format Of"@en ;
+    rdfs:comment "Relates a data format to the chemical data it represents."@en ;
+    owl:inverseOf ns1:hasFormat .
+
+ns1:isImplementedIn a owl:ObjectProperty ;
+    rdfs:label "is Implemented In"@en ;
+    rdfs:comment "Relates an algorithm to its software implementation."@en ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:usesAlgorithm .
+
+ns1:isProvenanceOf a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is Provenance Of"@en ;
+    rdfs:comment "Relates provenance information to the chemical data it describes."@en ;
+    owl:inverseOf ns1:hasProvenance .
+
+ns1:isRepresentationOf a owl:ObjectProperty ;
+    rdfs:label "is Representation Of"@en ;
+    rdfs:comment "Relates a graph representation to the chemical entity it represents."@en ;
+    owl:inverseOf ns1:hasRepresentation .
+
+ns1:isRepresentedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is Represented By"@en ;
+    rdfs:comment "Relates a chemical graph representation to the chemical entity it represents."@en ;
+    owl:inverseOf ns1:hasRepresentation .
+
+ns1:isUsedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is Used By"@en ;
+    rdfs:comment "Relates an algorithm to the software implementation that uses it."@en ;
+    owl:inverseOf ns1:usesAlgorithm .
+
+ns1:represents a owl:ObjectProperty ;
+    rdfs:label "represents"@en ;
+    rdfs:comment "Relates a chemical graph to a chemical entity."@en,
+        "Relates a chemical graph to the chemical entity it represents."@en ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity .
+
+ns1:softwareUsed a owl:DatatypeProperty ;
+    rdfs:label "software Used"@en ;
+    rdfs:comment "The software used for calculating or processing chemical data."@en ;
+    rdfs:domain ns1:Provenance ;
+    rdfs:range xsd:string .
+
+ns1:stringValue a owl:DatatypeProperty ;
+    rdfs:label "string Value"@en ;
+    rdfs:comment "The string value of a descriptor or property."@en ;
+    rdfs:range xsd:string .
+
+ns1:value a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    rdfs:comment "The value of a descriptor or property."@en ;
+    rdfs:range xsd:float .
+
+ns1:version a owl:DatatypeProperty ;
+    rdfs:label "version"@en ;
+    rdfs:comment "The version of the software implementation."@en ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+ns1:versionNumber a owl:DatatypeProperty ;
+    rdfs:label "version Number"@en ;
+    rdfs:comment "The version number of a software implementation."@en ;
+    rdfs:domain ns1:SoftwareVersion ;
+    rdfs:range xsd:string .
+
+<http://example.org/DataType> a owl:Class ;
+    rdfs:label "Data Type"@en .
+
+<http://example.org/Descriptor> a owl:Property ;
+    rdfs:label "Descriptor"@en ;
+    rdfs:domain <http://example.org/ChemicalEntity> ;
+    rdfs:range xsd:string .
+
+<http://example.org/InChI> a owl:Property ;
+    rdfs:label "InChI"@en .
+
+<http://example.org/MolecularGraph> a owl:Class ;
+    rdfs:label "Molecular Graph"@en .
+
+<http://example.org/Provenance> a owl:Property ;
+    rdfs:label "Provenance"@en .
+
+<http://example.org/SMILES> a owl:Property ;
+    rdfs:label "SMILES"@en .
+
+<http://www.chem.inf/Algorithm> rdfs:comment "A computational method used to calculate chemical descriptors or process chemical information." .
+
+<http://www.chem.inf/ChemicalDescriptor> rdfs:comment "A quantitative or qualitative property of a chemical entity." .
+
+<http://www.chem.inf/ChemicalGraph> rdfs:comment "A representation of a molecular structure." .
+
+<http://www.chem.inf/DataFormat> rdfs:comment "A standard for representing chemical data, such as file formats." .
+
+<http://www.chem.inf/InChI> rdfs:comment "A standardized identifier for chemical structures." .
+
+<http://www.chem.inf/MOLFile> rdfs:comment "A file format for representing molecular structures." .
+
+<http://www.chem.inf/MolecularStructure> rdfs:comment "The three-dimensional arrangement of atoms within a molecule." .
+
+<http://www.chem.inf/Provenance> rdfs:comment "Information about the origin, calculation methods, and context of chemical data." .
+
+<http://www.chem.inf/SMILES> rdfs:comment "A line notation for encoding molecular structures." .
+
+<http://www.chem.inf/SoftwareImplementation> rdfs:comment "A software tool used to implement algorithms for chemical information processing." .
+
+<http://www.chem.inf/hasDescriptor> rdfs:comment "Relates a chemical entity to its descriptor." .
+
+<http://www.chem.inf/hasFormat> rdfs:comment "Relates chemical data to its representation format." .
+
+<http://www.chem.inf/implements> rdfs:comment "The inverse of usesAlgorithm, relates an algorithm to its software implementation." .
+
+<http://www.chem.inf/isDescriptorOf> rdfs:comment "The inverse of hasDescriptor, relates a descriptor to its chemical entity." .
+
+<http://www.chem.inf/logP> rdfs:comment "The logarithm of the octanol-water partition coefficient of a chemical entity." .
+
+<http://www.chem.inf/molecularWeight> rdfs:comment "The molecular weight of a chemical entity." .
+
+<http://www.chem.inf/topologicalPolarSurfaceArea> rdfs:comment "The topological polar surface area of a chemical entity." .
+
+<http://www.chem.inf/usesAlgorithm> rdfs:comment "Relates a software implementation to the algorithm it implements." .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#Algorithm> a owl:Class ;
+    rdfs:label "Algorithm"@en ;
+    rdfs:comment "An algorithm used to process chemical data"@en .
+
+
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#ChemicalEntity> a owl:Class ;
+    rdfs:label "Chemical Entity"@en ;
+    rdfs:comment "A chemical entity"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#Descriptor> rdfs:label "Descriptor"@en ;
+    rdfs:comment "A descriptor of a chemical entity"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#InChI> a owl:DatatypeProperty ;
+    rdfs:label "InChI"@en ;
+    rdfs:comment "InChI representation of a molecule"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#MolecularGraph> a owl:Class ;
+    rdfs:label "Molecular Graph"@en ;
+    rdfs:comment "A graph representation of a molecule"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#SMILES> a owl:DatatypeProperty ;
+    rdfs:label "SMILES"@en ;
+    rdfs:comment "SMILES representation of a molecule"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#SoftwareImplementation> a owl:Class ;
+    rdfs:label "Software Implementation"@en ;
+    rdfs:comment "A software implementation of an algorithm"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#hasDescriptor> a owl:ObjectProperty ;
+    rdfs:label "has Descriptor"@en ;
+    rdfs:comment "A descriptor associated with a chemical entity"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#hasProvenance> a owl:ObjectProperty ;
+    rdfs:label "has Provenance"@en ;
+    rdfs:comment "Provenance information associated with a chemical entity"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#hasRepresentation> a owl:ObjectProperty ;
+    rdfs:label "has Representation"@en ;
+    rdfs:comment "A representation of a chemical entity"@en .
+
+<http://www.semantic-chemistry.org/ontologies/CHEMINF#isDescribedBy> a owl:ObjectProperty ;
+    rdfs:label "is Described By"@en ;
+    rdfs:comment "Inverse of hasDescriptor"@en .
+
+
+
+ns1:Aspirin_InChI a ns1:InChI ;
+    ns1:hasValue "InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)"^^xsd:string .
+
+ns1:Aspirin_LogP a ns1:LogP ;
+    ns1:hasValue "1.19"^^xsd:float .
+
+ns1:Aspirin_MolecularWeight a ns1:MolecularWeight ;
+    ns1:hasValue "180.16"^^xsd:float .
+
+ns1:Aspirin_SMILES a ns1:SMILES ;
+    ns1:hasProvenance ns1:provenance_Aspirin ;
+    ns1:hasValue "CC(=O)Oc1ccccc1C(=O)O"^^xsd:string .
+
+ns1:Caffeine_InChI a ns1:InChI ;
+    ns1:hasValue "InChI=1S/C8H10N4O2/c1-10-4-9-6-5(10)7(13)12(3)8(14)11(6)2/h4H,1-3H3"^^xsd:string .
+
+ns1:Caffeine_LogP a ns1:LogP ;
+    ns1:hasValue "-0.07"^^xsd:float .
+
+ns1:Caffeine_MolecularWeight a ns1:MolecularWeight ;
+    ns1:hasValue "194.19"^^xsd:float .
+
+ns1:Caffeine_SMILES a ns1:SMILES ;
+    ns1:hasProvenance ns1:provenance_Caffeine ;
+    ns1:hasValue "CN1C=NC2=C1C(=O)N(C)C(=O)N2C"^^xsd:string .
+
+ns1:InChIFormat a owl:Class ;
+    rdfs:label "InChI Format"@en ;
+    rdfs:comment "The InChI format for representing chemical structures."@en ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:MOL a owl:Class ;
+    rdfs:label "MOL"@en ;
+    ns1:fileExtension ".mol"^^xsd:string ;
+    rdfs:comment "A molecular file format used to represent chemical structures."@en,
+        "Molecular file format."@en ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:MolecularDescriptor a owl:Class ;
+    rdfs:label "Molecular Descriptor"@en ;
+    rdfs:comment "Descriptors related to molecular properties."@en ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:MolecularWeightAlgorithm a ns1:Algorithm ;
+    rdfs:label "Molecular Weight Algorithm"@en ;
+    ns1:isImplementedIn ns1:rdkit .
+
+ns1:OpenBabelConversionAlgorithm a ns1:Algorithm ;
+    rdfs:comment "An algorithm used by OpenBabel for converting chemical file formats."@en .
+
+ns1:Penicillin_InChI a ns1:InChI ;
+    ns1:hasValue "InChI=1S/C16H18N2O4S/c1-16(2)12(15(21)22)18-13(20)11(14(18)23-16)17-10(19)8-9-6-4-3-5-7-9/h3-7,11-12,14H,8H2,1-2H3,(H,17,19)(H,21,22)/t11-,12+,14-/m1/s1"^^xsd:string .
+
+ns1:Penicillin_LogP a ns1:LogP ;
+    ns1:hasValue "1.83"^^xsd:float .
+
+ns1:Penicillin_MolecularWeight a ns1:MolecularWeight ;
+    ns1:hasValue "334.39"^^xsd:float .
+
+ns1:Penicillin_SMILES a ns1:SMILES ;
+    ns1:hasProvenance ns1:provenance_Penicillin ;
+    ns1:hasValue "CC1(C(N2C(S1)C(C2=O)NC(=O)CC3=CC=CC=C3)C(=O)O)C"^^xsd:string .
+
+ns1:ProvenanceInformation a owl:Class ;
+    rdfs:label "Provenance Information"@en ;
+    rdfs:comment "Information about the origin and context of chemical data."@en ;
+    rdfs:subClassOf ns1:Provenance .
+
+ns1:RDKitMorganAlgorithm a ns1:Algorithm ;
+    rdfs:comment "An instance of the Morgan algorithm implemented in RDKit for fingerprint generation."@en .
+
+ns1:SDF a owl:Class ;
+    rdfs:label "SDF"@en ;
+    rdfs:comment "A structure data format used to represent chemical structures and their properties."@en,
+        "Structure Data Format."@en ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:SMILESFormat a ns1:DataFormatSpecification,
+        owl:Class ;
+    rdfs:label "SMILES Format"@en ;
+    rdfs:comment "The SMILES format for representing chemical structures."@en ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:TopologicalPolarSurfaceArea a owl:Class ;
+    rdfs:label "Topological Polar Surface Area"@en ;
+    rdfs:comment "The topological polar surface area of a molecule."@en ;
+    rdfs:subClassOf ns1:MolecularDescriptor .
+
+ns1:ethanol_InChI a ns1:InChI ;
+    ns1:encodedIn ns1:InChIFormat ;
+    ns1:hasValue "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"^^xsd:string .
+
+ns1:ethanol_MolecularWeight a ns1:MolecularWeight ;
+    ns1:hasValue ns1:mw_value,
+        "46.07"^^xsd:float ;
+    ns1:isCalculatedBy ns1:MolecularWeightAlgorithm,
+        ns1:MorganAlgorithm ;
+    ns1:isDescriptorOf ns1:ethanol .
+
+ns1:ethanol_SMILES a ns1:SMILES ;
+    ns1:encodedIn ns1:SMILESFormat ;
+    ns1:hasSMILESString "CCO"^^xsd:string ;
+    ns1:hasValue "CCO"^^xsd:string ;
+    ns1:represents ns1:ethanol ;
+    ns1:stringValue "CCO"^^xsd:string .
+
+ns1:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has Provenance"@en ;
+    rdfs:comment "Chemical data can have provenance information related to itself."@en,
+        "Chemical data has provenance information that is considered unique or primary."@en,
+        "Relates chemical data to its provenance information, transitively."@en,
+        "Relates chemical data to its provenance information."@en ;
+    rdfs:domain ns1:ChemicalData,
+        ns1:ChemicalDescriptor ;
+    rdfs:range ns1:Provenance,
+        ns1:ProvenanceInformation .
+
+ns1:mw_value a ns1:DescriptorValue ;
+    ns1:value "46.07"^^xsd:float .
+
+ns1:provenance_1 a ns1:Provenance ;
+    ns1:calculationDate "2023-03-01"^^xsd:date ;
+    ns1:softwareUsed "RDKIT"^^xsd:string ;
+    rdfs:comment "Calculated using RDKIT version 2023.03.1"@en .
+
+ns1:provenance_Aspirin a ns1:Provenance ;
+    rdfs:comment "Calculated using OpenBabel version 3.1.1"@en .
+
+ns1:provenance_Caffeine a ns1:Provenance ;
+    rdfs:comment "Calculated using RDKit version 2023.03.1"@en .
+
+ns1:provenance_Penicillin a ns1:Provenance ;
+    rdfs:comment "Calculated using ChemAxon Marvin version 22.1.0"@en .
+
+ns1:rdkit_v2023_03_1 a ns1:SoftwareVersion ;
+    rdfs:label "RDKIT version 2023.03.1"@en .
+
+ns1:rdkit_version a ns1:SoftwareVersion ;
+    ns1:versionNumber "2023.03.1"^^xsd:string .
+
+<http://example.org/ChemicalEntity> a owl:Class ;
+    rdfs:label "Chemical Entity"@en ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DataFormatSpecification a owl:Class ;
+    rdfs:label "Data Format Specification"@en ;
+    rdfs:comment "Specification for representing chemical data formats."@en,
+        "Specification of a data format."@en .
+
+ns1:DescriptorValue a owl:Class ;
+    rdfs:label "Descriptor Value"@en ;
+    rdfs:comment "The value associated with a chemical descriptor."@en,
+        "The value of a chemical descriptor."@en .
+
+ns1:ethanol a ns1:ChemicalEntity ;
+    ns1:hasDescriptor ns1:ethanol_MolecularWeight ;
+    ns1:hasRepresentation ns1:ethanol_InChI,
+        ns1:ethanol_SMILES .
+
+ns1:hasDescriptor a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has Descriptor"@en ;
+    rdfs:comment "A chemical entity can have a descriptor related to itself."@en,
+        "A chemical entity can have only one unique descriptor value for a specific descriptor type."@en,
+        "Relates a chemical entity to its descriptor, transitively."@en,
+        "Relates a chemical entity to its descriptor."@en,
+        "Relates a chemical entity to one of its descriptors."@en ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:hasFormat a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has Format"@en ;
+    rdfs:comment "Chemical data can be represented in a format that is related to itself."@en,
+        "Chemical data is associated with a specific format."@en,
+        "Relates chemical data to its format, transitively."@en,
+        "Relates chemical data to its format."@en ;
+    rdfs:domain ns1:ChemicalData ;
+    rdfs:range ns1:DataFormat .
+
+ns1:hasRepresentation a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has Representation"@en ;
+    rdfs:comment "A chemical entity can have a representation of itself."@en,
+        "A chemical entity can have a unique graph representation, though it may be represented in multiple formats."@en,
+        "Relates a chemical entity to its graph representation, transitively."@en,
+        "Relates a chemical entity to its graph representation."@en ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalGraph .
+
+ns1:rdkit a ns1:SoftwareImplementation ;
+    ns1:hasVersion ns1:rdkit_v2023_03_1,
+        ns1:rdkit_version ;
+    ns1:usesAlgorithm ns1:MorganAlgorithm ;
+    ns1:version "2023.03.1"^^xsd:string .
+
+ns1:MorganAlgorithm a ns1:Algorithm ;
+    rdfs:label "Morgan Algorithm"@en ;
+    ns1:algorithmName "Morgan Algorithm"^^xsd:string ;
+    ns1:isImplementedIn ns1:rdkit .
+
+ns1:usesAlgorithm a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "uses Algorithm"@en ;
+    rdfs:comment "A software implementation can use itself as an algorithm."@en,
+        "A software implementation uses a specific algorithm, implying a primary or default algorithm."@en,
+        "Relates a software implementation to an algorithm it uses, transitively."@en,
+        "Relates a software implementation to an algorithm."@en,
+        "Relates a software implementation to the algorithm it implements."@en ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:Algorithm .
+
+ns1:LogP a owl:Class ;
+    rdfs:label "LogP"@en ;
+    rdfs:comment "The octanol-water partition coefficient of a chemical entity."@en,
+        "The octanol-water partition coefficient."@en ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:SoftwareVersion a owl:Class ;
+    rdfs:label "Software Version"@en ;
+    rdfs:comment "Version information for software implementations."@en,
+        "Version information of a software implementation."@en .
+
+ns1:ChemicalGraph a owl:Class ;
+    rdfs:label "Chemical Graph"@en ;
+    rdfs:comment "A representation of a molecular structure, such as SMILES or InChI."@en,
+        "Representation of molecular structures."@en .
+
+ns1:InChI a owl:Class ;
+    rdfs:label "InChI"@en ;
+    rdfs:comment "An InChI representation of a chemical entity."@en,
+        "International Chemical Identifier."@en ;
+    rdfs:subClassOf ns1:ChemicalGraph .
+
+ns1:MolecularWeight a owl:Class ;
+    rdfs:label "Molecular Weight"@en ;
+    ns1:molecule [ a owl:Thing ;
+            rdfs:label "Molecule"@en ],
+        [ a owl:Thing ;
+            rdfs:label "Molecule"@en ] ;
+    rdfs:comment "The weight of a molecule calculated based on its atomic composition."@en,
+        "The weight of a molecule."@en ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:SMILES a owl:Class ;
+    rdfs:label "SMILES"@en ;
+    rdfs:comment "A SMILES representation of a chemical entity."@en,
+        "Simplified Molecular Input Line Entry System."@en ;
+    rdfs:subClassOf ns1:ChemicalGraph .
+
+ns1:SoftwareImplementation a owl:Class ;
+    rdfs:label "Software Implementation"@en ;
+    rdfs:comment "A tool or software used to implement an algorithm or process chemical information."@en,
+        "Tools used to process chemical information."@en .
+
+ns1:Algorithm a owl:Class ;
+    rdfs:label "Algorithm"@en ;
+    rdfs:comment "A computational method used to calculate chemical descriptors or process chemical information."@en,
+        "Computational methods used to calculate chemical descriptors."@en .
+
+ns1:ChemicalEntity a owl:Class ;
+    rdfs:label "Chemical Entity"@en ;
+    rdfs:comment "A chemical substance or compound."@en .
+
+ns1:Provenance a owl:Class ;
+    rdfs:label "Provenance"@en ;
+    rdfs:comment "Information about the origin and context of chemical data."@en,
+        "Information about the origin, calculation methods, and context of chemical data."@en .
+
+ns1:ChemicalDescriptor a owl:Class ;
+    rdfs:label "Chemical Descriptor"@en,
+        "ChemicalDescriptor"@en ;
+    rdfs:comment "A quantitative or qualitative property of a chemical entity, such as molecular weight or logP."@en,
+        "Quantitative and qualitative properties of chemical entities."@en .
+
+ns1:DataFormat a owl:Class ;
+    rdfs:label "Data Format"@en ;
+    rdfs:comment "A standard for representing chemical data, such as MOL or SDF."@en,
+        "Standards for representing chemical data."@en .
+
