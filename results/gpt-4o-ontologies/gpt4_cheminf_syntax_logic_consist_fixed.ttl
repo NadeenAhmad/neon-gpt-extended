@@ -1,0 +1,1529 @@
+@prefix cheminf: <http://purl.org/cheminf/ontology#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://purl.org/cheminf/ontology> a owl:Ontology ;
+    rdfs:label "CHEMINF Ontology" ;
+    dc:description "The Chemical Information Ontology (CHEMINF) provides a formal, extensible, and semantically rich framework for representing chemical descriptors, molecular formats, algorithms, software, and provenance. It supports semantic reasoning, data integration, and reproducibility across cheminformatics and life sciences." ;
+    dc:title "Chemical Information Ontology (CHEMINF)" ;
+    owl:versionIRI <http://purl.org/cheminf/ontology/1.0.0> ;
+    owl:versionInfo "1.0.0" .
+
+cheminf:ADMETProfile a owl:Class ;
+    rdfs:label "ADMETProfile" ;
+    rdfs:comment "Composite descriptor for Absorption, Distribution, Metabolism, Excretion, and Toxicity." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:Alkaloid_718 a owl:Class ;
+    rdfs:label "Alkaloid_718" ;
+    rdfs:comment "Alkaloid_718 is a class in the CHEMINF ontology." .
+
+cheminf:ApplicabilityDomain a owl:Class ;
+    rdfs:label "ApplicabilityDomain" ;
+    rdfs:comment "Defines chemical space over which model predictions are reliable." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:AromaticityDescriptor a owl:Class ;
+    rdfs:label "AromaticityDescriptor" ;
+    rdfs:comment "Identifies aromatic ring systems in molecules." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:Aspirin a cheminf:ChemicalEntity ;
+    cheminf:hasInChI "InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)"^^xsd:string ;
+    cheminf:hasSMILES "CC(=O)OC1=CC=CC=C1C(=O)O"^^xsd:string ;
+    rdfs:comment "A chemical entity representing acetylsalicylic acid, a widely used analgesic drug." .
+
+cheminf:AtomCountDescriptor a owl:Class ;
+    rdfs:label "AtomCountDescriptor" ;
+    rdfs:comment "Descriptor describing count of atoms of certain elements." ;
+    rdfs:subClassOf cheminf:TopologicalDescriptor .
+
+cheminf:BioavailabilityEstimate a owl:Class ;
+    rdfs:label "BioavailabilityEstimate" ;
+    rdfs:comment "Estimate of a compound's oral bioavailability." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:BioavailabilityScore a owl:Class ;
+    rdfs:label "BioavailabilityScore" ;
+    rdfs:comment "An estimate of oral bioavailability of a compound." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:BiologicalPathwayParticipation a owl:Class ;
+    rdfs:label "BiologicalPathwayParticipation" ;
+    rdfs:comment "Participation of a compound in a known biological pathway." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:BloodBrainBarrierPenetration a owl:Class ;
+    rdfs:label "BloodBrainBarrierPenetration" ;
+    rdfs:comment "Prediction of BBB permeability." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:BoilingPointDescriptor_796 a owl:Class ;
+    rdfs:label "BoilingPointDescriptor_796" ;
+    rdfs:comment "BoilingPointDescriptor_796 is a class in the CHEMINF ontology." .
+
+cheminf:BondTypeDistribution a owl:Class ;
+    rdfs:label "BondTypeDistribution" ;
+    rdfs:comment "Describes distribution of single, double, and triple bonds." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:CASNumber a owl:Class ;
+    rdfs:label "CASNumber" ;
+    rdfs:comment "CAS Registry Number for a chemical substance." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:CDK a cheminf:SoftwareTool ;
+    rdfs:comment "Chemistry Development Kit." .
+
+cheminf:CHEMINF a cheminf:DescriptorOntology ;
+    rdfs:comment "The Chemical Information Ontology." .
+
+cheminf:CHEMINF_Alignment_ChEBI a cheminf:OntologyAlignment ;
+    rdfs:comment "CHEMINF alignment with ChEBI." .
+
+cheminf:CMLFormat_728 a owl:Class ;
+    rdfs:label "CMLFormat_728" ;
+    rdfs:comment "CMLFormat_728 is a class in the CHEMINF ontology." .
+
+cheminf:CYP450InteractionProfile a owl:Class ;
+    rdfs:label "CYP450InteractionProfile" ;
+    rdfs:comment "Interaction profile with cytochrome P450 enzymes." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:ChEMBLID a owl:Class ;
+    rdfs:label "ChEMBLID" ;
+    rdfs:comment "A unique identifier for compounds in ChEMBL." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:ChargeSeparationPattern a owl:Class ;
+    rdfs:label "ChargeSeparationPattern" ;
+    rdfs:comment "Describes patterns of formal charge separation." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:CitesPublication a owl:Class ;
+    rdfs:label "CitesPublication" ;
+    rdfs:comment "Indicates a resource cites a publication." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:Compound_A a cheminf:ChemicalEntity ;
+    rdfs:comment "A test chemical compound." .
+
+cheminf:Compound_B a cheminf:ChemicalEntity ;
+    rdfs:comment "Another test chemical compound." .
+
+cheminf:ConfidenceInterval a owl:Class ;
+    rdfs:label "ConfidenceInterval" ;
+    rdfs:comment "Statistical confidence range for a measured value." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:CreatedBy a owl:Class ;
+    rdfs:label "CreatedBy" ;
+    rdfs:comment "Entity that created a resource." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:CrossValidationMethod a owl:Class ;
+    rdfs:label "CrossValidationMethod" ;
+    rdfs:comment "Method used for model cross-validation." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:CurationAction a owl:Class ;
+    rdfs:label "CurationAction" ;
+    rdfs:comment "Activity performed to clean, deduplicate, or normalize data." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:DS_001 a cheminf:ChemicalDataset ;
+    rdfs:comment "Dataset containing environmental compounds." .
+
+cheminf:DataImputationMethod a owl:Class ;
+    rdfs:label "DataImputationMethod" ;
+    rdfs:comment "Method used for handling missing data." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:DataOriginType a owl:Class ;
+    rdfs:label "DataOriginType" ;
+    rdfs:comment "Indicates whether data is experimental, predicted, or curated." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:DescVal_001 a cheminf:DescriptorValue ;
+    rdfs:comment "logP value of Compound A." .
+
+cheminf:DescVal_002 a cheminf:DescriptorValue ;
+    rdfs:comment "MW value of Compound A." .
+
+cheminf:Desc_MW a cheminf:ChemicalDescriptor ;
+    rdfs:comment "Molecular weight descriptor." .
+
+cheminf:Desc_logP a cheminf:ChemicalDescriptor,
+        cheminf:logP ;
+    cheminf:hasProvenance cheminf:prov_logP_calc ;
+    cheminf:hasValue cheminf:logP_value_001 ;
+    cheminf:isCalculatedBy cheminf:AlgorithmX ;
+    cheminf:isDescriptorOf cheminf:Caffeine ;
+    rdfs:comment "Descriptor object for logP used in cheminformatics workflows.",
+        "logP descriptor." .
+
+cheminf:DoseResponseCurve a owl:Class ;
+    rdfs:label "DoseResponseCurve" ;
+    rdfs:comment "Curve showing biological response to varying chemical dose." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:Enantiomer a owl:Class ;
+    rdfs:label "Enantiomer" ;
+    rdfs:comment "A stereoisomer that is a non-superimposable mirror image." ;
+    rdfs:subClassOf cheminf:Isomer .
+
+cheminf:ExperimentalCondition a owl:Class ;
+    rdfs:label "ExperimentalCondition" ;
+    rdfs:comment "Conditions under which an experiment or assay was performed." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:FAIRCompliance a owl:Class ;
+    rdfs:label "FAIRCompliance" ;
+    rdfs:comment "Compliance with FAIR data principles." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:FAIRViolationType a owl:Class ;
+    rdfs:label "FAIRViolationType" ;
+    rdfs:comment "Type of violation of FAIR principles." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:FeatureImportanceScore a owl:Class ;
+    rdfs:label "FeatureImportanceScore" ;
+    rdfs:comment "Importance ranking of features in a model." ;
+    rdfs:subClassOf cheminf:DescriptorValue .
+
+cheminf:FingerprintSim a cheminf:TanimotoCoefficient ;
+    rdfs:comment "Fingerprint-based similarity metric." .
+
+cheminf:GeometricalDescriptor a owl:Class ;
+    rdfs:label "GeometricalDescriptor" ;
+    rdfs:comment "Descriptor related to 3D geometry of molecules.",
+        "GeometricalDescriptor is a class in the CHEMINF ontology." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:HOMOEnergyDescriptor_804 a owl:Class ;
+    rdfs:label "HOMOEnergyDescriptor_804" ;
+    rdfs:comment "HOMOEnergyDescriptor_804 is a class in the CHEMINF ontology." .
+
+cheminf:HalfLifeEstimate a owl:Class ;
+    rdfs:label "HalfLifeEstimate" ;
+    rdfs:comment "Estimated half-life of a compound." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:HasDOI a owl:Class ;
+    rdfs:label "HasDOI" ;
+    rdfs:comment "Digital Object Identifier assigned to a resource." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:HydrogenBondAcceptorCount a owl:Class ;
+    rdfs:label "HydrogenBondAcceptorCount" ;
+    rdfs:comment "Number of hydrogen bond acceptors." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:HydrogenBondDonorCount a owl:Class ;
+    rdfs:label "HydrogenBondDonorCount" ;
+    rdfs:comment "Number of hydrogen bond donors." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:HydrophobicityLogP a cheminf:HydrophobicityDescriptor ;
+    rdfs:comment "A descriptor measuring octanol-water partition coefficient." .
+
+cheminf:HyperparameterConfiguration a owl:Class ;
+    rdfs:label "HyperparameterConfiguration" ;
+    rdfs:comment "Configuration parameters for machine learning models." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:IUPACName a owl:Class ;
+    rdfs:label "IUPACName" ;
+    rdfs:comment "Standard IUPAC name of a chemical compound." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:InChI a owl:Class ;
+    rdfs:label "InChI" ;
+    rdfs:comment "A textual string in the InChI format." .
+
+cheminf:InChIKey a owl:Class ;
+    rdfs:label "InChIKey" ;
+    rdfs:comment "A hashed version of the InChI format." ;
+    rdfs:subClassOf cheminf:DataFormatSpecification .
+
+cheminf:InChI_Instance a cheminf:InChIFormat ;
+    cheminf:hasFormatName "InChI"^^xsd:string ;
+    rdfs:comment "An instance of the IUPAC International Chemical Identifier (InChI) format for representing chemical substances." .
+
+cheminf:InChI_v1 a cheminf:InChIFormat ;
+    rdfs:comment "IUPAC InChI 1.0 format." .
+
+cheminf:InVitroAssay a owl:Class ;
+    rdfs:label "InVitroAssay" ;
+    rdfs:comment "An assay performed outside a living organism." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:InVivoExperiment a owl:Class ;
+    rdfs:label "InVivoExperiment" ;
+    rdfs:comment "An experiment performed in a living organism." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:IonizationPotentialDescriptor_756 a owl:Class ;
+    rdfs:label "IonizationPotentialDescriptor_756" ;
+    rdfs:comment "IonizationPotentialDescriptor_756 is a class in the CHEMINF ontology." .
+
+cheminf:LOAELValue a owl:Class ;
+    rdfs:label "LOAELValue" ;
+    rdfs:comment "Lowest Observed Adverse Effect Level." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:License a owl:Class ;
+    rdfs:label "License" ;
+    rdfs:comment "Legal license defining data usage rights." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:LicenseType a owl:Class ;
+    rdfs:label "LicenseType" ;
+    rdfs:comment "Type of license associated with data resource." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:LinkedResource a owl:Class ;
+    rdfs:label "LinkedResource" ;
+    rdfs:comment "IRI of an external linked dataset or term." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:LogD a owl:Class ;
+    rdfs:label "LogD" ;
+    rdfs:comment "LogD is the distribution coefficient at a given pH." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:MappingQualityScore a owl:Class ;
+    rdfs:label "MappingQualityScore" ;
+    rdfs:comment "Confidence score for mapping accuracy." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:MappingType a owl:Class ;
+    rdfs:label "MappingType" ;
+    rdfs:comment "Nature of term alignment: ExactMatch, BroadMatch, etc." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:MeasuredEndpoint a owl:Class ;
+    rdfs:label "MeasuredEndpoint" ;
+    rdfs:comment "The measurable biological or chemical property observed." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:MeasurementError a owl:Class ;
+    rdfs:label "MeasurementError" ;
+    rdfs:comment "Margin of error associated with an experimental or predicted value." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:MechanismOfAction a owl:Class ;
+    rdfs:label "MechanismOfAction" ;
+    rdfs:comment "The functional biological process by which a drug acts." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:Metabolite a owl:Class ;
+    rdfs:label "Metabolite" ;
+    rdfs:comment "A metabolic product derived from a parent compound." ;
+    rdfs:subClassOf cheminf:ChemicalEntity .
+
+cheminf:ModelExplainabilityMetric a owl:Class ;
+    rdfs:label "ModelExplainabilityMetric" ;
+    rdfs:comment "Metric for explaining model decisions (e.g., SHAP, LIME)." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:ModelValidationMetric a owl:Class ;
+    rdfs:label "ModelValidationMetric" ;
+    rdfs:comment "A metric used to evaluate the performance of a model." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:ModifiedBy a owl:Class ;
+    rdfs:label "ModifiedBy" ;
+    rdfs:comment "Entity that modified a resource." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:Module_PhysChem a cheminf:DescriptorOntologyModule ;
+    rdfs:comment "A module dedicated to physicochemical descriptors." .
+
+cheminf:Module_Topology a cheminf:DescriptorOntologyModule ;
+    rdfs:comment "A module dedicated to topological descriptors." .
+
+cheminf:MolWeight_calc_002 a cheminf:DescriptorCalculation ;
+    rdfs:comment "A molecular weight calculation process." .
+
+cheminf:MolecularChargeDist a cheminf:ChargeDescriptor ;
+    rdfs:comment "A descriptor representing molecular charge distribution." .
+
+cheminf:MutagenicityPrediction a owl:Class ;
+    rdfs:label "MutagenicityPrediction" ;
+    rdfs:comment "Prediction of potential for causing genetic mutations." ;
+    rdfs:subClassOf cheminf:Toxicophore .
+
+cheminf:NOAELValue a owl:Class ;
+    rdfs:label "NOAELValue" ;
+    rdfs:comment "No Observed Adverse Effect Level." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:NeuralNetwork_715 a owl:Class ;
+    rdfs:label "NeuralNetwork_715" ;
+    rdfs:comment "NeuralNetwork_715 is a class in the CHEMINF ontology." .
+
+cheminf:OntologyModule a owl:Class ;
+    rdfs:label "OntologyModule" ;
+    rdfs:comment "Subdomain or module within an ontology." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:OntologyReasoner a owl:Class ;
+    rdfs:label "OntologyReasoner" ;
+    rdfs:comment "A software component capable of logical inference over ontologies." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:OpenBabel a cheminf:SoftwareTool ;
+    rdfs:comment "Chemical toolbox for file format interconversion." .
+
+cheminf:OverfittingIndicator a owl:Class ;
+    rdfs:label "OverfittingIndicator" ;
+    rdfs:comment "Indicator showing likelihood of model overfitting." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:PharmacophoreModel a owl:Class ;
+    rdfs:label "PharmacophoreModel" ;
+    rdfs:comment "An abstract model describing molecular features required for biological activity." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:PlasmaProteinBinding a owl:Class ;
+    rdfs:label "PlasmaProteinBinding" ;
+    rdfs:comment "Affinity for binding to plasma proteins." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:PolarSurfaceArea a owl:Class ;
+    rdfs:label "PolarSurfaceArea" ;
+    rdfs:comment "The polar surface area of a molecule." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:PreferredLabelLanguage a owl:Class ;
+    rdfs:label "PreferredLabelLanguage" ;
+    rdfs:comment "Preferred language for ontology labels and descriptions." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:QSARModel a owl:Class ;
+    rdfs:label "QSARModel" ;
+    rdfs:comment "Quantitative structure-activity relationship model." ;
+    rdfs:subClassOf cheminf:Algorithm .
+
+cheminf:QSAR_ToxModel a cheminf:QSAR ;
+    rdfs:comment "QSAR model for toxicity prediction." .
+
+cheminf:RDKit a cheminf:SoftwareTool ;
+    rdfs:comment "Open-source cheminformatics toolkit." .
+
+cheminf:RDKitTool_736 a owl:Class ;
+    rdfs:label "RDKitTool_736" ;
+    rdfs:comment "RDKitTool_736 is a class in the CHEMINF ontology." .
+
+cheminf:RDKit_3.10 a cheminf:SoftwareVersion ;
+    rdfs:comment "Version 3.10 of RDKit." .
+
+cheminf:RandomForest_713 a owl:Class ;
+    rdfs:label "RandomForest_713" ;
+    rdfs:comment "RandomForest_713 is a class in the CHEMINF ontology." .
+
+cheminf:ReviewedBy a owl:Class ;
+    rdfs:label "ReviewedBy" ;
+    rdfs:comment "Entity that reviewed the resource." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:RingCount a cheminf:RingDescriptor ;
+    rdfs:comment "Counts the number of ring systems in a molecule." .
+
+cheminf:RotatableBondsDescriptor a owl:Class ;
+    rdfs:label "RotatableBondsDescriptor" ;
+    rdfs:comment "Number of rotatable bonds in the molecule." ;
+    rdfs:subClassOf cheminf:TopologicalDescriptor .
+
+cheminf:SMILES a owl:Class ;
+    rdfs:label "SMILES" ;
+    rdfs:comment "A textual string in the SMILES format." .
+
+cheminf:SMILES_Instance a cheminf:SMILESFormat ;
+    cheminf:hasFormatName "SMILES"^^xsd:string ;
+    rdfs:comment "An instance of the SMILES format, used to express chemical structures in a linear text form." .
+
+cheminf:SMILES_v1 a cheminf:SMILESFormat ;
+    rdfs:comment "Standard SMILES encoding." .
+
+cheminf:SPARQLView a owl:Class ;
+    rdfs:label "SPARQLView" ;
+    rdfs:comment "Named SPARQL query used to create RDF views." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:SWRLRule a owl:Class ;
+    rdfs:label "SWRLRule" ;
+    rdfs:comment "Semantic Web Rule Language rule used for reasoning." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:SaltForm a owl:Class ;
+    rdfs:label "SaltForm" ;
+    rdfs:comment "A salt form of a base chemical compound." ;
+    rdfs:subClassOf cheminf:ChemicalEntity .
+
+cheminf:SkinIrritationScore a owl:Class ;
+    rdfs:label "SkinIrritationScore" ;
+    rdfs:comment "Quantitative skin irritation score." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:StereochemistryDescriptor a owl:Class ;
+    rdfs:label "StereochemistryDescriptor" ;
+    rdfs:comment "Captures chiral centers and stereochemical configuration." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:StructureRepresentation a owl:Class ;
+    rdfs:label "StructureRepresentation" ;
+    rdfs:comment "An abstract representation of a chemical structure." ;
+    rdfs:subClassOf cheminf:MolecularStructure .
+
+cheminf:TargetProtein a owl:Class ;
+    rdfs:label "TargetProtein" ;
+    rdfs:comment "A biological macromolecule that binds a drug or chemical entity." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:Tautomer a owl:Class ;
+    rdfs:label "Tautomer" ;
+    rdfs:comment "A tautomeric form of a chemical entity." ;
+    rdfs:subClassOf cheminf:ChemicalEntity .
+
+cheminf:TautomerEnumerationSet a owl:Class ;
+    rdfs:label "TautomerEnumerationSet" ;
+    rdfs:comment "Represents a set of all possible tautomers for a chemical structure." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:TermMappingSource a owl:Class ;
+    rdfs:label "TermMappingSource" ;
+    rdfs:comment "Provenance of a term mapping between ontologies." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:TestSet a owl:Class ;
+    rdfs:label "TestSet" ;
+    rdfs:comment "Dataset used to test a model's performance." ;
+    rdfs:subClassOf cheminf:Dataset .
+
+cheminf:ThresholdOfToxicologicalConcern a owl:Class ;
+    rdfs:label "ThresholdOfToxicologicalConcern" ;
+    rdfs:comment "Daily intake level below which there is no risk." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:TimestampOfEntry a owl:Class ;
+    rdfs:label "TimestampOfEntry" ;
+    rdfs:comment "Date and time at which a data record was created." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:ToxicityCategory a owl:Class ;
+    rdfs:label "ToxicityCategory" ;
+    rdfs:comment "Classification of compound based on toxicity type." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:ToxicityPredictorX a cheminf:ToxicityPrediction ;
+    rdfs:comment "Predictive tool for toxicity." .
+
+cheminf:TrainingSet a owl:Class ;
+    rdfs:label "TrainingSet" ;
+    rdfs:comment "Dataset used to train a QSAR or prediction model." ;
+    rdfs:subClassOf cheminf:Dataset .
+
+cheminf:UNII a owl:Class ;
+    rdfs:label "UNII" ;
+    rdfs:comment "FDA Unique Ingredient Identifier." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:UnitOfMeasurement a owl:Class ;
+    rdfs:label "UnitOfMeasurement" ;
+    rdfs:comment "Standard unit used to report a descriptor value." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:ValenceStateDescriptor a owl:Class ;
+    rdfs:label "ValenceStateDescriptor" ;
+    rdfs:comment "Quantifies atom valences within a molecule." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:WienerIndex_757 a owl:Class ;
+    rdfs:label "WienerIndex_757" ;
+    rdfs:comment "WienerIndex_757 is a class in the CHEMINF ontology." .
+
+cheminf:XYZFormat_732 a owl:Class ;
+    rdfs:label "XYZFormat_732" ;
+    rdfs:comment "XYZFormat_732 is a class in the CHEMINF ontology." .
+
+cheminf:alignedTo a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "alignedTo" ;
+    rdfs:comment "A reflexive relationship indicating ontologies can align with themselves or with others, supporting internal and external alignment.",
+        "A symmetric property indicating alignment between two ontologies or mappings. If Ontology A is aligned to Ontology B, B is aligned to A." ;
+    rdfs:domain cheminf:Ontology ;
+    rdfs:range cheminf:Ontology .
+
+cheminf:calculationTimestamp a owl:DatatypeProperty ;
+    rdfs:label "calculationTimestamp" ;
+    rdfs:comment "Timestamp when the descriptor was calculated." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range xsd:dateTime .
+
+cheminf:computedUsing a owl:ObjectProperty ;
+    rdfs:label "computedUsing" ;
+    rdfs:comment "Indicates what fingerprint was used to compute a similarity score." ;
+    rdfs:domain cheminf:SimilarityScore ;
+    rdfs:range cheminf:SubstructureFingerprint .
+
+cheminf:conformsTo a owl:ObjectProperty ;
+    rdfs:label "conformsTo" ;
+    rdfs:comment "Specifies the data format standard a descriptor or structure complies with." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:DataFormatSpecification .
+
+cheminf:containsItself a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "containsItself" ;
+    rdfs:comment "Indicates that a dataset or graph can contain itself in recursive graph or dataset structures." ;
+    rdfs:domain cheminf:Dataset ;
+    rdfs:range cheminf:Dataset .
+
+cheminf:dependsMutuallyOn a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "dependsMutuallyOn" ;
+    rdfs:comment "A symmetric property denoting mutual dependency between two algorithms or software components." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:Algorithm .
+
+cheminf:dependsOn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "dependsOn" ;
+    rdfs:comment "A reflexive property that expresses dependency between algorithms or between components within the same model.",
+        "A transitive property indicating hierarchical or recursive algorithmic or software dependency (e.g., Algorithm A depends on B, B on C ⇒ A on C)." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:Algorithm .
+
+cheminf:encodesPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "encodesPartOf" ;
+    rdfs:comment "A transitive property linking structural encodings that include or derive parts of other representations." ;
+    rdfs:domain cheminf:DataFormat ;
+    rdfs:range cheminf:DataFormat .
+
+cheminf:hasAlgorithmName a owl:DatatypeProperty ;
+    rdfs:label "hasAlgorithmName" ;
+    rdfs:comment "Name of an algorithm used for calculating descriptors or predictions." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range xsd:string .
+
+cheminf:hasCalculationTimestamp a owl:DatatypeProperty ;
+    rdfs:label "hasCalculationTimestamp" ;
+    rdfs:comment "Timestamp indicating when a descriptor calculation was performed." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range xsd:dateTime .
+
+cheminf:hasConfidenceScore a owl:DatatypeProperty ;
+    rdfs:label "hasConfidenceScore" ;
+    rdfs:comment "Links a descriptor value to a numeric confidence score." ;
+    rdfs:domain cheminf:DescriptorValue ;
+    rdfs:range xsd:decimal .
+
+cheminf:hasConfidenceValue a owl:DatatypeProperty ;
+    rdfs:label "hasConfidenceValue" ;
+    rdfs:comment "Numerical confidence value assigned to a descriptor prediction or similarity score." ;
+    rdfs:domain cheminf:DescriptorValue ;
+    rdfs:range xsd:float .
+
+cheminf:hasDescriptorLabel a owl:DatatypeProperty ;
+    rdfs:label "hasDescriptorLabel" ;
+    rdfs:comment "Human-readable label or name for a descriptor." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+cheminf:hasDescriptorUnit a owl:DatatypeProperty ;
+    rdfs:label "hasDescriptorUnit" ;
+    rdfs:comment "Unit of measurement for the descriptor value (e.g., Daltons, Å², logP)." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+cheminf:hasFormatName a owl:DatatypeProperty ;
+    rdfs:label "hasFormatName" ;
+    rdfs:comment "Name of the format used to represent chemical data (e.g., SMILES, InChI)." ;
+    rdfs:domain cheminf:DataFormat ;
+    rdfs:range xsd:string .
+
+cheminf:hasInChI a owl:DatatypeProperty ;
+    rdfs:label "hasInChI" ;
+    rdfs:comment "InChI representation of a compound." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range xsd:string .
+
+cheminf:hasInChIString a owl:DatatypeProperty ;
+    rdfs:label "hasInChIString" ;
+    rdfs:comment "InChI string representation of a molecule." ;
+    rdfs:domain cheminf:InChIFormat ;
+    rdfs:range xsd:string .
+
+cheminf:hasJSONLDRepresentation a owl:Class ;
+    rdfs:label "hasJSONLDRepresentation" ;
+    rdfs:comment "Indicates presence of JSON-LD serialization." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:hasLogPValue a owl:DatatypeProperty ;
+    rdfs:label "hasLogPValue" ;
+    rdfs:comment "The logP (partition coefficient) value of a compound, indicating its hydrophobicity." ;
+    rdfs:domain cheminf:logP ;
+    rdfs:range xsd:float .
+
+cheminf:hasMolecularWeightValue a owl:DatatypeProperty ;
+    rdfs:label "hasMolecularWeightValue" ;
+    rdfs:comment "The molecular weight of a compound, expressed as a float in Daltons." ;
+    rdfs:domain cheminf:MolecularWeight ;
+    rdfs:range xsd:float .
+
+cheminf:hasName a owl:DatatypeProperty ;
+    rdfs:label "hasName" ;
+    rdfs:comment "Name or label for a concept or resource." ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+cheminf:hasNumericValue a owl:DatatypeProperty ;
+    rdfs:label "hasNumericValue" ;
+    rdfs:comment "Literal value of a descriptor as a number." ;
+    rdfs:domain cheminf:DescriptorValue .
+
+cheminf:hasProvenanceLink a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "hasProvenanceLink" ;
+    rdfs:comment "A reflexive property indicating that a provenance statement can reference itself or be recursively connected.",
+        "A transitive property used for chaining provenance traces. If A refers to B, and B to C, then A refers to C in lineage." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:ProvenanceInformation .
+
+cheminf:hasSMILES a owl:DatatypeProperty ;
+    rdfs:label "hasSMILES" ;
+    rdfs:comment "SMILES representation of a compound." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range xsd:string .
+
+cheminf:hasSMILESString a owl:DatatypeProperty ;
+    rdfs:label "hasSMILESString" ;
+    rdfs:comment "SMILES string representation of a molecule." ;
+    rdfs:domain cheminf:SMILESFormat ;
+    rdfs:range xsd:string .
+
+cheminf:hasSoftwareLabel a owl:DatatypeProperty ;
+    rdfs:label "hasSoftwareLabel" ;
+    rdfs:comment "Descriptive label for the software tool." ;
+    rdfs:domain cheminf:SoftwareTool ;
+    rdfs:range xsd:string .
+
+cheminf:hasStringValue a owl:DatatypeProperty ;
+    rdfs:label "hasStringValue" ;
+    rdfs:comment "Literal value of a descriptor as a string." ;
+    rdfs:domain cheminf:DescriptorValue ;
+    rdfs:range xsd:string .
+
+cheminf:hasTopologicalPolarSurfaceAreaValue a owl:DatatypeProperty ;
+    rdfs:label "hasTopologicalPolarSurfaceAreaValue" ;
+    rdfs:comment "The topological polar surface area (TPSA) value of a compound in square angstroms." ;
+    rdfs:domain cheminf:TopologicalPolarSurfaceArea ;
+    rdfs:range xsd:float .
+
+cheminf:hasVersionNumber a owl:DatatypeProperty ;
+    rdfs:label "hasVersionNumber" ;
+    rdfs:comment "Version number associated with a software implementation." ;
+    rdfs:domain cheminf:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+cheminf:interactsWith a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "interactsWith" ;
+    rdfs:comment "A reflexive property indicating a molecule can potentially interact with itself or another.",
+        "A symmetric property showing that if a molecule interacts with another, the interaction is bidirectional." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:isAlgorithmFor a owl:ObjectProperty ;
+    rdfs:label "isAlgorithmFor" ;
+    rdfs:comment "Inverse of usesAlgorithm. Indicates which calculation uses this algorithm." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:DescriptorCalculation ;
+    owl:inverseOf cheminf:usesAlgorithm .
+
+cheminf:isAlignedBy a owl:ObjectProperty ;
+    rdfs:label "isAlignedBy" ;
+    rdfs:comment "Inverse of alignedWith. Indicates the alignment that maps to this ontology." ;
+    rdfs:domain cheminf:Ontology ;
+    rdfs:range cheminf:OntologyAlignment ;
+    owl:inverseOf cheminf:alignedWith .
+
+cheminf:isAlignedTo a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "isAlignedTo" ;
+    rdfs:comment "A transitive property indicating alignment between ontologies or conceptual frameworks. If A aligns with B, and B with C, then A aligns with C." ;
+    rdfs:domain cheminf:Ontology ;
+    rdfs:range cheminf:Ontology .
+
+cheminf:isAnnotatedBy a owl:ObjectProperty ;
+    rdfs:label "isAnnotatedBy" ;
+    rdfs:comment "Inverse of annotatedWith. Indicates the dataset annotated by an ontology." ;
+    rdfs:domain cheminf:DescriptorOntology ;
+    rdfs:range cheminf:ChemicalDataset ;
+    owl:inverseOf cheminf:annotatedWith .
+
+cheminf:isAnnotatedUsing a owl:Class ;
+    rdfs:label "isAnnotatedUsing" ;
+    rdfs:comment "Ontology or vocabulary used for annotation." ;
+    rdfs:subClassOf owl:Thing .
+
+cheminf:isCalculatedFor a owl:ObjectProperty ;
+    rdfs:label "isCalculatedFor" ;
+    rdfs:comment "Inverse of isCalculatedBy. Indicates which descriptor is calculated by the algorithm." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:ChemicalDescriptor ;
+    owl:inverseOf cheminf:isCalculatedBy .
+
+cheminf:isComputationOf a owl:ObjectProperty ;
+    rdfs:label "isComputationOf" ;
+    rdfs:comment "Inverse of hasInput. Indicates the calculation for which this entity was an input." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:DescriptorCalculation ;
+    owl:inverseOf cheminf:hasInput .
+
+cheminf:isContainedIn a owl:ObjectProperty ;
+    rdfs:label "isContainedIn" ;
+    rdfs:comment "Inverse of contains. Indicates which dataset contains a given entity." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalDataset ;
+    owl:inverseOf cheminf:contains .
+
+cheminf:isDerivedFrom a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "isDerivedFrom" ;
+    rdfs:comment "A transitive property indicating derivation of RDF-based or provenance-based structures from other knowledge sources." ;
+    rdfs:domain cheminf:RDFGraph ;
+    rdfs:range cheminf:RDFGraph .
+
+cheminf:isDescribedBy a owl:ObjectProperty ;
+    rdfs:label "isDescribedBy" ;
+    rdfs:comment "Inverse of describedIn. Indicates the RDF graph that describes a chemical entity." ;
+    rdfs:domain cheminf:RDFGraph ;
+    rdfs:range cheminf:ChemicalEntity ;
+    owl:inverseOf cheminf:describedIn .
+
+cheminf:isDescriptorOf a owl:ObjectProperty ;
+    rdfs:label "isDescriptorOf" ;
+    rdfs:comment "Inverse of hasDescriptor. Indicates the chemical entity to which a descriptor applies.",
+        "Links a chemical descriptor to the chemical entity it describes." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:ChemicalEntity ;
+    owl:inverseOf cheminf:hasDescriptor .
+
+cheminf:isEncodingOf a owl:ObjectProperty ;
+    rdfs:label "isEncodingOf" ;
+    rdfs:comment "Inverse of encodedIn. Indicates what structure format is used by a graph or structure." ;
+    rdfs:domain cheminf:DataFormat ;
+    rdfs:range cheminf:ChemicalGraph ;
+    owl:inverseOf cheminf:encodedIn .
+
+cheminf:isEquivalentTo a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "isEquivalentTo" ;
+    rdfs:comment "A reflexive property that expresses logical or functional equivalence between two descriptors or chemical entities.",
+        "A symmetric property that declares logical or semantic equivalence between two entities, such as descriptors or ontologies." ;
+    rdfs:domain <http://purl.org/cheminf/ontology#owl:Thing> ;
+    rdfs:range <http://purl.org/cheminf/ontology#owl:Thing> .
+
+cheminf:isFingerprintOf a owl:ObjectProperty ;
+    rdfs:label "isFingerprintOf" ;
+    rdfs:comment "Inverse of hasFingerprint. Indicates which entity the fingerprint belongs to." ;
+    rdfs:domain cheminf:SubstructureFingerprint ;
+    rdfs:range cheminf:ChemicalEntity ;
+    owl:inverseOf cheminf:hasFingerprint .
+
+cheminf:isFormatOf a owl:ObjectProperty ;
+    rdfs:label "isFormatOf" ;
+    rdfs:comment "Inverse of encodedIn. Indicates the structure that this format is used to encode." ;
+    rdfs:domain cheminf:DataFormat ;
+    rdfs:range cheminf:MolecularStructure ;
+    owl:inverseOf cheminf:encodedIn .
+
+cheminf:isGeneratedFrom a owl:ObjectProperty ;
+    rdfs:label "isGeneratedFrom" ;
+    rdfs:comment "Inverse of generates. Indicates the fingerprint that generated a score." ;
+    rdfs:domain cheminf:SimilarityScore ;
+    rdfs:range cheminf:SubstructureFingerprint ;
+    owl:inverseOf cheminf:generates .
+
+cheminf:isGeneratorOf a owl:ObjectProperty ;
+    rdfs:label "isGeneratorOf" ;
+    rdfs:comment "Inverse of wasGeneratedBy. Indicates what provenance was generated by the tool." ;
+    rdfs:domain cheminf:SoftwareTool ;
+    rdfs:range cheminf:ProvenanceInformation ;
+    owl:inverseOf cheminf:wasGeneratedBy .
+
+cheminf:isImplementedBy a owl:ObjectProperty ;
+    rdfs:label "isImplementedBy" ;
+    rdfs:comment "Inverse of isImplementedIn. Indicates which software implements the algorithm." ;
+    rdfs:domain cheminf:SoftwareImplementation ;
+    rdfs:range cheminf:Algorithm ;
+    owl:inverseOf cheminf:isImplementedIn .
+
+cheminf:isInferredBy a owl:ObjectProperty ;
+    rdfs:label "isInferredBy" ;
+    rdfs:comment "Inverse of infers. Indicates the inference engine that inferred this value." ;
+    rdfs:domain cheminf:DescriptorValue ;
+    rdfs:range cheminf:InferenceEngine ;
+    owl:inverseOf cheminf:infers .
+
+cheminf:isMetadataOf a owl:ObjectProperty ;
+    rdfs:label "isMetadataOf" ;
+    rdfs:comment "Inverse of refersTo. Indicates the metadata that refers to this calculation." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range cheminf:ProvenanceInformation ;
+    owl:inverseOf cheminf:refersTo .
+
+cheminf:isModelOf a owl:ObjectProperty ;
+    rdfs:label "isModelOf" ;
+    rdfs:comment "Inverse of usesModel. Indicates the task that uses a model." ;
+    rdfs:domain cheminf:QSAR ;
+    rdfs:range cheminf:ToxicityPrediction ;
+    owl:inverseOf cheminf:usesModel .
+
+cheminf:isOperatedBy a owl:ObjectProperty ;
+    rdfs:label "isOperatedBy" ;
+    rdfs:comment "Inverse of operatesOn. Indicates the engine that operates on a dataset." ;
+    rdfs:domain cheminf:ChemicalDataset ;
+    rdfs:range cheminf:InferenceEngine ;
+    owl:inverseOf cheminf:operatesOn .
+
+cheminf:isPartOfDataset a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "isPartOfDataset" ;
+    rdfs:comment "A transitive property expressing hierarchical containment relationships within chemical datasets." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalDataset .
+
+cheminf:isPerformedOn a owl:ObjectProperty ;
+    rdfs:label "isPerformedOn" ;
+    rdfs:comment "Inverse of performedBy. Indicates which calculation was performed using the tool." ;
+    rdfs:domain cheminf:SoftwareTool ;
+    rdfs:range cheminf:DescriptorCalculation ;
+    owl:inverseOf cheminf:performedBy .
+
+cheminf:isProvenanceFor a owl:ObjectProperty ;
+    rdfs:label "isProvenanceFor" ;
+    rdfs:comment "Inverse of hasProvenance. Indicates which descriptor is associated with provenance metadata." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:ChemicalDescriptor ;
+    owl:inverseOf cheminf:hasProvenance .
+
+cheminf:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "isRepresentedBy" ;
+    rdfs:comment "Inverse of represents. Indicates which chemical graph represents the entity." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalGraph ;
+    owl:inverseOf cheminf:represents .
+
+cheminf:isResultOf a owl:ObjectProperty ;
+    rdfs:label "isResultOf" ;
+    rdfs:comment "Inverse of hasOutput. Indicates the calculation that produced this result." ;
+    rdfs:domain cheminf:DescriptorValue ;
+    rdfs:range cheminf:DescriptorCalculation ;
+    owl:inverseOf cheminf:hasOutput .
+
+cheminf:isReusedBy a owl:ObjectProperty ;
+    rdfs:label "isReusedBy" ;
+    rdfs:comment "Inverse of reuses. Indicates which ontology reused this ontology." ;
+    rdfs:domain cheminf:Ontology ;
+    rdfs:range cheminf:DescriptorOntology ;
+    owl:inverseOf cheminf:reuses .
+
+cheminf:isScoreOf a owl:ObjectProperty ;
+    rdfs:label "isScoreOf" ;
+    rdfs:comment "Inverse of hasSimilarityScore. Indicates which entity this similarity score applies to." ;
+    rdfs:domain cheminf:SimilarityScore ;
+    rdfs:range cheminf:ChemicalEntity ;
+    owl:inverseOf cheminf:hasSimilarityScore .
+
+cheminf:isSimilarTo a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "isSimilarTo" ;
+    rdfs:comment "A reflexive property indicating that a chemical entity is similar to itself and potentially to others. Commonly used in similarity scoring contexts.",
+        "A symmetric property indicating mutual similarity between two chemical entities. If A is similar to B, then B is similar to A." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:isSourceOf a owl:ObjectProperty ;
+    rdfs:label "isSourceOf" ;
+    rdfs:comment "Inverse of wasDerivedFrom. Indicates the provenance derived from this graph." ;
+    rdfs:domain cheminf:RDFGraph ;
+    rdfs:range cheminf:ProvenanceInformation ;
+    owl:inverseOf cheminf:wasDerivedFrom .
+
+cheminf:isStructureOf a owl:ObjectProperty ;
+    rdfs:label "isStructureOf" ;
+    rdfs:comment "Inverse of hasStructure. Indicates the chemical entity associated with this structure." ;
+    rdfs:domain cheminf:MolecularStructure ;
+    rdfs:range cheminf:ChemicalEntity ;
+    owl:inverseOf cheminf:hasStructure .
+
+cheminf:isSubstructureOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "isSubstructureOf" ;
+    rdfs:comment "A transitive relationship indicating part-whole connections in chemical graphs (e.g., a ring is part of a chain which is part of a compound)." ;
+    rdfs:domain cheminf:ChemicalGraph ;
+    rdfs:range cheminf:ChemicalGraph .
+
+cheminf:isTrainingDataFor a owl:ObjectProperty ;
+    rdfs:label "isTrainingDataFor" ;
+    rdfs:comment "Inverse of trainedOn. Indicates the model trained on this dataset." ;
+    rdfs:domain cheminf:ChemicalDataset ;
+    rdfs:range cheminf:QSAR ;
+    owl:inverseOf cheminf:trainedOn .
+
+cheminf:isUseContextOf a owl:ObjectProperty ;
+    rdfs:label "isUseContextOf" ;
+    rdfs:comment "Inverse of isUsedIn. Indicates the fingerprint use context." ;
+    rdfs:domain cheminf:TanimotoCoefficient ;
+    rdfs:range cheminf:SubstructureFingerprint ;
+    owl:inverseOf cheminf:isUsedIn .
+
+cheminf:isUsedAsFormatFor a owl:ObjectProperty ;
+    rdfs:label "isUsedAsFormatFor" ;
+    rdfs:comment "Inverse of isFormatFor. Indicates which entity uses this format." ;
+    rdfs:domain <http://purl.org/cheminf/ontology#owl:Thing> ;
+    rdfs:range cheminf:DataFormat ;
+    owl:inverseOf cheminf:isFormatFor .
+
+cheminf:isUsedBy a owl:ObjectProperty ;
+    rdfs:label "isUsedBy" ;
+    rdfs:comment "Inverse of usesDescriptor. Indicates the models that use a given descriptor." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:Model ;
+    owl:inverseOf cheminf:usesDescriptor .
+
+cheminf:isValueOf a owl:ObjectProperty ;
+    rdfs:label "isValueOf" ;
+    rdfs:comment "Inverse of hasValue. Indicates which descriptor produced this value." ;
+    rdfs:domain cheminf:DescriptorValue ;
+    rdfs:range cheminf:ChemicalDescriptor ;
+    owl:inverseOf cheminf:hasValue .
+
+cheminf:isVersionOf a owl:ObjectProperty ;
+    rdfs:label "isVersionOf" ;
+    rdfs:comment "Inverse of hasVersion. Indicates the software that a given version refers to." ;
+    rdfs:domain cheminf:SoftwareVersion ;
+    rdfs:range cheminf:SoftwareImplementation ;
+    owl:inverseOf cheminf:hasVersion .
+
+cheminf:relatedByScoreTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "relatedByScoreTo" ;
+    rdfs:comment "A symmetric property indicating two chemical entities have mutual similarity according to a score (e.g., Tanimoto)." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:sharesDescriptorWith a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "sharesDescriptorWith" ;
+    rdfs:comment "A symmetric property indicating that two chemical entities share one or more descriptors.",
+        "A transitive property used when compounds A and B share a descriptor and B shares it with C; then A shares it with C." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:sharesStructureWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "sharesStructureWith" ;
+    rdfs:comment "A symmetric property indicating that two chemical graphs share equivalent molecular representations or encodings." ;
+    rdfs:domain cheminf:ChemicalGraph ;
+    rdfs:range cheminf:ChemicalGraph .
+
+cheminf:usesItself a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "usesItself" ;
+    rdfs:comment "Indicates a model or tool might use itself in self-training or self-configuration contexts." ;
+    rdfs:domain cheminf:SoftwareTool ;
+    rdfs:range cheminf:SoftwareTool .
+
+cheminf:AlgorithmExecution a owl:Class ;
+    rdfs:label "AlgorithmExecution" ;
+    rdfs:comment "A process in which an algorithm is executed." .
+
+cheminf:ChargeDescriptor a owl:Class ;
+    rdfs:label "ChargeDescriptor" ;
+    rdfs:comment "Descriptor related to molecular partial charges." ;
+    rdfs:subClassOf cheminf:ElectronicDescriptor .
+
+cheminf:ElectronicDescriptor a owl:Class ;
+    rdfs:label "ElectronicDescriptor" ;
+    rdfs:comment "Descriptor that quantifies electronic properties.",
+        "ElectronicDescriptor is a class in the CHEMINF ontology." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:GraphRepresentation a owl:Class ;
+    rdfs:label "GraphRepresentation" ;
+    rdfs:comment "A representation of knowledge as RDF triples." .
+
+cheminf:HydrophobicityDescriptor a owl:Class ;
+    rdfs:label "HydrophobicityDescriptor" ;
+    rdfs:comment "Descriptor related to hydrophobic behavior, e.g. logP." ;
+    rdfs:subClassOf cheminf:PhysicochemicalDescriptor .
+
+cheminf:Isomer a owl:Class ;
+    rdfs:label "Isomer" ;
+    rdfs:comment "An isomer of a compound with identical molecular formula." ;
+    rdfs:subClassOf cheminf:ChemicalEntity .
+
+cheminf:MolecularWeight a owl:Class ;
+    rdfs:label "MolecularWeight" ;
+    rdfs:comment "A chemical descriptor representing the molecular weight of a compound." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:RingDescriptor a owl:Class ;
+    rdfs:label "RingDescriptor" ;
+    rdfs:comment "Descriptor about ring counts or sizes." ;
+    rdfs:subClassOf cheminf:TopologicalDescriptor .
+
+cheminf:SoftwareY_v1 a cheminf:SoftwareVersion ;
+    cheminf:hasVersionNumber "1.0.0"^^xsd:string ;
+    rdfs:comment "Version 1.0 of the OpenChemLib software." .
+
+cheminf:TopologicalPolarSurfaceArea a owl:Class ;
+    rdfs:label "TopologicalPolarSurfaceArea" ;
+    rdfs:comment "A descriptor estimating the surface area of polar atoms." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:Toxicophore a owl:Class ;
+    rdfs:label "Toxicophore" ;
+    rdfs:comment "Structural alerts indicating toxicity." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:VersionIdentifier a owl:Class ;
+    rdfs:label "VersionIdentifier" ;
+    rdfs:comment "An identifier representing software version information." .
+
+cheminf:alignedWith a owl:ObjectProperty ;
+    rdfs:label "alignedWith" ;
+    rdfs:comment "Links an ontology alignment to its target ontology." ;
+    rdfs:domain cheminf:OntologyAlignment ;
+    rdfs:range cheminf:Ontology .
+
+cheminf:annotatedWith a owl:ObjectProperty ;
+    rdfs:label "annotatedWith" ;
+    rdfs:comment "Indicates which ontology was used for annotation." ;
+    rdfs:domain cheminf:ChemicalDataset ;
+    rdfs:range cheminf:DescriptorOntology .
+
+cheminf:chemdata_graph_001 a cheminf:RDFGraph ;
+    rdfs:comment "RDF graph representing chemical metadata and descriptor values." .
+
+cheminf:contains a owl:ObjectProperty ;
+    rdfs:label "contains" ;
+    rdfs:comment "Indicates that a dataset includes a particular chemical entity." ;
+    rdfs:domain cheminf:ChemicalDataset ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:describedIn a owl:ObjectProperty ;
+    rdfs:label "describedIn" ;
+    rdfs:comment "Indicates the RDF graph a chemical entity is described in." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:RDFGraph .
+
+cheminf:generates a owl:ObjectProperty ;
+    rdfs:label "generates" ;
+    rdfs:comment "Indicates the generation of a score from a fingerprint." ;
+    rdfs:domain cheminf:SubstructureFingerprint ;
+    rdfs:range cheminf:SimilarityScore .
+
+cheminf:hasDescriptor a owl:ObjectProperty ;
+    rdfs:label "hasDescriptor" ;
+    rdfs:comment "Relates a chemical entity to its descriptors." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalDescriptor .
+
+cheminf:hasFingerprint a owl:ObjectProperty ;
+    rdfs:label "hasFingerprint" ;
+    rdfs:comment "Relates a compound to its fingerprint." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:SubstructureFingerprint .
+
+cheminf:hasInput a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasInput" ;
+    rdfs:comment "A functional property indicating that a descriptor calculation is based on one specific chemical entity input.",
+        "Relates a calculation to its input." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:hasOutput a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasOutput" ;
+    rdfs:comment "A functional property where each descriptor calculation yields exactly one output value.",
+        "Relates a calculation to its output." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range cheminf:DescriptorValue .
+
+cheminf:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProvenance" ;
+    rdfs:comment "A functional property indicating that a descriptor should have only one associated provenance record per computation context.",
+        "Associates a descriptor with its provenance metadata.",
+        "Indicates the provenance metadata associated with a descriptor." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:ProvenanceInformation .
+
+cheminf:hasSimilarityScore a owl:ObjectProperty ;
+    rdfs:label "hasSimilarityScore" ;
+    rdfs:comment "Relates a compound to its similarity score." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:SimilarityScore .
+
+cheminf:hasStructure a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasStructure" ;
+    rdfs:comment "A functional property indicating that a chemical entity is associated with a unique primary molecular structure.",
+        "Links a chemical entity to its molecular structure." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:MolecularStructure .
+
+cheminf:hasValue a owl:ObjectProperty ;
+    rdfs:label "hasValue" ;
+    rdfs:comment "Associates a chemical descriptor with its computed value.",
+        "Links a descriptor to its evaluated value." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:DescriptorValue .
+
+cheminf:hasVersion a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasVersion" ;
+    rdfs:comment "A functional property specifying that a software implementation can have only one version associated at a given time.",
+        "Links a software implementation to its specific version.",
+        "Specifies the version of a software implementation." ;
+    rdfs:domain cheminf:SoftwareImplementation ;
+    rdfs:range cheminf:SoftwareVersion .
+
+cheminf:infers a owl:ObjectProperty ;
+    rdfs:label "infers" ;
+    rdfs:comment "Indicates that an inference engine can infer a descriptor value." ;
+    rdfs:domain cheminf:InferenceEngine ;
+    rdfs:range cheminf:DescriptorValue .
+
+cheminf:isCalculatedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "isCalculatedBy" ;
+    rdfs:comment "A functional property specifying that a chemical descriptor is calculated by one algorithm in a specific context.",
+        "Indicates the algorithm responsible for calculating a chemical descriptor.",
+        "Links a descriptor to the algorithm used for calculation." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:Algorithm .
+
+cheminf:isFormatFor a owl:ObjectProperty ;
+    rdfs:label "isFormatFor" ;
+    rdfs:comment "States which object a format is used for." ;
+    rdfs:domain cheminf:DataFormat ;
+    rdfs:range <http://purl.org/cheminf/ontology#owl:Thing> .
+
+cheminf:isImplementedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "isImplementedIn" ;
+    rdfs:comment "A functional property meaning each algorithm is implemented in one main software system.",
+        "Links an algorithm to the software implementation that realizes it.",
+        "Links an algorithm to the software that implements it." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:SoftwareImplementation .
+
+cheminf:isUsedIn a owl:ObjectProperty ;
+    rdfs:label "isUsedIn" ;
+    rdfs:comment "Indicates where a fingerprint is used." ;
+    rdfs:domain cheminf:SubstructureFingerprint ;
+    rdfs:range cheminf:TanimotoCoefficient .
+
+cheminf:logP_calc_001 a cheminf:DescriptorCalculation ;
+    cheminf:hasCalculationTimestamp "2024-06-10T12:00:00+00:00"^^xsd:dateTime ;
+    cheminf:hasInput cheminf:Caffeine ;
+    cheminf:hasOutput cheminf:logP_value_001 ;
+    cheminf:performedBy cheminf:SoftwareY ;
+    cheminf:usesAlgorithm cheminf:AlgorithmX ;
+    rdfs:comment "A descriptor calculation instance used to compute the logP value for caffeine using AlgorithmX and SoftwareY.",
+        "A logP calculation process." .
+
+cheminf:operatesOn a owl:ObjectProperty ;
+    rdfs:label "operatesOn" ;
+    rdfs:comment "Specifies the dataset an inference engine operates on." ;
+    rdfs:domain cheminf:InferenceEngine ;
+    rdfs:range cheminf:ChemicalDataset .
+
+cheminf:performedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "performedBy" ;
+    rdfs:comment "A functional property indicating the software tool responsible for a calculation; one tool per execution context.",
+        "Indicates which software tool performed a calculation." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range cheminf:SoftwareTool .
+
+cheminf:prov_logP_calc a cheminf:ProvenanceInformation ;
+    cheminf:refersTo cheminf:logP_calc_001 ;
+    cheminf:wasDerivedFrom cheminf:chemdata_graph_001 ;
+    cheminf:wasGeneratedBy cheminf:SoftwareY ;
+    rdfs:comment "Provenance metadata for the logP calculation." .
+
+cheminf:refersTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "refersTo" ;
+    rdfs:comment "A functional property stating that a provenance record refers to one and only one descriptor calculation.",
+        "Relates provenance metadata to the calculation it describes." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:DescriptorCalculation .
+
+cheminf:represents a owl:ObjectProperty ;
+    rdfs:label "represents" ;
+    rdfs:comment "Associates a chemical graph with the chemical entity it represents.",
+        "Links a graph to the entity it represents." ;
+    rdfs:domain cheminf:ChemicalGraph ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:reuses a owl:ObjectProperty ;
+    rdfs:label "reuses" ;
+    rdfs:comment "Indicates reuse of an ontology resource." ;
+    rdfs:domain cheminf:DescriptorOntology ;
+    rdfs:range cheminf:Ontology .
+
+cheminf:trainedOn a owl:ObjectProperty ;
+    rdfs:label "trainedOn" ;
+    rdfs:comment "Associates a model with the dataset it was trained on." ;
+    rdfs:domain cheminf:QSAR ;
+    rdfs:range cheminf:ChemicalDataset .
+
+cheminf:usesAlgorithm a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "usesAlgorithm" ;
+    rdfs:comment "A functional property that links a descriptor calculation to a unique algorithm applied in the process.",
+        "Links a descriptor calculation to the algorithm used." ;
+    rdfs:domain cheminf:DescriptorCalculation ;
+    rdfs:range cheminf:Algorithm .
+
+cheminf:usesDescriptor a owl:ObjectProperty ;
+    rdfs:label "usesDescriptor" ;
+    rdfs:comment "Associates a QSAR or toxicity model with descriptors it uses." ;
+    rdfs:domain cheminf:Model ;
+    rdfs:range cheminf:ChemicalDescriptor .
+
+cheminf:usesModel a owl:ObjectProperty ;
+    rdfs:label "usesModel" ;
+    rdfs:comment "Indicates the model used in a predictive task." ;
+    rdfs:domain cheminf:ToxicityPrediction ;
+    rdfs:range cheminf:QSAR .
+
+cheminf:wasDerivedFrom a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "wasDerivedFrom" ;
+    rdfs:comment "A functional property indicating that provenance metadata stems from one original RDF graph.",
+        "Indicates the source graph for provenance data." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:RDFGraph .
+
+cheminf:wasGeneratedBy a owl:ObjectProperty ;
+    rdfs:label "wasGeneratedBy" ;
+    rdfs:comment "Indicates which tool generated provenance data." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:SoftwareTool .
+
+cheminf:AlgorithmX a cheminf:Algorithm ;
+    cheminf:hasAlgorithmName "RandomForestQSAR"^^xsd:string ;
+    rdfs:comment "An example algorithm used in cheminformatics applications for property prediction or analysis." .
+
+cheminf:Caffeine a cheminf:ChemicalEntity ;
+    cheminf:hasInChI "InChI=1S/C8H10N4O2/c1-10-4-9-6-5(10)7(13)12(3)8(14)11(6)2/h4H,1-3H3"^^xsd:string ;
+    cheminf:hasSMILES "CN1C=NC2=C1C(=O)N(C(=O)N2C)C"^^xsd:string ;
+    rdfs:comment "A chemical entity representing the stimulant compound commonly found in coffee and tea." .
+
+cheminf:DescriptorOntologyModule a owl:Class ;
+    rdfs:label "DescriptorOntologyModule" ;
+    rdfs:comment "A modular section within a descriptor ontology." ;
+    rdfs:subClassOf cheminf:DescriptorOntology .
+
+cheminf:SoftwareY a cheminf:SoftwareImplementation ;
+    cheminf:hasSoftwareLabel "OpenChemLib"^^xsd:string ;
+    cheminf:hasVersion cheminf:SoftwareY_v1 ;
+    rdfs:comment "An example software tool or package used in chemical data processing." .
+
+cheminf:encodedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "encodedIn" ;
+    rdfs:comment "A functional property stating that a molecular structure is encoded in only one primary format (e.g., SMILES or InChI).",
+        "Indicates the format used to encode a structure.",
+        "Specifies the format in which a chemical graph is encoded." ;
+    rdfs:domain cheminf:ChemicalGraph,
+        cheminf:MolecularStructure ;
+    rdfs:range cheminf:DataFormat,
+        cheminf:DataFormatSpecification .
+
+cheminf:logP a owl:Class ;
+    rdfs:label "logP" ;
+    rdfs:comment "A chemical descriptor representing the octanol-water partition coefficient." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:logP_value_001 a cheminf:DescriptorValue ;
+    cheminf:hasConfidenceScore 0.95 ;
+    cheminf:hasNumericValue 1.55,
+        "\"1.55\"^^http://www.w3.org/2001/XMLSchema#float" ;
+    cheminf:hasStringValue "1.55"^^xsd:string ;
+    rdfs:comment "Calculated logP value for caffeine" .
+
+cheminf:InChIFormat a owl:Class ;
+    rdfs:label "InChIFormat" ;
+    rdfs:comment "A subclass of DataFormatSpecification representing the InChI format.",
+        "An IUPAC textual identifier for chemical substances." ;
+    rdfs:subClassOf cheminf:DataFormat,
+        cheminf:DataFormatSpecification .
+
+cheminf:Model a owl:Class ;
+    rdfs:label "Model" ;
+    rdfs:comment "A generalized class for computational predictive models." .
+
+cheminf:OntologyAlignment a owl:Class ;
+    rdfs:label "OntologyAlignment" ;
+    rdfs:comment "A mapping between concepts in different ontologies." .
+
+cheminf:SMILESFormat a owl:Class ;
+    rdfs:label "SMILESFormat" ;
+    rdfs:comment "A line notation format for representing chemical structures.",
+        "A subclass of DataFormatSpecification representing the SMILES format." ;
+    rdfs:subClassOf cheminf:DataFormat,
+        cheminf:DataFormatSpecification .
+
+cheminf:TanimotoCoefficient a owl:Class ;
+    rdfs:label "TanimotoCoefficient" ;
+    rdfs:comment "A metric used to quantify fingerprint-based similarity." ;
+    rdfs:subClassOf cheminf:SimilarityScore .
+
+cheminf:TopologicalDescriptor a owl:Class ;
+    rdfs:label "TopologicalDescriptor" ;
+    rdfs:comment "Descriptor derived from molecular topology.",
+        "TopologicalDescriptor is a class in the CHEMINF ontology." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:ToxicityPrediction a owl:Class ;
+    rdfs:label "ToxicityPrediction" ;
+    rdfs:comment "A predictive model for chemical toxicity." ;
+    rdfs:subClassOf cheminf:QSAR .
+
+cheminf:InferenceEngine a owl:Class ;
+    rdfs:label "InferenceEngine" ;
+    rdfs:comment "An algorithmic component capable of deriving new descriptor values." ;
+    rdfs:subClassOf cheminf:Algorithm .
+
+cheminf:SoftwareVersion a owl:Class ;
+    rdfs:label "SoftwareVersion" ;
+    rdfs:comment "A class representing the versioning information of a software implementation.",
+        "The version identifier of a software tool." ;
+    rdfs:subClassOf cheminf:VersionIdentifier .
+
+cheminf:DataFormatSpecification a owl:Class ;
+    rdfs:label "DataFormatSpecification" ;
+    rdfs:comment "A class defining the standard used to represent chemical structures or descriptor data.",
+        "DataFormatSpecification is a class in the CHEMINF ontology." .
+
+cheminf:Dataset a owl:Class ;
+    rdfs:label "Dataset" ;
+    rdfs:comment "A general collection of records." .
+
+cheminf:MolecularStructure rdfs:subClassOf cheminf:ChemicalGraph .
+
+cheminf:DescriptorOntology a owl:Class ;
+    rdfs:label "DescriptorOntology" ;
+    rdfs:comment "An ontology describing chemical descriptors." ;
+    rdfs:subClassOf cheminf:Ontology .
+
+cheminf:QSAR a owl:Class ;
+    rdfs:label "QSAR" ;
+    rdfs:comment "Quantitative structure–activity relationship model." ;
+    rdfs:subClassOf cheminf:Model .
+
+cheminf:SimilarityScore a owl:Class ;
+    rdfs:label "SimilarityScore" ;
+    rdfs:comment "A numeric score representing structural similarity." .
+
+cheminf:RDFGraph a owl:Class ;
+    rdfs:label "RDFGraph" ;
+    rdfs:comment "An RDF representation of chemical knowledge." ;
+    rdfs:subClassOf cheminf:GraphRepresentation .
+
+cheminf:SoftwareImplementation a owl:Class ;
+    rdfs:label "SoftwareImplementation" ;
+    rdfs:comment "A class representing a specific software that implements an algorithm.",
+        "A software tool or library implementing algorithms." .
+
+cheminf:SubstructureFingerprint a owl:Class ;
+    rdfs:label "SubstructureFingerprint" ;
+    rdfs:comment "A binary or hashed pattern of structural features." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:ChemicalGraph a owl:Class ;
+    rdfs:label "ChemicalGraph" ;
+    rdfs:comment "A graph-based representation of molecular structure.",
+        "A graph-based structure representing a chemical entity." .
+
+cheminf:Ontology a owl:Class ;
+    rdfs:label "Ontology" ;
+    rdfs:comment "A formal conceptualization of a knowledge domain." .
+
+cheminf:PhysicochemicalDescriptor a owl:Class ;
+    rdfs:label "PhysicochemicalDescriptor" ;
+    rdfs:comment "Descriptor of physicochemical properties like logP, pKa, etc.",
+        "PhysicochemicalDescriptor is a class in the CHEMINF ontology." ;
+    rdfs:subClassOf cheminf:ChemicalDescriptor .
+
+cheminf:ChemicalDataset a owl:Class ;
+    rdfs:label "ChemicalDataset" ;
+    rdfs:comment "A structured collection of chemical records." ;
+    rdfs:subClassOf cheminf:Dataset .
+
+cheminf:DataFormat a owl:Class ;
+    rdfs:label "DataFormat" ;
+    rdfs:comment "A data encoding standard used to represent chemical information." .
+
+cheminf:SoftwareTool a owl:Class ;
+    rdfs:label "SoftwareTool" ;
+    rdfs:comment "A specific type of SoftwareImplementation used in cheminformatics.",
+        "SoftwareTool is a class in the CHEMINF ontology." ;
+    rdfs:subClassOf cheminf:SoftwareImplementation .
+
+cheminf:ProvenanceInformation a owl:Class ;
+    rdfs:label "ProvenanceInformation" ;
+    rdfs:comment "A class for capturing metadata about how a descriptor was calculated, including source and time.",
+        "Metadata about the source and method of descriptor calculation." .
+
+cheminf:Algorithm a owl:Class ;
+    rdfs:label "Algorithm" ;
+    rdfs:comment "A class representing a method or procedure for computing chemical descriptors.",
+        "A formal procedure for calculating descriptors or performing analyses.",
+        "Algorithm is a class in the CHEMINF ontology." .
+
+cheminf:DescriptorCalculation a owl:Class ;
+    rdfs:label "DescriptorCalculation" ;
+    rdfs:comment "An event representing the calculation of a descriptor." ;
+    rdfs:subClassOf cheminf:AlgorithmExecution .
+
+cheminf:DescriptorValue a owl:Class ;
+    rdfs:label "DescriptorValue" ;
+    rdfs:comment "A class representing the numerical or categorical value of a chemical descriptor.",
+        "The numerical or categorical result of a descriptor calculation." .
+
+cheminf:ChemicalEntity a owl:Class ;
+    rdfs:label "ChemicalEntity" ;
+    rdfs:comment "A class representing a specific chemical compound or structure.",
+        "A discrete chemical compound or molecular species.",
+        "ChemicalEntity is a class in the CHEMINF ontology." .
+
+cheminf:ChemicalDescriptor a owl:Class ;
+    rdfs:label "ChemicalDescriptor" ;
+    rdfs:comment "A class representing computational or experimental descriptors of chemical entities.",
+        "A measurable or calculated property of a chemical entity.",
+        "ChemicalDescriptor is a class in the CHEMINF ontology." .
+

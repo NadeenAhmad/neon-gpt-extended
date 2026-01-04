@@ -1,0 +1,1037 @@
+@prefix ns1: <http://example.org/sewerNet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/sewerNet> a owl:Ontology ;
+    rdfs:label "SewerNet Ontology" ;
+    rdfs:comment "An ontology for modeling wastewater and stormwater infrastructure, events, properties, geospatial data, and regulatory compliance based on RAEPA and INSPIRE standards." ;
+    owl:versionInfo "1.0.0" .
+
+ns1:AccessType a owl:Class ;
+    rdfs:comment "The type of access to a component (e.g., above ground, manhole, buried)." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:AnomalyScore a owl:Class ;
+    rdfs:comment "AI-generated value indicating deviation from normal conditions." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:BackflowEvent a owl:Class ;
+    rdfs:comment "Occurrence of reverse flow in a sewer system." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:BlockageIncident789 a ns1:Blockage ;
+    rdfs:comment "A blockage detected due to grease accumulation." .
+
+ns1:BlockageType a owl:DatatypeProperty ;
+    rdfs:comment "The type of blockage encountered (e.g., grease, roots, debris)." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range xsd:string .
+
+ns1:Blockage_MH_34_Incident a ns1:Blockage .
+
+ns1:CSOEvent a owl:Class ;
+    rdfs:comment "A Combined Sewer Overflow event triggered by excess rainfall." ;
+    rdfs:subClassOf ns1:Overflow .
+
+ns1:Cleaning a owl:Class ;
+    rdfs:comment "Routine cleaning of sewer components." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:ClimateScenario a owl:Class ;
+    rdfs:comment "Climate projection scenario (e.g., RCP 4.5)." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:CoatingType a owl:Class ;
+    rdfs:comment "Type of coating applied to the pipe's surface." ;
+    rdfs:subClassOf ns1:StructuralProperty .
+
+ns1:ConditionLevel1 a owl:Class ;
+    rdfs:comment "A specific condition level representing severity 1." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:ConditionLevel2 a owl:Class ;
+    rdfs:comment "A specific condition level representing severity 2." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:ConditionLevel3 a owl:Class ;
+    rdfs:comment "A specific condition level representing severity 3." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:ConditionLevel4 a owl:Class ;
+    rdfs:comment "A specific condition level representing severity 4." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:ConditionLevel5 a owl:Class ;
+    rdfs:comment "A specific condition level representing severity 5." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:ConditionSeverityLevel a owl:DatatypeProperty ;
+    rdfs:comment "Describes the severity of a structural condition using qualitative terms." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range xsd:string .
+
+ns1:ConstructionDate a owl:DatatypeProperty ;
+    rdfs:comment "Date when the asset was constructed." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range xsd:dateTime .
+
+ns1:ContaminationIncident a owl:Class ;
+    rdfs:comment "An event involving contamination or cross-connection." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:CorrosionSensor a owl:Class ;
+    rdfs:comment "Sensor device that detects corrosion levels." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:DegradedStatus a owl:Class ;
+    rdfs:comment "Indicates reduced functionality." ;
+    rdfs:subClassOf ns1:ComponentStatus .
+
+ns1:DesignLife a owl:DatatypeProperty ;
+    rdfs:comment "Planned design lifespan of the asset in years." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range xsd:integer .
+
+ns1:EnvironmentalImpact a owl:Class ;
+    rdfs:comment "A measurable or observed consequence of sewer system activity on the surrounding environment.",
+        "Consequences of overflow or pollution on the environment." ;
+    rdfs:subClassOf <http://example.org/sewerNet#dolce:Perdurant> .
+
+ns1:EventSeverityLevel a owl:DatatypeProperty ;
+    rdfs:comment "Qualitative severity level of the event." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range xsd:string .
+
+ns1:ExternalStandard a owl:Class ;
+    rdfs:comment "A standard from an external domain or source." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:FailedStatus a owl:Class ;
+    rdfs:comment "Indicates a component has failed." ;
+    rdfs:subClassOf ns1:ComponentStatus .
+
+ns1:FailureMode a owl:Class ;
+    rdfs:comment "The physical or chemical failure mechanism affecting infrastructure." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:FindingDescription a owl:DatatypeProperty ;
+    rdfs:comment "Textual explanation of an inspection finding." ;
+    rdfs:domain ns1:Finding ;
+    rdfs:range xsd:string .
+
+ns1:FineIssued a owl:Class ;
+    rdfs:comment "Legal or monetary penalty imposed." ;
+    rdfs:subClassOf ns1:RegulatoryAction .
+
+ns1:FirmwareVersion a owl:Class ;
+    rdfs:comment "Software version on a device." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:FloodEvent a owl:Class ;
+    rdfs:comment "A flood event impacting sewer operations." ;
+    rdfs:subClassOf ns1:EnvironmentalEvent .
+
+ns1:FlowCapacity a owl:Class ;
+    rdfs:comment "An information object representing hydraulic capacity." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:Flushing a owl:Class ;
+    rdfs:comment "Flushing operations to clear sediment or debris." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:GeoPoint_45_758_4_832 a ns1:GeospatialPoint .
+
+ns1:GeoPoint_MainSewer a ns1:GeospatialPoint ;
+    rdfs:comment "The geospatial coordinates of the MainSewerLine." .
+
+ns1:GeospatialCoordinates a owl:DatatypeProperty ;
+    rdfs:comment "Describes the geographic location of an infrastructure component using spatial coordinates." ;
+    rdfs:domain ns1:GeospatialPoint ;
+    rdfs:range xsd:string .
+
+ns1:GreenInfrastructureType a owl:Class ;
+    rdfs:comment "A type of green infrastructure like bioretention or swale." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:INSPIRE_Sanitation a ns1:INSPIREDirective .
+
+ns1:IndustrialZone a owl:Class ;
+    rdfs:comment "Urban region classified as industrial." ;
+    rdfs:subClassOf ns1:UrbanZoneType .
+
+ns1:InletA45 a ns1:Inlet ;
+    rdfs:comment "A stormwater inlet located at the northeast corner of the district." .
+
+ns1:InletCatchmentArea a owl:DatatypeProperty ;
+    rdfs:comment "Defines the area served by an inlet in square meters." ;
+    rdfs:domain ns1:Inlet ;
+    rdfs:range xsd:float .
+
+ns1:InspectionDate a owl:DatatypeProperty ;
+    rdfs:comment "Specifies the date on which an inspection was performed, important for tracking maintenance schedules." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range xsd:dateTime .
+
+ns1:InspectionEvent2021 a ns1:Inspection ;
+    rdfs:comment "An inspection event that took place in the year 2021." .
+
+ns1:InspectionPriority a owl:Class ;
+    rdfs:comment "Ranking for urgency of inspections." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:Inspection_2025_04 a ns1:Inspection .
+
+ns1:InstallationMethod a owl:Class ;
+    rdfs:comment "The technique used for installing an asset (e.g., trenchless, open cut)." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:LastCalibrationDate a owl:DatatypeProperty ;
+    rdfs:comment "Most recent calibration of a sensor." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:dateTime .
+
+ns1:LiningMaterial a owl:Class ;
+    rdfs:comment "Material used for pipe lining." ;
+    rdfs:subClassOf ns1:StructuralProperty .
+
+ns1:MainNetwork01 a ns1:SewerNetwork .
+
+ns1:MainSewerLine a ns1:SewerNetworkComponent ;
+    rdfs:comment "A primary component of the sewer system responsible for transporting wastewater." .
+
+ns1:Maintenance a owl:Class ;
+    rdfs:comment "A planned set of maintenance activities." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:MaintenanceFrequency a owl:DatatypeProperty ;
+    rdfs:comment "Indicates how often maintenance is performed on the infrastructure component." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range xsd:string .
+
+ns1:MaintenanceHistory a owl:Class ;
+    rdfs:comment "Recorded history of maintenance operations." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:MaintenancePriority a owl:DatatypeProperty ;
+    rdfs:comment "Indicates how critical a maintenance activity is." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range xsd:string .
+
+ns1:Manhole123 a ns1:Manhole ;
+    rdfs:comment "A specific manhole identified for access or inspection purposes in the sewer system." .
+
+ns1:ManholeDepth a owl:DatatypeProperty ;
+    rdfs:comment "Indicates the depth of the manhole from surface to base." ;
+    rdfs:domain ns1:Manhole ;
+    rdfs:range xsd:float .
+
+ns1:Manhole_34_XYZ a ns1:Manhole .
+
+ns1:OperationalStatus a owl:Class ;
+    rdfs:comment "Indicates if the component is operational." ;
+    rdfs:subClassOf ns1:ComponentStatus .
+
+ns1:OutletB12 a ns1:Outlet ;
+    rdfs:comment "An outlet discharging treated wastewater into the river." .
+
+ns1:OutletDischargeRate a owl:DatatypeProperty ;
+    rdfs:comment "Specifies the rate at which wastewater is discharged from the outlet." ;
+    rdfs:domain ns1:Outlet ;
+    rdfs:range xsd:float .
+
+ns1:OverflowCase2022 a ns1:Overflow ;
+    rdfs:comment "An overflow event following a heavy rainstorm in 2022." .
+
+ns1:OverflowVolume a owl:DatatypeProperty ;
+    rdfs:comment "The volume of fluid released during an overflow event." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range xsd:float .
+
+ns1:Overflow_Event_0401 a ns1:Overflow .
+
+ns1:PipeDiameter a owl:DatatypeProperty ;
+    rdfs:comment "Represents the diameter of a pipe, relevant to hydraulic flow characteristics." ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:PipeMaterial a owl:DatatypeProperty ;
+    rdfs:comment "Denotes the material composition of the pipe, which impacts durability and load-bearing capacity." ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:string .
+
+ns1:PipeShape a owl:Class ;
+    rdfs:comment "Cross-sectional shape of the pipe (e.g., circular, egg-shaped)." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:Pipe_202_A a ns1:Pipe .
+
+ns1:PlanIdentifier a owl:DatatypeProperty ;
+    rdfs:comment "Unique identifier for a maintenance plan." ;
+    rdfs:domain ns1:MaintenancePlan ;
+    rdfs:range xsd:string .
+
+ns1:PublicNotification a owl:Class ;
+    rdfs:comment "Message issued to the public regarding sewer incidents." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:PumpCapacity a owl:DatatypeProperty ;
+    rdfs:comment "The maximum volume a pumping station can handle per unit time." ;
+    rdfs:domain ns1:PumpingStation ;
+    rdfs:range xsd:float .
+
+ns1:PumpStationX a ns1:PumpingStation ;
+    rdfs:comment "A pumping station elevating flow from low-lying areas." .
+
+ns1:RAEPA_v1.2 a ns1:RAEPAStandard .
+
+ns1:ReferenceModel a owl:Class ;
+    rdfs:comment "An abstract framework or guideline model." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:RegionName a owl:DatatypeProperty ;
+    rdfs:comment "The official name of the geospatial region." ;
+    rdfs:domain ns1:GeospatialRegion ;
+    rdfs:range xsd:string .
+
+ns1:RegulatoryViolation a owl:Class ;
+    rdfs:comment "A breach of compliance requirements." ;
+    rdfs:subClassOf ns1:RegulatoryEvent .
+
+ns1:RemainingUsefulLife a owl:DatatypeProperty ;
+    rdfs:comment "Estimated remaining years before replacement." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range xsd:integer .
+
+ns1:RepairActivity456 a ns1:Repair ;
+    rdfs:comment "A specific repair activity logged in the system, identified by the ID 456." .
+
+ns1:RepairDuration a owl:DatatypeProperty ;
+    rdfs:comment "Time taken to complete the repair." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range xsd:duration .
+
+ns1:Repair_MH34_April2025 a ns1:Repair .
+
+ns1:ResidentialZone a owl:Class ;
+    rdfs:comment "Urban region classified as residential." ;
+    rdfs:subClassOf ns1:UrbanZoneType .
+
+ns1:RetentionBasin a owl:Class ;
+    rdfs:comment "A structure that temporarily holds stormwater to reduce overflow." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:RootRemoval a owl:Class ;
+    rdfs:comment "Removal of roots intruding into pipes." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:RunoffCoefficient a owl:DatatypeProperty ;
+    rdfs:comment "Coefficient indicating surface runoff potential." ;
+    rdfs:domain ns1:CatchmentArea ;
+    rdfs:range xsd:float .
+
+ns1:SamplingFrequency a owl:DatatypeProperty ;
+    rdfs:comment "Frequency at which sensor readings are taken in Hz." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:SensorHealth a owl:Class ;
+    rdfs:comment "Indicates operational status of the sensor." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:SensorSensitivity a owl:DatatypeProperty ;
+    rdfs:comment "Defines the minimum threshold at which the sensor can detect anomalies." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:SensorType1 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 1." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType10 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 10." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType2 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 2." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType3 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 3." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType4 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 4." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType5 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 5." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType6 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 6." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType7 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 7." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType8 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 8." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SensorType9 a owl:Class ;
+    rdfs:comment "A type of sensor device variant 9." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:ServiceInterruptionDuration a owl:DatatypeProperty ;
+    rdfs:comment "Time during which service was disrupted." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range xsd:duration .
+
+ns1:SourceSystem a owl:Class ;
+    rdfs:comment "Originating software or registry of the data." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:StatusLabel a owl:DatatypeProperty ;
+    rdfs:comment "Textual label describing the status of the component." ;
+    rdfs:domain ns1:ComponentStatus ;
+    rdfs:range xsd:string .
+
+ns1:StormIntensity a owl:DatatypeProperty ;
+    rdfs:comment "Intensity of rainfall measured in mm/hr." ;
+    rdfs:domain ns1:RainEvent ;
+    rdfs:range xsd:float .
+
+ns1:Stormwater a owl:Class ;
+    rdfs:comment "Rainwater or melted snow that runs off surfaces." .
+
+ns1:StructuralRating a owl:Class ;
+    rdfs:comment "Condition rating such as Good, Fair, Poor." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:TelemetryData a owl:Class ;
+    rdfs:comment "Real-time data generated from remote monitoring." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:UrbanDrainZone1 a owl:Class ;
+    rdfs:comment "A subdivided urban drainage region 1." ;
+    rdfs:subClassOf ns1:GeospatialRegion .
+
+ns1:UrbanDrainZone2 a owl:Class ;
+    rdfs:comment "A subdivided urban drainage region 2." ;
+    rdfs:subClassOf ns1:GeospatialRegion .
+
+ns1:UrbanDrainZone3 a owl:Class ;
+    rdfs:comment "A subdivided urban drainage region 3." ;
+    rdfs:subClassOf ns1:GeospatialRegion .
+
+ns1:UrbanDrainZone4 a owl:Class ;
+    rdfs:comment "A subdivided urban drainage region 4." ;
+    rdfs:subClassOf ns1:GeospatialRegion .
+
+ns1:Wastewater a owl:Class ;
+    rdfs:comment "Used water from residential, commercial, and industrial sources." .
+
+ns1:ZoneCode a owl:DatatypeProperty ;
+    rdfs:comment "Alphanumeric code representing the urban zone classification." ;
+    rdfs:domain ns1:UrbanZoneType ;
+    rdfs:range xsd:string .
+
+ns1:causesOverflow a owl:ObjectProperty ;
+    rdfs:comment "Links a blockage to the overflow it causes." ;
+    owl:inverseOf ns1:resultsFrom .
+
+ns1:classifiesRegion a owl:ObjectProperty ;
+    rdfs:comment "Links a zone type to the geospatial region it classifies." ;
+    owl:inverseOf ns1:classifiedBy .
+
+ns1:componentOf a owl:ObjectProperty ;
+    rdfs:comment "If component A is part of B, and B is part of C, then A is part of C.",
+        "Links a component to the sewer network it belongs to." ;
+    owl:inverseOf ns1:hasComponent .
+
+ns1:coveredByPlan a owl:ObjectProperty ;
+    rdfs:comment "Links a flood zone to the emergency response plan that includes it." ;
+    rdfs:domain ns1:FloodRiskZone ;
+    rdfs:range ns1:EmergencyResponsePlan .
+
+ns1:generatesDataStream a owl:ObjectProperty ;
+    rdfs:comment "Links a sensor to its generated data stream." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range ns1:SensorDataStream .
+
+ns1:hasBlockage a owl:ObjectProperty ;
+    rdfs:comment "Links a pipe to a blockage that occurs in it." ;
+    owl:inverseOf ns1:occursAt .
+
+ns1:hasBlockageRisk a owl:DatatypeProperty ;
+    rdfs:comment "Likelihood of blockage due to condition." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range xsd:float .
+
+ns1:hasCalibrationValue1 a owl:DatatypeProperty ;
+    rdfs:comment "Calibration value 1 for sensor accuracy." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:hasCalibrationValue2 a owl:DatatypeProperty ;
+    rdfs:comment "Calibration value 2 for sensor accuracy." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:hasCalibrationValue3 a owl:DatatypeProperty ;
+    rdfs:comment "Calibration value 3 for sensor accuracy." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:hasCalibrationValue4 a owl:DatatypeProperty ;
+    rdfs:comment "Calibration value 4 for sensor accuracy." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:hasCalibrationValue5 a owl:DatatypeProperty ;
+    rdfs:comment "Calibration value 5 for sensor accuracy." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:hasComplaintDescription a owl:DatatypeProperty ;
+    rdfs:comment "Textual detail describing the odor issue." ;
+    rdfs:domain ns1:OdorComplaint ;
+    rdfs:range xsd:string .
+
+ns1:hasCorrosionLevel a owl:DatatypeProperty ;
+    rdfs:comment "Corrosion level affecting structural integrity." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range xsd:integer .
+
+ns1:hasDetectionProbability a owl:DatatypeProperty ;
+    rdfs:comment "Probability that a sensor detects a fault." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range xsd:float .
+
+ns1:hasDiameter a owl:DatatypeProperty ;
+    rdfs:comment "The internal diameter of a pipe." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range xsd:float .
+
+ns1:hasElevation a owl:DatatypeProperty ;
+    rdfs:comment "Elevation above sea level." ;
+    rdfs:domain ns1:GeospatialPoint ;
+    rdfs:range xsd:float .
+
+ns1:hasEndTime rdfs:comment "Specifies the end time of a temporal event." .
+
+ns1:hasExecutionLocation rdfs:comment "Indicates the location where a particular operational event took place." .
+
+ns1:hasFlowCapacity a owl:DatatypeProperty ;
+    rdfs:comment "The maximum flow a component can handle." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range xsd:float .
+
+ns1:hasFlowRateValue a owl:DatatypeProperty ;
+    rdfs:comment "Numeric value of flow rate in liters per second." ;
+    rdfs:domain ns1:FlowRate ;
+    rdfs:range xsd:float .
+
+ns1:hasHeadLevel a owl:DatatypeProperty ;
+    rdfs:comment "Elevation-based pressure value in meters." ;
+    rdfs:domain ns1:HydraulicHead ;
+    rdfs:range xsd:float .
+
+ns1:hasHydraulicProperty rdfs:comment "Links a component to its hydraulic properties such as slope or diameter." .
+
+ns1:hasInfiltrationRate a owl:DatatypeProperty ;
+    rdfs:comment "Rate of infiltration in mm/hr." ;
+    rdfs:domain ns1:InfiltrationRate ;
+    rdfs:range xsd:float .
+
+ns1:hasInspectionDate a owl:DatatypeProperty ;
+    rdfs:comment "The date when an inspection was carried out." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasLatitude a owl:DatatypeProperty ;
+    rdfs:comment "Latitude coordinate of a point." ;
+    rdfs:domain ns1:GeospatialPoint ;
+    rdfs:range xsd:float .
+
+ns1:hasLongitude a owl:DatatypeProperty ;
+    rdfs:comment "Longitude coordinate of a point." ;
+    rdfs:domain ns1:GeospatialPoint ;
+    rdfs:range xsd:float .
+
+ns1:hasMaterialType a owl:DatatypeProperty ;
+    rdfs:comment "The material from which a component is made." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range xsd:string .
+
+ns1:hasMutualImpactWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Two conditions or events influence each other bidirectionally." .
+
+ns1:hasPerformanceAffectedBy a owl:ObjectProperty ;
+    rdfs:comment "Links a component to the condition affecting its performance." ;
+    owl:inverseOf ns1:affectsPerformanceOf .
+
+ns1:hasPermitCode a owl:DatatypeProperty ;
+    rdfs:comment "Code or identifier of the discharge permit." ;
+    rdfs:domain ns1:DischargePermit ;
+    rdfs:range xsd:string .
+
+ns1:hasRepairCost a owl:DatatypeProperty ;
+    rdfs:comment "The financial cost of a repair." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range xsd:decimal .
+
+ns1:hasResponseTime a owl:DatatypeProperty ;
+    rdfs:comment "Time taken to respond to a maintenance need." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range xsd:duration .
+
+ns1:hasSensor1 a owl:ObjectProperty ;
+    rdfs:comment "Relates a component to sensor type 1." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SensorDevice .
+
+ns1:hasSensor2 a owl:ObjectProperty ;
+    rdfs:comment "Relates a component to sensor type 2." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SensorDevice .
+
+ns1:hasSensor3 a owl:ObjectProperty ;
+    rdfs:comment "Relates a component to sensor type 3." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SensorDevice .
+
+ns1:hasSensor4 a owl:ObjectProperty ;
+    rdfs:comment "Relates a component to sensor type 4." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SensorDevice .
+
+ns1:hasSensor5 a owl:ObjectProperty ;
+    rdfs:comment "Relates a component to sensor type 5." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SensorDevice .
+
+ns1:hasSlope a owl:DatatypeProperty ;
+    rdfs:comment "The gradient or slope of a pipe." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range xsd:float .
+
+ns1:hasStartTime rdfs:comment "Specifies the start time of a temporal event." .
+
+ns1:hasStructuralCondition rdfs:comment "Associates a physical component with its structural assessment." .
+
+ns1:hasZoneLabel a owl:DatatypeProperty ;
+    rdfs:comment "Label for the urban zone classification." ;
+    rdfs:domain ns1:UrbanZoneType ;
+    rdfs:range xsd:string .
+
+ns1:indicatesNonCompliance a owl:DatatypeProperty ;
+    rdfs:comment "Indicates if a finding shows a regulation breach." ;
+    rdfs:domain ns1:Finding ;
+    rdfs:range xsd:boolean .
+
+ns1:isAddressedBy a owl:ObjectProperty ;
+    rdfs:comment "Links a structural condition to the maintenance that addresses it." ;
+    owl:inverseOf ns1:addresses .
+
+ns1:isAdjacentTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Two geospatial regions or structures are directly next to each other." .
+
+ns1:isAlignedTo a owl:ObjectProperty ;
+    rdfs:comment "Links a directive to the network aligned with it." ;
+    owl:inverseOf ns1:alignsWith .
+
+ns1:isComplianceTargetOf a owl:ObjectProperty ;
+    rdfs:comment "Links a standard to the network complying with it." ;
+    owl:inverseOf ns1:compliesWith .
+
+ns1:isDetectedBy a owl:ObjectProperty ;
+    rdfs:comment "Links a condition to the sensor detecting it.",
+        "Links an overflow event to the alarm that detected it." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:OverflowAlarm ;
+    owl:inverseOf ns1:detects .
+
+ns1:isInvolvedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "A component may be recursively involved in a meta-event involving itself.",
+        "If A is involved in B, and B is involved in C, then A is involved in C.",
+        "Links a component to the event involving it." ;
+    owl:inverseOf ns1:involvesComponent .
+
+ns1:isMonitoredBy a owl:ObjectProperty ;
+    rdfs:comment "Links a sewer component to the sensor monitoring it." ;
+    owl:inverseOf ns1:monitors .
+
+ns1:isProducedBy a owl:ObjectProperty ;
+    rdfs:comment "Links a finding to the inspection producing it." ;
+    owl:inverseOf ns1:producesFinding .
+
+ns1:isRepairFor a owl:ObjectProperty ;
+    rdfs:comment "Links a repair to the condition it corrects." ;
+    owl:inverseOf ns1:requiresRepair .
+
+ns1:isRestoredBy a owl:ObjectProperty ;
+    rdfs:comment "Links a structural condition to the repair that restores it." ;
+    owl:inverseOf ns1:restores .
+
+ns1:isSimilarTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates mutual similarity between two infrastructure elements." .
+
+ns1:isStatusOf a owl:ObjectProperty ;
+    rdfs:comment "Links a status back to the infrastructure component." ;
+    owl:inverseOf ns1:hasStatus .
+
+ns1:isTargetOf a owl:ObjectProperty ;
+    rdfs:comment "Links a sewer component to the inspection targeting it." ;
+    owl:inverseOf ns1:targets .
+
+ns1:isZoneTypeOf a owl:ObjectProperty ;
+    rdfs:comment "Links an urban zone type to its geospatial region." ;
+    owl:inverseOf ns1:hasZoneType .
+
+ns1:locatedInWatershed a owl:ObjectProperty ;
+    rdfs:comment "Indicates the watershed in which a component is located." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:Watershed .
+
+ns1:locationOf a owl:ObjectProperty ;
+    rdfs:comment "Links a geospatial point to the infrastructure component it describes." ;
+    owl:inverseOf ns1:hasLocation .
+
+ns1:monitoredBySensor a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to the sensor monitoring it." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SensorDevice .
+
+ns1:relatedToPermit a owl:ObjectProperty ;
+    rdfs:comment "Associates an overflow event with a discharge permit." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:DischargePermit .
+
+ns1:schedules a owl:ObjectProperty ;
+    rdfs:comment "Links a plan to the maintenance it schedules." ;
+    owl:inverseOf ns1:scheduledBy .
+
+ns1:sharesBoundaryWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Two zones share a common spatial boundary." .
+
+ns1:AccessStructure rdfs:comment "A component providing access to the sewer network, such as a manhole." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:Conduit rdfs:comment "A generic class for linear flow channels like pipes." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:EmergencyResponsePlan a owl:Class ;
+    rdfs:comment "A documented protocol for managing sewer-related emergencies." ;
+    rdfs:subClassOf ns1:Plan .
+
+ns1:EntryStructure rdfs:comment "A component that receives inflow, such as an inlet." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:ExitStructure rdfs:comment "A component that discharges outflow, such as an outlet." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:FloodRiskZone a owl:Class ;
+    rdfs:comment "An area identified as being at risk of flooding." ;
+    rdfs:subClassOf ns1:GeospatialRegion .
+
+ns1:FlowRate a owl:Class ;
+    rdfs:comment "The volumetric flow of wastewater or stormwater per unit of time." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:HydraulicHead a owl:Class ;
+    rdfs:comment "A measure of potential energy in a flowing fluid." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:InfiltrationRate a owl:Class ;
+    rdfs:comment "Rate at which water enters a sewer system from the ground." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:MechanicalStructure rdfs:comment "A mechanical component like a pumping station within the sewer network." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:OdorComplaint a owl:Class ;
+    rdfs:comment "An event involving a reported odor issue from the sewer system." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:OverflowAlarm a owl:Class ;
+    rdfs:comment "Sensor device that detects overflow events." ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:RainEvent a owl:Class ;
+    rdfs:comment "A rainfall occurrence affecting the sewer system." ;
+    rdfs:subClassOf ns1:EnvironmentalEvent .
+
+ns1:SensorDataStream a owl:Class ;
+    rdfs:comment "A data stream emitted by sensors monitoring sewer network conditions." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:Watershed a owl:Class ;
+    rdfs:comment "A geographic area draining to a common waterway." ;
+    rdfs:subClassOf ns1:GeospatialRegion .
+
+ns1:addresses a owl:ObjectProperty ;
+    rdfs:comment "Indicates that maintenance addresses a particular structural condition." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:affectsPerformanceOf a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:comment "A condition might reflexively relate to itself for recursive degradation modeling.",
+        "Structural condition influences performance." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:alignsWith a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to the INSPIRE directive it aligns with." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:INSPIREDirective .
+
+ns1:classifiedBy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:comment "A region may be classified by a type that also classifies itself in abstract hierarchy.",
+        "Each region is classified by one zone type for consistent planning.",
+        "Relates a region to its urban classification." ;
+    rdfs:domain ns1:GeospatialRegion ;
+    rdfs:range ns1:UrbanZoneType .
+
+ns1:compliesWith a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to the RAEPA standard it complies with." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:RAEPAStandard .
+
+ns1:connectedTo a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "A component is always connected to itself by default.",
+        "If component A is connected to B, and B is connected to C, then A is connected to C.",
+        "If one component is connected to another, the reverse is also true.",
+        "Indicates that two components are connected." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SewerNetworkComponent ;
+    owl:SymmetricProperty true ;
+    owl:inverseOf ns1:connectedTo .
+
+ns1:detects a owl:ObjectProperty ;
+    rdfs:comment "A sensor device detects a condition like corrosion." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:hasComponent a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Each network has unique references to its individual components (logically functional).",
+        "If A has component B, and B has component C, then A has component C.",
+        "Relates a sewer network to its components." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:hasLocation a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Defines the location of a network component.",
+        "Each component has exactly one geospatial location." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:GeospatialPoint ;
+    owl:FunctionalProperty true .
+
+ns1:hasStatus a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Each component has a single operational status at a time.",
+        "The operational status of a component." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:ComponentStatus .
+
+ns1:hasZoneType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Each geospatial region is classified by one urban zone type.",
+        "Urban classification of a spatial region." ;
+    rdfs:domain ns1:GeospatialRegion ;
+    rdfs:range ns1:UrbanZoneType .
+
+ns1:involvesComponent a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "An event may involve a component which could be itself part of the cause.",
+        "If event A involves B, and B involves C, then A involves C.",
+        "Links events to involved components." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:monitors a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:comment "A sensor device monitors a specific network component.",
+        "A sensor system may self-monitor under redundancy or self-check schemes." ;
+    rdfs:domain ns1:SensorDevice ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:occursAt a owl:ObjectProperty ;
+    rdfs:comment "Indicates where a blockage occurs." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range ns1:Pipe .
+
+ns1:producesFinding a owl:ObjectProperty ;
+    rdfs:comment "An inspection results in one or more findings." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range ns1:Finding .
+
+ns1:requiresRepair a owl:ObjectProperty ;
+    rdfs:comment "Indicates that a condition requires a specific repair." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range ns1:Repair .
+
+ns1:restores a owl:ObjectProperty ;
+    rdfs:comment "Relates a repair to the condition it restores." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:resultsFrom a owl:ObjectProperty ;
+    rdfs:comment "Indicates the blockage that resulted in an overflow." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:Blockage .
+
+ns1:scheduledBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Connects maintenance to its originating plan.",
+        "Each maintenance activity is scheduled by only one plan." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range ns1:MaintenancePlan .
+
+ns1:targets a owl:ObjectProperty ;
+    rdfs:comment "Relates an inspection to the component being inspected." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:DischargePermit a owl:Class ;
+    rdfs:comment "A legal document specifying allowable discharge limits." ;
+    rdfs:subClassOf ns1:RegulatoryStandard .
+
+ns1:GeospatialData a owl:Class ;
+    rdfs:comment "Data defining the spatial properties of components." .
+
+ns1:Inlet a owl:Class ;
+    rdfs:comment "An entry point for stormwater into the network." ;
+    rdfs:subClassOf ns1:EntryStructure,
+        ns1:SewerNetworkComponent .
+
+ns1:MaintenancePlan a owl:Class ;
+    rdfs:comment "A structured plan for performing maintenance." ;
+    rdfs:subClassOf ns1:Plan .
+
+ns1:Outlet a owl:Class ;
+    rdfs:comment "A discharge point for wastewater from the network." ;
+    rdfs:subClassOf ns1:ExitStructure,
+        ns1:SewerNetworkComponent .
+
+ns1:Plan a owl:Class ;
+    rdfs:comment "A high-level document or strategy outlining planned activities.",
+        "An informational entity capturing maintenance or inspection planning." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:PumpingStation a owl:Class ;
+    rdfs:comment "A station used to elevate and move wastewater." ;
+    rdfs:subClassOf ns1:MechanicalStructure,
+        ns1:SewerNetworkComponent .
+
+ns1:Finding a owl:Class ;
+    rdfs:comment "An observation made during inspection.",
+        "An observation recorded during an inspection, used to evaluate the condition of infrastructure." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:INSPIREDirective a ns1:INSPIREDirective,
+        owl:Class ;
+    rdfs:comment "A European Union directive for spatial data infrastructure known as INSPIRE.",
+        "A European directive for spatial data infrastructure." .
+
+ns1:Manhole a owl:Class ;
+    ns1:hasLocation ns1:GeospatialPoint ;
+    rdfs:comment "An access point to underground sewer systems." ;
+    rdfs:subClassOf ns1:AccessStructure,
+        ns1:SewerNetworkComponent .
+
+ns1:RAEPAStandard a ns1:RAEPAStandard,
+        owl:Class ;
+    rdfs:comment "A regulatory or technical standard published by RAEPA for sewer infrastructure.",
+        "A standard defining requirements for sanitation networks in France." .
+
+ns1:SewerNetwork a owl:Class ;
+    ns1:alignsWith ns1:INSPIREDirective ;
+    ns1:compliesWith ns1:RAEPAStandard ;
+    ns1:hasComponent ns1:Pipe ;
+    rdfs:comment "A sewer system managing wastewater and stormwater." .
+
+ns1:ComponentStatus a owl:Class ;
+    rdfs:comment "Represents the operational condition of a sewer infrastructure component.",
+        "The status classification of a component (e.g., operational, failed)." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:Blockage a owl:Class ;
+    ns1:occursAt ns1:Pipe ;
+    rdfs:comment "An event where flow is impeded due to obstruction." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:Inspection a owl:Class ;
+    ns1:targets ns1:SewerNetworkComponent ;
+    rdfs:comment "An event where sewer components are assessed." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:Pipe a owl:Class ;
+    ns1:connectedTo ns1:Manhole ;
+    rdfs:comment "A linear conduit that conveys wastewater or stormwater." ;
+    rdfs:subClassOf ns1:Conduit,
+        ns1:SewerNetworkComponent .
+
+ns1:Repair a owl:Class ;
+    ns1:restores ns1:StructuralCondition ;
+    rdfs:comment "A maintenance activity aimed at restoring structural condition." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:UrbanZoneType a owl:Class ;
+    rdfs:comment "A classification of urban land (e.g., residential, industrial) used for infrastructure planning.",
+        "The classification of urban areas for infrastructure management." ;
+    rdfs:subClassOf ns1:InformationObject .
+
+ns1:Overflow a owl:Class ;
+    ns1:resultsFrom ns1:Blockage ;
+    rdfs:comment "An event where flow exceeds capacity and exits the system." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:GeospatialPoint a owl:Class ;
+    rdfs:comment "A specific geographic point using coordinates." ;
+    rdfs:subClassOf ns1:GeospatialData .
+
+ns1:HydraulicProperty a owl:Class ;
+    rdfs:comment "A measurable property like flow or diameter that affects hydraulic behavior." .
+
+ns1:GeospatialRegion a owl:Class ;
+    rdfs:comment "A defined spatial area containing network components." ;
+    rdfs:subClassOf ns1:GeospatialData .
+
+ns1:MaintenanceActivity a owl:Class ;
+    ns1:addresses ns1:StructuralCondition ;
+    rdfs:comment "An action aimed at maintaining or repairing sewer components." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:OperationalEvent a owl:Class ;
+    rdfs:comment "An event that occurs in time affecting sewer operations." ;
+    rdfs:subClassOf <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#Perdurant> .
+
+ns1:StructuralCondition a owl:Class ;
+    rdfs:comment "A property describing physical wear or integrity of a component." .
+
+ns1:SensorDevice a owl:Class ;
+    rdfs:comment "A device installed in the sewer network to monitor conditions like flow, blockages, or structural issues.",
+        "A device that monitors structural or hydraulic behavior." ;
+    rdfs:subClassOf ns1:SewerNetworkComponent .
+
+ns1:SewerNetworkComponent a owl:Class ;
+    rdfs:comment "Abstract class for physical infrastructure elements in a sewer network." .
+
