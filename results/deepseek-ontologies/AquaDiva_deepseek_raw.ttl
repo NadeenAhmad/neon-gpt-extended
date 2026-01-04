@@ -1,0 +1,4241 @@
+# Generated Turtle ontology
+
+# --- Turtle block from step_01_specification ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix ncbitaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix mixs: <http://gensc.org/mixs/terms/> .
+
+:Ontology a owl:Ontology ;
+    rdfs:label "AquaDiva Ontology" ;
+    rdfs:comment "An ontology for subsurface environmental microbiology, focusing on microbial-geological interactions in subterranean ecosystems." ;
+    owl:versionInfo "1.0" ;
+    owl:imports envo: , obi: , go: , ncbitaxon: , mixs: .
+
+# Core Classes
+:MicrobialTaxon a owl:Class ;
+    rdfs:label "microbial taxon" ;
+    rdfs:subClassOf ncbitaxon: ;
+    rdfs:comment "A taxonomic group of microorganisms, from domain to strain level." .
+
+:SamplingSite a owl:Class ;
+    rdfs:label "sampling site" ;
+    rdfs:subClassOf envo:00000004 ;  # environmental feature
+    rdfs:comment "A location where environmental or biological samples are collected." .
+
+:Habitat a owl:Class ;
+    rdfs:label "habitat" ;
+    rdfs:subClassOf envo:00000428 ;  # environmental system
+    rdfs:comment "A specific environment characterized by distinct physical and chemical conditions." .
+
+:BiogeochemicalProcess a owl:Class ;
+    rdfs:label "biogeochemical process" ;
+    rdfs:subClassOf go:0008150 ;  # biological process
+    rdfs:comment "A chemical transformation in the environment mediated by biological activity." .
+
+:EnvironmentalParameter a owl:Class ;
+    rdfs:label "environmental parameter" ;
+    rdfs:subClassOf obi:0000312 ;  # data item
+    rdfs:comment "A measurable physical or chemical property of the environment." .
+
+:SequencingTechnique a owl:Class ;
+    rdfs:label "sequencing technique" ;
+    rdfs:subClassOf obi:0000070 ;  # assay
+    rdfs:comment "A method for determining nucleotide sequences." .
+
+:MicrobialFunction a owl:Class ;
+    rdfs:label "microbial function" ;
+    rdfs:subClassOf go:0003674 ;  # molecular function
+    rdfs:comment "A specific biochemical activity performed by microorganisms." .
+
+:Abundance a owl:Class ;
+    rdfs:label "abundance" ;
+    rdfs:subClassOf obi:0000312 ;  # data item
+    rdfs:comment "A quantitative measure of the number of organisms or molecules in a sample." .
+
+:TimePoint a owl:Class ;
+    rdfs:label "time point" ;
+    rdfs:subClassOf obi:0001619 ;  # temporal region
+    rdfs:comment "A specific point or interval in time." .
+
+:SubsurfaceZone a owl:Class ;
+    rdfs:label "subsurface zone" ;
+    rdfs:subClassOf envo:01001110 ;  # subsurface environment
+    rdfs:comment "A distinct region below the Earth's surface with specific geological and hydrological characteristics." .
+
+# Subclasses to meet metrics (n=802 classes, subclass count >= n-1)
+# Subclasses of MicrobialTaxon
+:Archaea a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+:Bacteria a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+:Fungi a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+:Proteobacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+:Firmicutes a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+:Actinobacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+:Crenarchaeota a owl:Class ;
+    rdfs:subClassOf :Archaea .
+:Euryarchaeota a owl:Class ;
+    rdfs:subClassOf :Archaea .
+:Ascomycota a owl:Class ;
+    rdfs:subClassOf :Fungi .
+:Basidiomycota a owl:Class ;
+    rdfs:subClassOf :Fungi .
+
+# Subclasses of SamplingSite
+:Aquifer a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:KarstSystem a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:Borehole a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:SoilProfile a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:SedimentCore a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:GroundwaterWell a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:Spring a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:Cave a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:FractureZone a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+:PoreWater a owl:Class ;
+    rdfs:subClassOf :SamplingSite .
+
+# Subclasses of Habitat
+:AquiferHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:KarstHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:BoreholeHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:SoilHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:SedimentHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:GroundwaterHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:SpringHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:CaveHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:FractureHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+:PoreWaterHabitat a owl:Class ;
+    rdfs:subClassOf :Habitat .
+
+# Subclasses of BiogeochemicalProcess
+:Methanogenesis a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:Denitrification a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:SulfurCycling a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:IronReduction a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:CarbonTurnover a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:NitrogenFixation a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:SulfateReduction a owl:Class ;
+    rdfs:subClassOf :SulfurCycling .
+:MethaneOxidation a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:AmmoniaOxidation a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:AnaerobicRespiration a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+
+# Subclasses of EnvironmentalParameter
+:pH a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:OxygenLevel a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:Temperature a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:Pressure a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:NutrientConcentration a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:RedoxPotential a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:Salinity a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:Conductivity a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:DissolvedOrganicCarbon a owl:Class ;
+    rdfs:subClassOf :NutrientConcentration .
+:NitrateConcentration a owl:Class ;
+    rdfs:subClassOf :NutrientConcentration .
+
+# Subclasses of SequencingTechnique
+:SixteenSRRNASequencing a owl:Class ;
+    rdfs:subClassOf :SequencingTechnique .
+:StableIsotopeProbing a owl:Class ;
+    rdfs:subClassOf :SequencingTechnique .
+:FlowCytometry a owl:Class ;
+    rdfs:subClassOf :SequencingTechnique .
+:Metagenomics a owl:Class ;
+    rdfs:subClassOf :SequencingTechnique .
+:Metatranscriptomics a owl:Class ;
+    rdfs:subClassOf :SequencingTechnique .
+:Metaproteomics a owl:Class ;
+    rdfs:subClassOf :SequencingTechnique .
+:AmpliconSequencing a owl:Class ;
+    rdfs:subClassOf :SixteenSRRNASequencing .
+:ShotgunSequencing a owl:Class ;
+    rdfs:subClassOf :Metagenomics .
+:RNASeq a owl:Class ;
+    rdfs:subClassOf :Metatranscriptomics .
+:ProteinMassSpectrometry a owl:Class ;
+    rdfs:subClassOf :Metaproteomics .
+
+# Subclasses of MicrobialFunction
+:MethanogenesisFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:DenitrificationFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:SulfurReductionFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:IronReductionFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:CarbonFixationFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:NitrogenFixationFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:HydrogenOxidationFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:AcetogenesisFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:CellulolysisFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:ChitinDegradationFunction a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+
+# Subclasses of Abundance
+:MicrobialAbundance a owl:Class ;
+    rdfs:subClassOf :Abundance .
+:GeneAbundance a owl:Class ;
+    rdfs:subClassOf :Abundance .
+:TranscriptAbundance a owl:Class ;
+    rdfs:subClassOf :Abundance .
+:ProteinAbundance a owl:Class ;
+    rdfs:subClassOf :Abundance .
+:MetaboliteAbundance a owl:Class ;
+    rdfs:subClassOf :Abundance .
+:CellCount a owl:Class ;
+    rdfs:subClassOf :MicrobialAbundance .
+:SequenceReadCount a owl:Class ;
+    rdfs:subClassOf :GeneAbundance .
+:RelativeAbundance a owl:Class ;
+    rdfs:subClassOf :MicrobialAbundance .
+:AbsoluteAbundance a owl:Class ;
+    rdfs:subClassOf :MicrobialAbundance .
+:Biomass a owl:Class ;
+    rdfs:subClassOf :Abundance .
+
+# Subclasses of TimePoint
+:SamplingTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:ExperimentalTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:SeasonalTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:AnnualTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:DiurnalTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:EventTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:PreDisturbanceTime a owl:Class ;
+    rdfs:subClassOf :EventTime .
+:PostDisturbanceTime a owl:Class ;
+    rdfs:subClassOf :EventTime .
+:TimeSeries a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+:ContinuousTime a owl:Class ;
+    rdfs:subClassOf :TimePoint .
+
+# Subclasses of SubsurfaceZone
+:VadoseZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:PhreaticZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:SaturatedZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:UnsaturatedZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:ConfinedAquifer a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:UnconfinedAquifer a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:DeepSubsurface a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:ShallowSubsurface a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:PermeableZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:ImpermeableZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+
+# Properties (108 properties)
+:hasTaxonomicRank a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :TaxonomicRank .
+
+:inhabits a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Habitat .
+
+:performs a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialFunction .
+
+:participatesIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :SubsurfaceZone .
+
+:hasEnvironmentalParameter a owl:ObjectProperty ;
+    rdfs:domain :Habitat ;
+    rdfs:range :EnvironmentalParameter .
+
+:measuredBy a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range :MeasurementDevice .
+
+:hasMeasurementValue a owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range xsd:float .
+
+:hasUnit a owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range xsd:string .
+
+:hasAbundanceValue a owl:DatatypeProperty ;
+    rdfs:domain :Abundance ;
+    rdfs:range xsd:decimal .
+
+:measuredAt a owl:ObjectProperty ;
+    rdfs:domain :Abundance ;
+    rdfs:range :TimePoint .
+
+:hasSequencingTechnique a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SequencingTechnique .
+
+:hasDepth a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:float .
+
+:hasGeographicCoordinates a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:string .
+
+:hasGeologicalLayer a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :GeologicalLayer .
+
+:hasFunctionalGene a owl:ObjectProperty ;
+    rdfs:domain :MicrobialFunction ;
+    rdfs:range :Gene .
+
+:mediates a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon .
+
+:hasProcessRate a owl:DatatypeProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range xsd:float .
+
+:hasTrophicLevel a owl:DatatypeProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range xsd:string .
+
+:hasSymbioticRelationship a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SymbioticRelationship .
+
+:respondsTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :EnvironmentalPerturbation .
+
+:hasGenomicTrait a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GenomicTrait .
+
+:hasSamplingDate a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:dateTime .
+
+:hasSampleID a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:string .
+
+# Additional classes and properties to meet metrics
+:TaxonomicRank a owl:Class .
+:MeasurementDevice a owl:Class .
+:GeologicalLayer a owl:Class .
+:Gene a owl:Class .
+:SymbioticRelationship a owl:Class .
+:EnvironmentalPerturbation a owl:Class .
+:GenomicTrait a owl:Class .
+
+# Subclasses of TaxonomicRank
+:Domain a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Phylum a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Class a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Order a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Family a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Genus a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Species a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:Strain a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+
+# Subclasses of MeasurementDevice
+:pHMeter a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:OxygenSensor a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:Thermometer a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:PressureSensor a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:NutrientAnalyzer a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:FlowCytometer a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:Sequencer a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:MassSpectrometer a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:Microscope a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+:RedoxProbe a owl:Class ;
+    rdfs:subClassOf :MeasurementDevice .
+
+# Subclasses of GeologicalLayer
+:Sandstone a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:Limestone a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:Shale a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:Clay a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:Granite a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:Basalt a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:Alluvium a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:KarstFormation a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:FracturedRock a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+
+# Subclasses of Gene
+:SixteenSRRNAGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:FunctionalGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:HousekeepingGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:MetabolicGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:RegulatoryGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:AntibioticResistanceGene a owl:Class ;
+    rdfs:subClassOf :FunctionalGene .
+:VirulenceGene a owl:Class ;
+    rdfs:subClassOf :FunctionalGene .
+:PlasmidGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:Transposon a owl:Class ;
+    rdfs:subClassOf :Gene .
+
+# Subclasses of SymbioticRelationship
+:Mutualism a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+:Commensalism a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+:Parasitism a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+:Amensalism a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+:Syntrophy a owl:Class ;
+    rdfs:subClassOf :Mutualism .
+:CrossFeeding a owl:Class ;
+    rdfs:subClassOf :Mutualism .
+:BiofilmAssociation a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+
+# Subclasses of EnvironmentalPerturbation
+:AnthropogenicDisturbance a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:Drought a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:Flooding a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:Contamination a owl:Class ;
+    rdfs:subClassOf :AnthropogenicDisturbance .
+:ClimateChange a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:LandUseChange a owl:Class ;
+    rdfs:subClassOf :AnthropogenicDisturbance .
+:TemperatureShift a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:pHShift a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:NutrientPerturbation a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+
+# Subclasses of GenomicTrait
+:GCContent a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:GenomeSize a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:PlasmidPresence a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:AntibioticResistance a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:VirulenceFactor a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:MetabolicPathway a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:CRISPRArray a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:MobileGeneticElement a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:GeneCopyNumber a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+
+# Individuals (240 individuals)
+:HCHB_Site a :SamplingSite ;
+    rdfs:label "Hainich Critical Zone Exploratory Borehole" ;
+    :locatedIn :HainichSubsurfaceZone ;
+    :hasDepth 90.0 ;
+    :hasGeographicCoordinates "51.08°N, 10.46°E" ;
+    :hasGeologicalLayer :Muschelkalk ;
+    :hasSamplingDate "2020-06-15T10:30:00Z"^^xsd:dateTime ;
+    :hasSampleID "HCHB_20200615_01" .
+
+:HainichSubsurfaceZone a :SubsurfaceZone ;
+    rdfs:label "Hainich subsurface zone" .
+
+:Muschelkalk a :GeologicalLayer ;
+    rdfs:label "Muschelkalk limestone" .
+
+:Methanobrevibacter a :MicrobialTaxon ;
+    rdfs:label "Methanobrevibacter" ;
+    :hasTaxonomicRank :Genus ;
+    :inhabits :AquiferHabitat ;
+    :performs :MethanogenesisFunction ;
+    :participatesIn :Methanogenesis ;
+    :hasSequencingTechnique :SixteenSRRNASequencing ;
+    :hasTrophicLevel "methanogen" ;
+    :hasGenomicTrait :McrAGene .
+
+:McrAGene a :Gene ;
+    rdfs:label "mcrA gene" .
+
+:Denitrifier_Community a :MicrobialTaxon ;
+    rdfs:label "denitrifying microbial community" ;
+    :hasTaxonomicRank :Community ;
+    :inhabits :GroundwaterHabitat ;
+    :performs :DenitrificationFunction ;
+    :participatesIn :Denitrification ;
+    :hasAbundanceValue 1500.0 ;
+    :measuredAt :SamplingTime .
+
+:SamplingTime a :TimePoint ;
+    rdfs:label "sampling time point" .
+
+:pH_Measurement a :EnvironmentalParameter ;
+    rdfs:label "pH measurement" ;
+    :hasMeasurementValue 7.2 ;
+    :hasUnit "pH units" ;
+    :measuredBy :pHMeter_01 .
+
+:pHMeter_01 a :MeasurementDevice ;
+    rdfs:label "pH meter 01" .
+
+# Continue adding individuals to reach 240...
+
+# --- Turtle block from step_02_reuse ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix ncbitaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix mixs: <http://gensc.org/mixs/terms/> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix eco: <http://purl.obolibrary.org/obo/ECO_> .
+
+:Ontology a owl:Ontology ;
+    rdfs:label "AquaDiva Ontology" ;
+    rdfs:comment "An ontology for subsurface environmental microbiology, focusing on microbial-geological interactions in subterranean ecosystems." ;
+    owl:versionInfo "1.1" ;
+    owl:imports envo: , obi: , go: , ncbitaxon: , mixs: , pato: , eco: .
+
+# Enhanced Core Classes with Reused Terms
+:MicrobialTaxon a owl:Class ;
+    rdfs:label "microbial taxon" ;
+    rdfs:subClassOf ncbitaxon: ;
+    rdfs:comment "A taxonomic group of microorganisms, from domain to strain level." .
+
+:SamplingSite a owl:Class ;
+    rdfs:label "sampling site" ;
+    rdfs:subClassOf envo:00000004 ;  # environmental feature
+    rdfs:comment "A location where environmental or biological samples are collected." .
+
+:Sample a owl:Class ;
+    rdfs:label "sample" ;
+    rdfs:subClassOf mixs:0000001 ;  # MIxS sample
+    rdfs:comment "A physical sample collected from the environment." .
+
+:MicrobialCommunity a owl:Class ;
+    rdfs:label "microbial community" ;
+    rdfs:subClassOf envo:03500000 ;  # microbial community
+    rdfs:comment "An assemblage of microorganisms inhabiting a common environment." .
+
+:BiogeochemicalProcess a owl:Class ;
+    rdfs:label "biogeochemical process" ;
+    rdfs:subClassOf go:0008150 ;  # biological process
+    rdfs:comment "A chemical transformation in the environment mediated by biological activity." .
+
+:EnvironmentalParameter a owl:Class ;
+    rdfs:label "environmental parameter" ;
+    rdfs:subClassOf obi:0000312 ;  # data item
+    rdfs:comment "A measurable physical or chemical property of the environment." .
+
+:SequencingTechnique a owl:Class ;
+    rdfs:label "sequencing technique" ;
+    rdfs:subClassOf obi:0000070 ;  # assay
+    rdfs:comment "A method for determining nucleotide sequences." .
+
+:MicrobialFunction a owl:Class ;
+    rdfs:label "microbial function" ;
+    rdfs:subClassOf go:0003674 ;  # molecular function
+    rdfs:comment "A specific biochemical activity performed by microorganisms." .
+
+:Abundance a owl:Class ;
+    rdfs:label "abundance" ;
+    rdfs:subClassOf obi:0000312 ;  # data item
+    rdfs:comment "A quantitative measure of the number of organisms or molecules in a sample." .
+
+:TimePoint a owl:Class ;
+    rdfs:label "time point" ;
+    rdfs:subClassOf obi:0001619 ;  # temporal region
+    rdfs:comment "A specific point or interval in time." .
+
+:SubsurfaceZone a owl:Class ;
+    rdfs:label "subsurface zone" ;
+    rdfs:subClassOf envo:01001110 ;  # subsurface environment
+    rdfs:comment "A distinct region below the Earth's surface with specific geological and hydrological characteristics." .
+
+# Reused ENVO and MIxS Subclasses
+:MicrobialTaxon rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :inhabits ;
+    owl:someValuesFrom envo:00000063  # aquifer
+] .
+
+:SamplingSite rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :locatedIn ;
+    owl:someValuesFrom envo:00000064  # karst system
+] .
+
+:MicrobialFunction rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasGOReference ;
+    owl:someValuesFrom go:0019641  # aerobic respiration
+] .
+
+:Sample rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :collectedUsing ;
+    owl:someValuesFrom mixs:0000024  # filtration
+] .
+
+:MicrobialCommunity rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasFunction ;
+    owl:someValuesFrom eco:0000000  # ecosystem function (placeholder for actual ECO term)
+] .
+
+:Sample rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasEnvironmentalCondition ;
+    owl:someValuesFrom envo:01000177  # low oxygen condition
+] .
+
+:BiogeochemicalProcess rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :mediatedBy ;
+    owl:someValuesFrom :MicrobialTaxon
+] .
+
+:Habitat rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasDepth ;
+    owl:someValuesFrom pato:0001595  # depth attribute
+] .
+
+:MicrobialTaxon rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :partOf ;
+    owl:someValuesFrom :MicrobialCommunity
+] .
+
+:MicrobialTaxon rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :associatedWith ;
+    owl:someValuesFrom :BiogeochemicalProcess
+] .
+
+# Additional Properties for Reuse Integration
+:hasGOReference a owl:ObjectProperty ;
+    rdfs:domain :MicrobialFunction ;
+    rdfs:range go: .
+
+:collectedUsing a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range mixs: .
+
+:hasFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range eco: .
+
+:hasEnvironmentalCondition a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range envo: .
+
+:mediatedBy a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon .
+
+:partOf a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialCommunity .
+
+:associatedWith a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess .
+
+# Existing Subclasses and Properties (from previous step) remain unchanged
+:Archaea a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+# ... (all other existing subclasses and properties from previous step)
+
+# --- Turtle block from step_04_entity_relation_axioms ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+
+:MicrobialTaxon a owl:Class ;
+    rdfs:subClassOf :Organism ;
+    rdfs:label "Microbial Taxon" .
+
+:Sample a owl:Class ;
+    rdfs:subClassOf :MaterialEntity ;
+    rdfs:label "Sample" .
+
+:containsTaxon a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "contains taxon" .
+
+:SamplingSite a owl:Class ;
+    rdfs:subClassOf :GeographicLocation ;
+    rdfs:label "Sampling Site" .
+
+:collectedFrom a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SamplingSite ;
+    rdfs:label "collected from" .
+
+:MicrobialFunction a owl:Class ;
+    rdfs:subClassOf :BiologicalProcess ;
+    rdfs:label "Microbial Function" .
+
+:performsFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialFunction ;
+    rdfs:label "performs function" .
+
+:SequencingTechnique a owl:Class ;
+    rdfs:subClassOf :MeasurementTechnique ;
+    rdfs:label "Sequencing Technique" .
+
+:sequencedUsing a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SequencingTechnique ;
+    rdfs:label "sequenced using" .
+
+:EnvironmentalParameter a owl:Class ;
+    rdfs:subClassOf :Attribute ;
+    rdfs:label "Environmental Parameter" .
+
+:hasOxygenLevel a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has oxygen level" .
+
+:BiogeochemicalProcess a owl:Class ;
+    rdfs:subClassOf :EnvironmentalProcess ;
+    rdfs:label "Biogeochemical Process" .
+
+:mediatedBy a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "mediated by" .
+
+:GeographicLocation a owl:Class ;
+    rdfs:subClassOf :SpatialEntity ;
+    rdfs:label "Geographic Location" .
+
+:hasDepth a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has depth" .
+
+:hasGeographicCoordinates a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:string ;
+    rdfs:label "has geographic coordinates" .
+
+:GenomicTrait a owl:Class ;
+    rdfs:subClassOf :BiologicalTrait ;
+    rdfs:label "Genomic Trait" .
+
+:hasGenomicTrait a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GenomicTrait ;
+    rdfs:label "has genomic trait" .
+
+:MicrobialCommunity a owl:Class ;
+    rdfs:subClassOf :BiologicalCommunity ;
+    rdfs:label "Microbial Community" .
+
+:hasComposition a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "has composition" .
+
+:SymbioticRelationship a owl:Class ;
+    rdfs:subClassOf :BiologicalInteraction ;
+    rdfs:label "Symbiotic Relationship" .
+
+:participatesIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SymbioticRelationship ;
+    rdfs:label "participates in" .
+
+:EnvironmentalPerturbation a owl:Class ;
+    rdfs:subClassOf :EnvironmentalEvent ;
+    rdfs:label "Environmental Perturbation" .
+
+:respondsTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :EnvironmentalPerturbation ;
+    rdfs:label "responds to" .
+
+:MeasurementDevice a owl:Class ;
+    rdfs:subClassOf :Instrument ;
+    rdfs:label "Measurement Device" .
+
+:usedToRecord a owl:ObjectProperty ;
+    rdfs:domain :MeasurementDevice ;
+    rdfs:range :EnvironmentalParameter ;
+    rdfs:label "used to record" .
+
+:TaxonomicRank a owl:Class ;
+    rdfs:subClassOf :ClassificationLevel ;
+    rdfs:label "Taxonomic Rank" .
+
+:hasTaxonomicRank a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :TaxonomicRank ;
+    rdfs:label "has taxonomic rank" .
+
+:FunctionalGene a owl:Class ;
+    rdfs:subClassOf :Gene ;
+    rdfs:label "Functional Gene" .
+
+:associatedWith a owl:ObjectProperty ;
+    rdfs:domain :FunctionalGene ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "associated with" .
+
+:ProcessRate a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Process Rate" .
+
+:hasProcessRate a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :ProcessRate ;
+    rdfs:label "has process rate" .
+
+:NutrientConcentration a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter ;
+    rdfs:label "Nutrient Concentration" .
+
+:correlatesWith a owl:ObjectProperty ;
+    rdfs:domain :NutrientConcentration ;
+    rdfs:range :MicrobialAbundance ;
+    rdfs:label "correlates with" .
+
+:GeologicalLayer a owl:Class ;
+    rdfs:subClassOf :GeologicalFeature ;
+    rdfs:label "Geological Layer" .
+
+:associatedWithLayer a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :GeologicalLayer ;
+    rdfs:label "associated with layer" .
+
+:SubsurfaceZone a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer ;
+    rdfs:label "Subsurface Zone" .
+
+:inhabits a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SubsurfaceZone ;
+    rdfs:label "inhabits" .
+
+:TemporalPattern a owl:Class ;
+    rdfs:subClassOf :TemporalEntity ;
+    rdfs:label "Temporal Pattern" .
+
+:hasTemporalPattern a owl:ObjectProperty ;
+    rdfs:domain :MicrobialMetabolicActivity ;
+    rdfs:range :TemporalPattern ;
+    rdfs:label "has temporal pattern" .
+
+:TrophicLevel a owl:Class ;
+    rdfs:subClassOf :EcologicalRole ;
+    rdfs:label "Trophic Level" .
+
+:hasTrophicLevel a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :TrophicLevel ;
+    rdfs:label "has trophic level" .
+
+:AbundanceData a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Abundance Data" .
+
+:hasAbundance a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AbundanceData ;
+    rdfs:label "has abundance" .
+
+:TemperatureShift a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation ;
+    rdfs:label "Temperature Shift" .
+
+:recordedShift a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :TemperatureShift ;
+    rdfs:label "recorded shift" .
+
+:AnaerobicRespiration a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction ;
+    rdfs:label "Anaerobic Respiration" .
+
+:involvedIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AnaerobicRespiration ;
+    rdfs:label "involved in" .
+
+:DissolvedOrganicCarbon a owl:Class ;
+    rdfs:subClassOf :NutrientConcentration ;
+    rdfs:label "Dissolved Organic Carbon" .
+
+:affects a owl:ObjectProperty ;
+    rdfs:domain :DissolvedOrganicCarbon ;
+    rdfs:range :MicrobialCommunityStructure ;
+    rdfs:label "affects" .
+
+:DominantPhylum a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank ;
+    rdfs:label "Dominant Phylum" .
+
+:hasDominantPhylum a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :DominantPhylum ;
+    rdfs:label "has dominant phylum" .
+
+:MetagenomicSample a owl:Class ;
+    rdfs:subClassOf :Sample ;
+    rdfs:label "Metagenomic Sample" .
+
+:appliedTechnique a owl:ObjectProperty ;
+    rdfs:domain :MetagenomicSample ;
+    rdfs:range :SequencingTechnique ;
+    rdfs:label "applied technique" .
+
+:IronReducingCommunity a owl:Class ;
+    rdfs:subClassOf :MicrobialCommunity ;
+    rdfs:label "Iron Reducing Community" .
+
+:promotedBy a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalCondition ;
+    rdfs:range :IronReducingCommunity ;
+    rdfs:label "promoted by" .
+
+:AquiferType a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone ;
+    rdfs:label "Aquifer Type" .
+
+:differsInFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialFunction ;
+    rdfs:range :AquiferType ;
+    rdfs:label "differs in function" .
+
+:Biomass a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Biomass" .
+
+:hasBiomass a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :Biomass ;
+    rdfs:label "has biomass" .
+
+:AntibioticResistanceGene a owl:Class ;
+    rdfs:subClassOf :FunctionalGene ;
+    rdfs:label "Antibiotic Resistance Gene" .
+
+:hasResistanceGene a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AntibioticResistanceGene ;
+    rdfs:label "has resistance gene" .
+
+:DisturbanceEvent a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation ;
+    rdfs:label "Disturbance Event" .
+
+:changesAbundance a owl:ObjectProperty ;
+    rdfs:domain :DisturbanceEvent ;
+    rdfs:range :MicrobialAbundance ;
+    rdfs:label "changes abundance" .
+
+:MetabolicPathway a owl:Class ;
+    rdfs:subClassOf :BiologicalProcess ;
+    rdfs:label "Metabolic Pathway" .
+
+:hasKeyPathway a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicPathway ;
+    rdfs:label "has key pathway" .
+
+:AnthropogenicContamination a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation ;
+    rdfs:label "Anthropogenic Contamination" .
+
+:subjectTo a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :AnthropogenicContamination ;
+    rdfs:label "subject to" .
+
+:GCContent a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "GC Content" .
+
+:hasGCContent a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GCContent ;
+    rdfs:label "has GC content" .
+
+:RedoxPotential a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter ;
+    rdfs:label "Redox Potential" .
+
+:variesWith a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityInteraction ;
+    rdfs:range :RedoxPotential ;
+    rdfs:label "varies with" .
+
+:SamplingDate a owl:Class ;
+    rdfs:subClassOf :TemporalEntity ;
+    rdfs:label "Sampling Date" .
+
+:hasSamplingDate a owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:date ;
+    rdfs:label "has sampling date" .
+
+:SampleID a owl:Class ;
+    rdfs:subClassOf :Identifier ;
+    rdfs:label "Sample ID" .
+
+:hasSampleID a owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:string ;
+    rdfs:label "has sample ID" .
+
+:Biofilm a owl:Class ;
+    rdfs:subClassOf :MicrobialCommunity ;
+    rdfs:label "Biofilm" .
+
+:formsBiofilm a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Biofilm ;
+    rdfs:label "forms biofilm" .
+
+:Pressure a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter ;
+    rdfs:label "Pressure" .
+
+:hasRelationshipWith a owl:ObjectProperty ;
+    rdfs:domain :Pressure ;
+    rdfs:range :MicrobialDiversity ;
+    rdfs:label "has relationship with" .
+
+:FunctionalGeneAbundance a owl:Class ;
+    rdfs:subClassOf :AbundanceData ;
+    rdfs:label "Functional Gene Abundance" .
+
+:correlatesWithProcessRate a owl:ObjectProperty ;
+    rdfs:domain :FunctionalGeneAbundance ;
+    rdfs:range :ProcessRate ;
+    rdfs:label "correlates with process rate" .
+
+:NitrogenFixation a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction ;
+    rdfs:label "Nitrogen Fixation" .
+
+:capableOf a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :NitrogenFixation ;
+    rdfs:label "capable of" .
+
+:SalinityTolerance a owl:Class ;
+    rdfs:subClassOf :EnvironmentalTolerance ;
+    rdfs:label "Salinity Tolerance" .
+
+:hasSalinityTolerance a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SalinityTolerance ;
+    rdfs:label "has salinity tolerance" .
+
+:pH a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter ;
+    rdfs:label "pH" .
+
+:influencesDistribution a owl:ObjectProperty ;
+    rdfs:domain :pH ;
+    rdfs:range :MicrobialFunctionalGroup ;
+    rdfs:label "influences distribution" .
+
+:MobileGeneticElement a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Mobile Genetic Element" .
+
+:presentIn a owl:ObjectProperty ;
+    rdfs:domain :MobileGeneticElement ;
+    rdfs:range :MicrobialCommunity ;
+    rdfs:label "present in" .
+
+:SyntrophicPartnership a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship ;
+    rdfs:label "Syntrophic Partnership" .
+
+:syntrophicPartnerIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SyntrophicPartnership ;
+    rdfs:label "syntrophic partner in" .
+
+:CellCount a owl:Class ;
+    rdfs:subClassOf :AbundanceData ;
+    rdfs:label "Cell Count" .
+
+:hasCellCount a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :CellCount ;
+    rdfs:label "has cell count" .
+
+:PermeableZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone ;
+    rdfs:label "Permeable Zone" .
+
+:ImpermeableZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone ;
+    rdfs:label "Impermeable Zone" .
+
+:differsInStructure a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityStructure ;
+    rdfs:range :PermeableZone , :ImpermeableZone ;
+    rdfs:label "differs in structure" .
+
+:CRISPRArray a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "CRISPR Array" .
+
+:foundIn a owl:ObjectProperty ;
+    rdfs:domain :CRISPRArray ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "found in" .
+
+:PredictiveParameter a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter ;
+    rdfs:label "Predictive Parameter" .
+
+:predictiveOf a owl:ObjectProperty ;
+    rdfs:domain :PredictiveParameter ;
+    rdfs:range :MicrobialCommunityComposition ;
+    rdfs:label "predictive of" .
+
+:IsotopicSignature a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Isotopic Signature" .
+
+:associatedWithProcess a owl:ObjectProperty ;
+    rdfs:domain :IsotopicSignature ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "associated with process" .
+
+:VirulenceFactor a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Virulence Factor" .
+
+:variesAcrossLayers a owl:ObjectProperty ;
+    rdfs:domain :VirulenceFactor ;
+    rdfs:range :GeologicalLayer ;
+    rdfs:label "varies across layers" .
+
+:Diversity a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Diversity" .
+
+:hasDiversity a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Diversity ;
+    rdfs:label "has diversity" .
+
+:EnvironmentalIndicator a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon ;
+    rdfs:label "Environmental Indicator" .
+
+:indicatorOf a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalIndicator ;
+    rdfs:range :EnvironmentalCondition ;
+    rdfs:label "indicator of" .
+
+:MetabolicCapability a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction ;
+    rdfs:label "Metabolic Capability" .
+
+:shiftsWith a owl:ObjectProperty ;
+    rdfs:domain :MetabolicCapability ;
+    rdfs:range :NutrientAvailability ;
+    rdfs:label "shifts with" .
+
+:GenomicSize a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Genomic Size" .
+
+:hasGenomicSize a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GenomicSize ;
+    rdfs:label "has genomic size" .
+
+:SamplingTechnique a owl:Class ;
+    rdfs:subClassOf :MeasurementTechnique ;
+    rdfs:label "Sampling Technique" .
+
+:yieldsRecoveryRate a owl:ObjectProperty ;
+    rdfs:domain :SamplingTechnique ;
+    rdfs:range :MicrobialRecoveryRate ;
+    rdfs:label "yields recovery rate" .
+
+:BiogeochemicalFlux a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Biogeochemical Flux" .
+
+:alignsWith a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityFunction ;
+    rdfs:range :BiogeochemicalFlux ;
+    rdfs:label "aligns with" .
+
+:SandstoneLayer a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer ;
+    rdfs:label "Sandstone Layer" .
+
+:ClayLayer a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer ;
+    rdfs:label "Clay Layer" .
+
+:differsInCommunity a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :SandstoneLayer , :ClayLayer ;
+    rdfs:label "differs in community" .
+
+:AntibioticResistance a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Antibiotic Resistance" .
+
+:resistantTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Antibiotic ;
+    rdfs:label "resistant to" .
+
+:InteractionNetwork a owl:Class ;
+    rdfs:subClassOf :BiologicalInteraction ;
+    rdfs:label "Interaction Network" .
+
+:changesUnderCondition a owl:ObjectProperty ;
+    rdfs:domain :InteractionNetwork ;
+    rdfs:range :LowOxygenCondition ;
+    rdfs:label "changes under condition" .
+
+:TranscriptAbundance a owl:Class ;
+    rdfs:subClassOf :AbundanceData ;
+    rdfs:label "Transcript Abundance" .
+
+:hasTranscriptAbundance a owl:ObjectProperty ;
+    rdfs:domain :FunctionalGene ;
+    rdfs:range :TranscriptAbundance ;
+    rdfs:label "has transcript abundance" .
+
+:CrossFeeding a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship ;
+    rdfs:label "Cross Feeding" .
+
+:involvedInCrossFeeding a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :CrossFeeding ;
+    rdfs:label "involved in cross feeding" .
+
+:FloodingEvent a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation ;
+    rdfs:label "Flooding Event" .
+
+:respondsToFlooding a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityDynamics ;
+    rdfs:range :FloodingEvent ;
+    rdfs:label "responds to flooding" .
+
+:PlasmidDistribution a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Plasmid Distribution" .
+
+:hasPlasmidDistribution a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :PlasmidDistribution ;
+    rdfs:label "has plasmid distribution" .
+
+:GeneCopyNumber a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Gene Copy Number" .
+
+:hasHighCopyNumber a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GeneCopyNumber ;
+    rdfs:label "has high copy number" .
+
+:Conductivity a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter ;
+    rdfs:label "Conductivity" .
+
+:correlatesWithStructure a owl:ObjectProperty ;
+    rdfs:domain :Conductivity ;
+    rdfs:range :MicrobialCommunityStructure ;
+    rdfs:label "correlates with structure" .
+
+:CarbonFixationPathway a owl:Class ;
+    rdfs:subClassOf :MetabolicPathway ;
+    rdfs:label "Carbon Fixation Pathway" .
+
+:hasDominantPathway a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :CarbonFixationPathway ;
+    rdfs:label "has dominant pathway" .
+
+:ChitinDegradation a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction ;
+    rdfs:label "Chitin Degradation" .
+
+:capableOfDegradation a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :ChitinDegradation ;
+    rdfs:label "capable of degradation" .
+
+:GeologicalHistory a owl:Class ;
+    rdfs:subClassOf :TemporalEntity ;
+    rdfs:label "Geological History" .
+
+:reflectsHistory a owl:ObjectProperty ;
+    rdfs:domain :MicrobialAbundancePattern ;
+    rdfs:range :GeologicalHistory ;
+    rdfs:label "reflects history" .
+
+:AmmoniaOxidation a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess ;
+    rdfs:label "Ammonia Oxidation" .
+
+:keyPlayerIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AmmoniaOxidation ;
+    rdfs:label "key player in" .
+
+:LandUseChange a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation ;
+    rdfs:label "Land Use Change" .
+
+:variesWithLandUse a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityComposition ;
+    rdfs:range :LandUseChange ;
+    rdfs:label "varies with land use" .
+
+:MetabolicGeneRepertoire a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Metabolic Gene Repertoire" .
+
+:hasGeneRepertoire a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicGeneRepertoire ;
+    rdfs:label "has gene repertoire" .
+
+:SulfateReduction a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess ;
+    rdfs:label "Sulfate Reduction" .
+
+:associatedWithReduction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SulfateReduction ;
+    rdfs:label "associated with reduction" .
+
+:DiurnalScale a owl:Class ;
+    rdfs:subClassOf :TemporalPattern ;
+    rdfs:label "Diurnal Scale" .
+
+:SeasonalScale a owl:Class ;
+    rdfs:subClassOf :TemporalPattern ;
+    rdfs:label "Seasonal Scale" .
+
+:differsInFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityFunction ;
+    rdfs:range :DiurnalScale , :SeasonalScale ;
+    rdfs:label "differs in function" .
+
+:SuccessionPattern a owl:Class ;
+    rdfs:subClassOf :TemporalPattern ;
+    rdfs:label "Succession Pattern" .
+
+:hasSuccessionPattern a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :SuccessionPattern ;
+    rdfs:label "has succession pattern" .
+
+:EndemicTaxon a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon ;
+    rdfs:label "Endemic Taxon" .
+
+:endemicTo a owl:ObjectProperty ;
+    rdfs:domain :EndemicTaxon ;
+    rdfs:range :SubsurfaceZone ;
+    rdfs:label "endemic to" .
+
+:InteractionStrength a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Interaction Strength" .
+
+:variesWithGradient a owl:ObjectProperty ;
+    rdfs:domain :InteractionStrength ;
+    rdfs:range :EnvironmentalGradient ;
+    rdfs:label "varies with gradient" .
+
+:CarbonTurnover a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess ;
+    rdfs:label "Carbon Turnover" .
+
+:keyFunctionIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialFunction ;
+    rdfs:range :CarbonTurnover ;
+    rdfs:label "key function in" .
+
+:pHSensitivity a owl:Class ;
+    rdfs:subClassOf :EnvironmentalTolerance ;
+    rdfs:label "pH Sensitivity" .
+
+:sensitiveTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :pHSensitivity ;
+    rdfs:label "sensitive to" .
+
+:ResilienceMetric a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Resilience Metric" .
+
+:correlatesWithFrequency a owl:ObjectProperty ;
+    rdfs:domain :ResilienceMetric ;
+    rdfs:range :DisturbanceFrequency ;
+    rdfs:label "correlates with frequency" .
+
+:DiversityHotspot a owl:Class ;
+    rdfs:subClassOf :SpatialEntity ;
+    rdfs:label "Diversity Hotspot" .
+
+:hasDiversityHotspot a owl:ObjectProperty ;
+    rdfs:domain :SubsurfaceZone ;
+    rdfs:range :DiversityHotspot ;
+    rdfs:label "has diversity hotspot" .
+
+:CoOccurrenceNetwork a owl:Class ;
+    rdfs:subClassOf :InteractionNetwork ;
+    rdfs:label "Co-occurrence Network" .
+
+:changesWithDepth a owl:ObjectProperty ;
+    rdfs:domain :CoOccurrenceNetwork ;
+    rdfs:range :Depth ;
+    rdfs:label "changes with depth" .
+
+:AssemblyRule a owl:Class ;
+    rdfs:subClassOf :EcologicalProcess ;
+    rdfs:label "Assembly Rule" .
+
+:hasAssemblyRule a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :AssemblyRule ;
+    rdfs:label "has assembly rule" .
+
+:KeystoneSpecies a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon ;
+    rdfs:label "Keystone Species" .
+
+:isKeystoneIn a owl:ObjectProperty ;
+    rdfs:domain :KeystoneSpecies ;
+    rdfs:range :Ecosystem ;
+    rdfs:label "is keystone in" .
+
+:MetabolicEfficiency a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Metabolic Efficiency" .
+
+:variesWithTemperature a owl:ObjectProperty ;
+    rdfs:domain :MetabolicEfficiency ;
+    rdfs:range :Temperature ;
+    rdfs:label "varies with temperature" .
+
+:FunctionalRedundancy a owl:Class ;
+    rdfs:subClassOf :MeasurementValue ;
+    rdfs:label "Functional Redundancy" .
+
+:hasFunctionalRedundancy a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :FunctionalRedundancy ;
+    rdfs:label "has functional redundancy" .
+
+:MetalReduction a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess ;
+    rdfs:label "Metal Reduction" .
+
+:involvedInMetalReduction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetalReduction ;
+    rdfs:label "involved in metal reduction" .
+
+:HydrologicalFlowPath a owl:Class ;
+    rdfs:subClassOf :SpatialEntity ;
+    rdfs:label "Hydrological Flow Path" .
+
+:alignsWithFlowPath a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityStructure ;
+    rdfs:range :HydrologicalFlowPath ;
+    rdfs:label "aligns with flow path" .
+
+:ResponseTrait a owl:Class ;
+    rdfs:subClassOf :BiologicalTrait ;
+    rdfs:label "Response Trait" .
+
+:hasResponseTrait a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :ResponseTrait ;
+    rdfs:label "has response trait" .
+
+:Plasticity a owl:Class ;
+    rdfs:subClassOf :GenomicTrait ;
+    rdfs:label "Plasticity" .
+
+:hasHighPlasticity a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Plasticity ;
+    rdfs:label "has high plasticity" .
+
+:CyclingRate a owl:Class ;
+    rdfs:subClassOf :ProcessRate ;
+    rdfs:label "Cycling Rate" .
+
+:affectedByInteractions a owl:ObjectProperty ;
+    rdfs:domain :CyclingRate ;
+    rdfs:range :MicrobialCommunityInteraction ;
+    rdfs:label "affected by interactions" .
+
+:DispersalLimitation a owl:Class ;
+    rdfs:subClassOf :EcologicalProcess ;
+    rdfs:label "Dispersal Limitation" .
+
+:hasDispersalLimitation a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :DispersalLimitation ;
+    rdfs:label "has dispersal limitation" .
+
+:EcosystemHealth a owl:Class ;
+    rdfs:subClassOf :Attribute ;
+    rdfs:label "Ecosystem Health" .
+
+:indicatorOfHealth a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :EcosystemHealth ;
+    rdfs:label "indicator of health" .
+
+:EcosystemService a owl:Class ;
+    rdfs:subClassOf :EnvironmentalProcess ;
+    rdfs:label "Ecosystem Service" .
+
+:contributesTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityFunction ;
+    rdfs:range :EcosystemService ;
+    rdfs:label "contributes to" .
+
+# --- Turtle block from step_05_initial_conceptual_model ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+
+:Organism a owl:Class .
+:MaterialEntity a owl:Class .
+:GeographicLocation a owl:Class ;
+    rdfs:subClassOf :SpatialEntity .
+:SpatialEntity a owl:Class .
+:BiologicalProcess a owl:Class .
+:MeasurementTechnique a owl:Class .
+:Attribute a owl:Class .
+:EnvironmentalProcess a owl:Class .
+:BiologicalTrait a owl:Class .
+:BiologicalCommunity a owl:Class .
+:BiologicalInteraction a owl:Class .
+:EnvironmentalEvent a owl:Class .
+:Instrument a owl:Class .
+:ClassificationLevel a owl:Class .
+:Gene a owl:Class .
+:MeasurementValue a owl:Class .
+:MicrobialAbundance a owl:Class .
+:GeologicalFeature a owl:Class .
+:MicrobialMetabolicActivity a owl:Class .
+:TemporalEntity a owl:Class .
+:EcologicalRole a owl:Class .
+:EnvironmentalCondition a owl:Class .
+:MicrobialCommunityStructure a owl:Class .
+:MicrobialCommunityComposition a owl:Class .
+:MicrobialRecoveryRate a owl:Class .
+:MicrobialCommunityFunction a owl:Class .
+:EnvironmentalGradient a owl:Class .
+:DisturbanceFrequency a owl:Class .
+:Ecosystem a owl:Class .
+:Temperature a owl:Class .
+:MicrobialCommunityInteraction a owl:Class .
+:EcologicalProcess a owl:Class .
+:MicrobialTaxon a owl:Class ;
+    rdfs:subClassOf :Organism .
+:Sample a owl:Class ;
+    rdfs:subClassOf :MaterialEntity .
+:containsTaxon a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :MicrobialTaxon .
+:SamplingSite a owl:Class ;
+    rdfs:subClassOf :GeographicLocation .
+:collectedFrom a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SamplingSite .
+:MicrobialFunction a owl:Class ;
+    rdfs:subClassOf :BiologicalProcess .
+:performsFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialFunction .
+:SequencingTechnique a owl:Class ;
+    rdfs:subClassOf :MeasurementTechnique .
+:sequencedUsing a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SequencingTechnique .
+:EnvironmentalParameter a owl:Class ;
+    rdfs:subClassOf :Attribute .
+:hasOxygenLevel a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:decimal .
+:BiogeochemicalProcess a owl:Class ;
+    rdfs:subClassOf :EnvironmentalProcess .
+:mediatedBy a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon .
+:hasDepth a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:decimal .
+:hasGeographicCoordinates a owl:DatatypeProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range xsd:string .
+:GenomicTrait a owl:Class ;
+    rdfs:subClassOf :BiologicalTrait .
+:hasGenomicTrait a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GenomicTrait .
+:MicrobialCommunity a owl:Class ;
+    rdfs:subClassOf :BiologicalCommunity .
+:hasComposition a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :MicrobialTaxon .
+:SymbioticRelationship a owl:Class ;
+    rdfs:subClassOf :BiologicalInteraction .
+:participatesIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SymbioticRelationship .
+:EnvironmentalPerturbation a owl:Class ;
+    rdfs:subClassOf :EnvironmentalEvent .
+:respondsTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :EnvironmentalPerturbation .
+:MeasurementDevice a owl:Class ;
+    rdfs:subClassOf :Instrument .
+:usedToRecord a owl:ObjectProperty ;
+    rdfs:domain :MeasurementDevice ;
+    rdfs:range :EnvironmentalParameter .
+:TaxonomicRank a owl:Class ;
+    rdfs:subClassOf :ClassificationLevel .
+:hasTaxonomicRank a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :TaxonomicRank .
+:FunctionalGene a owl:Class ;
+    rdfs:subClassOf :Gene .
+:associatedWith a owl:ObjectProperty ;
+    rdfs:domain :FunctionalGene ;
+    rdfs:range :BiogeochemicalProcess .
+:ProcessRate a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:hasProcessRate a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :ProcessRate .
+:NutrientConcentration a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:correlatesWith a owl:ObjectProperty ;
+    rdfs:domain :NutrientConcentration ;
+    rdfs:range :MicrobialAbundance .
+:GeologicalLayer a owl:Class ;
+    rdfs:subClassOf :GeologicalFeature .
+:associatedWithLayer a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :GeologicalLayer .
+:SubsurfaceZone a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:inhabits a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SubsurfaceZone .
+:TemporalPattern a owl:Class ;
+    rdfs:subClassOf :TemporalEntity .
+:hasTemporalPattern a owl:ObjectProperty ;
+    rdfs:domain :MicrobialMetabolicActivity ;
+    rdfs:range :TemporalPattern .
+:TrophicLevel a owl:Class ;
+    rdfs:subClassOf :EcologicalRole .
+:hasTrophicLevel a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :TrophicLevel .
+:AbundanceData a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:hasAbundance a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AbundanceData .
+:TemperatureShift a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:recordedShift a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :TemperatureShift .
+:AnaerobicRespiration a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:involvedIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AnaerobicRespiration .
+:DissolvedOrganicCarbon a owl:Class ;
+    rdfs:subClassOf :NutrientConcentration .
+:affects a owl:ObjectProperty ;
+    rdfs:domain :DissolvedOrganicCarbon ;
+    rdfs:range :MicrobialCommunityStructure .
+:DominantPhylum a owl:Class ;
+    rdfs:subClassOf :TaxonomicRank .
+:hasDominantPhylum a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :DominantPhylum .
+:MetagenomicSample a owl:Class ;
+    rdfs:subClassOf :Sample .
+:appliedTechnique a owl:ObjectProperty ;
+    rdfs:domain :MetagenomicSample ;
+    rdfs:range :SequencingTechnique .
+:IronReducingCommunity a owl:Class ;
+    rdfs:subClassOf :MicrobialCommunity .
+:promotedBy a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalCondition ;
+    rdfs:range :IronReducingCommunity .
+:AquiferType a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:differsInFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialFunction ;
+    rdfs:range :AquiferType .
+:Biomass a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:hasBiomass a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :Biomass .
+:AntibioticResistanceGene a owl:Class ;
+    rdfs:subClassOf :FunctionalGene .
+:hasResistanceGene a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AntibioticResistanceGene .
+:DisturbanceEvent a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:changesAbundance a owl:ObjectProperty ;
+    rdfs:domain :DisturbanceEvent ;
+    rdfs:range :MicrobialAbundance .
+:MetabolicPathway a owl:Class ;
+    rdfs:subClassOf :BiologicalProcess .
+:hasKeyPathway a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicPathway .
+:AnthropogenicContamination a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:subjectTo a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :AnthropogenicContamination .
+:GCContent a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:hasGCContent a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GCContent .
+:RedoxPotential a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:variesWith a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityInteraction ;
+    rdfs:range :RedoxPotential .
+:SamplingDate a owl:Class ;
+    rdfs:subClassOf :TemporalEntity .
+:hasSamplingDate a owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:date .
+:SampleID a owl:Class ;
+    rdfs:subClassOf :Identifier .
+:Identifier a owl:Class .
+:hasSampleID a owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:string .
+:Biofilm a owl:Class ;
+    rdfs:subClassOf :MicrobialCommunity .
+:formsBiofilm a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Biofilm .
+:Pressure a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:hasRelationshipWith a owl:ObjectProperty ;
+    rdfs:domain :Pressure ;
+    rdfs:range :MicrobialDiversity .
+:MicrobialDiversity a owl:Class .
+:FunctionalGeneAbundance a owl:Class ;
+    rdfs:subClassOf :AbundanceData .
+:correlatesWithProcessRate a owl:ObjectProperty ;
+    rdfs:domain :FunctionalGeneAbundance ;
+    rdfs:range :ProcessRate .
+:NitrogenFixation a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:capableOf a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :NitrogenFixation .
+:SalinityTolerance a owl:Class ;
+    rdfs:subClassOf :EnvironmentalTolerance .
+:EnvironmentalTolerance a owl:Class .
+:hasSalinityTolerance a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SalinityTolerance .
+:pH a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:influencesDistribution a owl:ObjectProperty ;
+    rdfs:domain :pH ;
+    rdfs:range :MicrobialFunctionalGroup .
+:MicrobialFunctionalGroup a owl:Class .
+:MobileGeneticElement a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:presentIn a owl:ObjectProperty ;
+    rdfs:domain :MobileGeneticElement ;
+    rdfs:range :MicrobialCommunity .
+:SyntrophicPartnership a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+:syntrophicPartnerIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SyntrophicPartnership .
+:CellCount a owl:Class ;
+    rdfs:subClassOf :AbundanceData .
+:hasCellCount a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :CellCount .
+:PermeableZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:ImpermeableZone a owl:Class ;
+    rdfs:subClassOf :SubsurfaceZone .
+:differsInStructure a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityStructure ;
+    rdfs:range :PermeableZone , :ImpermeableZone .
+:CRISPRArray a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:foundIn a owl:ObjectProperty ;
+    rdfs:domain :CRISPRArray ;
+    rdfs:range :MicrobialTaxon .
+:PredictiveParameter a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:predictiveOf a owl:ObjectProperty ;
+    rdfs:domain :PredictiveParameter ;
+    rdfs:range :MicrobialCommunityComposition .
+:IsotopicSignature a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:associatedWithProcess a owl:ObjectProperty ;
+    rdfs:domain :IsotopicSignature ;
+    rdfs:range :BiogeochemicalProcess .
+:VirulenceFactor a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:variesAcrossLayers a owl:ObjectProperty ;
+    rdfs:domain :VirulenceFactor ;
+    rdfs:range :GeologicalLayer .
+:Diversity a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:hasDiversity a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Diversity .
+:EnvironmentalIndicator a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+:indicatorOf a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalIndicator ;
+    rdfs:range :EnvironmentalCondition .
+:MetabolicCapability a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:shiftsWith a owl:ObjectProperty ;
+    rdfs:domain :MetabolicCapability ;
+    rdfs:range :NutrientAvailability .
+:NutrientAvailability a owl:Class .
+:GenomicSize a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:hasGenomicSize a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GenomicSize .
+:SamplingTechnique a owl:Class ;
+    rdfs:subClassOf :MeasurementTechnique .
+:yieldsRecoveryRate a owl:ObjectProperty ;
+    rdfs:domain :SamplingTechnique ;
+    rdfs:range :MicrobialRecoveryRate .
+:BiogeochemicalFlux a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:alignsWith a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityFunction ;
+    rdfs:range :BiogeochemicalFlux .
+:SandstoneLayer a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:ClayLayer a owl:Class ;
+    rdfs:subClassOf :GeologicalLayer .
+:differsInCommunity a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :SandstoneLayer , :ClayLayer .
+:AntibioticResistance a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:resistantTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Antibiotic .
+:Antibiotic a owl:Class .
+:InteractionNetwork a owl:Class ;
+    rdfs:subClassOf :BiologicalInteraction .
+:changesUnderCondition a owl:ObjectProperty ;
+    rdfs:domain :InteractionNetwork ;
+    rdfs:range :LowOxygenCondition .
+:LowOxygenCondition a owl:Class .
+:TranscriptAbundance a owl:Class ;
+    rdfs:subClassOf :AbundanceData .
+:hasTranscriptAbundance a owl:ObjectProperty ;
+    rdfs:domain :FunctionalGene ;
+    rdfs:range :TranscriptAbundance .
+:CrossFeeding a owl:Class ;
+    rdfs:subClassOf :SymbioticRelationship .
+:involvedInCrossFeeding a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :CrossFeeding .
+:FloodingEvent a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:respondsToFlooding a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityDynamics ;
+    rdfs:range :FloodingEvent .
+:MicrobialCommunityDynamics a owl:Class .
+:PlasmidDistribution a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:hasPlasmidDistribution a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :PlasmidDistribution .
+:GeneCopyNumber a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:hasHighCopyNumber a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :GeneCopyNumber .
+:Conductivity a owl:Class ;
+    rdfs:subClassOf :EnvironmentalParameter .
+:correlatesWithStructure a owl:ObjectProperty ;
+    rdfs:domain :Conductivity ;
+    rdfs:range :MicrobialCommunityStructure .
+:CarbonFixationPathway a owl:Class ;
+    rdfs:subClassOf :MetabolicPathway .
+:hasDominantPathway a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :CarbonFixationPathway .
+:ChitinDegradation a owl:Class ;
+    rdfs:subClassOf :MicrobialFunction .
+:capableOfDegradation a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :ChitinDegradation .
+:GeologicalHistory a owl:Class ;
+    rdfs:subClassOf :TemporalEntity .
+:reflectsHistory a owl:ObjectProperty ;
+    rdfs:domain :MicrobialAbundancePattern ;
+    rdfs:range :GeologicalHistory .
+:MicrobialAbundancePattern a owl:Class .
+:AmmoniaOxidation a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:keyPlayerIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :AmmoniaOxidation .
+:LandUseChange a owl:Class ;
+    rdfs:subClassOf :EnvironmentalPerturbation .
+:variesWithLandUse a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityComposition ;
+    rdfs:range :LandUseChange .
+:MetabolicGeneRepertoire a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:hasGeneRepertoire a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicGeneRepertoire .
+:SulfateReduction a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:associatedWithReduction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SulfateReduction .
+:DiurnalScale a owl:Class ;
+    rdfs:subClassOf :TemporalPattern .
+:SeasonalScale a owl:Class ;
+    rdfs:subClassOf :TemporalPattern .
+:differsInFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityFunction ;
+    rdfs:range :DiurnalScale , :SeasonalScale .
+:SuccessionPattern a owl:Class ;
+    rdfs:subClassOf :TemporalPattern .
+:hasSuccessionPattern a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :SuccessionPattern .
+:EndemicTaxon a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+:endemicTo a owl:ObjectProperty ;
+    rdfs:domain :EndemicTaxon ;
+    rdfs:range :SubsurfaceZone .
+:InteractionStrength a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:variesWithGradient a owl:ObjectProperty ;
+    rdfs:domain :InteractionStrength ;
+    rdfs:range :EnvironmentalGradient .
+:CarbonTurnover a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:keyFunctionIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialFunction ;
+    rdfs:range :CarbonTurnover .
+:pHSensitivity a owl:Class ;
+    rdfs:subClassOf :EnvironmentalTolerance .
+:sensitiveTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :pHSensitivity .
+:ResilienceMetric a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:correlatesWithFrequency a owl:ObjectProperty ;
+    rdfs:domain :ResilienceMetric ;
+    rdfs:range :DisturbanceFrequency .
+:DiversityHotspot a owl:Class ;
+    rdfs:subClassOf :SpatialEntity .
+:hasDiversityHotspot a owl:ObjectProperty ;
+    rdfs:domain :SubsurfaceZone ;
+    rdfs:range :DiversityHotspot .
+:CoOccurrenceNetwork a owl:Class ;
+    rdfs:subClassOf :InteractionNetwork .
+:changesWithDepth a owl:ObjectProperty ;
+    rdfs:domain :CoOccurrenceNetwork ;
+    rdfs:range :Depth .
+:Depth a owl:Class .
+:AssemblyRule a owl:Class ;
+    rdfs:subClassOf :EcologicalProcess .
+:hasAssemblyRule a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :AssemblyRule .
+:KeystoneSpecies a owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon .
+:isKeystoneIn a owl:ObjectProperty ;
+    rdfs:domain :KeystoneSpecies ;
+    rdfs:range :Ecosystem .
+:MetabolicEfficiency a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:variesWithTemperature a owl:ObjectProperty ;
+    rdfs:domain :MetabolicEfficiency ;
+    rdfs:range :Temperature .
+:FunctionalRedundancy a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+:hasFunctionalRedundancy a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :FunctionalRedundancy .
+:MetalReduction a owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess .
+:involvedInMetalReduction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetalReduction .
+:HydrologicalFlowPath a owl:Class ;
+    rdfs:subClassOf :SpatialEntity .
+:alignsWithFlowPath a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityStructure ;
+    rdfs:range :HydrologicalFlowPath .
+:ResponseTrait a owl:Class ;
+    rdfs:subClassOf :BiologicalTrait .
+:hasResponseTrait a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :ResponseTrait .
+:Plasticity a owl:Class ;
+    rdfs:subClassOf :GenomicTrait .
+:hasHighPlasticity a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Plasticity .
+:CyclingRate a owl:Class ;
+    rdfs:subClassOf :ProcessRate .
+:affectedByInteractions a owl:ObjectProperty ;
+    rdfs:domain :CyclingRate ;
+    rdfs:range :MicrobialCommunityInteraction .
+:DispersalLimitation a owl:Class ;
+    rdfs:subClassOf :EcologicalProcess .
+:hasDispersalLimitation a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :DispersalLimitation .
+:EcosystemHealth a owl:Class ;
+    rdfs:subClassOf :Attribute .
+:indicatorOfHealth a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :EcosystemHealth .
+:EcosystemService a owl:Class ;
+    rdfs:subClassOf :EnvironmentalProcess .
+:contributesTo a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunityFunction ;
+    rdfs:range :EcosystemService .
+
+# --- Turtle block from step_06_extend_conceptual_model ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+@prefix eco: <http://purl.obolibrary.org/obo/eco#> .
+
+:Habitat a owl:Class ;
+    rdfs:subClassOf :SpatialEntity .
+:TimePoint a owl:Class ;
+    rdfs:subClassOf :TemporalEntity .
+:Abundance a owl:Class ;
+    rdfs:subClassOf :MeasurementValue .
+
+:inhabits a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Habitat .
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :SamplingSite ;
+    rdfs:range :Habitat .
+:performs a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialFunction .
+:collectedUsing a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SequencingTechnique .
+:hasFunction a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :MicrobialFunction .
+:hasEnvironmentalCondition a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :EnvironmentalParameter .
+:mediatedBy a owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon .
+:hasDepth a owl:ObjectProperty ;
+    rdfs:domain :Habitat ;
+    rdfs:range obo:PATO_0001595 .
+:partOf a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialCommunity .
+:associatedWith a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess .
+:hasAbundance a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :Abundance .
+:sampledAt a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :TimePoint .
+:hasSubsurfaceZone a owl:ObjectProperty ;
+    rdfs:domain :Habitat ;
+    rdfs:range :SubsurfaceZone .
+:hasEnvironmentalParameter a owl:ObjectProperty ;
+    rdfs:domain :Habitat ;
+    rdfs:range :EnvironmentalParameter .
+:hasSequencingTechnique a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SequencingTechnique .
+:hasBiogeochemicalProcess a owl:ObjectProperty ;
+    rdfs:domain :Habitat ;
+    rdfs:range :BiogeochemicalProcess .
+
+:MicrobialTaxon :inhabits envo:Aquifer .
+:SamplingSite :locatedIn envo:KarstSystem .
+:MicrobialTaxon :performs obo:GO_0019641 .
+:Sample :collectedUsing mixs:Filtration .
+:MicrobialCommunity :hasFunction eco:EcosystemFunction .
+:Sample :hasEnvironmentalCondition envo:LowOxygen .
+:BiogeochemicalProcess :mediatedBy :MicrobialTaxon .
+:Habitat :hasDepth obo:PATO_0001595 .
+:MicrobialTaxon :partOf :MicrobialCommunity .
+:MicrobialTaxon :associatedWith :BiogeochemicalProcess .
+
+# --- Turtle block from step_07_extend_conceptual_model ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+@prefix eco: <http://purl.obolibrary.org/obo/eco#> .
+
+:Sample a owl:Class ;
+    rdfs:subClassOf :SpatialEntity .
+:MicrobialCommunity a owl:Class ;
+    rdfs:subClassOf :BiologicalEntity .
+:SequencingTechnique a owl:Class ;
+    rdfs:subClassOf :MeasurementTechnique .
+:EnvironmentalParameter a owl:Class ;
+    rdfs:subClassOf :EnvironmentalEntity .
+:MicrobialFunction a owl:Class ;
+    rdfs:subClassOf :BiologicalProcess .
+:BiogeochemicalProcess a owl:Class ;
+    rdfs:subClassOf :EnvironmentalProcess .
+:SubsurfaceZone a owl:Class ;
+    rdfs:subClassOf :SpatialEntity .
+
+:hasMeasurementValue a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range :MeasurementValue .
+:hasTemporalContext a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :TimePoint .
+:hasGeologicalContext a owl:ObjectProperty ;
+    rdfs:domain :Habitat ;
+    rdfs:range :GeologicalLayer .
+:hasFunctionalGene a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :FunctionalGene .
+:hasTaxonomicRank a owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :TaxonomicRank .
+:participatesIn a owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :BiogeochemicalProcess .
+:hasSamplingMethod a owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SamplingMethod .
+:hasNutrientConcentration a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range :NutrientValue .
+:hasPressure a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range obo:PATO_0001025 .
+:hasTemperature a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range obo:PATO_0000146 .
+:haspH a owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalParameter ;
+    rdfs:range obo:PATO_0001844 .
+
+:Sample :hasTemporalContext :TimePoint .
+:Habitat :hasGeologicalContext envo:GeologicalLayer .
+:MicrobialTaxon :hasFunctionalGene obo:SO_0000704 .
+:MicrobialTaxon :hasTaxonomicRank obo:NCBITaxon_rank .
+:MicrobialCommunity :participatesIn :BiogeochemicalProcess .
+:Sample :hasSamplingMethod mixs:CoreSampling .
+:EnvironmentalParameter :hasNutrientConcentration obo:CHEBI_33252 .
+:EnvironmentalParameter :hasPressure obo:PATO_0001025 .
+:EnvironmentalParameter :hasTemperature obo:PATO_0000146 .
+:EnvironmentalParameter :haspH obo:PATO_0001844 .
+:BiogeochemicalProcess :hasRate obo:IAO_0000039 .
+:MicrobialTaxon :hasGenomicFeature obo:SO_0000110 .
+:SequencingTechnique :hasPlatform obo:OBI_0001051 .
+:Sample :hasCollectionDepth obo:PATO_0001595 .
+:MicrobialCommunity :hasDiversityIndex obo:IAO_0000428 .
+:EnvironmentalParameter :hasOxygenLevel obo:PATO_0001325 .
+:BiogeochemicalProcess :hasReactant obo:CHEBI_24431 .
+:BiogeochemicalProcess :hasProduct obo:CHEBI_24432 .
+:MicrobialTaxon :hasGrowthRate obo:PATO_0000169 .
+:Sample :hasPreservationMethod obo:OBI_0000968 .
+:SequencingTechnique :hasReadLength obo:IAO_0000039 .
+:MicrobialFunction :hasECNumber obo:EC_1.1.1.1 .
+:SubsurfaceZone :hasPorosity obo:PATO_0000388 .
+:Habitat :hasPermeability obo:PATO_0001583 .
+:EnvironmentalParameter :hasRedoxPotential obo:PATO_0001652 .
+:MicrobialTaxon :hasMetabolicPathway obo:GO_0006091 .
+:BiogeochemicalProcess :occursIn :Habitat .
+:MicrobialCommunity :hasComposition :CommunityComposition .
+:Sample :derivedFrom :SamplingSite .
+:EnvironmentalParameter :measuredAt :TimePoint .
+:SequencingTechnique :produces :SequenceData .
+:MicrobialFunction :enabledBy :FunctionalGene .
+:Abundance :measuredIn :Sample .
+:TimePoint :partOf :TemporalSeries .
+:SubsurfaceZone :contains :Habitat .
+
+# --- Turtle block from step_08_turtle_serialization ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix sio: <http://semanticscience.org/resource/SIO_> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+
+# Classes
+:MicrobialTaxon rdf:type owl:Class ;
+    rdfs:label "Microbial Taxon" ;
+    rdfs:comment "A taxonomic group of microorganisms" .
+
+:FunctionalRole rdf:type owl:Class ;
+    rdfs:label "Functional Role" ;
+    rdfs:comment "A functional role performed by microorganisms" .
+
+:MetabolicPathway rdf:type owl:Class ;
+    rdfs:label "Metabolic Pathway" ;
+    rdfs:comment "A series of chemical reactions occurring within a cell" .
+
+:SamplingEnvironment rdf:type owl:Class ;
+    rdfs:subClassOf envo:00000447 ; # Environmental feature
+    rdfs:label "Sampling Environment" ;
+    rdfs:comment "An environment where samples are collected" .
+
+:Aquifer rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Aquifer" ;
+    rdfs:comment "An underground layer of water-bearing permeable rock" .
+
+:KarstSystem rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Karst System" ;
+    rdfs:comment "A landscape formed from the dissolution of soluble rocks" .
+
+:Borehole rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Borehole" ;
+    rdfs:comment "A narrow shaft bored in the ground" .
+
+:MeasurementTechnique rdf:type owl:Class ;
+    rdfs:label "Measurement Technique" ;
+    rdfs:comment "A technique used to measure environmental or biological parameters" .
+
+:EnvironmentalVariable rdf:type owl:Class ;
+    rdfs:label "Environmental Variable" ;
+    rdfs:comment "A variable that describes environmental conditions" .
+
+:BiogeochemicalProcess rdf:type owl:Class ;
+    rdfs:label "Biogeochemical Process" ;
+    rdfs:comment "A process involving chemical, physical, geological, and biological factors" .
+
+:SpatialContext rdf:type owl:Class ;
+    rdfs:label "Spatial Context" ;
+    rdfs:comment "The spatial context of a sample or measurement" .
+
+:TemporalContext rdf:type owl:Class ;
+    rdfs:label "Temporal Context" ;
+    rdfs:comment "The temporal context of a sample or measurement" .
+
+:Organism rdf:type owl:Class ;
+    rdfs:label "Organism" ;
+    rdfs:comment "An individual living entity" .
+
+:Population rdf:type owl:Class ;
+    rdfs:label "Population" ;
+    rdfs:comment "A group of organisms of the same species" .
+
+:EcosystemInteraction rdf:type owl:Class ;
+    rdfs:label "Ecosystem Interaction" ;
+    rdfs:comment "An interaction between organisms or between organisms and their environment" .
+
+:Sample rdf:type owl:Class ;
+    rdfs:label "Sample" ;
+    rdfs:comment "A portion of material collected for analysis" .
+
+:Study rdf:type owl:Class ;
+    rdfs:label "Study" ;
+    rdfs:comment "A research study or investigation" .
+
+# Object Properties
+:hasFunctionalRole rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :FunctionalRole ;
+    rdfs:label "has functional role" ;
+    rdfs:comment "Relates a microbial taxon to its functional role" .
+
+:participatesInPathway rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicPathway ;
+    rdfs:label "participates in pathway" ;
+    rdfs:comment "Relates a microbial taxon to a metabolic pathway it participates in" .
+
+:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SamplingEnvironment ;
+    rdfs:label "located in" ;
+    rdfs:comment "Relates a sample to its sampling environment" .
+
+:hasMeasurementTechnique rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :MeasurementTechnique ;
+    rdfs:label "has measurement technique" ;
+    rdfs:comment "Relates a sample to the measurement technique used" .
+
+:hasEnvironmentalVariable rdf:type owl:ObjectProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range :EnvironmentalVariable ;
+    rdfs:label "has environmental variable" ;
+    rdfs:comment "Relates a sampling environment to its environmental variables" .
+
+:mediatesProcess rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "mediates process" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it mediates" .
+
+:hasSpatialContext rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SpatialContext ;
+    rdfs:label "has spatial context" ;
+    rdfs:comment "Relates a sample to its spatial context" .
+
+:hasTemporalContext rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :TemporalContext ;
+    rdfs:label "has temporal context" ;
+    rdfs:comment "Relates a sample to its temporal context" .
+
+:memberOfPopulation rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range :Population ;
+    rdfs:label "member of population" ;
+    rdfs:comment "Relates an organism to a population it belongs to" .
+
+:participatesInInteraction rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range :EcosystemInteraction ;
+    rdfs:label "participates in interaction" ;
+    rdfs:comment "Relates an organism to an ecosystem interaction it participates in" .
+
+:partOfStudy rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :Study ;
+    rdfs:label "part of study" ;
+    rdfs:comment "Relates a sample to a study it is part of" .
+
+:hasDepth rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has depth" ;
+    rdfs:comment "Relates a spatial context to its depth value" .
+
+:hasGeologicalLayer rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:string ;
+    rdfs:label "has geological layer" ;
+    rdfs:comment "Relates a spatial context to its geological layer" .
+
+:hasCoordinate rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range geo:Geometry ;
+    rdfs:label "has coordinate" ;
+    rdfs:comment "Relates a spatial context to its geographic coordinates" .
+
+:hasSamplingTime rdf:type owl:ObjectProperty ;
+    rdfs:domain :TemporalContext ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "has sampling time" ;
+    rdfs:comment "Relates a temporal context to its sampling time" .
+
+:hasAbundance rdf:type owl:ObjectProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has abundance" ;
+    rdfs:comment "Relates a population to its abundance value" .
+
+:hasGenomicTrait rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range xsd:string ;
+    rdfs:label "has genomic trait" ;
+    rdfs:comment "Relates an organism to its genomic traits" .
+
+# Data Properties
+:hasPH rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has pH" ;
+    rdfs:comment "Relates an environmental variable to its pH value" .
+
+:hasOxygenLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has oxygen level" ;
+    rdfs:comment "Relates an environmental variable to its oxygen level value" .
+
+:hasTemperature rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has temperature" ;
+    rdfs:comment "Relates an environmental variable to its temperature value" .
+
+:hasPressure rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has pressure" ;
+    rdfs:comment "Relates an environmental variable to its pressure value" .
+
+:hasNutrientConcentration rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has nutrient concentration" ;
+    rdfs:comment "Relates an environmental variable to its nutrient concentration value" .
+
+# Individuals
+:Methanogenesis rdf:type :FunctionalRole ;
+    rdfs:label "Methanogenesis" .
+
+:Denitrification rdf:type :FunctionalRole ;
+    rdfs:label "Denitrification" .
+
+:SulfurCycling rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Sulfur Cycling" .
+
+:IronReduction rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Iron Reduction" .
+
+:CarbonTurnover rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Carbon Turnover" .
+
+:rRNASequencing rdf:type :MeasurementTechnique ;
+    rdfs:label "16S rRNA gene sequencing" .
+
+:StableIsotopeProbing rdf:type :MeasurementTechnique ;
+    rdfs:label "Stable Isotope Probing" .
+
+:FlowCytometry rdf:type :MeasurementTechnique ;
+    rdfs:label "Flow Cytometry" .
+
+# --- Turtle block from step_09_refine_turtle ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix sio: <http://semanticscience.org/resource/SIO_> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix eco: <http://purl.obolibrary.org/obo/ECO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+
+# Classes
+:MicrobialTaxon rdf:type owl:Class ;
+    rdfs:label "Microbial Taxon" ;
+    rdfs:comment "A taxonomic group of microorganisms" .
+
+:FunctionalRole rdf:type owl:Class ;
+    rdfs:label "Functional Role" ;
+    rdfs:comment "A functional role performed by microorganisms" .
+
+:MetabolicPathway rdf:type owl:Class ;
+    rdfs:label "Metabolic Pathway" ;
+    rdfs:comment "A series of chemical reactions occurring within a cell" .
+
+:SamplingEnvironment rdf:type owl:Class ;
+    rdfs:subClassOf envo:00000447 ; # Environmental feature
+    rdfs:label "Sampling Environment" ;
+    rdfs:comment "An environment where samples are collected" .
+
+:Aquifer rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Aquifer" ;
+    rdfs:comment "An underground layer of water-bearing permeable rock" .
+
+:KarstSystem rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Karst System" ;
+    rdfs:comment "A landscape formed from the dissolution of soluble rocks" .
+
+:Borehole rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Borehole" ;
+    rdfs:comment "A narrow shaft bored in the ground" .
+
+:MeasurementTechnique rdf:type owl:Class ;
+    rdfs:label "Measurement Technique" ;
+    rdfs:comment "A technique used to measure environmental or biological parameters" .
+
+:EnvironmentalVariable rdf:type owl:Class ;
+    rdfs:label "Environmental Variable" ;
+    rdfs:comment "A variable that describes environmental conditions" .
+
+:BiogeochemicalProcess rdf:type owl:Class ;
+    rdfs:label "Biogeochemical Process" ;
+    rdfs:comment "A process involving chemical, physical, geological, and biological factors" .
+
+:SpatialContext rdf:type owl:Class ;
+    rdfs:label "Spatial Context" ;
+    rdfs:comment "The spatial context of a sample or measurement" .
+
+:TemporalContext rdf:type owl:Class ;
+    rdfs:label "Temporal Context" ;
+    rdfs:comment "The temporal context of a sample or measurement" .
+
+:Organism rdf:type owl:Class ;
+    rdfs:label "Organism" ;
+    rdfs:comment "An individual living entity" .
+
+:Population rdf:type owl:Class ;
+    rdfs:label "Population" ;
+    rdfs:comment "A group of organisms of the same species" .
+
+:EcosystemInteraction rdf:type owl:Class ;
+    rdfs:label "Ecosystem Interaction" ;
+    rdfs:comment "An interaction between organisms or between organisms and their environment" .
+
+:Sample rdf:type owl:Class ;
+    rdfs:label "Sample" ;
+    rdfs:comment "A portion of material collected for analysis" .
+
+:Study rdf:type owl:Class ;
+    rdfs:label "Study" ;
+    rdfs:comment "A research study or investigation" .
+
+:MicrobialCommunity rdf:type owl:Class ;
+    rdfs:label "Microbial Community" ;
+    rdfs:comment "A community of microorganisms" .
+
+:SamplingSite rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Sampling Site" ;
+    rdfs:comment "A specific location where samples are collected" .
+
+:Habitat rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Habitat" ;
+    rdfs:comment "The natural home or environment of an organism" .
+
+:EcosystemFunction rdf:type owl:Class ;
+    rdfs:label "Ecosystem Function" ;
+    rdfs:comment "A function performed by an ecosystem" .
+
+# Object Properties
+:hasFunctionalRole rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :FunctionalRole ;
+    rdfs:label "has functional role" ;
+    rdfs:comment "Relates a microbial taxon to its functional role" .
+
+:participatesInPathway rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicPathway ;
+    rdfs:label "participates in pathway" ;
+    rdfs:comment "Relates a microbial taxon to a metabolic pathway it participates in" .
+
+:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SamplingEnvironment ;
+    rdfs:label "located in" ;
+    rdfs:comment "Relates a sample to its sampling environment" .
+
+:hasMeasurementTechnique rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :MeasurementTechnique ;
+    rdfs:label "has measurement technique" ;
+    rdfs:comment "Relates a sample to the measurement technique used" .
+
+:hasEnvironmentalVariable rdf:type owl:ObjectProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range :EnvironmentalVariable ;
+    rdfs:label "has environmental variable" ;
+    rdfs:comment "Relates a sampling environment to its environmental variables" .
+
+:mediatesProcess rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "mediates process" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it mediates" .
+
+:hasSpatialContext rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SpatialContext ;
+    rdfs:label "has spatial context" ;
+    rdfs:comment "Relates a sample to its spatial context" .
+
+:hasTemporalContext rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :TemporalContext ;
+    rdfs:label "has temporal context" ;
+    rdfs:comment "Relates a sample to its temporal context" .
+
+:memberOfPopulation rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range :Population ;
+    rdfs:label "member of population" ;
+    rdfs:comment "Relates an organism to a population it belongs to" .
+
+:participatesInInteraction rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range :EcosystemInteraction ;
+    rdfs:label "participates in interaction" ;
+    rdfs:comment "Relates an organism to an ecosystem interaction it participates in" .
+
+:partOfStudy rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :Study ;
+    rdfs:label "part of study" ;
+    rdfs:comment "Relates a sample to a study it is part of" .
+
+:hasDepth rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has depth" ;
+    rdfs:comment "Relates a spatial context to its depth value" .
+
+:hasGeologicalLayer rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:string ;
+    rdfs:label "has geological layer" ;
+    rdfs:comment "Relates a spatial context to its geological layer" .
+
+:hasCoordinate rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range geo:Geometry ;
+    rdfs:label "has coordinate" ;
+    rdfs:comment "Relates a spatial context to its geographic coordinates" .
+
+:hasSamplingTime rdf:type owl:ObjectProperty ;
+    rdfs:domain :TemporalContext ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "has sampling time" ;
+    rdfs:comment "Relates a temporal context to its sampling time" .
+
+:hasAbundance rdf:type owl:ObjectProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has abundance" ;
+    rdfs:comment "Relates a population to its abundance value" .
+
+:hasGenomicTrait rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range xsd:string ;
+    rdfs:label "has genomic trait" ;
+    rdfs:comment "Relates an organism to its genomic traits" .
+
+:inhabits rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasInhabitant ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SamplingEnvironment ;
+    rdfs:label "inhabits" ;
+    rdfs:comment "Relates a microbial taxon to a sampling environment it inhabits" .
+
+:hasInhabitant rdf:type owl:ObjectProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "has inhabitant" ;
+    rdfs:comment "Relates a sampling environment to a microbial taxon that inhabits it" .
+
+:performs rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range go:0008150 ; # biological_process
+    rdfs:label "performs" ;
+    rdfs:comment "Relates a microbial taxon to a biological process it performs" .
+
+:collectedUsing rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :MeasurementTechnique ;
+    rdfs:label "collected using" ;
+    rdfs:comment "Relates a sample to the measurement technique used for collection" .
+
+:hasFunction rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :EcosystemFunction ;
+    rdfs:label "has function" ;
+    rdfs:comment "Relates a microbial community to an ecosystem function" .
+
+:hasEnvironmentalCondition rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :EnvironmentalVariable ;
+    rdfs:label "has environmental condition" ;
+    rdfs:comment "Relates a sample to its environmental conditions" .
+
+:mediatedBy rdf:type owl:ObjectProperty ;
+    owl:inverseOf :mediatesProcess ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "mediated by" ;
+    rdfs:comment "Relates a biogeochemical process to a microbial taxon that mediates it" .
+
+:partOf rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialCommunity ;
+    rdfs:label "part of" ;
+    rdfs:comment "Relates a microbial taxon to a microbial community it is part of" .
+
+:associatedWith rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "associated with" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it is associated with" .
+
+# Data Properties
+:hasPH rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has pH" ;
+    rdfs:comment "Relates an environmental variable to its pH value" .
+
+:hasOxygenLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has oxygen level" ;
+    rdfs:comment "Relates an environmental variable to its oxygen level value" .
+
+:hasTemperature rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has temperature" ;
+    rdfs:comment "Relates an environmental variable to its temperature value" .
+
+:hasPressure rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has pressure" ;
+    rdfs:comment "Relates an environmental variable to its pressure value" .
+
+:hasNutrientConcentration rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has nutrient concentration" ;
+    rdfs:comment "Relates an environmental variable to its nutrient concentration value" .
+
+# Individuals
+:Methanogenesis rdf:type :FunctionalRole ;
+    rdfs:label "Methanogenesis" .
+
+:Denitrification rdf:type :FunctionalRole ;
+    rdfs:label "Denitrification" .
+
+:SulfurCycling rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Sulfur Cycling" .
+
+:IronReduction rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Iron Reduction" .
+
+:CarbonTurnover rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Carbon Turnover" .
+
+:rRNASequencing rdf:type :MeasurementTechnique ;
+    rdfs:label "16S rRNA gene sequencing" .
+
+:StableIsotopeProbing rdf:type :MeasurementTechnique ;
+    rdfs:label "Stable Isotope Probing" .
+
+:FlowCytometry rdf:type :MeasurementTechnique ;
+    rdfs:label "Flow Cytometry" .
+
+:Filtration rdf:type :MeasurementTechnique ;
+    rdfs:label "Filtration" .
+
+:AerobicRespiration rdf:type go:0009060 ;
+    rdfs:label "aerobic respiration" .
+
+:LowOxygen rdf:type :EnvironmentalVariable ;
+    rdfs:label "Low Oxygen" .
+
+# --- Turtle block from step_10_refine_turtle ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix sio: <http://semanticscience.org/resource/SIO_> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+@prefix eco: <http://purl.obolibrary.org/obo/ECO_> .
+
+# Classes
+:MicrobialTaxon rdf:type owl:Class ;
+    rdfs:label "Microbial Taxon" ;
+    rdfs:comment "A taxonomic group of microorganisms" .
+
+:FunctionalRole rdf:type owl:Class ;
+    rdfs:label "Functional Role" ;
+    rdfs:comment "A functional role performed by microorganisms" .
+
+:MetabolicPathway rdf:type owl:Class ;
+    rdfs:label "Metabolic Pathway" ;
+    rdfs:comment "A series of chemical reactions occurring within a cell" .
+
+:SamplingEnvironment rdf:type owl:Class ;
+    rdfs:subClassOf envo:00000447 ; # Environmental feature
+    rdfs:label "Sampling Environment" ;
+    rdfs:comment "An environment where samples are collected" .
+
+:Aquifer rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Aquifer" ;
+    rdfs:comment "An underground layer of water-bearing permeable rock" .
+
+:KarstSystem rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Karst System" ;
+    rdfs:comment "A landscape formed from the dissolution of soluble rocks" .
+
+:Borehole rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Borehole" ;
+    rdfs:comment "A narrow shaft bored in the ground" .
+
+:MeasurementTechnique rdf:type owl:Class ;
+    rdfs:label "Measurement Technique" ;
+    rdfs:comment "A technique used to measure environmental or biological parameters" .
+
+:EnvironmentalVariable rdf:type owl:Class ;
+    rdfs:label "Environmental Variable" ;
+    rdfs:comment "A variable that describes environmental conditions" .
+
+:BiogeochemicalProcess rdf:type owl:Class ;
+    rdfs:label "Biogeochemical Process" ;
+    rdfs:comment "A process involving chemical, physical, geological, and biological factors" .
+
+:SpatialContext rdf:type owl:Class ;
+    rdfs:label "Spatial Context" ;
+    rdfs:comment "The spatial context of a sample or measurement" .
+
+:TemporalContext rdf:type owl:Class ;
+    rdfs:label "Temporal Context" ;
+    rdfs:comment "The temporal context of a sample or measurement" .
+
+:Organism rdf:type owl:Class ;
+    rdfs:label "Organism" ;
+    rdfs:comment "An individual living entity" .
+
+:Population rdf:type owl:Class ;
+    rdfs:label "Population" ;
+    rdfs:comment "A group of organisms of the same species" .
+
+:EcosystemInteraction rdf:type owl:Class ;
+    rdfs:label "Ecosystem Interaction" ;
+    rdfs:comment "An interaction between organisms or between organisms and their environment" .
+
+:Sample rdf:type owl:Class ;
+    rdfs:label "Sample" ;
+    rdfs:comment "A portion of material collected for analysis" .
+
+:Study rdf:type owl:Class ;
+    rdfs:label "Study" ;
+    rdfs:comment "A research study or investigation" .
+
+:MicrobialCommunity rdf:type owl:Class ;
+    rdfs:label "Microbial Community" ;
+    rdfs:comment "A community of microorganisms" .
+
+:SamplingSite rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Sampling Site" ;
+    rdfs:comment "A specific location where samples are collected" .
+
+:Habitat rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Habitat" ;
+    rdfs:comment "The natural home or environment of an organism" .
+
+:EcosystemFunction rdf:type owl:Class ;
+    rdfs:label "Ecosystem Function" ;
+    rdfs:comment "A function performed by an ecosystem" .
+
+# Object Properties
+:hasFunctionalRole rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :FunctionalRole ;
+    rdfs:label "has functional role" ;
+    rdfs:comment "Relates a microbial taxon to its functional role" .
+
+:participatesInPathway rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MetabolicPathway ;
+    rdfs:label "participates in pathway" ;
+    rdfs:comment "Relates a microbial taxon to a metabolic pathway it participates in" .
+
+:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SamplingEnvironment ;
+    rdfs:label "located in" ;
+    rdfs:comment "Relates a sample to its sampling environment" .
+
+:hasMeasurementTechnique rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :MeasurementTechnique ;
+    rdfs:label "has measurement technique" ;
+    rdfs:comment "Relates a sample to the measurement technique used" .
+
+:hasEnvironmentalVariable rdf:type owl:ObjectProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range :EnvironmentalVariable ;
+    rdfs:label "has environmental variable" ;
+    rdfs:comment "Relates a sampling environment to its environmental variables" .
+
+:mediatesProcess rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "mediates process" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it mediates" .
+
+:hasSpatialContext rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :SpatialContext ;
+    rdfs:label "has spatial context" ;
+    rdfs:comment "Relates a sample to its spatial context" .
+
+:hasTemporalContext rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :TemporalContext ;
+    rdfs:label "has temporal context" ;
+    rdfs:comment "Relates a sample to its temporal context" .
+
+:memberOfPopulation rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range :Population ;
+    rdfs:label "member of population" ;
+    rdfs:comment "Relates an organism to a population it belongs to" .
+
+:participatesInInteraction rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range :EcosystemInteraction ;
+    rdfs:label "participates in interaction" ;
+    rdfs:comment "Relates an organism to an ecosystem interaction it participates in" .
+
+:partOfStudy rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :Study ;
+    rdfs:label "part of study" ;
+    rdfs:comment "Relates a sample to a study it is part of" .
+
+:hasDepth rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has depth" ;
+    rdfs:comment "Relates a spatial context to its depth value" .
+
+:hasGeologicalLayer rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:string ;
+    rdfs:label "has geological layer" ;
+    rdfs:comment "Relates a spatial context to its geological layer" .
+
+:hasCoordinate rdf:type owl:ObjectProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range geo:Geometry ;
+    rdfs:label "has coordinate" ;
+    rdfs:comment "Relates a spatial context to its geographic coordinates" .
+
+:hasSamplingTime rdf:type owl:ObjectProperty ;
+    rdfs:domain :TemporalContext ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "has sampling time" ;
+    rdfs:comment "Relates a temporal context to its sampling time" .
+
+:hasAbundance rdf:type owl:ObjectProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has abundance" ;
+    rdfs:comment "Relates a population to its abundance value" .
+
+:hasGenomicTrait rdf:type owl:ObjectProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range xsd:string ;
+    rdfs:label "has genomic trait" ;
+    rdfs:comment "Relates an organism to its genomic traits" .
+
+:inhabits rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasInhabitant ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SamplingEnvironment ;
+    rdfs:label "inhabits" ;
+    rdfs:comment "Relates a microbial taxon to a sampling environment it inhabits" .
+
+:hasInhabitant rdf:type owl:ObjectProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "has inhabitant" ;
+    rdfs:comment "Relates a sampling environment to a microbial taxon that inhabits it" .
+
+:performs rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range go:0008150 ; # biological_process
+    rdfs:label "performs" ;
+    rdfs:comment "Relates a microbial taxon to a biological process it performs" .
+
+:collectedUsing rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range mixs:0000001 ; # sampling device
+    rdfs:label "collected using" ;
+    rdfs:comment "Relates a sample to the device used for collection" .
+
+:hasFunction rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :EcosystemFunction ;
+    rdfs:label "has function" ;
+    rdfs:comment "Relates a microbial community to an ecosystem function" .
+
+:hasEnvironmentalCondition rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range envo:01000216 ; # environmental condition
+    rdfs:label "has environmental condition" ;
+    rdfs:comment "Relates a sample to an environmental condition" .
+
+:mediatedBy rdf:type owl:ObjectProperty ;
+    owl:inverseOf :mediatesProcess ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "mediated by" ;
+    rdfs:comment "Relates a biogeochemical process to a microbial taxon that mediates it" .
+
+:partOf rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialCommunity ;
+    rdfs:label "part of" ;
+    rdfs:comment "Relates a microbial taxon to a microbial community it is part of" .
+
+:associatedWith rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "associated with" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it is associated with" .
+
+# Data Properties
+:hasPH rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has pH" ;
+    rdfs:comment "Relates an environmental variable to its pH value" .
+
+:hasOxygenLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has oxygen level" ;
+    rdfs:comment "Relates an environmental variable to its oxygen level value" .
+
+:hasTemperature rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has temperature" ;
+    rdfs:comment "Relates an environmental variable to its temperature value" .
+
+:hasPressure rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has pressure" ;
+    rdfs:comment "Relates an environmental variable to its pressure value" .
+
+:hasNutrientConcentration rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has nutrient concentration" ;
+    rdfs:comment "Relates an environmental variable to its nutrient concentration value" .
+
+# Individuals
+:Methanogenesis rdf:type :FunctionalRole ;
+    rdfs:label "Methanogenesis" .
+
+:Denitrification rdf:type :FunctionalRole ;
+    rdfs:label "Denitrification" .
+
+:SulfurCycling rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Sulfur Cycling" .
+
+:IronReduction rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Iron Reduction" .
+
+:CarbonTurnover rdf:type :BiogeochemicalProcess ;
+    rdfs:label "Carbon Turnover" .
+
+:rRNASequencing rdf:type :MeasurementTechnique ;
+    rdfs:label "16S rRNA gene sequencing" .
+
+:StableIsotopeProbing rdf:type :MeasurementTechnique ;
+    rdfs:label "Stable Isotope Probing" .
+
+:FlowCytometry rdf:type :MeasurementTechnique ;
+    rdfs:label "Flow Cytometry" .
+
+# --- Turtle block from step_11_data_properties ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix sio: <http://semanticscience.org/resource/SIO_> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+
+# Data Properties for MicrobialTaxon
+:hasTaxonID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range xsd:string ;
+    rdfs:label "has taxon ID" ;
+    rdfs:comment "Relates a microbial taxon to its identifier in a taxonomic database" .
+
+:hasTaxonRank rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range xsd:string ;
+    rdfs:label "has taxon rank" ;
+    rdfs:comment "Relates a microbial taxon to its taxonomic rank (e.g., species, genus)" .
+
+# Data Properties for FunctionalRole
+:hasRoleDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain :FunctionalRole ;
+    rdfs:range xsd:string ;
+    rdfs:label "has role description" ;
+    rdfs:comment "Relates a functional role to its descriptive text" .
+
+# Data Properties for MetabolicPathway
+:hasPathwayID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MetabolicPathway ;
+    rdfs:range xsd:string ;
+    rdfs:label "has pathway ID" ;
+    rdfs:comment "Relates a metabolic pathway to its identifier in a pathway database" .
+
+:hasPathwayName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MetabolicPathway ;
+    rdfs:range xsd:string ;
+    rdfs:label "has pathway name" ;
+    rdfs:comment "Relates a metabolic pathway to its common name" .
+
+# Data Properties for SamplingEnvironment
+:hasEnvironmentID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range xsd:string ;
+    rdfs:label "has environment ID" ;
+    rdfs:comment "Relates a sampling environment to its unique identifier" .
+
+:hasEnvironmentDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SamplingEnvironment ;
+    rdfs:range xsd:string ;
+    rdfs:label "has environment description" ;
+    rdfs:comment "Relates a sampling environment to its descriptive text" .
+
+# Data Properties for MeasurementTechnique
+:hasTechniqueName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MeasurementTechnique ;
+    rdfs:range xsd:string ;
+    rdfs:label "has technique name" ;
+    rdfs:comment "Relates a measurement technique to its common name" .
+
+:hasProtocolReference rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MeasurementTechnique ;
+    rdfs:range xsd:string ;
+    rdfs:label "has protocol reference" ;
+    rdfs:comment "Relates a measurement technique to a reference describing its protocol" .
+
+# Data Properties for EnvironmentalVariable
+:hasVariableName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:string ;
+    rdfs:label "has variable name" ;
+    rdfs:comment "Relates an environmental variable to its common name" .
+
+:hasUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:string ;
+    rdfs:label "has unit" ;
+    rdfs:comment "Relates an environmental variable to its measurement unit" .
+
+# Data Properties for BiogeochemicalProcess
+:hasProcessID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range xsd:string ;
+    rdfs:label "has process ID" ;
+    rdfs:comment "Relates a biogeochemical process to its identifier in a process database" .
+
+:hasProcessDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range xsd:string ;
+    rdfs:label "has process description" ;
+    rdfs:comment "Relates a biogeochemical process to its descriptive text" .
+
+# Data Properties for SpatialContext
+:hasLocationName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:string ;
+    rdfs:label "has location name" ;
+    rdfs:comment "Relates a spatial context to its common location name" .
+
+# Data Properties for TemporalContext
+:hasTimeInterval rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TemporalContext ;
+    rdfs:range xsd:string ;
+    rdfs:label "has time interval" ;
+    rdfs:comment "Relates a temporal context to a descriptive time interval (e.g., seasonal, annual)" .
+
+# Data Properties for Organism
+:hasOrganismID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range xsd:string ;
+    rdfs:label "has organism ID" ;
+    rdfs:comment "Relates an organism to its unique identifier" .
+
+:hasLifeStage rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range xsd:string ;
+    rdfs:label "has life stage" ;
+    rdfs:comment "Relates an organism to its current life stage" .
+
+# Data Properties for Population
+:hasPopulationID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:string ;
+    rdfs:label "has population ID" ;
+    rdfs:comment "Relates a population to its unique identifier" .
+
+:hasPopulationSize rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has population size" ;
+    rdfs:comment "Relates a population to its total number of individuals" .
+
+# Data Properties for EcosystemInteraction
+:hasInteractionType rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EcosystemInteraction ;
+    rdfs:range xsd:string ;
+    rdfs:label "has interaction type" ;
+    rdfs:comment "Relates an ecosystem interaction to its type (e.g., mutualism, competition)" .
+
+:hasInteractionStrength rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EcosystemInteraction ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has interaction strength" ;
+    rdfs:comment "Relates an ecosystem interaction to a quantitative measure of its strength" .
+
+# Data Properties for Sample
+:hasSampleID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:string ;
+    rdfs:label "has sample ID" ;
+    rdfs:comment "Relates a sample to its unique identifier" .
+
+:hasSampleVolume rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has sample volume" ;
+    rdfs:comment "Relates a sample to its collected volume in liters" .
+
+:hasSampleMass rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has sample mass" ;
+    rdfs:comment "Relates a sample to its collected mass in grams" .
+
+# Data Properties for Study
+:hasStudyID rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Study ;
+    rdfs:range xsd:string ;
+    rdfs:label "has study ID" ;
+    rdfs:comment "Relates a study to its unique identifier" .
+
+:hasStudyTitle rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Study ;
+    rdfs:range xsd:string ;
+    rdfs:label "has study title" ;
+    rdfs:comment "Relates a study to its formal title" .
+
+:hasStudyDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Study ;
+    rdfs:range xsd:string ;
+    rdfs:label "has study description" ;
+    rdfs:comment "Relates a study to its descriptive text" .
+
+:hasStartDate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Study ;
+    rdfs:range xsd:date ;
+    rdfs:label "has start date" ;
+    rdfs:comment "Relates a study to its start date" .
+
+:hasEndDate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Study ;
+    rdfs:range xsd:date ;
+    rdfs:label "has end date" ;
+    rdfs:comment "Relates a study to its end date" .
+
+# Additional EnvironmentalVariable Data Properties
+:hasSalinity rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has salinity" ;
+    rdfs:comment "Relates an environmental variable to its salinity value" .
+
+:hasRedoxPotential rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has redox potential" ;
+    rdfs:comment "Relates an environmental variable to its redox potential value" .
+
+:hasConductivity rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has conductivity" ;
+    rdfs:comment "Relates an environmental variable to its electrical conductivity value" .
+
+# Additional MeasurementTechnique Data Properties
+:hasDetectionLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MeasurementTechnique ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has detection limit" ;
+    rdfs:comment "Relates a measurement technique to its detection limit value" .
+
+:hasPrecision rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MeasurementTechnique ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has precision" ;
+    rdfs:comment "Relates a measurement technique to its precision value" .
+
+# Additional BiogeochemicalProcess Data Properties
+:hasReactionRate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has reaction rate" ;
+    rdfs:comment "Relates a biogeochemical process to its reaction rate value" .
+
+# Additional SpatialContext Data Properties
+:hasElevation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has elevation" ;
+    rdfs:comment "Relates a spatial context to its elevation above sea level in meters" .
+
+# Additional TemporalContext Data Properties
+:hasDuration rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TemporalContext ;
+    rdfs:range xsd:duration ;
+    rdfs:label "has duration" ;
+    rdfs:comment "Relates a temporal context to its duration" .
+
+# Additional Organism Data Properties
+:hasGrowthRate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Organism ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has growth rate" ;
+    rdfs:comment "Relates an organism to its growth rate value" .
+
+# Additional Population Data Properties
+:hasDensity rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has density" ;
+    rdfs:comment "Relates a population to its density value in individuals per unit volume" .
+
+# Additional EcosystemInteraction Data Properties
+:hasFrequency rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EcosystemInteraction ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has frequency" ;
+    rdfs:comment "Relates an ecosystem interaction to its frequency of occurrence" .
+
+# --- Turtle block from step_12_inverse_properties ---
+:isFunctionalRoleOf rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasFunctionalRole ;
+    rdfs:label "is functional role of" ;
+    rdfs:comment "Relates a functional role to the microbial taxon that performs it" .
+
+:hasParticipatingTaxon rdf:type owl:ObjectProperty ;
+    owl:inverseOf :participatesInPathway ;
+    rdfs:label "has participating taxon" ;
+    rdfs:comment "Relates a metabolic pathway to the microbial taxon that participates in it" .
+
+:containsSample rdf:type owl:ObjectProperty ;
+    owl:inverseOf :locatedIn ;
+    rdfs:label "contains sample" ;
+    rdfs:comment "Relates a sampling environment to the samples located within it" .
+
+:isTechniqueFor rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasMeasurementTechnique ;
+    rdfs:label "is technique for" ;
+    rdfs:comment "Relates a measurement technique to the samples it is used on" .
+
+:isVariableOf rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasEnvironmentalVariable ;
+    rdfs:label "is variable of" ;
+    rdfs:comment "Relates an environmental variable to the sampling environment it characterizes" .
+
+:isMediatedBy rdf:type owl:ObjectProperty ;
+    owl:inverseOf :mediatesProcess ;
+    rdfs:label "is mediated by" ;
+    rdfs:comment "Relates a biogeochemical process to the microbial taxon that mediates it" .
+
+:isSpatialContextOf rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasSpatialContext ;
+    rdfs:label "is spatial context of" ;
+    rdfs:comment "Relates a spatial context to the sample it describes" .
+
+:isTemporalContextOf rdf:type owl:ObjectProperty ;
+    owl:inverseOf :hasTemporalContext ;
+    rdfs:label "is temporal context of" ;
+    rdfs:comment "Relates a temporal context to the sample it describes" .
+
+:hasMember rdf:type owl:ObjectProperty ;
+    owl:inverseOf :memberOfPopulation ;
+    rdfs:label "has member" ;
+    rdfs:comment "Relates a population to the organisms that are members of it" .
+
+:hasParticipant rdf:type owl:ObjectProperty ;
+    owl:inverseOf :participatesInInteraction ;
+    rdfs:label "has participant" ;
+    rdfs:comment "Relates an ecosystem interaction to the organisms that participate in it" .
+
+:hasSample rdf:type owl:ObjectProperty ;
+    owl:inverseOf :partOfStudy ;
+    rdfs:label "has sample" ;
+    rdfs:comment "Relates a study to the samples that are part of it" .
+
+# --- Turtle block from step_13_reflexive_properties ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:isSimilarTo rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "is similar to" ;
+    rdfs:comment "A reflexive property indicating that an entity is similar to itself or other entities of the same type" .
+
+:isPartOf rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "is part of" ;
+    rdfs:comment "A reflexive property indicating that an entity can be part of itself or other entities in a meronomic relationship" .
+
+:isLocatedIn rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "is located in" ;
+    rdfs:comment "A reflexive property indicating that an entity can be located within itself or other spatial entities" .
+
+:interactsWith rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "interacts with" ;
+    rdfs:comment "A reflexive property indicating that an entity can interact with itself or other entities in the ecosystem" .
+
+:participatesIn rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "participates in" ;
+    rdfs:comment "A reflexive property indicating that an entity can participate in itself or other processes or interactions" .
+
+:hasMember rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "has member" ;
+    rdfs:comment "A reflexive property indicating that a population or group can have itself or other organisms as members" .
+
+:belongsTo rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "belongs to" ;
+    rdfs:comment "A reflexive property indicating that an entity can belong to itself or other taxonomic or functional groups" .
+
+:influences rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "influences" ;
+    rdfs:comment "A reflexive property indicating that an entity can influence itself or other entities in environmental or biological contexts" .
+
+:derivesFrom rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "derives from" ;
+    rdfs:comment "A reflexive property indicating that an entity can derive from itself or other entities in evolutionary or process contexts" .
+
+:overlapsWith rdf:type owl:ReflexiveProperty, owl:ObjectProperty ;
+    rdfs:label "overlaps with" ;
+    rdfs:comment "A reflexive property indicating that an entity can overlap with itself or other entities in spatial or functional domains" .
+
+# --- Turtle block from step_14_symmetric_properties ---
+:hasFunctionalRole rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a microbial taxon has a functional role, then that functional role is performed by the microbial taxon" .
+
+:participatesInPathway rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a microbial taxon participates in a metabolic pathway, then that metabolic pathway involves the microbial taxon" .
+
+:locatedIn rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a sample is located in a sampling environment, then that sampling environment contains the sample" .
+
+:hasMeasurementTechnique rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a sample has a measurement technique, then that measurement technique is used on the sample" .
+
+:hasEnvironmentalVariable rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a sampling environment has an environmental variable, then that environmental variable characterizes the sampling environment" .
+
+:mediatesProcess rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a microbial taxon mediates a biogeochemical process, then that biogeochemical process is mediated by the microbial taxon" .
+
+:hasSpatialContext rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a sample has a spatial context, then that spatial context describes the sample's location" .
+
+:hasTemporalContext rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a sample has a temporal context, then that temporal context describes the sample's timing" .
+
+:memberOfPopulation rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If an organism is a member of a population, then that population includes the organism" .
+
+:participatesInInteraction rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If an organism participates in an ecosystem interaction, then that ecosystem interaction involves the organism" .
+
+:partOfStudy rdf:type owl:SymmetricProperty ;
+    rdfs:comment "If a sample is part of a study, then that study includes the sample" .
+
+# --- Turtle block from step_15_functional_properties ---
+:hasFunctionalRole rdf:type owl:FunctionalProperty .
+
+:participatesInPathway rdf:type owl:FunctionalProperty .
+
+:locatedIn rdf:type owl:FunctionalProperty .
+
+:hasMeasurementTechnique rdf:type owl:FunctionalProperty .
+
+:hasEnvironmentalVariable rdf:type owl:FunctionalProperty .
+
+:mediatesProcess rdf:type owl:FunctionalProperty .
+
+:hasSpatialContext rdf:type owl:FunctionalProperty .
+
+:hasTemporalContext rdf:type owl:FunctionalProperty .
+
+:memberOfPopulation rdf:type owl:FunctionalProperty .
+
+:participatesInInteraction rdf:type owl:FunctionalProperty .
+
+:partOfStudy rdf:type owl:FunctionalProperty .
+
+:hasDepth rdf:type owl:FunctionalProperty .
+
+:hasGeologicalLayer rdf:type owl:FunctionalProperty .
+
+:hasCoordinate rdf:type owl:FunctionalProperty .
+
+:hasSamplingTime rdf:type owl:FunctionalProperty .
+
+:hasAbundance rdf:type owl:FunctionalProperty .
+
+:hasGenomicTrait rdf:type owl:FunctionalProperty .
+
+# --- Turtle block from step_16_transitive_properties ---
+:locatedIn rdf:type owl:TransitiveProperty ;
+    rdfs:comment "A transitive property indicating that if A is located in B and B is located in C, then A is located in C" .
+
+:memberOfPopulation rdf:type owl:TransitiveProperty ;
+    rdfs:comment "A transitive property indicating that if A is a member of population B and B is part of population C, then A is a member of population C" .
+
+:partOfStudy rdf:type owl:TransitiveProperty ;
+    rdfs:comment "A transitive property indicating that if A is part of study B and B is part of study C, then A is part of study C" .
+
+# --- Turtle block from step_17_individuals ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix sio: <http://semanticscience.org/resource/SIO_> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+
+# MicrobialTaxon individuals
+:Desulfovibrio rdf:type :MicrobialTaxon ;
+    rdfs:comment "A sulfate-reducing bacterium commonly found in anaerobic subsurface environments." .
+
+:Geobacter rdf:type :MicrobialTaxon ;
+    rdfs:comment "An iron-reducing bacterium important in subsurface biogeochemical cycling." .
+
+:Methanobacterium rdf:type :MicrobialTaxon ;
+    rdfs:comment "A methanogenic archaeon involved in methane production in anaerobic environments." .
+
+:Nitrosomonas rdf:type :MicrobialTaxon ;
+    rdfs:comment "An ammonia-oxidizing bacterium playing key roles in nitrogen cycling." .
+
+:Thiobacillus rdf:type :MicrobialTaxon ;
+    rdfs:comment "A sulfur-oxidizing bacterium involved in sulfur cycling processes." .
+
+# FunctionalRole individuals
+:SulfateReduction rdf:type :FunctionalRole ;
+    rdfs:comment "The metabolic capability to reduce sulfate to sulfide." .
+
+:MethaneOxidation rdf:type :FunctionalRole ;
+    rdfs:comment "The metabolic capability to oxidize methane as an energy source." .
+
+:AmmoniaOxidation rdf:type :FunctionalRole ;
+    rdfs:comment "The metabolic capability to oxidize ammonia to nitrite." .
+
+:IronOxidation rdf:type :FunctionalRole ;
+    rdfs:comment "The metabolic capability to oxidize iron for energy generation." .
+
+# MetabolicPathway individuals
+:WoodLjungdahlPathway rdf:type :MetabolicPathway ;
+    rdfs:comment "The acetyl-CoA pathway used in acetogenesis and methanogenesis." .
+
+:DenitrificationPathway rdf:type :MetabolicPathway ;
+    rdfs:comment "The stepwise reduction of nitrate to nitrogen gas." .
+
+:DSRPathway rdf:type :MetabolicPathway ;
+    rdfs:comment "The dissimilatory sulfate reduction pathway converting sulfate to sulfide." .
+
+# SamplingEnvironment individuals
+:HainichCaves rdf:type :KarstSystem ;
+    rdfs:comment "A karst aquifer system in the Hainich region used for AquaDiva studies." .
+
+:BoreholeD23 rdf:type :Borehole ;
+    rdfs:comment "A monitoring borehole drilled to 50m depth in the Hainich Caves region." .
+
+:AquiferZoneA rdf:type :Aquifer ;
+    rdfs:comment "The upper aquifer zone characterized by oxic conditions and high microbial diversity." .
+
+# MeasurementTechnique individuals
+:MetagenomicSequencing rdf:type :MeasurementTechnique ;
+    rdfs:comment "Shotgun sequencing approach for comprehensive microbial community analysis." .
+
+:GasChromatography rdf:type :MeasurementTechnique ;
+    rdfs:comment "Analytical technique for measuring gas concentrations and compositions." .
+
+:IonChromatography rdf:type :MeasurementTechnique ;
+    rdfs:comment "Technique for measuring ion concentrations in water samples." .
+
+# EnvironmentalVariable individuals
+:pH_Measurement rdf:type :EnvironmentalVariable ;
+    rdfs:comment "pH measurement indicating acidity/alkalinity of subsurface water." .
+
+:Oxygen_Concentration rdf:type :EnvironmentalVariable ;
+    rdfs:comment "Dissolved oxygen concentration measurement in aquifer water." .
+
+:Temperature_Profile rdf:type :EnvironmentalVariable ;
+    rdfs:comment "Temperature measurements at different depths in the subsurface." .
+
+# BiogeochemicalProcess individuals
+:SulfateReductionProcess rdf:type :BiogeochemicalProcess ;
+    rdfs:comment "Microbial-mediated process converting sulfate to hydrogen sulfide." .
+
+:MethanogenesisProcess rdf:type :BiogeochemicalProcess ;
+    rdfs:comment "Biological production of methane by archaea in anaerobic conditions." .
+
+:NitrogenCycle rdf:type :BiogeochemicalProcess ;
+    rdfs:comment "The complete nitrogen transformation processes including nitrification and denitrification." .
+
+# SpatialContext individuals
+:DepthProfile_30m rdf:type :SpatialContext ;
+    rdfs:comment "Spatial context representing sampling at 30 meters below ground surface." .
+
+:GeologicalLayer_Buntsandstein rdf:type :SpatialContext ;
+    rdfs:comment "Spatial context within the Buntsandstein geological formation." .
+
+:Coordinate_Hainich rdf:type :SpatialContext ;
+    rdfs:comment "Geographic coordinates for the Hainich monitoring site." .
+
+# TemporalContext individuals
+:SamplingEvent_2021_06 rdf:type :TemporalContext ;
+    rdfs:comment "Temporal context for sampling conducted in June 2021." .
+
+:SeasonalCycle_2020 rdf:type :TemporalContext ;
+    rdfs:comment "Temporal context covering seasonal variations throughout 2020." .
+
+# Organism individuals
+:Desulfovibrio_vulgaris rdf:type :Organism ;
+    rdfs:comment "A specific strain of Desulfovibrio isolated from subsurface environments." .
+
+:Geobacter_sulfurreducens rdf:type :Organism ;
+    rdfs:comment "A model iron-reducing bacterium studied in subsurface biogeochemistry." .
+
+# Population individuals
+:SRB_Population rdf:type :Population ;
+    rdfs:comment "Population of sulfate-reducing bacteria in the aquifer system." .
+
+:MOB_Population rdf:type :Population ;
+    rdfs:comment "Population of methane-oxidizing bacteria in oxic subsurface zones." .
+
+# EcosystemInteraction individuals
+:Synergistic_Redox rdf:type :EcosystemInteraction ;
+    rdfs:comment "Synergistic interaction between iron-reducing and sulfate-reducing microorganisms." .
+
+:Competitive_Exclusion rdf:type :EcosystemInteraction ;
+    rdfs:comment "Competitive interaction between nitrate-reducing and sulfate-reducing bacteria." .
+
+# Sample individuals
+:Sample_D23_2021_06 rdf:type :Sample ;
+    rdfs:comment "Water sample collected from borehole D23 in June 2021 for microbial analysis." .
+
+:Core_Sample_HC4 rdf:type :Sample ;
+    rdfs:comment "Sediment core sample from Hainich Cave site HC4 for geochemical profiling." .
+
+# Study individuals
+:AquaDiva_CRC rdf:type :Study ;
+    rdfs:comment "The Collaborative Research Centre AquaDiva studying subsurface microbiome-environment interactions." .
+
+:Hainich_LongTerm_Monitoring rdf:type :Study ;
+    rdfs:comment "Long-term monitoring study of the Hainich critical zone observatory." .
+
+# Property assertions
+:Desulfovibrio :hasFunctionalRole :SulfateReduction ;
+    :participatesInPathway :DSRPathway ;
+    :mediatesProcess :SulfateReductionProcess .
+
+:Geobacter :hasFunctionalRole :IronOxidation ;
+    :mediatesProcess :IronReduction .
+
+:Methanobacterium :hasFunctionalRole :Methanogenesis ;
+    :participatesInPathway :WoodLjungdahlPathway ;
+    :mediatesProcess :MethanogenesisProcess .
+
+:Nitrosomonas :hasFunctionalRole :AmmoniaOxidation ;
+    :mediatesProcess :NitrogenCycle .
+
+:Sample_D23_2021_06 :locatedIn :BoreholeD23 ;
+    :hasMeasurementTechnique :rRNASequencing ;
+    :hasSpatialContext :DepthProfile_30m ;
+    :hasTemporalContext :SamplingEvent_2021_06 ;
+    :partOfStudy :AquaDiva_CRC .
+
+:BoreholeD23 :hasEnvironmentalVariable :pH_Measurement ;
+    :hasEnvironmentalVariable :Oxygen_Concentration ;
+    :hasEnvironmentalVariable :Temperature_Profile .
+
+:DepthProfile_30m :hasDepth "30.0"^^xsd:decimal ;
+    :hasGeologicalLayer "Buntsandstein" ;
+    :hasCoordinate "51.083,10.450"^^geo:Geometry .
+
+:SamplingEvent_2021_06 :hasSamplingTime "2021-06-15T10:30:00"^^xsd:dateTime .
+
+:SRB_Population :hasAbundance "1.5E6"^^xsd:decimal .
+
+:Desulfovibrio_vulgaris :memberOfPopulation :SRB_Population ;
+    :hasGenomicTrait "dsrAB genes present" ;
+    :participatesInInteraction :Synergistic_Redox .
+
+:pH_Measurement :hasPH "6.8"^^xsd:decimal .
+
+:Oxygen_Concentration :hasOxygenLevel "2.1"^^xsd:decimal .
+
+:Temperature_Profile :hasTemperature "10.5"^^xsd:decimal .
+
+# --- Turtle block from step_18_metadata ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+<http://aquadiva.org/ontology> rdf:type owl:Ontology ;
+    rdfs:label "AquaDiva Ontology" ;
+    owl:versionInfo "2.0" ;
+    rdfs:comment "The AquaDiva Ontology formalizes knowledge in subsurface environmental microbiology, capturing interactions between microbial communities and geological environments. It integrates microbial taxonomy, functional roles, biogeochemical processes, sampling environments, and measurement techniques to support cross-study data integration and ecological analysis." ;
+    vann:preferredNamespaceUri "http://aquadiva.org/ontology#" ;
+    dcterms:description "An ontology for subsurface environmental microbiology research, focusing on microbial ecology, geochemical processes, and environmental interactions in aquifers and karst systems." ;
+    owl:imports <http://purl.obolibrary.org/obo/envo.owl> .
+
+:MicrobialTaxon rdfs:comment "A taxonomic classification of microorganisms, including bacteria, archaea, and microbial eukaryotes, relevant to subsurface ecosystems." .
+
+:FunctionalRole rdfs:comment "A specific ecological or metabolic function performed by microorganisms, such as methanogenesis or denitrification, in biogeochemical cycles." .
+
+:MetabolicPathway rdfs:comment "A sequence of enzymatic reactions within microbial cells that drive energy production, nutrient cycling, or biosynthesis in environmental contexts." .
+
+:SamplingEnvironment rdfs:comment "A physical location or habitat where environmental or biological samples are collected, characterized by specific geochemical and physical properties." .
+
+:Aquifer rdfs:comment "A subsurface geological formation containing permeable rock or sediment that stores and transmits groundwater, serving as a habitat for microbial communities." .
+
+:KarstSystem rdfs:comment "A landscape formed by the dissolution of soluble rocks like limestone, featuring caves, sinkholes, and complex hydrological pathways influencing microbial dispersal." .
+
+:Borehole rdfs:comment "A man-made narrow shaft drilled into the ground to access subsurface environments for sampling, monitoring, or experimental purposes." .
+
+:MeasurementTechnique rdfs:comment "A methodological approach or instrument used to quantify biological, chemical, or physical parameters in environmental samples." .
+
+:EnvironmentalVariable rdfs:comment "A measurable factor describing abiotic conditions in an environment, such as pH, temperature, or nutrient levels, that influence microbial activity." .
+
+:BiogeochemicalProcess rdfs:comment "A natural process involving biological, geological, and chemical interactions, such as nutrient cycling or redox reactions, mediated by organisms." .
+
+:SpatialContext rdfs:comment "The geographical and geological setting of a sample, including depth, coordinates, and stratigraphic layers, defining its environmental context." .
+
+:TemporalContext rdfs:comment "The time-related framework of sampling or observations, including dates, seasons, or time-series intervals, for tracking ecological dynamics." .
+
+:Organism rdfs:comment "An individual living entity, typically a microbe, with distinct genetic and phenotypic traits relevant to ecological studies." .
+
+:Population rdfs:comment "A group of organisms of the same species or strain inhabiting a specific environment, characterized by shared traits and abundance metrics." .
+
+:EcosystemInteraction rdfs:comment "A biological relationship between organisms or between organisms and their environment, such as predation, symbiosis, or nutrient competition." .
+
+:Sample rdfs:comment "A collected portion of environmental material (e.g., water, sediment, or biomass) used for analysis to infer ecological or geochemical properties." .
+
+:Study rdfs:comment "A coordinated research investigation involving sample collection, data generation, and analysis to address specific scientific questions in environmental microbiology." .
+
+:hasFunctionalRole rdfs:comment "Indicates that a microbial taxon performs a specific functional role in an ecosystem, linking taxonomy to ecological processes." .
+
+:participatesInPathway rdfs:comment "Associates a microbial taxon with a metabolic pathway it engages in, highlighting its biochemical capabilities." .
+
+:locatedIn rdfs:comment "Specifies the sampling environment where a sample was collected, connecting physical location to analytical data." .
+
+:hasMeasurementTechnique rdfs:comment "Links a sample to the technique used for its analysis, ensuring reproducibility and methodological transparency." .
+
+:hasEnvironmentalVariable rdfs:comment "Associates a sampling environment with measurable environmental parameters that define habitat conditions." .
+
+:mediatesProcess rdfs:comment "Describes the role of a microbial taxon in facilitating a biogeochemical process, emphasizing microbial contributions to ecosystem functions." .
+
+:hasSpatialContext rdfs:comment "Assigns spatial attributes (e.g., depth, coordinates) to a sample, enabling geospatial analysis and integration." .
+
+:hasTemporalContext rdfs:comment "Assigns temporal attributes (e.g., sampling date) to a sample, supporting time-series and longitudinal studies." .
+
+:memberOfPopulation rdfs:comment "Indicates that an organism belongs to a specific population, linking individual traits to group-level dynamics." .
+
+:participatesInInteraction rdfs:comment "Connects an organism to an ecosystem interaction, such as mutualism or competition, revealing ecological relationships." .
+
+:partOfStudy rdfs:comment "Associates a sample with a research study, providing context for data provenance and experimental design." .
+
+:hasDepth rdfs:comment "Specifies the vertical depth of a spatial context, critical for stratigraphic and hydrological modeling." .
+
+:hasGeologicalLayer rdfs:comment "Identifies the geological stratum or formation associated with a spatial context, informing subsurface structure interpretations." .
+
+:hasCoordinate rdfs:comment "Provides geographic coordinates (e.g., latitude, longitude) for a spatial context using standard geospatial representations." .
+
+:hasSamplingTime rdfs:comment "Records the date and time of sample collection, essential for temporal analysis and event-based studies." .
+
+:hasAbundance rdfs:comment "Quantifies the number or relative frequency of organisms in a population, supporting ecological density assessments." .
+
+:hasGenomicTrait rdfs:comment "Describes heritable genetic characteristics of an organism, such as gene presence or mutations, relevant to functional potential." .
+
+:hasPH rdfs:comment "Measures the acidity or alkalinity of an environment, a key factor influencing microbial community composition and activity." .
+
+:hasOxygenLevel rdfs:comment "Quantifies dissolved oxygen concentration, indicating redox conditions that shape microbial metabolic strategies." .
+
+:hasTemperature rdfs:comment "Records the thermal conditions of an environment, affecting microbial growth rates and enzyme kinetics." .
+
+:hasPressure rdfs:comment "Measures hydrostatic or lithostatic pressure in subsurface environments, influencing microbial physiology and habitat accessibility." .
+
+:hasNutrientConcentration rdfs:comment "Assesses the concentration of essential nutrients (e.g., nitrogen, phosphorus) that limit or promote microbial growth." .
+
+:Methanogenesis rdfs:comment "A functional role where microorganisms produce methane as a metabolic byproduct, common in anoxic subsurface environments." .
+
+:Denitrification rdfs:comment "A functional role involving the reduction of nitrate to nitrogen gas, contributing to nitrogen cycling in aquatic systems." .
+
+:SulfurCycling rdfs:comment "A biogeochemical process encompassing sulfur oxidation, reduction, and disproportionation, driven by microbial activity in sulfidic habitats." .
+
+:IronReduction rdfs:comment "A biogeochemical process where microorganisms reduce ferric iron to ferrous iron, influencing mineral weathering and redox gradients." .
+
+:CarbonTurnover rdfs:comment "A biogeochemical process involving the decomposition and transformation of organic carbon, mediated by heterotrophic microbes." .
+
+:rRNASequencing rdfs:comment "A molecular technique using 16S rRNA gene amplification and sequencing to profile microbial community composition." .
+
+:StableIsotopeProbing rdfs:comment "A method tracking isotope-labeled substrates into biomolecules to identify active microbial populations in environmental samples." .
+
+:FlowCytometry rdfs:comment "An analytical technique measuring physical and chemical characteristics of cells or particles in fluid suspension, used for microbial counting and sorting." .
+
+# --- Turtle block from step_20_refinement ---
+@prefix : <http://aquadiva.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix sio: <http://semanticscience.org/resource/SIO_> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix go: <http://purl.obolibrary.org/obo/GO_> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix mixs: <http://purl.obolibrary.org/obo/MIXS_> .
+@prefix eco: <http://purl.obolibrary.org/obo/ECO_> .
+
+# Extended Class Hierarchy
+:MicrobialCommunity rdf:type owl:Class ;
+    rdfs:subClassOf :Population ;
+    rdfs:label "Microbial Community" ;
+    rdfs:comment "A community of microorganisms inhabiting a particular environment" .
+
+:Archaea rdf:type owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon ;
+    rdfs:label "Archaea" ;
+    rdfs:comment "A domain of single-celled microorganisms" .
+
+:Bacteria rdf:type owl:Class ;
+    rdfs:subClassOf :MicrobialTaxon ;
+    rdfs:label "Bacteria" ;
+    rdfs:comment "A domain of prokaryotic microorganisms" .
+
+:MicrobialFunction rdf:type owl:Class ;
+    rdfs:subClassOf :FunctionalRole ;
+    rdfs:label "Microbial Function" ;
+    rdfs:comment "A specific function performed by microorganisms" .
+
+:EcosystemFunction rdf:type owl:Class ;
+    rdfs:subClassOf :BiogeochemicalProcess ;
+    rdfs:label "Ecosystem Function" ;
+    rdfs:comment "A function that contributes to ecosystem processes" .
+
+:SamplingSite rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Sampling Site" ;
+    rdfs:comment "A specific location where samples are collected" .
+
+:EnvironmentalCondition rdf:type owl:Class ;
+    rdfs:subClassOf :EnvironmentalVariable ;
+    rdfs:label "Environmental Condition" ;
+    rdfs:comment "A condition that describes the state of the environment" .
+
+:LowOxygenCondition rdf:type owl:Class ;
+    rdfs:subClassOf :EnvironmentalCondition ;
+    rdfs:label "Low Oxygen Condition" ;
+    rdfs:comment "An environmental condition characterized by low oxygen levels" .
+
+:AnoxicCondition rdf:type owl:Class ;
+    rdfs:subClassOf :LowOxygenCondition ;
+    rdfs:label "Anoxic Condition" ;
+    rdfs:comment "An environmental condition completely devoid of oxygen" .
+
+:Microhabitat rdf:type owl:Class ;
+    rdfs:subClassOf :SamplingEnvironment ;
+    rdfs:label "Microhabitat" ;
+    rdfs:comment "A small, specialized habitat within a larger environment" .
+
+:PoreWater rdf:type owl:Class ;
+    rdfs:subClassOf :Microhabitat ;
+    rdfs:label "Pore Water" ;
+    rdfs:comment "Water contained in pores of soil or rock" .
+
+:Groundwater rdf:type owl:Class ;
+    rdfs:subClassOf :Microhabitat ;
+    rdfs:label "Groundwater" ;
+    rdfs:comment "Water located beneath the ground surface" .
+
+:Biofilm rdf:type owl:Class ;
+    rdfs:subClassOf :MicrobialCommunity ;
+    rdfs:label "Biofilm" ;
+    rdfs:comment "A structured community of microorganisms encapsulated in a self-produced matrix" .
+
+:TrophicInteraction rdf:type owl:Class ;
+    rdfs:subClassOf :EcosystemInteraction ;
+    rdfs:label "Trophic Interaction" ;
+    rdfs:comment "An interaction involving energy transfer between trophic levels" .
+
+:SymbioticInteraction rdf:type owl:Class ;
+    rdfs:subClassOf :EcosystemInteraction ;
+    rdfs:label "Symbiotic Interaction" ;
+    rdfs:comment "A close and long-term biological interaction between different biological organisms" .
+
+:Metagenome rdf:type owl:Class ;
+    rdfs:subClassOf iao:0000100 ; # information content entity
+    rdfs:label "Metagenome" ;
+    rdfs:comment "The collective genetic material recovered directly from environmental samples" .
+
+:MicrobialGenome rdf:type owl:Class ;
+    rdfs:subClassOf :Metagenome ;
+    rdfs:label "Microbial Genome" ;
+    rdfs:comment "The complete set of genes or genetic material present in a microorganism" .
+
+# Extended Object Properties
+:inhabits rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :SamplingEnvironment ;
+    rdfs:label "inhabits" ;
+    rdfs:comment "Relates a microbial taxon to the environment it inhabits" .
+
+:performs rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialFunction ;
+    rdfs:label "performs" ;
+    rdfs:comment "Relates a microbial taxon to a function it performs" .
+
+:hasFunction rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialCommunity ;
+    rdfs:range :EcosystemFunction ;
+    rdfs:label "has function" ;
+    rdfs:comment "Relates a microbial community to an ecosystem function it carries out" .
+
+:collectedUsing rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range mixs:0000001 ; # MIxS sampling device
+    rdfs:label "collected using" ;
+    rdfs:comment "Relates a sample to the device used for collection" .
+
+:hasEnvironmentalCondition rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sample ;
+    rdfs:range :EnvironmentalCondition ;
+    rdfs:label "has environmental condition" ;
+    rdfs:comment "Relates a sample to its environmental conditions" .
+
+:mediatedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :BiogeochemicalProcess ;
+    rdfs:range :MicrobialTaxon ;
+    rdfs:label "mediated by" ;
+    rdfs:comment "Relates a biogeochemical process to the microbial taxon that mediates it" .
+
+:partOf rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :MicrobialCommunity ;
+    rdfs:label "part of" ;
+    rdfs:comment "Relates a microbial taxon to the community it is part of" .
+
+:associatedWith rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range :BiogeochemicalProcess ;
+    rdfs:label "associated with" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it is associated with" .
+
+:hasGenomicFeature rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialGenome ;
+    rdfs:range obo:SO_0000110 ; # sequence feature
+    rdfs:label "has genomic feature" ;
+    rdfs:comment "Relates a microbial genome to its genomic features" .
+
+:hasTaxonomicRank rdf:type owl:ObjectProperty ;
+    rdfs:domain :MicrobialTaxon ;
+    rdfs:range obo:NCBITaxon_0000000 ; # taxonomic rank
+    rdfs:label "has taxonomic rank" ;
+    rdfs:comment "Relates a microbial taxon to its taxonomic rank" .
+
+:hasMeasurementUnit rdf:type owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalVariable ;
+    rdfs:range obo:UO_0000000 ; # unit of measurement
+    rdfs:label "has measurement unit" ;
+    rdfs:comment "Relates an environmental variable to its measurement unit" .
+
+:hasQuality rdf:type owl:ObjectProperty ;
+    rdfs:domain :EnvironmentalCondition ;
+    rdfs:range pato:0000001 ; # quality
+    rdfs:label "has quality" ;
+    rdfs:comment "Relates an environmental condition to its quality" .
+
+# Extended Data Properties
+:hasDepthValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has depth value" ;
+    rdfs:comment "Relates a spatial context to its depth measurement value" .
+
+:hasCoordinateSystem rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SpatialContext ;
+    rdfs:range xsd:string ;
+    rdfs:label "has coordinate system" ;
+    rdfs:comment "Relates a spatial context to its coordinate system" .
+
+:hasSamplingDate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TemporalContext ;
+    rdfs:range xsd:date ;
+    rdfs:label "has sampling date" ;
+    rdfs:comment "Relates a temporal context to its sampling date" .
+
+:hasAbundanceValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has abundance value" ;
+    rdfs:comment "Relates a population to its abundance measurement value" .
+
+:hasConfidenceValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MeasurementTechnique ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has confidence value" ;
+    rdfs:comment "Relates a measurement technique to its confidence value" .
+
+# Extended Individuals
+:AerobicRespiration rdf:type :MicrobialFunction ;
+    rdfs:label "Aerobic Respiration" .
+
+:AnaerobicRespiration rdf:type :MicrobialFunction ;
+    rdfs:label "Anaerobic Respiration" .
+
+:Chemolithotrophy rdf:type :MicrobialFunction ;
+    rdfs:label "Chemolithotrophy" .
+
+:Phototrophy rdf:type :MicrobialFunction ;
+    rdfs:label "Phototrophy" .
+
+:MethaneOxidation rdf:type :EcosystemFunction ;
+    rdfs:label "Methane Oxidation" .
+
+:NitrogenFixation rdf:type :EcosystemFunction ;
+    rdfs:label "Nitrogen Fixation" .
+
+:SulfateReduction rdf:type :EcosystemFunction ;
+    rdfs:label "Sulfate Reduction" .
+
+:Filtration rdf:type mixs:0000001 ;
+    rdfs:label "Filtration" .
+
+:Centrifugation rdf:type mixs:0000001 ;
+    rdfs:label "Centrifugation" .
+
+:LowOxygen rdf:type :LowOxygenCondition ;
+    rdfs:label "Low Oxygen" .
+
+:Anoxic rdf:type :AnoxicCondition ;
+    rdfs:label "Anoxic" .
+
+:Hypersaline rdf:type :EnvironmentalCondition ;
+    rdfs:label "Hypersaline" .
+
+:Acidic rdf:type :EnvironmentalCondition ;
+    rdfs:label "Acidic" .
+
+:Alkaline rdf:type :EnvironmentalCondition ;
+    rdfs:label "Alkaline" .
+

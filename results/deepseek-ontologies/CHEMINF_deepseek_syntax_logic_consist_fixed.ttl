@@ -1,0 +1,1909 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://purl.obolibrary.org/obo/cheminf.owl#> .
+@prefix ns2: <http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:CMLFormat a owl:Class ;
+    rdfs:label "CML format" ;
+    rdfs:comment "Chemical Markup Language format for representing chemical information." ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:CanonicalizationAlgorithm a owl:Class ;
+    rdfs:label "canonicalization algorithm" ;
+    rdfs:comment "An algorithm for generating canonical representations of chemical graphs." ;
+    rdfs:subClassOf ns1:Algorithm .
+
+ns1:ChemicalInformationOntology a owl:Ontology ;
+    rdfs:label "Chemical Information Ontology" ;
+    dcterms:description "The Chemical Information Ontology (CHEMINF) provides a comprehensive semantic framework for representing chemical information entities used in cheminformatics, including chemical descriptors, molecular representations, algorithms, software implementations, data formats, and provenance information." ;
+    vann:preferredNamespaceUri "http://purl.obolibrary.org/obo/cheminf.owl#" ;
+    rdfs:comment "An ontology for representing chemical information entities used in cheminformatics." ;
+    owl:versionInfo "1.0" .
+
+ns1:DescriptorCalculationAlgorithm a owl:Class ;
+    rdfs:label "descriptor calculation algorithm" ;
+    rdfs:comment "An algorithm specifically designed to calculate chemical descriptors." ;
+    rdfs:subClassOf ns1:Algorithm .
+
+ns1:Ethanol a <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:label "ethanol" ;
+    rdfs:comment "A chemical entity representing ethyl alcohol, a widely used solvent and psychoactive substance." .
+
+ns1:GraphGenerationAlgorithm a owl:Class ;
+    rdfs:label "graph generation algorithm" ;
+    rdfs:comment "An algorithm for generating chemical graph representations from molecular structures." ;
+    rdfs:subClassOf ns1:Algorithm .
+
+ns1:HydrogenBondAcceptorCount a owl:Class ;
+    rdfs:label "hydrogen bond acceptor count" ;
+    rdfs:comment "The number of hydrogen bond acceptor atoms in a molecule." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:HydrogenBondDonorCount a owl:Class ;
+    rdfs:label "hydrogen bond donor count" ;
+    rdfs:comment "The number of hydrogen bond donor atoms in a molecule." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:InChIFormat a owl:Class ;
+    rdfs:label "InChI format" ;
+    rdfs:comment "The data format specification for InChI representations." ;
+    rdfs:subClassOf ns1:DataFormatSpecification .
+
+ns1:MOL_Format a ns1:MOL ;
+    rdfs:label "MOL format" ;
+    ns1:hasMIMEType "chemical/x-mdl-molfile" ;
+    rdfs:comment "An instance of the MDL Molfile format specification." .
+
+ns1:MolecularFormula a owl:Class ;
+    rdfs:label "molecular formula" ;
+    rdfs:comment "The chemical formula indicating the number and type of atoms in a molecule." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:PDBFormat a owl:Class ;
+    rdfs:label "PDB format" ;
+    rdfs:comment "Protein Data Bank format for macromolecular structures." ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:Paracetamol a <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:label "paracetamol" ;
+    rdfs:comment "A chemical entity representing acetaminophen, a common analgesic and antipyretic drug." .
+
+ns1:RotatableBondCount a owl:Class ;
+    rdfs:label "rotatable bond count" ;
+    rdfs:comment "The number of rotatable bonds in a molecule." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:SDF_Format a ns1:SDF ;
+    rdfs:label "SDF format" ;
+    ns1:hasMIMEType "chemical/x-mdl-sdfile" ;
+    rdfs:comment "An instance of the Structure Data File format specification." .
+
+ns1:SMARTSFormat a owl:Class ;
+    rdfs:label "SMARTS format" ;
+    rdfs:comment "SMARTS (SMILES Arbitrary Target Specification) format for molecular patterns." ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:SMILESFormat a owl:Class ;
+    rdfs:label "SMILES format" ;
+    rdfs:comment "The data format specification for SMILES representations." ;
+    rdfs:subClassOf ns1:DataFormatSpecification .
+
+ns1:Water a <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:label "water" ;
+    rdfs:comment "A chemical entity representing H2O, the most abundant chemical compound on Earth." .
+
+ns1:hasAlgorithmComplexity a owl:DatatypeProperty ;
+    rdfs:label "has algorithm complexity" ;
+    rdfs:comment "Specifies the computational complexity of the algorithm (e.g., O(n^2))." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:hasAlgorithmDescription a owl:DatatypeProperty ;
+    rdfs:label "has algorithm description" ;
+    rdfs:comment "Provides a textual description of the algorithm's methodology." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:hasAlgorithmName a owl:DatatypeProperty ;
+    rdfs:label "has algorithm name" ;
+    rdfs:comment "Specifies the formal name of the computational algorithm." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:hasCalculationDate a owl:DatatypeProperty ;
+    rdfs:label "has calculation date" ;
+    rdfs:comment "Specifies the date when the descriptor calculation was performed." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasCategoricalValue a owl:DatatypeProperty ;
+    rdfs:label "has categorical value" ;
+    rdfs:comment "Links a categorical descriptor value to its classification string." ;
+    rdfs:domain ns1:CategoricalDescriptorValue ;
+    rdfs:range xsd:string .
+
+ns1:hasConfidenceScore a owl:DatatypeProperty ;
+    rdfs:label "has confidence score" ;
+    rdfs:comment "Specifies a numerical confidence value for the calculated descriptor." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:double .
+
+ns1:hasDataSource a owl:DatatypeProperty ;
+    rdfs:label "has data source" ;
+    rdfs:comment "Specifies the original source or database from which the data was obtained." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+ns1:hasExperimentalCondition a owl:DatatypeProperty ;
+    rdfs:label "has experimental condition" ;
+    rdfs:comment "Describes the experimental conditions under which the data was measured." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+ns1:hasFileExtension a owl:DatatypeProperty ;
+    rdfs:label "has file extension" ;
+    rdfs:comment "Specifies the standard file extension for the data format." ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range xsd:string .
+
+ns1:hasInChIKey a owl:DatatypeProperty ;
+    rdfs:label "has InChI key" ;
+    rdfs:comment "Specifies the hashed InChI key representation for fast structure searching." ;
+    rdfs:domain ns1:InChI ;
+    rdfs:range xsd:string .
+
+ns1:hasInChIString a owl:DatatypeProperty ;
+    rdfs:label "has InChI string" ;
+    rdfs:comment "Specifies the InChI string representation of a molecular structure." ;
+    rdfs:domain ns1:InChI ;
+    rdfs:range xsd:string .
+
+ns1:hasLogPValue a owl:DatatypeProperty ;
+    rdfs:label "has logP value" ;
+    rdfs:comment "Specifies the numerical value of the partition coefficient logarithm." ;
+    rdfs:domain ns1:LogP ;
+    rdfs:range xsd:double .
+
+ns1:hasMIMEType a owl:DatatypeProperty ;
+    rdfs:label "has MIME type" ;
+    rdfs:comment "Links a data format to its MIME type." ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range xsd:string .
+
+ns1:hasMOLVersion a owl:DatatypeProperty ;
+    rdfs:label "has MOL version" ;
+    rdfs:comment "Specifies the version number of the MOL file format specification." ;
+    rdfs:domain ns1:MOL ;
+    rdfs:range xsd:string .
+
+ns1:hasMolecularWeightValue a owl:DatatypeProperty ;
+    rdfs:label "has molecular weight value" ;
+    rdfs:comment "Specifies the numerical value of molecular weight in daltons." ;
+    rdfs:domain ns1:MolecularWeight ;
+    rdfs:range xsd:double .
+
+ns1:hasNumericalValue a owl:DatatypeProperty ;
+    rdfs:label "has numerical value" ;
+    rdfs:comment "Links a numerical descriptor value to its specific numerical quantity." ;
+    rdfs:domain ns1:NumericalDescriptorValue ;
+    rdfs:range xsd:double .
+
+ns1:hasReleaseDate a owl:DatatypeProperty ;
+    rdfs:label "has release date" ;
+    rdfs:comment "Specifies the date when the software version was released." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasSDFVersion a owl:DatatypeProperty ;
+    rdfs:label "has SDF version" ;
+    rdfs:comment "Specifies the version number of the SDF file format specification." ;
+    rdfs:domain ns1:SDF ;
+    rdfs:range xsd:string .
+
+ns1:hasSMILESString a owl:DatatypeProperty ;
+    rdfs:label "has SMILES string" ;
+    rdfs:comment "Specifies the SMILES string representation of a molecular structure." ;
+    rdfs:domain ns1:SMILES ;
+    rdfs:range xsd:string .
+
+ns1:hasSoftwareLicense a owl:DatatypeProperty ;
+    rdfs:label "has software license" ;
+    rdfs:comment "Specifies the license under which the software is distributed." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+ns1:hasSoftwareName a owl:DatatypeProperty ;
+    rdfs:label "has software name" ;
+    rdfs:comment "Specifies the name of the software implementation." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+ns1:hasSoftwareVendor a owl:DatatypeProperty ;
+    rdfs:label "has software vendor" ;
+    rdfs:comment "Specifies the organization or developer that created the software." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+ns1:hasSpecificationURI a owl:DatatypeProperty ;
+    rdfs:label "has specification URI" ;
+    rdfs:comment "Links a data format specification to its formal specification document URI." ;
+    rdfs:domain ns1:DataFormatSpecification ;
+    rdfs:range xsd:anyURI .
+
+ns1:hasStringRepresentation a owl:DatatypeProperty ;
+    rdfs:label "has string representation" ;
+    rdfs:comment "Links a chemical graph to its string encoding." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range xsd:string .
+
+ns1:hasTPSAValue a owl:DatatypeProperty ;
+    rdfs:label "has TPSA value" ;
+    rdfs:comment "Specifies the numerical value of topological polar surface area in square angstroms." ;
+    rdfs:domain ns1:TopologicalPolarSurfaceArea ;
+    rdfs:range xsd:double .
+
+ns1:hasTimestamp a owl:DatatypeProperty ;
+    rdfs:label "has timestamp" ;
+    rdfs:comment "Links provenance information to the time when the data was generated or modified." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasVersionString a owl:DatatypeProperty ;
+    rdfs:label "has version string" ;
+    rdfs:comment "Links a software version to its version identifier string.",
+        "Links a software version to its version string." ;
+    rdfs:domain ns1:SoftwareVersion ;
+    rdfs:range xsd:string .
+
+ns1:implements a owl:ObjectProperty ;
+    rdfs:label "implements" ;
+    rdfs:comment "Inverse of isImplementedIn." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:Algorithm ;
+    owl:inverseOf ns1:isImplementedIn .
+
+ns1:isCalculatedBy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is calculated by" ;
+    rdfs:comment "A functional property indicating a descriptor can be calculated by only one algorithm.",
+        "A symmetric property linking a descriptor to the algorithm that calculates it and vice versa.",
+        "A transitive property indicating that a descriptor is calculated by algorithms through intermediate calculations.",
+        "Inverse of calculatesDescriptor - links a chemical descriptor to the algorithm that computes it.",
+        "Inverse of calculatesDescriptor." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:Algorithm ;
+    owl:inverseOf ns1:calculatesDescriptor .
+
+ns1:isChemicalGraphOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is chemical graph of" ;
+    rdfs:comment "A functional property indicating a chemical graph can represent only one chemical entity.",
+        "A symmetric property linking a chemical graph to its chemical entity and vice versa.",
+        "A transitive property indicating that a chemical graph represents a chemical entity through intermediate graphs.",
+        "Inverse of hasChemicalGraph - links a chemical graph representation to the chemical entity it represents.",
+        "Inverse of hasChemicalGraph." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasChemicalGraph .
+
+ns1:isCompatibleWith a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "is compatible with" ;
+    rdfs:comment "A reflexive property indicating that a data format is compatible with itself, used for format compatibility checks." ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range ns1:DataFormat .
+
+ns1:isConformedBy a owl:ObjectProperty ;
+    rdfs:label "is conformed by" ;
+    rdfs:comment "Inverse of conformsTo." ;
+    rdfs:domain ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:conformsTo .
+
+ns1:isDescriptorOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is descriptor of" ;
+    rdfs:comment "A functional property indicating a descriptor can belong to only one chemical entity.",
+        "A symmetric property linking a descriptor to its chemical entity and vice versa.",
+        "A transitive property indicating that a descriptor belongs to a chemical entity through intermediate descriptors.",
+        "Inverse of hasDescriptor - links a chemical descriptor to the chemical entity it describes.",
+        "Inverse of hasDescriptor." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasDescriptor .
+
+ns1:isEncodingOf a owl:ObjectProperty ;
+    rdfs:label "is encoding of" ;
+    rdfs:comment "Inverse of encodedIn." ;
+    rdfs:domain ns1:DataFormat,
+        ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:encodedIn .
+
+ns1:isEquivalentTo a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "is equivalent to" ;
+    rdfs:comment "A reflexive property indicating that a chemical graph is equivalent to itself, used for structural equivalence." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalGraph .
+
+ns1:isFormatOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is format of" ;
+    rdfs:comment "A functional property indicating a data format can be associated with only one chemical graph.",
+        "A symmetric property linking a data format to its chemical graph and vice versa.",
+        "A transitive property indicating that a data format is used by chemical graphs through intermediate formats.",
+        "Inverse of hasFormat - links a data format to the chemical graph representations that use it.",
+        "Inverse of hasFormat." ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:hasFormat .
+
+ns1:isImplementedBy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is implemented by" ;
+    rdfs:comment "A functional property indicating an algorithm can be implemented by only one software implementation.",
+        "A symmetric property linking an algorithm to its software implementation and vice versa.",
+        "A transitive property indicating that an algorithm is implemented by software through intermediate implementations.",
+        "Inverse of implementsAlgorithm - links an algorithm to the software implementation that executes it.",
+        "Inverse of implementsAlgorithm." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:implementsAlgorithm .
+
+ns1:isProvenanceInformationOf a owl:ObjectProperty ;
+    rdfs:label "is provenance information of" ;
+    rdfs:comment "Inverse of hasProvenanceInformation." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenanceInformation .
+
+ns1:isProvenanceOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is provenance of" ;
+    rdfs:comment "A functional property indicating a provenance entity can be associated with only one chemical descriptor.",
+        "A symmetric property linking provenance information to its chemical descriptor and vice versa.",
+        "A transitive property indicating that provenance information applies to chemical descriptors through intermediate provenance entities.",
+        "Inverse of hasProvenance - links provenance information to the chemical descriptor it describes.",
+        "Inverse of hasProvenance." ;
+    rdfs:domain ns1:ProvenanceInformation,
+        prov:Entity ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenance .
+
+ns1:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "is represented by" ;
+    rdfs:comment "Inverse of represents." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:represents .
+
+ns1:isSimilarTo a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "is similar to" ;
+    rdfs:comment "A reflexive property indicating that a chemical entity is similar to itself, used for similarity comparisons." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:isSubclassOf a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "is subclass of" ;
+    rdfs:comment "A reflexive property indicating that a class is a subclass of itself, used for ontology hierarchy." ;
+    rdfs:domain owl:Class ;
+    rdfs:range owl:Class .
+
+ns1:isValueOf a owl:ObjectProperty ;
+    rdfs:label "is value of" ;
+    rdfs:comment "Inverse of hasDescriptorValue." ;
+    rdfs:domain ns1:DescriptorValue ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasDescriptorValue .
+
+ns1:isVersionOf a owl:ObjectProperty ;
+    rdfs:label "is version of" ;
+    rdfs:comment "A reflexive property indicating that a software implementation is a version of itself, used for version tracking.",
+        "Inverse of hasSoftwareVersion.",
+        "Inverse of hasVersion." ;
+    rdfs:domain ns1:SoftwareImplementation,
+        ns1:SoftwareVersion ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:hasSoftwareVersion,
+        ns1:hasVersion .
+
+ns2: a owl:Ontology ;
+    rdfs:label "Chemical Information Ontology" ;
+    rdfs:comment "An ontology for representing chemical information entities in cheminformatics." ;
+    owl:versionInfo "1.0" .
+
+ns2:Alignment_Process a ns2:OntologyAlignment ;
+    rdfs:label "Ontology Alignment Process" .
+
+ns2:Atom a owl:Class ;
+    rdfs:label "Atom" ;
+    rdfs:subClassOf ns2:ChemicalEntity .
+
+ns2:Bond a owl:Class ;
+    rdfs:label "Bond" ;
+    rdfs:subClassOf ns2:ChemicalEntity .
+
+ns2:CDK a ns2:SoftwareTool ;
+    rdfs:label "Chemistry Development Kit" .
+
+ns2:CHEMBL_Dataset a ns2:ChemicalDataset ;
+    rdfs:label "ChEMBL Dataset" .
+
+ns2:CHEMINF_000000 rdfs:comment "A chemical descriptor is a quantitative or qualitative property of a chemical entity used for characterization, comparison, or prediction." .
+
+ns2:CHEMINF_000001 rdfs:comment "Molecular weight is the mass of a molecule, calculated as the sum of the atomic weights of its constituent atoms." .
+
+ns2:CHEMINF_000002 rdfs:comment "LogP is the logarithm of the partition coefficient between n-octanol and water, indicating a compound's hydrophobicity." .
+
+ns2:CHEMINF_000003 rdfs:comment "Topological polar surface area (TPSA) is a measure of the surface area over polar atoms in a molecule, relevant for predicting drug transport properties." .
+
+ns2:CHEMINF_000004 rdfs:comment "A chemical graph is a mathematical representation of a molecule where atoms are nodes and bonds are edges." .
+
+ns2:CHEMINF_000005 rdfs:comment "SMILES (Simplified Molecular Input Line Entry System) is a line notation for representing molecular structures using ASCII strings." .
+
+ns2:CHEMINF_000006 rdfs:comment "InChI (International Chemical Identifier) is a standardized identifier for chemical substances that provides a textual representation of molecular structure." .
+
+ns2:CHEMINF_000007 rdfs:comment "An algorithm is a step-by-step computational procedure for solving a problem or performing a calculation." .
+
+ns2:CHEMINF_000008 rdfs:comment "A software implementation is a concrete realization of an algorithm in executable code." .
+
+ns2:CHEMINF_000009 rdfs:comment "MOL file format is a chemical file format that represents the structure of a molecule using connection tables and coordinates." .
+
+ns2:CHEMINF_000010 rdfs:comment "SDF (Structure Data File) is a chemical file format that stores multiple chemical structures along with associated data." .
+
+ns2:CHEMINF_000011 rdfs:comment "Provenance refers to information about the origin, derivation, or history of data, ensuring reproducibility and trust." .
+
+ns2:CHEMINF_000012 rdfs:comment "Metadata is data that provides information about other data, such as context, source, or calculation parameters." .
+
+ns2:CHEMINF_000013 rdfs:comment "A chemical entity is any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, complex, conformer, etc., identifiable as a separately distinguishable entity." .
+
+ns2:CHEMINF_000014 rdfs:comment "A descriptor value is the specific numerical or categorical result of applying a chemical descriptor to a chemical entity." .
+
+ns2:CHEMINF_000015 rdfs:comment "A descriptor calculation is the process of computing a chemical descriptor using a specific algorithm or method." .
+
+ns2:CHEMINF_000016 rdfs:comment "A molecular representation is any formal depiction of a molecule's structure, such as graphs, strings, or coordinates." .
+
+ns2:CHEMINF_000017 rdfs:comment "A file format specification defines the syntax and semantics for storing and exchanging chemical data in files." .
+
+ns2:CHEMINF_000018 rdfs:comment "Software tool is an application or program that performs specific chemical informatics tasks, such as descriptor calculation or structure visualization." .
+
+ns2:CHEMINF_000019 rdfs:comment "Data source is an origin from which chemical information is obtained, such as a database, literature, or experimental measurement." .
+
+ns2:CHEMINF_000020 rdfs:comment "A chemical database is an organized collection of chemical data, often searchable and annotated with descriptors and structures." .
+
+ns2:ChEBI_Ontology a ns2:DescriptorOntology ;
+    rdfs:label "ChEBI Ontology" .
+
+ns2:Confidence_Score_1 a ns2:ConfidenceScore ;
+    rdfs:label "Confidence Score" .
+
+ns2:InChI a owl:Class ;
+    rdfs:label "InChI" ;
+    rdfs:comment "The IUPAC International Chemical Identifier." ;
+    rdfs:subClassOf ns2:ChemicalGraph .
+
+ns2:InChI_Algorithm a ns2:Algorithm ;
+    rdfs:label "InChI Generation Algorithm" .
+
+ns2:InChI_Specification a ns2:InChIFormat ;
+    rdfs:label "InChI specification" ;
+    ns2:formatSpecification "International Chemical Identifier" .
+
+ns2:Inference_Engine_1 a ns2:InferenceEngine ;
+    rdfs:label "Inference Engine" .
+
+ns2:MOL_Format a ns2:DataFormat ;
+    rdfs:label "MOL Format" .
+
+ns2:MW_Calculation a ns2:DescriptorCalculation ;
+    rdfs:label "Molecular Weight Calculation" .
+
+ns2:MolecularWeight a owl:Class ;
+    rdfs:label "Molecular Weight" ;
+    rdfs:comment "The mass of a molecule." ;
+    rdfs:subClassOf ns2:ChemicalDescriptor .
+
+ns2:OpenBabel a ns2:SoftwareImplementation,
+        ns2:SoftwareTool ;
+    rdfs:label "OpenBabel" ;
+    ns2:hasVersion ns2:OpenBabel_v3_0_0 .
+
+ns2:Provenance_Record a ns2:Provenance ;
+    rdfs:label "Provenance Record" .
+
+ns2:PubChem_Dataset a ns2:ChemicalDataset ;
+    rdfs:label "PubChem Dataset" .
+
+ns2:QSAR_Model a ns2:QSAR ;
+    rdfs:label "QSAR Model" .
+
+ns2:RDF_Graph_1 a ns2:RDFGraph ;
+    rdfs:label "RDF Graph" .
+
+ns2:RDKit a ns2:SoftwareTool ;
+    rdfs:label "RDKit" .
+
+ns2:SDF_Format a ns2:SDF ;
+    rdfs:label "SDF Format" .
+
+ns2:SMILES a owl:Class ;
+    rdfs:label "SMILES" ;
+    rdfs:comment "A line notation for representing molecular structures." ;
+    rdfs:subClassOf ns2:ChemicalGraph .
+
+ns2:SMILES_Algorithm a ns2:Algorithm ;
+    rdfs:label "SMILES Generation Algorithm" .
+
+ns2:SMILES_Specification a ns2:SMILESFormat ;
+    rdfs:label "SMILES specification" ;
+    ns2:formatSpecification "Simplified Molecular Input Line Entry System" .
+
+ns2:StructureRepresentation a owl:Class ;
+    rdfs:label "Structure Representation" ;
+    rdfs:comment "A representation of molecular structure." ;
+    rdfs:subClassOf ns2:ChemicalGraph .
+
+ns2:SubstructureFingerprint a owl:Class ;
+    rdfs:label "Substructure Fingerprint" ;
+    rdfs:comment "A binary fingerprint for substructure presence." ;
+    rdfs:subClassOf ns2:ChemicalDescriptor .
+
+ns2:SubstructureSearch_Algorithm a ns2:Algorithm ;
+    rdfs:label "Substructure Search Algorithm" .
+
+ns2:TPSA_Calculation a ns2:DescriptorCalculation ;
+    rdfs:label "TPSA Calculation" .
+
+ns2:TanimotoCoefficient a owl:Class ;
+    rdfs:label "Tanimoto Coefficient" ;
+    rdfs:comment "A measure of similarity between molecular fingerprints." ;
+    rdfs:subClassOf ns2:SimilarityScore .
+
+ns2:Tanimoto_Calculation a ns2:DescriptorCalculation ;
+    rdfs:label "Tanimoto Coefficient Calculation" .
+
+ns2:TopologicalPolarSurfaceArea a owl:Class ;
+    rdfs:label "Topological Polar Surface Area" ;
+    rdfs:comment "A descriptor for molecular polar surface area." ;
+    rdfs:subClassOf ns2:ChemicalDescriptor .
+
+ns2:Toxicity_Predictor a ns2:ToxicityPrediction ;
+    rdfs:label "Toxicity Predictor" .
+
+ns2:calculatedBy a owl:ObjectProperty ;
+    rdfs:label "calculated by" ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:DescriptorCalculation .
+
+ns2:encodedAs a owl:ObjectProperty ;
+    rdfs:label "encoded as" ;
+    rdfs:domain ns2:MolecularStructure ;
+    rdfs:range ns2:ChemicalGraph .
+
+ns2:formatSpecification a owl:DatatypeProperty ;
+    rdfs:label "format specification" ;
+    rdfs:domain ns2:DataFormatSpecification ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dcterms:description .
+
+ns2:hasAlgorithmType rdfs:comment "Classifies an algorithm based on its computational approach, e.g., machine learning or rule-based." .
+
+ns2:hasCalculationParameter rdfs:comment "Associates a descriptor calculation with specific parameters or settings used." .
+
+ns2:hasConfidenceValue a owl:DatatypeProperty ;
+    rdfs:label "has confidence value" ;
+    rdfs:domain ns2:ConfidenceScore ;
+    rdfs:range xsd:double .
+
+ns2:hasDataQuality rdfs:comment "Links data to quality metrics or assessments, such as accuracy or precision." .
+
+ns2:hasDescription a owl:DatatypeProperty ;
+    rdfs:label "has description" ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+ns2:hasDescriptorType rdfs:comment "Categorizes a descriptor into a specific type, such as topological or electronic." .
+
+ns2:hasFormat rdfs:comment "Specifies the file format used to store or transmit chemical data." .
+
+ns2:hasIdentifier a owl:DatatypeProperty ;
+    rdfs:label "has identifier" ;
+    rdfs:comment "Associates an entity with a unique identifier, such as a database accession number or InChIKey." ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range xsd:string .
+
+ns2:hasImplementation rdfs:comment "Links an algorithm to its concrete software implementation." .
+
+ns2:hasMetadata rdfs:comment "Links an entity to metadata providing contextual or administrative information." .
+
+ns2:hasNumericValue a owl:DatatypeProperty ;
+    rdfs:label "has numeric value" ;
+    rdfs:domain ns2:DescriptorValue ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000300> .
+
+ns2:hasProvenance a owl:ObjectProperty ;
+    rdfs:label "has provenance" ;
+    rdfs:comment "Associates data with provenance information describing its origin and processing history." ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:Provenance,
+        ns2:ProvenanceInformation ;
+    rdfs:subPropertyOf prov:has_provenance .
+
+ns2:hasSimilarityScore a owl:ObjectProperty ;
+    rdfs:label "has similarity score" ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range ns2:SimilarityScore .
+
+ns2:hasSoftwareVersion rdfs:comment "Specifies the version of a software tool or implementation." .
+
+ns2:hasStringValue a owl:DatatypeProperty ;
+    rdfs:label "has string value" ;
+    rdfs:domain ns2:DescriptorValue ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000300> .
+
+ns2:hasStructure a owl:ObjectProperty ;
+    rdfs:label "has structure" ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range ns2:MolecularStructure .
+
+ns2:hasTimestamp a owl:DatatypeProperty ;
+    rdfs:label "has timestamp" ;
+    rdfs:domain ns2:Provenance ;
+    rdfs:range xsd:dateTime .
+
+ns2:implementedIn a owl:ObjectProperty ;
+    rdfs:label "implemented in" ;
+    rdfs:domain ns2:Algorithm ;
+    rdfs:range ns2:SoftwareImplementation .
+
+ns2:isDerivedFrom rdfs:comment "Indicates that one entity is obtained or computed from another entity." .
+
+ns2:isInputTo rdfs:comment "Describes that an entity is used as input to a computational process or algorithm." .
+
+ns2:isOutputOf rdfs:comment "Indicates that an entity is produced as a result of a computational process or algorithm." .
+
+ns2:isPartOf rdfs:comment "Denotes that one entity is a constituent or component of another." .
+
+ns2:isRelatedTo rdfs:comment "Denotes a general associative relationship between two entities in the chemical domain." .
+
+ns2:isSourceOf rdfs:comment "Specifies that an entity serves as the origin for another entity's data or information." .
+
+ns2:isValidatedBy rdfs:comment "Indicates the method or standard used to validate the correctness of data or an algorithm." .
+
+ns2:logP a owl:Class ;
+    rdfs:label "logP" ;
+    rdfs:comment "The logarithm of the partition coefficient." ;
+    rdfs:subClassOf ns2:ChemicalDescriptor .
+
+ns2:logP_Calculation a ns2:DescriptorCalculation ;
+    rdfs:label "logP Calculation" .
+
+ns2:storedInFormat a owl:ObjectProperty ;
+    rdfs:label "stored in format" ;
+    rdfs:domain ns2:ChemicalDataset ;
+    rdfs:range ns2:DataFormat .
+
+ns2:usesAlgorithm a owl:ObjectProperty ;
+    rdfs:label "uses algorithm" ;
+    rdfs:domain ns2:DescriptorCalculation ;
+    rdfs:range ns2:Algorithm .
+
+ns2:versionIdentifier a owl:DatatypeProperty ;
+    rdfs:label "version identifier" ;
+    rdfs:domain ns2:SoftwareVersion ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000300> .
+
+<http://semanticscience.org/resource/CHEMINF_Aspirin> a <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> .
+
+<http://semanticscience.org/resource/CHEMINF_AtomicDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_BondDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_CDKSoftware> a <http://semanticscience.org/resource/CHEMINF_CDK> .
+
+<http://semanticscience.org/resource/CHEMINF_Caffeine> a <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> .
+
+<http://semanticscience.org/resource/CHEMINF_ChEBI> a <http://semanticscience.org/resource/CHEMINF_ChEBIDataset> .
+
+<http://semanticscience.org/resource/CHEMINF_ChEMBL> a <http://semanticscience.org/resource/CHEMINF_ChEMBLDataset> .
+
+<http://semanticscience.org/resource/CHEMINF_ChemicalReactivityDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_DescriptorCalculation> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_DescriptorCalculationProvenance> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Provenance> .
+
+<http://semanticscience.org/resource/CHEMINF_ElectronicDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_GeometricDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_Ibuprofen> a <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> .
+
+<http://semanticscience.org/resource/CHEMINF_InChI> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_encodedIn> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_InChIFormat> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_encodedIn> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_InChIFormat> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> .
+
+<http://semanticscience.org/resource/CHEMINF_InChIFormatSpec> a <http://semanticscience.org/resource/CHEMINF_InChIFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_InferenceAlgorithm> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesInferenceEngine> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_InferenceEngine> ],
+        <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_KineticDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_LogPDescriptor> a <http://semanticscience.org/resource/CHEMINF_LogP> .
+
+<http://semanticscience.org/resource/CHEMINF_MOLFormatSpec> a <http://semanticscience.org/resource/CHEMINF_MOLFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_MolecularWeightDescriptor> a <http://semanticscience.org/resource/CHEMINF_MolecularWeight> .
+
+<http://semanticscience.org/resource/CHEMINF_OntologyAlignment> rdfs:subClassOf <http://semanticscience.org/resource/SIO_Alignment> .
+
+<http://semanticscience.org/resource/CHEMINF_OpenBabelSoftware> a <http://semanticscience.org/resource/CHEMINF_OpenBabel> .
+
+<http://semanticscience.org/resource/CHEMINF_PhysicalDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_PubChem> a <http://semanticscience.org/resource/CHEMINF_PubChemDataset> .
+
+<http://semanticscience.org/resource/CHEMINF_QSARAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_QSARModel1> a <http://semanticscience.org/resource/CHEMINF_QSARModel> .
+
+<http://semanticscience.org/resource/CHEMINF_QSARModelProvenance> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Provenance> .
+
+<http://semanticscience.org/resource/CHEMINF_RDFFormatSpec> a <http://semanticscience.org/resource/CHEMINF_RDFFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_RDFGraph> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> .
+
+<http://semanticscience.org/resource/CHEMINF_RDKitSoftware> a <http://semanticscience.org/resource/CHEMINF_RDKit> .
+
+<http://semanticscience.org/resource/CHEMINF_SDF> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_DataFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_SDFFormatSpec> a <http://semanticscience.org/resource/CHEMINF_SDFFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_SMILES> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_encodedIn> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_SMILESFormat> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_encodedIn> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_SMILESFormat> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> .
+
+<http://semanticscience.org/resource/CHEMINF_SMILESFormatSpec> a <http://semanticscience.org/resource/CHEMINF_SMILESFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_SimilarityScoreProvenance> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Provenance> .
+
+<http://semanticscience.org/resource/CHEMINF_SoftwareTool> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_SpectralDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_StructuralDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_TPSADescriptor> a <http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceArea> .
+
+<http://semanticscience.org/resource/CHEMINF_TanimotoDescriptor> a <http://semanticscience.org/resource/CHEMINF_TanimotoCoefficient> .
+
+<http://semanticscience.org/resource/CHEMINF_ThermodynamicDescriptor> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_ToxicityPrediction1> a <http://semanticscience.org/resource/CHEMINF_ToxicityPrediction> .
+
+<http://semanticscience.org/resource/CHEMINF_ToxicityPredictionAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_ToxicityPredictionProvenance> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Provenance> .
+
+<http://semanticscience.org/resource/CHEMINF_alignedWith> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> .
+
+<http://semanticscience.org/resource/CHEMINF_confidenceValue> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ConfidenceScore> ;
+    rdfs:range xsd:decimal .
+
+<http://semanticscience.org/resource/CHEMINF_description> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range xsd:string .
+
+<http://semanticscience.org/resource/CHEMINF_descriptorValue> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_DescriptorValue> ;
+    rdfs:range xsd:string .
+
+<http://semanticscience.org/resource/CHEMINF_formatSpecification> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> ;
+    rdfs:range xsd:string .
+
+<http://semanticscience.org/resource/CHEMINF_hasAtomicDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasBondDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasCalculationProcess> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_hasChemicalReactivityDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasElectronicDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasGeometricDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasIdentifier> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_Identifier> .
+
+<http://semanticscience.org/resource/CHEMINF_hasKineticDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasMolecularStructure> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> .
+
+<http://semanticscience.org/resource/CHEMINF_hasNumericValue> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range xsd:decimal .
+
+<http://semanticscience.org/resource/CHEMINF_hasPhysicalDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasProvenanceInformation> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_Provenance> ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasProvenance> .
+
+<http://semanticscience.org/resource/CHEMINF_hasQSARModel> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_QSARModel> .
+
+<http://semanticscience.org/resource/CHEMINF_hasSimilarityScore> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SimilarityScore> .
+
+<http://semanticscience.org/resource/CHEMINF_hasSpectralDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasStringValue> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range xsd:string .
+
+<http://semanticscience.org/resource/CHEMINF_hasStructuralDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasSubstructureFingerprint> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SubstructureFingerprint> .
+
+<http://semanticscience.org/resource/CHEMINF_hasThermodynamicDescriptor> a owl:ObjectProperty ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasTimestamp> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_Provenance> ;
+    rdfs:range xsd:dateTime .
+
+<http://semanticscience.org/resource/CHEMINF_hasToxicityPrediction> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ToxicityPrediction> .
+
+<http://semanticscience.org/resource/CHEMINF_isDescriptorOf> a owl:ObjectProperty ;
+    owl:inverseOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_isImplementedBy> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_Algorithm> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_logP> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_numericValue> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range xsd:decimal .
+
+<http://semanticscience.org/resource/CHEMINF_softwareVersionIdentifier> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_SoftwareVersion> ;
+    rdfs:range xsd:string .
+
+<http://semanticscience.org/resource/CHEMINF_storedIn> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDataset> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> .
+
+<http://semanticscience.org/resource/CHEMINF_stringValue> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range xsd:string .
+
+<http://semanticscience.org/resource/CHEMINF_timestamp> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_Provenance> ;
+    rdfs:range xsd:dateTime .
+
+<http://semanticscience.org/resource/CHEMINF_versionIdentifier> a owl:DatatypeProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> ;
+    rdfs:range xsd:string .
+
+ns1:CDK_Algorithm a ns1:Algorithm ;
+    rdfs:label "CDK algorithm" ;
+    ns1:calculatesDescriptor ns1:Aspirin_MolecularWeight,
+        ns1:Caffeine_MolecularWeight ;
+    ns1:isImplementedBy ns1:CDK_Software ;
+    rdfs:comment "Chemistry Development Kit algorithm for chemical informatics calculations." .
+
+ns1:CDK_Software a ns1:SoftwareImplementation ;
+    rdfs:label "CDK software" ;
+    ns1:hasVersion "2.8" ;
+    ns1:implementsAlgorithm ns1:CDK_Algorithm ;
+    rdfs:comment "Chemistry Development Kit for cheminformatics applications." .
+
+ns1:CategoricalDescriptorValue a owl:Class ;
+    rdfs:label "categorical descriptor value" ;
+    rdfs:comment "A descriptor value that is a categorical classification." ;
+    rdfs:subClassOf ns1:DescriptorValue .
+
+ns1:NumericalDescriptorValue a owl:Class ;
+    rdfs:label "numerical descriptor value" ;
+    rdfs:comment "A descriptor value that is a numerical quantity." ;
+    rdfs:subClassOf ns1:DescriptorValue .
+
+ns1:OpenBabel_Algorithm a ns1:Algorithm ;
+    rdfs:label "OpenBabel algorithm" ;
+    ns1:calculatesDescriptor ns1:Aspirin_MolecularWeight,
+        ns1:Caffeine_MolecularWeight ;
+    ns1:isImplementedBy ns1:OpenBabel_Software ;
+    rdfs:comment "A cheminformatics algorithm for chemical format conversion and descriptor calculation." .
+
+ns1:OpenBabel_Software a ns1:SoftwareImplementation ;
+    rdfs:label "OpenBabel software" ;
+    ns1:hasVersion "3.1.1" ;
+    ns1:implementsAlgorithm ns1:OpenBabel_Algorithm ;
+    rdfs:comment "Open source chemical toolbox for chemical format conversion and descriptor calculation." .
+
+ns1:RDKit_Software a ns1:SoftwareImplementation ;
+    rdfs:label "RDKit software" ;
+    ns1:hasVersion "2023.09.1" ;
+    ns1:implementsAlgorithm ns1:RDKit_Descriptor_Algorithm ;
+    rdfs:comment "Open source cheminformatics software for chemical informatics." .
+
+ns1:calculatesDescriptor a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "calculates descriptor" ;
+    rdfs:comment "A functional property indicating an algorithm can calculate only one descriptor.",
+        "A symmetric property linking an algorithm to the descriptor it calculates and vice versa.",
+        "A transitive property linking algorithms to descriptors they calculate through intermediate calculations.",
+        "Links an algorithm to the descriptor it calculates." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:conformsTo a owl:ObjectProperty ;
+    rdfs:label "conforms to" ;
+    rdfs:comment "Links a chemical descriptor to its data format specification.",
+        "Links a chemical descriptor to the data format specification it conforms to." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:DataFormatSpecification .
+
+ns1:hasDescriptor a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has descriptor" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one specific descriptor value.",
+        "A symmetric property linking a chemical entity to its descriptor and vice versa.",
+        "A transitive property linking a chemical entity to its descriptors through intermediate entities.",
+        "Links a chemical entity to its descriptor." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:hasDescriptorValue a owl:ObjectProperty ;
+    rdfs:label "has descriptor value" ;
+    rdfs:comment "Links a chemical descriptor to its specific value instance." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:DescriptorValue .
+
+ns1:hasFormat a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has format" ;
+    rdfs:comment "A functional property indicating a chemical graph can have only one data format.",
+        "A symmetric property linking a chemical graph to its data format and vice versa.",
+        "A transitive property linking chemical graphs to their data formats through intermediate formats.",
+        "Links a chemical graph to its data format." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat .
+
+ns1:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has provenance" ;
+    rdfs:comment "A functional property indicating a chemical descriptor can have only one provenance entity.",
+        "A symmetric property linking a chemical descriptor to its provenance information and vice versa.",
+        "A transitive property linking chemical descriptors to their provenance information through intermediate provenance entities.",
+        "Links a chemical descriptor to its provenance information." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ProvenanceInformation,
+        prov:Entity .
+
+ns1:hasProvenanceInformation a owl:ObjectProperty ;
+    rdfs:label "has provenance information" ;
+    rdfs:comment "Links a chemical descriptor to detailed provenance information." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ProvenanceInformation .
+
+ns1:hasSoftwareVersion a owl:ObjectProperty ;
+    rdfs:label "has software version" ;
+    rdfs:comment "Links a software implementation to its version identifier." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion .
+
+ns1:hasValue a owl:DatatypeProperty ;
+    rdfs:label "has value" ;
+    rdfs:comment "Links a descriptor to its numerical value." ;
+    rdfs:domain ns1:ChemicalDescriptor,
+        ns1:DescriptorValue ;
+    rdfs:range xsd:double .
+
+ns1:hasVersion a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has version" ;
+    rdfs:comment "Links a software implementation to its version string.",
+        "Links a software implementation to its version." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion,
+        xsd:string .
+
+ns1:implementsAlgorithm a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "implements algorithm" ;
+    rdfs:comment "A functional property indicating a software implementation can implement only one algorithm.",
+        "A symmetric property linking a software implementation to its algorithm and vice versa.",
+        "A transitive property linking software implementations to algorithms they implement through intermediate implementations.",
+        "Links a software implementation to the algorithm it implements." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:Algorithm .
+
+ns1:isImplementedIn a owl:ObjectProperty ;
+    rdfs:label "is implemented in" ;
+    rdfs:comment "Links an algorithm to the software implementation that contains it." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:SoftwareImplementation .
+
+ns2:DescriptorOntology a owl:Class ;
+    rdfs:label "Descriptor Ontology" ;
+    rdfs:comment "An ontology for chemical descriptors." ;
+    rdfs:subClassOf owl:Ontology .
+
+ns2:InferenceEngine a owl:Class ;
+    rdfs:label "Inference Engine" ;
+    rdfs:comment "Software that performs logical inference." ;
+    rdfs:subClassOf ns2:SoftwareImplementation .
+
+ns2:OntologyAlignment a owl:Class ;
+    rdfs:label "Ontology Alignment" ;
+    rdfs:comment "The process of aligning ontologies." ;
+    rdfs:subClassOf prov:Activity .
+
+ns2:OpenBabel_v3_0_0 a ns2:SoftwareVersion ;
+    rdfs:label "OpenBabel version 3.0.0" ;
+    ns2:versionIdentifier "3.0.0" .
+
+ns2:ProvenanceInformation a owl:Class ;
+    rdfs:label "provenance information" ;
+    rdfs:comment "Information about the origin, custody, and modifications of data." ;
+    rdfs:subClassOf prov:Entity .
+
+ns2:QSAR a owl:Class ;
+    rdfs:label "QSAR" ;
+    rdfs:comment "Quantitative Structure-Activity Relationship modeling." ;
+    rdfs:subClassOf ns2:Algorithm .
+
+ns2:RDFGraph a owl:Class ;
+    rdfs:label "RDF Graph" ;
+    rdfs:comment "An RDF graph representing chemical information." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000107> .
+
+ns2:SDF a owl:Class ;
+    rdfs:label "SDF" ;
+    rdfs:comment "The Structure Data File format." ;
+    rdfs:subClassOf ns2:DataFormat .
+
+ns2:ToxicityPrediction a owl:Class ;
+    rdfs:label "Toxicity Prediction" ;
+    rdfs:comment "Algorithm for predicting chemical toxicity." ;
+    rdfs:subClassOf ns2:Algorithm .
+
+ns2:calculates a owl:ObjectProperty ;
+    rdfs:label "calculates" ;
+    rdfs:domain ns2:Algorithm ;
+    rdfs:range ns2:ChemicalDescriptor ;
+    rdfs:subPropertyOf prov:generated .
+
+ns2:conformsTo a owl:ObjectProperty ;
+    rdfs:label "conforms to" ;
+    rdfs:comment "Specifies that an entity adheres to a particular standard, specification, or ontology." ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:DataFormatSpecification ;
+    rdfs:subPropertyOf dcterms:conformsTo .
+
+ns2:encodes a owl:ObjectProperty ;
+    rdfs:label "encodes" ;
+    rdfs:domain ns2:DataFormatSpecification ;
+    rdfs:range ns2:ChemicalGraph ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000094> .
+
+ns2:hasDescriptor a owl:ObjectProperty ;
+    rdfs:label "has descriptor" ;
+    rdfs:comment "Relates a chemical entity to a chemical descriptor that characterizes it." ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range ns2:ChemicalDescriptor ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> .
+
+ns2:hasValue a owl:ObjectProperty ;
+    rdfs:label "has value" ;
+    rdfs:comment "Associates a descriptor with its specific computed or measured value." ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:DescriptorValue ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000300> .
+
+ns2:hasVersion a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has version" ;
+    rdfs:domain ns2:SoftwareImplementation ;
+    rdfs:range ns2:SoftwareVersion,
+        xsd:string ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000300> .
+
+ns2:implements a owl:ObjectProperty ;
+    rdfs:label "implements" ;
+    rdfs:domain ns2:SoftwareImplementation ;
+    rdfs:range ns2:Algorithm ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000671> .
+
+ns2:isCalculatedBy a owl:ObjectProperty ;
+    rdfs:label "is calculated by" ;
+    rdfs:comment "Indicates the algorithm or software used to compute a descriptor value." ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:Algorithm ;
+    rdfs:subPropertyOf prov:wasGeneratedBy ;
+    owl:inverseOf ns2:calculates .
+
+ns2:isDescriptorOf a owl:ObjectProperty ;
+    rdfs:label "is descriptor of" ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:ChemicalEntity ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> ;
+    owl:inverseOf ns2:hasDescriptor .
+
+ns2:isImplementedIn a owl:ObjectProperty ;
+    rdfs:label "is implemented in" ;
+    rdfs:domain ns2:Algorithm ;
+    rdfs:range ns2:SoftwareImplementation ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000671> ;
+    owl:inverseOf ns2:implements .
+
+ns2:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "is represented by" ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range ns2:ChemicalGraph ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> .
+
+ns2:represents a owl:ObjectProperty ;
+    rdfs:label "represents" ;
+    rdfs:comment "Connects a molecular representation (e.g., SMILES) to the chemical entity it depicts." ;
+    rdfs:domain ns2:ChemicalGraph ;
+    rdfs:range ns2:ChemicalEntity ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> ;
+    owl:inverseOf ns2:isRepresentedBy .
+
+<http://semanticscience.org/resource/CHEMINF_CDK> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TanimotoCoefficientCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TanimotoCoefficientCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_ChEBIDataset> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDataset> .
+
+<http://semanticscience.org/resource/CHEMINF_ChEMBLDataset> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDataset> .
+
+<http://semanticscience.org/resource/CHEMINF_LogP> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_LogPCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_LogPCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_MOLFormat> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> .
+
+<http://semanticscience.org/resource/CHEMINF_MolecularWeight> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_MolecularWeightCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_MolecularWeightCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_OpenBabel> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_MolecularWeightCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_LogPCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_MolecularWeightCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_LogPCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_PubChemDataset> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDataset> .
+
+<http://semanticscience.org/resource/CHEMINF_RDFFormat> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> .
+
+<http://semanticscience.org/resource/CHEMINF_RDKit> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceAreaCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesAlgorithm> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceAreaCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_SDFFormat> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> .
+
+<http://semanticscience.org/resource/CHEMINF_SimilarityScore> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_SubstructureFingerprint> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_SubstructureFingerprintGenerationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_SubstructureFingerprintGenerationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_TanimotoCoefficient> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TanimotoCoefficientCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TanimotoCoefficientCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceArea> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceAreaCalculationAlgorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceAreaCalculationAlgorithm> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_alignedWithOntology> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_DescriptorOntology> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DescriptorOntology> .
+
+<http://semanticscience.org/resource/CHEMINF_conformsTo> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> .
+
+<http://semanticscience.org/resource/CHEMINF_containsChemicalEntity> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDataset> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> .
+
+<http://semanticscience.org/resource/CHEMINF_hasSoftwareVersion> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SoftwareVersion> ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasVersion> .
+
+<http://semanticscience.org/resource/CHEMINF_hasVersion> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SoftwareVersion>,
+        <http://semanticscience.org/resource/CHEMINF_Version> .
+
+<http://semanticscience.org/resource/CHEMINF_isImplementedIn> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_Algorithm> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_represents> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> .
+
+<http://semanticscience.org/resource/CHEMINF_usesDataFormat> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDataset> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DataFormat> .
+
+<http://semanticscience.org/resource/CHEMINF_usesInferenceEngine> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_Algorithm> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_InferenceEngine> .
+
+ns1:Aspirin_InChI a ns1:InChI ;
+    rdfs:label "aspirin InChI" ;
+    ns1:hasFormat ns1:InChI_Format ;
+    ns1:hasStringRepresentation "InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)" ;
+    ns1:isChemicalGraphOf ns1:Aspirin ;
+    rdfs:comment "InChI representation of aspirin." .
+
+ns1:Aspirin_SMILES a ns1:SMILES ;
+    rdfs:label "aspirin SMILES" ;
+    ns1:hasFormat ns1:SMILES_Format ;
+    ns1:hasStringRepresentation "CC(=O)Oc1ccccc1C(=O)O" ;
+    ns1:isChemicalGraphOf ns1:Aspirin ;
+    rdfs:comment "SMILES representation of aspirin." .
+
+ns1:Caffeine_InChI a ns1:InChI ;
+    rdfs:label "caffeine InChI" ;
+    ns1:hasFormat ns1:InChI_Format ;
+    ns1:hasStringRepresentation "InChI=1S/C8H10N4O2/c1-10-4-9-6-5(10)7(13)12(3)8(14)11(6)2/h4H,1-3H3" ;
+    ns1:isChemicalGraphOf ns1:Caffeine ;
+    rdfs:comment "InChI representation of caffeine." .
+
+ns1:Caffeine_SMILES a ns1:SMILES ;
+    rdfs:label "caffeine SMILES" ;
+    ns1:hasFormat ns1:SMILES_Format ;
+    ns1:hasStringRepresentation "CN1C=NC2=C1C(=O)N(C(=O)N2C)C" ;
+    ns1:isChemicalGraphOf ns1:Caffeine ;
+    rdfs:comment "SMILES representation of caffeine." .
+
+ns1:InChI_Format a ns1:InChI ;
+    rdfs:label "InChI format" ;
+    ns1:hasMIMEType "chemical/x-inchi" ;
+    ns1:isFormatOf ns1:Aspirin_InChI,
+        ns1:Caffeine_InChI ;
+    rdfs:comment "An instance of the IUPAC International Chemical Identifier format." .
+
+ns1:MOL a owl:Class ;
+    rdfs:label "MOL" ;
+    rdfs:comment "MDL Molfile format for representing molecular structures." ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:SDF a owl:Class ;
+    rdfs:label "SDF" ;
+    rdfs:comment "Structure Data File format for multiple molecular structures." ;
+    rdfs:subClassOf ns1:DataFormat .
+
+ns1:SMILES_Format a ns1:SMILES ;
+    rdfs:label "SMILES format" ;
+    ns1:hasMIMEType "chemical/x-daylight-smiles" ;
+    ns1:isFormatOf ns1:Aspirin_SMILES,
+        ns1:Caffeine_SMILES ;
+    rdfs:comment "An instance of the SMILES format specification." .
+
+ns1:encodedIn a owl:ObjectProperty ;
+    rdfs:label "encoded in" ;
+    rdfs:comment "Links a chemical graph to the specific format it is encoded in." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat,
+        ns1:DataFormatSpecification .
+
+ns1:hasChemicalGraph a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has chemical graph" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one chemical graph representation.",
+        "A symmetric property linking a chemical entity to its graph representation and vice versa.",
+        "A transitive property linking a chemical entity to its graph representations through intermediate graphs.",
+        "Links a chemical entity to its graph representation." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph .
+
+ns1:represents a owl:ObjectProperty ;
+    rdfs:label "represents" ;
+    rdfs:comment "Links a chemical graph to the chemical entity it represents." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> .
+
+ns2:ConfidenceScore a owl:Class ;
+    rdfs:label "Confidence Score" ;
+    rdfs:comment "A measure of confidence in a prediction or calculation." ;
+    rdfs:subClassOf ns2:ChemicalDescriptor .
+
+ns2:InChIFormat a owl:Class ;
+    rdfs:label "InChI format" ;
+    rdfs:comment "The International Chemical Identifier format specification." ;
+    rdfs:subClassOf ns2:DataFormatSpecification .
+
+ns2:MolecularStructure a owl:Class ;
+    rdfs:label "Molecular Structure" ;
+    rdfs:comment "The structural representation of a chemical entity." ;
+    rdfs:subClassOf ns2:ChemicalGraph .
+
+ns2:SMILESFormat a owl:Class ;
+    rdfs:label "SMILES format" ;
+    rdfs:comment "The Simplified Molecular Input Line Entry System format specification." ;
+    rdfs:subClassOf ns2:DataFormatSpecification .
+
+ns2:SimilarityScore a owl:Class ;
+    rdfs:label "Similarity Score" ;
+    rdfs:comment "A numerical measure of molecular similarity." ;
+    rdfs:subClassOf ns2:ChemicalDescriptor .
+
+ns2:encodedIn a owl:ObjectProperty ;
+    rdfs:label "encoded in" ;
+    rdfs:domain ns2:ChemicalGraph ;
+    rdfs:range ns2:DataFormatSpecification ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000094> ;
+    owl:inverseOf ns2:encodes .
+
+<http://semanticscience.org/resource/CHEMINF_InferenceEngine> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> .
+
+<http://semanticscience.org/resource/CHEMINF_QSARModel> rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_hasConfidenceScore> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_ConfidenceScore> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_SubstructureFingerprintGenerationAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_ToxicityPrediction> rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_hasConfidenceScore> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_ConfidenceScore> ],
+        <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_hasProvenance> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_Provenance> .
+
+<http://semanticscience.org/resource/CHEMINF_hasValue> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DescriptorValue> .
+
+ns1:Aspirin_LogP a ns1:LogP ;
+    rdfs:label "aspirin logP" ;
+    ns1:hasProvenance ns1:Aspirin_Provenance ;
+    ns1:hasValue 1.19e+00 ;
+    ns1:isCalculatedBy ns1:RDKit_Descriptor_Algorithm ;
+    ns1:isDescriptorOf ns1:Aspirin ;
+    rdfs:comment "The logP descriptor for aspirin." .
+
+ns1:Aspirin_Provenance a prov:Entity ;
+    rdfs:label "aspirin provenance" ;
+    ns1:isProvenanceOf ns1:Aspirin_LogP,
+        ns1:Aspirin_MolecularWeight,
+        ns1:Aspirin_TPSA ;
+    rdfs:comment "Provenance information for aspirin descriptors and representations." .
+
+ns1:Aspirin_TPSA a ns1:TopologicalPolarSurfaceArea ;
+    rdfs:label "aspirin TPSA" ;
+    ns1:hasProvenance ns1:Aspirin_Provenance ;
+    ns1:hasValue 6.36e+01 ;
+    ns1:isCalculatedBy ns1:RDKit_Descriptor_Algorithm ;
+    ns1:isDescriptorOf ns1:Aspirin ;
+    rdfs:comment "The topological polar surface area descriptor for aspirin." .
+
+ns1:Caffeine_LogP a ns1:LogP ;
+    rdfs:label "caffeine logP" ;
+    ns1:hasProvenance ns1:Caffeine_Provenance ;
+    ns1:hasValue -7e-02 ;
+    ns1:isCalculatedBy ns1:RDKit_Descriptor_Algorithm ;
+    ns1:isDescriptorOf ns1:Caffeine ;
+    rdfs:comment "The logP descriptor for caffeine." .
+
+ns1:Caffeine_Provenance a prov:Entity ;
+    rdfs:label "caffeine provenance" ;
+    ns1:isProvenanceOf ns1:Caffeine_LogP,
+        ns1:Caffeine_MolecularWeight,
+        ns1:Caffeine_TPSA ;
+    rdfs:comment "Provenance information for caffeine descriptors and representations." .
+
+ns1:Caffeine_TPSA a ns1:TopologicalPolarSurfaceArea ;
+    rdfs:label "caffeine TPSA" ;
+    ns1:hasProvenance ns1:Caffeine_Provenance ;
+    ns1:hasValue 5.844e+01 ;
+    ns1:isCalculatedBy ns1:RDKit_Descriptor_Algorithm ;
+    ns1:isDescriptorOf ns1:Caffeine ;
+    rdfs:comment "The topological polar surface area descriptor for caffeine." .
+
+ns1:LogP a owl:Class ;
+    rdfs:label "logP" ;
+    rdfs:comment "The logarithm of the partition coefficient between octanol and water." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:MolecularWeight a owl:Class ;
+    rdfs:label "molecular weight" ;
+    rdfs:comment "The mass of a molecule, typically in daltons." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns1:TopologicalPolarSurfaceArea a owl:Class ;
+    rdfs:label "topological polar surface area" ;
+    rdfs:comment "The sum of the surface areas of polar atoms in a molecule." ;
+    rdfs:subClassOf ns1:ChemicalDescriptor .
+
+ns2:ChemicalDataset a owl:Class ;
+    rdfs:label "Chemical Dataset" ;
+    rdfs:comment "A collection of chemical data." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000089> .
+
+ns2:DataFormat a owl:Class ;
+    rdfs:label "Data Format" ;
+    rdfs:comment "A specification for data representation." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000088> .
+
+ns2:Provenance a owl:Class ;
+    rdfs:label "Provenance" ;
+    rdfs:comment "Information about the origin and history of data." ;
+    rdfs:subClassOf prov:Entity .
+
+ns2:SoftwareTool a owl:Class ;
+    rdfs:label "Software Tool" ;
+    rdfs:comment "A software tool used in cheminformatics." ;
+    rdfs:subClassOf ns2:SoftwareImplementation .
+
+<http://semanticscience.org/resource/CHEMINF_DescriptorOntology> rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_alignedWithOntology> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_DescriptorOntology> ],
+        <http://semanticscience.org/resource/SIO_Ontology> .
+
+<http://semanticscience.org/resource/CHEMINF_InChIFormat> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification>,
+        <http://semanticscience.org/resource/CHEMINF_StructureRepresentation> .
+
+<http://semanticscience.org/resource/CHEMINF_SMILESFormat> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification>,
+        <http://semanticscience.org/resource/CHEMINF_StructureRepresentation> .
+
+<http://semanticscience.org/resource/CHEMINF_hasConfidenceScore> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ConfidenceScore> ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_hasValue> .
+
+ns1:SMILES a owl:Class ;
+    rdfs:label "SMILES" ;
+    rdfs:comment "Simplified Molecular Input Line Entry System representation." ;
+    rdfs:subClassOf ns1:ChemicalGraph .
+
+ns1:SoftwareVersion a owl:Class ;
+    rdfs:label "software version" ;
+    rdfs:comment "A specific version identifier for a software implementation.",
+        "A specific version of a software implementation." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000099>,
+        <http://semanticscience.org/resource/SIO_000416> .
+
+ns2:DescriptorValue a owl:Class ;
+    rdfs:label "Descriptor Value",
+        "descriptor value" ;
+    rdfs:comment "The value of a chemical descriptor." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000114> .
+
+ns2:SoftwareVersion a owl:Class ;
+    rdfs:label "software version" ;
+    rdfs:comment "A version identifier for a software implementation." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000416> .
+
+<http://semanticscience.org/resource/CHEMINF_ConfidenceScore> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor>,
+        <http://semanticscience.org/resource/CHEMINF_DescriptorValue> .
+
+<http://semanticscience.org/resource/CHEMINF_DescriptorValue> rdfs:subClassOf <http://semanticscience.org/resource/SIO_Value> .
+
+<http://semanticscience.org/resource/CHEMINF_LogPCalculationAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_MolecularWeightCalculationAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_SoftwareVersion> rdfs:subClassOf <http://semanticscience.org/resource/SIO_Version> .
+
+<http://semanticscience.org/resource/CHEMINF_StructureRepresentation> rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> .
+
+<http://semanticscience.org/resource/CHEMINF_TanimotoCoefficientCalculationAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_TopologicalPolarSurfaceAreaCalculationAlgorithm> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+ns1:Aspirin a <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:label "aspirin" ;
+    ns1:hasChemicalGraph ns1:Aspirin_InChI,
+        ns1:Aspirin_SMILES ;
+    ns1:hasDescriptor ns1:Aspirin_LogP,
+        ns1:Aspirin_MolecularWeight,
+        ns1:Aspirin_TPSA ;
+    rdfs:comment "A chemical entity representing acetylsalicylic acid, a widely used analgesic drug." .
+
+ns1:Aspirin_MolecularWeight a ns1:MolecularWeight ;
+    rdfs:label "aspirin molecular weight" ;
+    ns1:hasProvenance ns1:Aspirin_Provenance ;
+    ns1:hasValue 1.8016e+02 ;
+    ns1:isCalculatedBy ns1:RDKit_Descriptor_Algorithm ;
+    ns1:isDescriptorOf ns1:Aspirin ;
+    rdfs:comment "The molecular weight descriptor for aspirin." .
+
+ns1:Caffeine a <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:label "caffeine" ;
+    ns1:hasChemicalGraph ns1:Caffeine_InChI,
+        ns1:Caffeine_SMILES ;
+    ns1:hasDescriptor ns1:Caffeine_LogP,
+        ns1:Caffeine_MolecularWeight,
+        ns1:Caffeine_TPSA ;
+    rdfs:comment "A chemical entity representing the stimulant compound commonly found in coffee and tea." .
+
+ns1:Caffeine_MolecularWeight a ns1:MolecularWeight ;
+    rdfs:label "caffeine molecular weight" ;
+    ns1:hasProvenance ns1:Caffeine_Provenance ;
+    ns1:hasValue 1.9419e+02 ;
+    ns1:isCalculatedBy ns1:RDKit_Descriptor_Algorithm ;
+    ns1:isDescriptorOf ns1:Caffeine ;
+    rdfs:comment "The molecular weight descriptor for caffeine." .
+
+ns1:InChI a owl:Class ;
+    rdfs:label "InChI" ;
+    rdfs:comment "International Chemical Identifier representation." ;
+    rdfs:subClassOf ns1:ChemicalGraph .
+
+ns1:ProvenanceInformation a owl:Class ;
+    rdfs:label "provenance information" ;
+    rdfs:comment "Information about the origin and processing history of data.",
+        "Information about the origin, derivation, and history of chemical data." ;
+    rdfs:subClassOf prov:Entity .
+
+<http://semanticscience.org/resource/CHEMINF_encodedIn> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification>,
+        <http://semanticscience.org/resource/CHEMINF_StructureRepresentation> .
+
+ns1:ChemicalEntity a owl:Class ;
+    rdfs:label "chemical entity" ;
+    rdfs:comment "A chemical substance or molecular entity." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_010004> .
+
+ns1:DescriptorValue a owl:Class ;
+    rdfs:label "descriptor value" ;
+    rdfs:comment "A numerical or qualitative value of a chemical descriptor.",
+        "A specific numerical or categorical value of a chemical descriptor.",
+        "The numerical value of a chemical descriptor." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000300>,
+        <http://semanticscience.org/resource/SIO_000614> .
+
+ns2:DescriptorCalculation a owl:Class ;
+    rdfs:label "Descriptor Calculation" ;
+    rdfs:comment "The process of calculating a chemical descriptor." ;
+    rdfs:subClassOf prov:Activity .
+
+<http://semanticscience.org/resource/CHEMINF_ChemicalDataset> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_containsChemicalEntity> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_usesDataFormat> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_DataFormat> ],
+        <http://semanticscience.org/resource/SIO_Dataset> .
+
+ns1:DataFormatSpecification a owl:Class ;
+    rdfs:label "data format specification" ;
+    rdfs:comment "A formal specification defining a data format standard.",
+        "A formal specification for a data format." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000088> .
+
+ns1:RDKit_Descriptor_Algorithm a ns1:Algorithm ;
+    rdfs:label "RDKit descriptor algorithm" ;
+    ns1:calculatesDescriptor ns1:Aspirin_LogP,
+        ns1:Aspirin_MolecularWeight,
+        ns1:Aspirin_TPSA,
+        ns1:Caffeine_LogP,
+        ns1:Caffeine_MolecularWeight,
+        ns1:Caffeine_TPSA ;
+    ns1:isImplementedBy ns1:RDKit_Software ;
+    rdfs:comment "An algorithm for calculating molecular descriptors using RDKit." .
+
+ns2:DataFormatSpecification a owl:Class ;
+    rdfs:label "data format specification" ;
+    rdfs:comment "A specification for data representation format." ;
+    rdfs:subClassOf dcterms:Standard .
+
+<http://semanticscience.org/resource/CHEMINF_ChemicalGraph> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_represents> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_encodedIn> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_StructureRepresentation> ],
+        <http://semanticscience.org/resource/SIO_Graph> .
+
+ns2:SoftwareImplementation a owl:Class ;
+    rdfs:label "Software Implementation",
+        "software implementation" ;
+    rdfs:comment "A concrete implementation of an algorithm in software.",
+        "An implementation of an algorithm in software." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns2:hasVersion ;
+            owl:someValuesFrom ns2:SoftwareVersion ],
+        <http://semanticscience.org/resource/SIO_000088> .
+
+<http://semanticscience.org/resource/CHEMINF_usesAlgorithm> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_Algorithm> .
+
+ns2:ChemicalGraph a owl:Class ;
+    rdfs:label "Chemical Graph",
+        "chemical graph" ;
+    rdfs:comment "A graph-based representation of a molecular structure.",
+        "A graph-based representation of molecular structure." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns2:represents ;
+            owl:someValuesFrom ns2:ChemicalEntity ],
+        [ a owl:Restriction ;
+            owl:onProperty ns2:encodedIn ;
+            owl:someValuesFrom ns2:SMILESFormat ],
+        [ a owl:Restriction ;
+            owl:onProperty ns2:encodedIn ;
+            owl:someValuesFrom ns2:InChIFormat ],
+        <http://semanticscience.org/resource/SIO_000107> .
+
+<http://semanticscience.org/resource/CHEMINF_Provenance> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_Provenance> .
+
+<http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_DataFormat> .
+
+ns2:ChemicalEntity a owl:Class ;
+    rdfs:label "Chemical Entity",
+        "chemical entity" ;
+    rdfs:comment "A chemical entity such as a molecule or compound.",
+        "A material entity that pertains to chemistry or biochemistry." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_000000>,
+        <http://semanticscience.org/resource/SIO_010004> .
+
+<http://semanticscience.org/resource/CHEMINF_hasDescriptor> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalEntity> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> .
+
+<http://semanticscience.org/resource/CHEMINF_isCalculatedBy> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_Algorithm> ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/CHEMINF_isDerivedFrom> .
+
+ns2:Algorithm a owl:Class ;
+    rdfs:label "Algorithm",
+        "algorithm" ;
+    rdfs:comment "A computational method for processing chemical information.",
+        "A step-by-step procedure for solving a problem or accomplishing a task." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns2:isImplementedIn ;
+            owl:someValuesFrom ns2:SoftwareImplementation ],
+        <http://semanticscience.org/resource/SIO_000089> .
+
+<http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_hasSoftwareVersion> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_SoftwareVersion> ],
+        <http://semanticscience.org/resource/SIO_Software> .
+
+ns1:ChemicalGraph a owl:Class ;
+    rdfs:label "chemical graph" ;
+    rdfs:comment "A representation of molecular structure as a graph." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:encodedIn ;
+            owl:someValuesFrom ns1:DataFormat ],
+        <http://semanticscience.org/resource/SIO_000113> .
+
+ns1:DataFormat a owl:Class ;
+    rdfs:label "data format" ;
+    rdfs:comment "A specification for representing chemical data." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000088> .
+
+ns1:Algorithm a owl:Class ;
+    rdfs:label "algorithm" ;
+    rdfs:comment "A computational method for processing chemical information." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000089> .
+
+ns1:SoftwareImplementation a owl:Class ;
+    rdfs:label "software implementation" ;
+    rdfs:comment "A software tool that implements an algorithm." ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_000099> .
+
+ns2:ChemicalDescriptor a owl:Class ;
+    rdfs:label "Chemical Descriptor",
+        "chemical descriptor" ;
+    rdfs:comment "A measurable or observable property of a chemical entity.",
+        "A quantitative or qualitative property of a chemical entity." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns2:isDescriptorOf ;
+            owl:someValuesFrom ns2:ChemicalEntity ],
+        [ a owl:Restriction ;
+            owl:onProperty ns2:hasValue ;
+            owl:someValuesFrom ns2:DescriptorValue ],
+        [ a owl:Restriction ;
+            owl:onProperty ns2:conformsTo ;
+            owl:someValuesFrom ns2:DataFormatSpecification ],
+        [ a owl:Restriction ;
+            owl:onProperty ns2:isCalculatedBy ;
+            owl:someValuesFrom ns2:Algorithm ],
+        <http://semanticscience.org/resource/SIO_000094> .
+
+<http://semanticscience.org/resource/CHEMINF_Algorithm> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isImplementedIn> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> ],
+        <http://semanticscience.org/resource/SIO_Algorithm> .
+
+<http://semanticscience.org/resource/CHEMINF_ChemicalEntity> a owl:Class ;
+    rdfs:subClassOf <http://semanticscience.org/resource/SIO_ChemicalEntity> .
+
+ns1:ChemicalDescriptor a owl:Class ;
+    rdfs:label "chemical descriptor" ;
+    rdfs:comment "A quantitative or qualitative property of a chemical entity." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasValue ;
+            owl:someValuesFrom ns1:DescriptorValue ],
+        <http://semanticscience.org/resource/SIO_000614> .
+
+<http://semanticscience.org/resource/CHEMINF_ChemicalDescriptor> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_hasValue> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_DescriptorValue> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_conformsTo> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_isCalculatedBy> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_Algorithm> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_hasProvenance> ;
+            owl:someValuesFrom <http://semanticscience.org/resource/CHEMINF_Provenance> ],
+        [ a owl:Restriction ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onProperty <http://semanticscience.org/resource/CHEMINF_hasConfidenceScore> ],
+        <http://semanticscience.org/resource/SIO_Descriptor> .
+
+[] rdf:first ns1:hasChemicalGraph ;
+    rdf:rest ( ns1:represents ) .
+
