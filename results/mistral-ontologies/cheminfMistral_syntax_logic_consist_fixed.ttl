@@ -1,0 +1,1165 @@
+@prefix ns1: <http://example.org/CHEMINF#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:AlgorithmX a ns1:Algorithm,
+        owl:DatatypeProperty ;
+    rdfs:label "AlgorithmX" ;
+    ns1:hasParameter ns1:AlgorithmParameter_TanimotoCoefficient ;
+    ns1:isImplementedIn ns1:SoftwareY ;
+    rdfs:comment "A placeholder or representative algorithm used for molecular analysis or prediction.",
+        "An example algorithm, possibly used in cheminformatics applications for property prediction or analysis." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:Aspirin a ns1:ChemicalEntity,
+        ns1:OrganicCompound ;
+    ns1:encodedIn ns1:InChI_Aspirin,
+        ns1:SMILES_Aspirin ;
+    ns1:hasDescriptor ns1:LogP_Aspirin,
+        ns1:MolecularWeight_Aspirin ;
+    ns1:hasIdentifier ns1:ChemicalIdentifier_Aspirin ;
+    ns1:hasSynonym "2-Acetoxybenzoic acid" ;
+    rdfs:comment "A chemical entity representing acetylsalicylic acid, a widely used analgesic drug." .
+
+ns1:Caffeine a ns1:ChemicalEntity,
+        ns1:OrganicCompound ;
+    ns1:encodedIn ns1:SMILES_Caffeine ;
+    ns1:hasDescriptor ns1:MolecularWeight_Caffeine ;
+    ns1:hasIdentifier ns1:ChemicalIdentifier_Caffeine ;
+    ns1:hasSynonym "1,3,7-Trimethylpurine-2,6-dione" ;
+    rdfs:comment "A chemical entity representing the stimulant compound commonly found in coffee and tea." .
+
+ns1:ChemicalAnalysis_Aspirin a ns1:ChemicalAnalysis ;
+    ns1:ChemicalAnalysis "Analysis of Aspirin using Mass Spectrometry" .
+
+ns1:ChemicalDataset_CHEMINF a ns1:ChemicalDataset ;
+    ns1:ChemicalDataset "CHEMINF Chemical Dataset" .
+
+ns1:ChemicalKinetics_Aspirin a ns1:ChemicalKinetics ;
+    ns1:ChemicalKinetics "Kinetic properties of Aspirin" .
+
+ns1:ChemicalSafety_Aspirin a ns1:ChemicalSafety,
+        ns1:ToxicologicalSafety ;
+    ns1:ChemicalSafety "Aspirin Chemical Safety Information" .
+
+ns1:ChemicalSynthesis_Aspirin a ns1:ChemicalSynthesis ;
+    ns1:ChemicalSynthesis "Synthesis of Aspirin from Salicylic Acid" .
+
+ns1:Citation_CHEMINF a ns1:Citation ;
+    ns1:Citation "CHEMINF Ontology Citation" ;
+    ns1:hasAuthors "Jane Doe" ;
+    ns1:hasDOI "10.1000/example.12345" ;
+    ns1:hasJournal "Journal of Chemical Information" ;
+    ns1:hasTitle "CHEMINF Ontology" ;
+    ns1:hasYear 2023 .
+
+ns1:DatasetMetadata_CHEMINF a ns1:DatasetMetadata ;
+    ns1:DatasetMetadata "CHEMINF Dataset Metadata" ;
+    ns1:hasCreationDate "2023-10-01T12:00:00Z" ;
+    ns1:hasCreator "Jane Doe" ;
+    ns1:hasDescription "A dataset of chemical descriptors and their values." ;
+    ns1:hasLicense ns1:License_OpenSource .
+
+ns1:DescriptorCalculation a owl:DatatypeProperty ;
+    rdfs:label "DescriptorCalculation" ;
+    rdfs:comment "Represents the calculation method used to determine a chemical descriptor's value." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:DescriptorOntology_CHEMINF a ns1:DescriptorOntology ;
+    ns1:DescriptorOntology "CHEMINF Descriptor Ontology" .
+
+ns1:DescriptorValue_ConfidenceInterval_LogP_Aspirin a ns1:DescriptorValue ;
+    ns1:hasConfidenceInterval ns1:ConfidenceInterval_LogP_Aspirin .
+
+ns1:DescriptorValue_MeasurementMethod_LogP_Aspirin a ns1:DescriptorValue ;
+    ns1:hasMeasurementMethod ns1:MeasurementMethod_LogP_Aspirin .
+
+ns1:DescriptorValue_StandardDeviation_LogP_Aspirin a ns1:DescriptorValue ;
+    ns1:hasStandardDeviation ns1:StandardDeviation_LogP_Aspirin .
+
+ns1:EnvironmentalSafety_Aspirin a ns1:EnvironmentalSafety ;
+    ns1:EnvironmentalSafety "Aspirin Environmental Safety Information" .
+
+ns1:HazardStatement_Aspirin a ns1:HazardStatement ;
+    ns1:HazardStatement "Harmful if swallowed" .
+
+ns1:Ibuprofen a ns1:ChemicalEntity,
+        ns1:OrganicCompound ;
+    ns1:encodedIn ns1:SMILES_Ibuprofen ;
+    ns1:hasDescriptor ns1:TopologicalPolarSurfaceArea_Ibuprofen ;
+    rdfs:comment "A chemical entity representing ibuprofen, a commonly used nonsteroidal anti-inflammatory drug." .
+
+ns1:InChI_Caffeine a ns1:ChemicalGraph,
+        ns1:InChI ;
+    ns1:inchiString "InChI=1S/C8H10N4O2/c1-9(11,12)8-6-4-2-10-7(13)14-3-5-11-12/h2-5,7H,9H2,1H3,(H,13,14)" ;
+    rdfs:comment "An instance of the InChI format, representing the structure of caffeine." .
+
+ns1:InferenceEngine_CHEMINF a ns1:InferenceEngine,
+        ns1:SoftwareImplementation ;
+    ns1:InferenceEngine "CHEMINF Inference Engine" ;
+    ns1:actsOn ns1:ChemicalDataset ;
+    ns1:hasConfidenceScore ns1:ConfidenceScore_InferenceEngine_CHEMINF ;
+    ns1:supportsInference ns1:ChemicalDataset ;
+    ns1:usesReasoner ns1:Reasoner_CHEMINF .
+
+ns1:MOL_Format a ns1:MOL,
+        ns1:TextFormat ;
+    ns1:MOL "MOL File Format" .
+
+ns1:OntologyAlignment_CHEMINF_ChEBI a ns1:OntologyAlignment ;
+    ns1:OntologyAlignment "CHEMINF aligned with ChEBI" ;
+    ns1:hasMapping ns1:OntologyMapping_CHEMINF_ChEBI .
+
+ns1:PDB_Format a ns1:BinaryFormat,
+        ns1:PDB ;
+    ns1:PDB "Protein Data Bank Format" .
+
+ns1:PrecautionaryStatement_Aspirin a ns1:PrecautionaryStatement ;
+    ns1:PrecautionaryStatement "Do not breathe dust" .
+
+ns1:QSAR_Algorithm a ns1:Algorithm,
+        ns1:QSAR ;
+    ns1:QSAR "Quantitative Structure-Activity Relationship" ;
+    ns1:isImplementedIn ns1:OpenBabel .
+
+ns1:RDFGraph_CHEMINF a ns1:RDFGraph ;
+    ns1:RDFGraph "CHEMINF RDF Graph" .
+
+ns1:SMILESFormat a owl:DatatypeProperty ;
+    rdfs:label "SMILESFormat" ;
+    rdfs:comment "Specifies the SMILES (Simplified Molecular Input Line Entry System) format used to represent molecular structures as text." ;
+    rdfs:domain ns1:DataFormatSpecification ;
+    rdfs:range xsd:string .
+
+ns1:SimilarityScore_Aspirin_Ibuprofen a ns1:ChemicalDescriptor,
+        ns1:SimilarityScore ;
+    ns1:hasValue ns1:DescriptorValue_SimilarityScore_Aspirin_Ibuprofen .
+
+ns1:StructureRepresentation_Aspirin a ns1:ChemicalGraph,
+        ns1:StructureRepresentation ;
+    ns1:StructureRepresentation "CC(=O)Oc1ccccc1C(=O)O" .
+
+ns1:SubstructureFingerprint_Aspirin a ns1:ChemicalDescriptor,
+        ns1:SubstructureFingerprint ;
+    ns1:hasValue ns1:DescriptorValue_SubstructureFingerprint_Aspirin .
+
+ns1:TanimotoCoefficient_Algorithm a ns1:Algorithm,
+        ns1:TanimotoCoefficient ;
+    ns1:DescriptorCalculation "Tanimoto Coefficient Calculation" ;
+    ns1:hasParameter ns1:AlgorithmParameter_TanimotoCoefficient ;
+    ns1:isImplementedIn ns1:OpenBabel .
+
+ns1:ToxicityPrediction_Algorithm a ns1:Algorithm,
+        ns1:ToxicityPrediction ;
+    ns1:ToxicityPrediction "Toxicity Prediction Model" ;
+    ns1:isImplementedIn ns1:OpenBabel .
+
+ns1:ToxicologicalSafety_Aspirin a ns1:ToxicologicalSafety ;
+    ns1:ToxicologicalSafety "Aspirin Toxicological Safety Information" .
+
+ns1:Unit_DegreesCelsius a ns1:NonSIUnit,
+        ns1:Unit ;
+    ns1:Unit "Degrees Celsius" .
+
+ns1:Unit_Liters a ns1:SIUnit,
+        ns1:Unit ;
+    ns1:Unit "Liters" .
+
+ns1:Unit_Moles a ns1:SIUnit,
+        ns1:Unit ;
+    ns1:Unit "Moles" .
+
+ns1:Unit_Seconds a ns1:SIUnit,
+        ns1:Unit ;
+    ns1:Unit "Seconds" .
+
+ns1:catalyzes a owl:ObjectProperty ;
+    rdfs:label "catalyzes" ;
+    rdfs:comment "Relates a chemical entity to a chemical reaction it catalyzes." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalReaction ;
+    owl:inverseOf ns1:isCatalyzedBy .
+
+ns1:confidenceInterval a owl:DatatypeProperty ;
+    rdfs:label "confidenceInterval" ;
+    rdfs:comment "The confidence interval value for a descriptor value." ;
+    rdfs:domain ns1:ConfidenceInterval ;
+    rdfs:range xsd:decimal .
+
+ns1:encodes a owl:ObjectProperty ;
+    rdfs:label "encodes" ;
+    rdfs:comment "Relates a data format to a chemical graph." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat ;
+    owl:inverseOf ns1:encodedIn .
+
+ns1:hasAncestor a owl:ObjectProperty ;
+    rdfs:label "hasAncestor" ;
+    rdfs:comment "Relates an entity to its ancestor." ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    owl:transitive true .
+
+ns1:hasAuthors a owl:AnnotationProperty ;
+    rdfs:label "hasAuthors" ;
+    rdfs:comment "Relates a citation to its authors." ;
+    rdfs:domain ns1:Citation ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasConfidenceInterval a owl:ObjectProperty ;
+    rdfs:label "hasConfidenceInterval" ;
+    rdfs:comment "Relates a descriptor value to a confidence interval.",
+        "Relates a descriptor value to its confidence interval." ;
+    rdfs:domain ns1:DescriptorValue ;
+    rdfs:range ns1:ConfidenceInterval ;
+    owl:functional true .
+
+ns1:hasCreationDate a owl:AnnotationProperty ;
+    rdfs:label "hasCreationDate" ;
+    rdfs:comment "Relates dataset metadata to its creation date." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:dateTime ;
+    owl:functional true .
+
+ns1:hasCreator a owl:AnnotationProperty ;
+    rdfs:label "hasCreator" ;
+    rdfs:comment "Relates dataset metadata to its creator." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasDOI a owl:AnnotationProperty ;
+    rdfs:label "hasDOI" ;
+    rdfs:comment "Relates a citation to its DOI." ;
+    rdfs:domain ns1:Citation ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasDefaultValue a owl:AnnotationProperty ;
+    rdfs:label "hasDefaultValue" ;
+    rdfs:comment "Relates an algorithm parameter to its default value." ;
+    rdfs:domain ns1:AlgorithmParameter ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasDescription a owl:AnnotationProperty ;
+    rdfs:label "hasDescription" ;
+    rdfs:comment "Relates dataset metadata to its description." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasIdentifier a owl:ObjectProperty ;
+    rdfs:label "hasIdentifier" ;
+    rdfs:comment "Relates a chemical entity to its identifier." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalIdentifier ;
+    owl:functional true .
+
+ns1:hasJournal a owl:AnnotationProperty ;
+    rdfs:label "hasJournal" ;
+    rdfs:comment "Relates a citation to its journal." ;
+    rdfs:domain ns1:Citation ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasMeasurementMethod a owl:ObjectProperty ;
+    rdfs:label "hasMeasurementMethod" ;
+    rdfs:comment "Relates a descriptor value to a measurement method.",
+        "Relates a descriptor value to its measurement method." ;
+    rdfs:domain ns1:DescriptorValue ;
+    rdfs:range ns1:MeasurementMethod ;
+    owl:functional true .
+
+ns1:hasMetadata a owl:ObjectProperty ;
+    rdfs:label "hasMetadata" ;
+    rdfs:comment "Relates a chemical dataset to its metadata." ;
+    rdfs:domain ns1:ChemicalDataset ;
+    rdfs:range ns1:DatasetMetadata ;
+    owl:functional true .
+
+ns1:hasNamespace a owl:AnnotationProperty ;
+    rdfs:label "hasNamespace" ;
+    rdfs:comment "Relates a chemical identifier to its namespace.",
+        "Relates a schema to its namespace." ;
+    rdfs:domain ns1:ChemicalIdentifier,
+        ns1:Schema ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasPart a owl:ObjectProperty ;
+    rdfs:label "hasPart" ;
+    rdfs:comment "Relates an entity to its parts." ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    owl:reflexive true ;
+    owl:transitive true .
+
+ns1:hasRange a owl:AnnotationProperty ;
+    rdfs:label "hasRange" ;
+    rdfs:comment "Relates an algorithm parameter to its range of values." ;
+    rdfs:domain ns1:AlgorithmParameter ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasStandardDeviation a owl:ObjectProperty ;
+    rdfs:label "hasStandardDeviation" ;
+    rdfs:comment "Relates a descriptor value to a standard deviation.",
+        "Relates a descriptor value to its standard deviation." ;
+    rdfs:domain ns1:DescriptorValue ;
+    rdfs:range ns1:StandardDeviation ;
+    owl:functional true .
+
+ns1:hasTimestamp a owl:AnnotationProperty ;
+    rdfs:label "hasTimestamp" ;
+    rdfs:comment "Relates provenance information to a timestamp." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range xsd:dateTime ;
+    owl:functional true .
+
+ns1:hasTitle a owl:AnnotationProperty ;
+    rdfs:label "hasTitle" ;
+    rdfs:comment "Relates a citation to its title." ;
+    rdfs:domain ns1:Citation ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasType a owl:AnnotationProperty ;
+    rdfs:label "hasType" ;
+    rdfs:comment "Relates a license to its type." ;
+    rdfs:domain ns1:License ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasURL a owl:AnnotationProperty ;
+    rdfs:label "hasURL" ;
+    rdfs:comment "Relates a license to its URL." ;
+    rdfs:domain ns1:License ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasUnit a owl:ObjectProperty ;
+    rdfs:label "hasUnit" ;
+    rdfs:comment "Relates a descriptor value to a unit." ;
+    rdfs:domain ns1:DescriptorValue ;
+    rdfs:range ns1:Unit ;
+    owl:functional true .
+
+ns1:hasValue a owl:AnnotationProperty ;
+    rdfs:label "hasValue" ;
+    rdfs:comment "Relates a chemical descriptor to its value.",
+        "Relates a chemical identifier to its value." ;
+    rdfs:domain ns1:ChemicalDescriptor,
+        ns1:ChemicalIdentifier ;
+    rdfs:range ns1:DescriptorValue,
+        xsd:string ;
+    owl:functional true .
+
+ns1:hasVersion a owl:AnnotationProperty ;
+    rdfs:label "hasVersion" ;
+    rdfs:comment "Relates a schema to its version.",
+        "Relates a software implementation to its version." ;
+    rdfs:domain ns1:Schema,
+        ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion,
+        xsd:string ;
+    owl:functional true .
+
+ns1:hasYear a owl:AnnotationProperty ;
+    rdfs:label "hasYear" ;
+    rdfs:comment "Relates a citation to its year." ;
+    rdfs:domain ns1:Citation ;
+    rdfs:range xsd:integer ;
+    owl:functional true .
+
+ns1:implements a owl:ObjectProperty ;
+    rdfs:label "implements" ;
+    rdfs:comment "Relates a software implementation to an algorithm." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:Algorithm ;
+    owl:inverseOf ns1:isImplementedIn .
+
+ns1:isActedOnBy a owl:ObjectProperty ;
+    rdfs:label "isActedOnBy" ;
+    rdfs:comment "Relates a data format to an inference engine that acts on it." ;
+    rdfs:domain ns1:InferenceEngine ;
+    rdfs:range ns1:DataFormat ;
+    owl:inverseOf ns1:actsOn .
+
+ns1:isAnalyzedBy a owl:ObjectProperty ;
+    rdfs:label "isAnalyzedBy" ;
+    rdfs:comment "Relates a chemical entity to an analytical technique." ;
+    rdfs:domain ns1:AnalyticalTechnique ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:analyzes .
+
+ns1:isAnalyzedByEntity a owl:ObjectProperty ;
+    rdfs:label "isAnalyzedByEntity" ;
+    rdfs:comment "Relates a chemical entity to a chemical analysis." ;
+    rdfs:domain ns1:ChemicalAnalysis ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:analyzesEntity .
+
+ns1:isAncestorOf a owl:ObjectProperty ;
+    rdfs:label "isAncestorOf" ;
+    rdfs:comment "Relates an ancestor to its descendant entity." ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    owl:transitive true .
+
+ns1:isAuthorOf a owl:ObjectProperty ;
+    rdfs:label "isAuthorOf" ;
+    rdfs:comment "Relates an author to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range xsd:string ;
+    owl:inverseOf ns1:hasAuthor .
+
+ns1:isCalculatedBy a owl:ObjectProperty ;
+    rdfs:label "isCalculatedBy" ;
+    rdfs:comment "Relates a chemical descriptor to an algorithm." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:calculates .
+
+ns1:isCalculationMethodOf a owl:ObjectProperty ;
+    rdfs:label "isCalculationMethodOf" ;
+    rdfs:comment "Relates a calculation method to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:CalculationMethod ;
+    owl:inverseOf ns1:hasCalculationMethod .
+
+ns1:isCitationOf a owl:ObjectProperty ;
+    rdfs:label "isCitationOf" ;
+    rdfs:comment "Relates a citation to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:Citation ;
+    owl:inverseOf ns1:hasCitation .
+
+ns1:isConfidenceScoreOf a owl:ObjectProperty ;
+    rdfs:label "isConfidenceScoreOf" ;
+    rdfs:comment "Relates a software implementation to its confidence score." ;
+    rdfs:domain ns1:ConfidenceScore ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:hasConfidenceScore .
+
+ns1:isConformedBy a owl:ObjectProperty ;
+    rdfs:label "isConformedBy" ;
+    rdfs:comment "Relates a data format specification to a chemical descriptor." ;
+    rdfs:domain ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:conformsTo .
+
+ns1:isContextInformationOf a owl:ObjectProperty ;
+    rdfs:label "isContextInformationOf" ;
+    rdfs:comment "Relates context information to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:ContextInformation ;
+    owl:inverseOf ns1:hasContextInformation .
+
+ns1:isCreationDateOf a owl:ObjectProperty ;
+    rdfs:label "isCreationDateOf" ;
+    rdfs:comment "Relates a creation date to dataset metadata." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:dateTime .
+
+ns1:isCreatorOf a owl:ObjectProperty ;
+    rdfs:label "isCreatorOf" ;
+    rdfs:comment "Relates a creator to dataset metadata." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:string .
+
+ns1:isDataSourceOf a owl:ObjectProperty ;
+    rdfs:label "isDataSourceOf" ;
+    rdfs:comment "Relates a data source to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:DataSource ;
+    owl:inverseOf ns1:hasDataSource .
+
+ns1:isDescribedBy a owl:ObjectProperty ;
+    rdfs:label "isDescribedBy" ;
+    rdfs:comment "Relates a chemical reaction to chemical kinetics." ;
+    rdfs:domain ns1:ChemicalKinetics ;
+    rdfs:range ns1:ChemicalReaction ;
+    owl:inverseOf ns1:describes .
+
+ns1:isDescriptionOfDataset a owl:ObjectProperty ;
+    rdfs:label "isDescriptionOfDataset" ;
+    rdfs:comment "Relates a description to dataset metadata." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:string .
+
+ns1:isEquivalentTo a owl:ObjectProperty ;
+    rdfs:label "isEquivalentTo" ;
+    rdfs:comment "Relates a chemical entity to another equivalent chemical entity." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:symmetric true .
+
+ns1:isInChIOf a owl:ObjectProperty ;
+    rdfs:label "isInChIOf" ;
+    rdfs:comment "Relates an InChI string to a molecular structure." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:InChI ;
+    owl:inverseOf ns1:hasInChI .
+
+ns1:isIncludedIn a owl:ObjectProperty ;
+    rdfs:label "isIncludedIn" ;
+    rdfs:comment "Relates a chemical reaction to a chemical pathway." ;
+    rdfs:domain ns1:ChemicalPathway ;
+    rdfs:range ns1:ChemicalReaction ;
+    owl:inverseOf ns1:includes .
+
+ns1:isInvolvedIn a owl:ObjectProperty ;
+    rdfs:label "isInvolvedIn" ;
+    rdfs:comment "Relates a chemical entity to a chemical interaction." ;
+    rdfs:domain ns1:ChemicalInteraction ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:involves .
+
+ns1:isLicenseOf a owl:ObjectProperty ;
+    rdfs:label "isLicenseOf" ;
+    rdfs:comment "Relates a license to dataset metadata." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range ns1:License ;
+    owl:inverseOf ns1:hasLicense .
+
+ns1:isMappedBy a owl:ObjectProperty ;
+    rdfs:label "isMappedBy" ;
+    rdfs:comment "Relates an external ontology class to an ontology mapping." ;
+    rdfs:domain ns1:OntologyMapping ;
+    rdfs:range ns1:ExternalOntologyClass ;
+    owl:inverseOf ns1:mapsTo .
+
+ns1:isMolecularStructureOf a owl:ObjectProperty ;
+    rdfs:label "isMolecularStructureOf" ;
+    rdfs:comment "Relates a molecular structure to a chemical entity." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:MolecularStructure ;
+    owl:inverseOf ns1:hasMolecularStructure .
+
+ns1:isPartOf a owl:ObjectProperty ;
+    rdfs:label "isPartOf" ;
+    rdfs:comment "Relates a part to its containing entity." ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    owl:reflexive true ;
+    owl:transitive true .
+
+ns1:isPropertyOf a owl:ObjectProperty ;
+    rdfs:label "isPropertyOf" ;
+    rdfs:comment "Relates a chemical property to a chemical entity." ;
+    rdfs:domain ns1:ChemicalProperty ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:hasProperty .
+
+ns1:isProvenanceOf a owl:ObjectProperty ;
+    rdfs:label "isProvenanceOf" ;
+    rdfs:comment "Relates a chemical descriptor to its provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenance .
+
+ns1:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "isRepresentedBy" ;
+    rdfs:comment "Relates a chemical entity to its chemical graph." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:represents .
+
+ns1:isSMILESOf a owl:ObjectProperty ;
+    rdfs:label "isSMILESOf" ;
+    rdfs:comment "Relates a SMILES string to a molecular structure." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:SMILES ;
+    owl:inverseOf ns1:hasSMILES .
+
+ns1:isSimilarTo a owl:ObjectProperty ;
+    rdfs:label "isSimilarTo" ;
+    rdfs:comment "Relates a chemical entity to another similar chemical entity." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:symmetric true .
+
+ns1:isStructureRepresentationOf a owl:ObjectProperty ;
+    rdfs:label "isStructureRepresentationOf" ;
+    rdfs:comment "Relates a structure representation to a molecular structure." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:StructureRepresentation ;
+    owl:inverseOf ns1:hasStructureRepresentation .
+
+ns1:isSupportedBy a owl:ObjectProperty ;
+    rdfs:label "isSupportedBy" ;
+    rdfs:comment "Relates a data format to an inference engine that supports it." ;
+    rdfs:domain ns1:InferenceEngine ;
+    rdfs:range ns1:DataFormat ;
+    owl:inverseOf ns1:supportsInference .
+
+ns1:isTimestampOf a owl:ObjectProperty ;
+    rdfs:label "isTimestampOf" ;
+    rdfs:comment "Relates a timestamp to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range xsd:dateTime .
+
+ns1:isUsedBy a owl:ObjectProperty ;
+    rdfs:label "isUsedBy" ;
+    rdfs:comment "Relates a reasoner to an inference engine." ;
+    rdfs:domain ns1:Reasoner ;
+    rdfs:range ns1:InferenceEngine ;
+    owl:inverseOf ns1:usesReasoner .
+
+ns1:isValueOf a owl:ObjectProperty ;
+    rdfs:label "isValueOf" ;
+    rdfs:comment "Relates a descriptor value to its chemical descriptor." ;
+    rdfs:domain ns1:DescriptorValue ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:isVersionOf a owl:ObjectProperty ;
+    rdfs:label "isVersionOf" ;
+    rdfs:comment "Relates a software version to a software implementation." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion .
+
+ns1:logP a owl:DatatypeProperty ;
+    rdfs:label "logP" ;
+    rdfs:comment "Represents the logarithm of the partition coefficient (logP), indicating a compound's hydrophobicity." ;
+    rdfs:domain ns1:ChemicalDescriptor .
+
+ns1:measurementMethod a owl:DatatypeProperty ;
+    rdfs:label "measurementMethod" ;
+    rdfs:comment "The measurement method description for a descriptor value." ;
+    rdfs:domain ns1:MeasurementMethod ;
+    rdfs:range xsd:string .
+
+ns1:regulates a owl:ObjectProperty ;
+    rdfs:label "regulates" ;
+    rdfs:comment "Relates a chemical entity to a chemical pathway it regulates." ;
+    rdfs:domain ns1:ChemicalPathway ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:isRegulatedBy .
+
+ns1:standardDeviation a owl:DatatypeProperty ;
+    rdfs:label "standardDeviation" ;
+    rdfs:comment "The standard deviation value for a descriptor value." ;
+    rdfs:domain ns1:StandardDeviation .
+
+ns1:Algorithm_CHEMINF a ns1:Algorithm ;
+    ns1:isImplementedIn ns1:SoftwareImplementation_CHEMINF .
+
+ns1:ChemicalIdentifier_Aspirin a ns1:ChemicalIdentifier ;
+    ns1:ChemicalIdentifier "PubChem:2244" ;
+    ns1:hasNamespace "PubChem" ;
+    ns1:hasValue "2244" ;
+    rdfs:comment "An identifier for aspirin, including namespace and value." .
+
+ns1:ChemicalIdentifier_Caffeine a ns1:ChemicalIdentifier ;
+    ns1:hasNamespace "PubChem" ;
+    ns1:hasValue "2519" ;
+    rdfs:comment "An identifier for caffeine, including namespace and value." .
+
+ns1:ConfidenceScore_CHEMINF a ns1:ConfidenceScore ;
+    ns1:confidenceScore 0.98 .
+
+ns1:ContextInformation_LogP_Aspirin a ns1:ContextInformation ;
+    ns1:isContextInformationOf ns1:Provenance_LogP_Aspirin .
+
+ns1:DataFormatSpecification_CHEMINF a ns1:DataFormatSpecification ;
+    ns1:formatSpecification "CHEMINF data format specification" .
+
+ns1:DataFormat_CHEMINF a ns1:DataFormat ;
+    ns1:conformsTo ns1:DataFormatSpecification_CHEMINF .
+
+ns1:DescriptorValue_LogP_Aspirin a ns1:DescriptorValue ;
+    ns1:descriptorValue 1.2 ;
+    rdfs:comment "The value of the logP descriptor for aspirin." .
+
+ns1:DescriptorValue_MolecularWeight_Aspirin a ns1:DescriptorValue ;
+    ns1:descriptorValue 180.16 ;
+    rdfs:comment "The value of the molecular weight descriptor for aspirin." .
+
+ns1:DescriptorValue_MolecularWeight_Caffeine a ns1:DescriptorValue ;
+    ns1:descriptorValue 194.19 ;
+    rdfs:comment "The value of the molecular weight descriptor for caffeine." .
+
+ns1:DescriptorValue_SimilarityScore_Aspirin_Ibuprofen a ns1:DescriptorValue ;
+    ns1:descriptorValue 0.85 .
+
+ns1:DescriptorValue_SubstructureFingerprint_Aspirin a ns1:DescriptorValue ;
+    ns1:descriptorValue "C1=CC=C(C(=O)O)C2=CC=CC=C2C1=C" .
+
+ns1:DescriptorValue_TopologicalPolarSurfaceArea_Ibuprofen a ns1:DescriptorValue ;
+    ns1:descriptorValue 37.0 ;
+    rdfs:comment "The value of the topological polar surface area descriptor for ibuprofen." .
+
+ns1:ExternalOntologyClass_ChEBI a ns1:ExternalOntologyClass ;
+    ns1:ExternalOntologyClass "ChEBI Class" ;
+    ns1:hasDescription "ChEBI class description" .
+
+ns1:InChI_Aspirin a ns1:ChemicalGraph,
+        ns1:InChI ;
+    ns1:inchiString "InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)" ;
+    rdfs:comment "An instance of the InChI format, representing the structure of aspirin." .
+
+ns1:LogP_Aspirin a ns1:ChemicalDescriptor ;
+    ns1:hasConfidenceInterval ns1:ConfidenceInterval_LogP_Aspirin ;
+    ns1:hasMeasurementMethod ns1:MeasurementMethod_LogP_Aspirin ;
+    ns1:hasStandardDeviation ns1:StandardDeviation_LogP_Aspirin ;
+    ns1:hasValue ns1:DescriptorValue_LogP_Aspirin ;
+    ns1:logP 1.2 ;
+    rdfs:comment "The logP descriptor for aspirin, indicating its hydrophobicity." .
+
+ns1:MappingType_ExactMatch a ns1:MappingType ;
+    ns1:MappingType "Exact Match" ;
+    ns1:hasDescription "Exact match mapping type" .
+
+ns1:MolecularWeight_Aspirin a ns1:ChemicalDescriptor,
+        ns1:MolecularWeight ;
+    ns1:MolecularWeight 180.16 ;
+    ns1:hasValue ns1:DescriptorValue_MolecularWeight_Aspirin ;
+    rdfs:comment "The molecular weight descriptor for aspirin." .
+
+ns1:MolecularWeight_Caffeine a ns1:ChemicalDescriptor,
+        ns1:MolecularWeight ;
+    ns1:hasValue ns1:DescriptorValue_MolecularWeight_Caffeine ;
+    rdfs:comment "The molecular weight descriptor for caffeine." .
+
+ns1:OntologyMapping_CHEMINF_ChEBI a ns1:OntologyMapping ;
+    ns1:OntologyMapping "Mapping between CHEMINF and ChEBI" ;
+    ns1:hasConfidence ns1:0.95 ;
+    ns1:hasMappingType ns1:MappingType_ExactMatch ;
+    ns1:mapsTo ns1:ExternalOntologyClass_ChEBI .
+
+ns1:Provenance_LogP_Aspirin a ns1:ProvenanceInformation ;
+    ns1:hasCalculationMethod ns1:CalculationMethod_LogP_Aspirin ;
+    ns1:hasContextInformation ns1:ContextInformation_LogP_Aspirin ;
+    ns1:hasDataSource ns1:PubChem ;
+    ns1:hasTimestamp "2023-10-01T12:00:00Z" .
+
+ns1:PubChem a ns1:DataSource .
+
+ns1:QSAR a owl:DatatypeProperty ;
+    rdfs:label "QSAR" ;
+    rdfs:comment "Represents Quantitative Structure-Activity Relationships (QSAR) models used for predicting chemical properties." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:Reasoner_CHEMINF a ns1:Reasoner ;
+    ns1:Reasoner "CHEMINF Reasoner" ;
+    ns1:hasReasoningMethod ns1:ReasoningMethod_CHEMINF .
+
+ns1:ReasoningMethod_CHEMINF a ns1:ReasoningMethod ;
+    ns1:ReasoningMethod "Description Logic Reasoning" ;
+    ns1:hasAlgorithm ns1:Algorithm_CHEMINF ;
+    ns1:hasDescription "Description logic reasoning" .
+
+ns1:SMILES_Aspirin a ns1:ChemicalGraph,
+        ns1:SMILES ;
+    ns1:smilesString "CC(=O)Oc1ccccc1C(=O)O" ;
+    rdfs:comment "An instance of the SMILES format, representing the structure of aspirin." .
+
+ns1:SMILES_Caffeine a ns1:ChemicalGraph,
+        ns1:SMILES ;
+    ns1:smilesString "CN1C(=O)N(C)C(=O)N2C1=C2NC(=N)N=C2N1C" ;
+    rdfs:comment "An instance of the SMILES format, representing the structure of caffeine." .
+
+ns1:SMILES_Ibuprofen a ns1:ChemicalGraph,
+        ns1:SMILES ;
+    ns1:smilesString "CC(C)C1=CC=C(C(C)C(C(=O)O)C(C)C)C(C)C1=O" ;
+    rdfs:comment "An instance of the SMILES format, representing the structure of ibuprofen." .
+
+ns1:Schema_SDF a ns1:Schema ;
+    ns1:Schema "SDF Schema" ;
+    ns1:hasNamespace "http://example.org/schemas/sdf" ;
+    ns1:hasVersion "1.0" ;
+    rdfs:comment "A schema for the SDF data format, specifying version and namespace." .
+
+ns1:SimilarityScore a owl:DatatypeProperty ;
+    rdfs:label "SimilarityScore" ;
+    rdfs:comment "Represents the similarity score between chemical compounds, indicating their structural similarity." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:float .
+
+ns1:SoftwareImplementation_CHEMINF a ns1:SoftwareImplementation ;
+    ns1:hasConfidenceScore ns1:ConfidenceScore_CHEMINF ;
+    ns1:hasVersion ns1:SoftwareVersion_CHEMINF ;
+    ns1:supportsDataFormat ns1:DataFormat_CHEMINF .
+
+ns1:SoftwareVersion_CHEMINF a ns1:SoftwareVersion ;
+    ns1:hasVersion "1.0" .
+
+ns1:SoftwareY a ns1:SoftwareImplementation,
+        owl:DatatypeProperty ;
+    rdfs:label "SoftwareY" ;
+    ns1:hasConfidenceScore ns1:ConfidenceScore_OpenBabel ;
+    ns1:hasLicense ns1:License_OpenSource ;
+    ns1:hasVersion ns1:SoftwareVersion_OpenBabel ;
+    ns1:supportsDataFormat ns1:SDF_Format ;
+    rdfs:comment "A representative software implementation used to process or analyze chemical data.",
+        "An example software tool or package used in chemical data processing." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+ns1:SubstructureFingerprint a owl:DatatypeProperty ;
+    rdfs:label "SubstructureFingerprint" ;
+    rdfs:comment "Represents the substructure fingerprint of a chemical compound, used for similarity searches." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:string .
+
+ns1:TanimotoCoefficient a owl:DatatypeProperty ;
+    rdfs:label "TanimotoCoefficient" ;
+    rdfs:comment "Represents the Tanimoto coefficient, a measure of similarity between two chemical compounds." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:float .
+
+ns1:TopologicalPolarSurfaceArea a owl:DatatypeProperty ;
+    rdfs:label "TopologicalPolarSurfaceArea" ;
+    rdfs:comment "Represents the topological polar surface area of a chemical compound, indicating its polarity." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range xsd:decimal .
+
+ns1:TopologicalPolarSurfaceArea_Ibuprofen a ns1:ChemicalDescriptor,
+        ns1:TopologicalPolarSurfaceArea ;
+    ns1:TopologicalPolarSurfaceArea 37.0 ;
+    ns1:hasValue ns1:DescriptorValue_TopologicalPolarSurfaceArea_Ibuprofen ;
+    rdfs:comment "The topological polar surface area descriptor for ibuprofen." .
+
+ns1:ToxicityPrediction a owl:DatatypeProperty ;
+    rdfs:label "ToxicityPrediction" ;
+    rdfs:comment "Represents algorithms used for predicting the toxicity of chemical compounds." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range xsd:string .
+
+ns1:hasAuthor a owl:ObjectProperty ;
+    rdfs:label "hasAuthor" ;
+    rdfs:comment "Relates provenance information to an author." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasCitation a owl:ObjectProperty ;
+    rdfs:label "hasCitation" ;
+    rdfs:comment "Relates provenance information to a citation." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:Citation ;
+    owl:functional true .
+
+ns1:hasConfidenceScore a owl:ObjectProperty ;
+    rdfs:label "hasConfidenceScore" ;
+    rdfs:comment "Relates a software implementation to its confidence score." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:ConfidenceScore ;
+    owl:functional true .
+
+ns1:hasInChI a owl:ObjectProperty ;
+    rdfs:label "hasInChI" ;
+    rdfs:comment "Relates a molecular structure to its InChI string." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:InChI ;
+    owl:functional true .
+
+ns1:hasLicense a owl:ObjectProperty ;
+    rdfs:label "hasLicense" ;
+    rdfs:comment "Relates a software implementation to its license.",
+        "Relates dataset metadata to its license." ;
+    rdfs:domain ns1:DatasetMetadata,
+        ns1:SoftwareImplementation ;
+    rdfs:range ns1:License ;
+    owl:functional true .
+
+ns1:hasMolecularStructure a owl:ObjectProperty ;
+    rdfs:label "hasMolecularStructure" ;
+    rdfs:comment "Relates a chemical entity to its molecular structure." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:MolecularStructure ;
+    owl:functional true .
+
+ns1:hasProperty a owl:ObjectProperty ;
+    rdfs:label "hasProperty" ;
+    rdfs:comment "Relates a chemical entity to a chemical property." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalProperty ;
+    owl:functional true .
+
+ns1:hasSMILES a owl:ObjectProperty ;
+    rdfs:label "hasSMILES" ;
+    rdfs:comment "Relates a molecular structure to its SMILES string." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:SMILES ;
+    owl:functional true .
+
+ns1:hasStructureRepresentation a owl:ObjectProperty ;
+    rdfs:label "hasStructureRepresentation" ;
+    rdfs:comment "Relates a molecular structure to its structure representation." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:StructureRepresentation ;
+    owl:functional true .
+
+ns1:isDescriptorOf a owl:ObjectProperty ;
+    rdfs:label "isDescriptorOf" ;
+    rdfs:comment "Relates a chemical entity to its descriptor." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:isDescriptorOf .
+
+ns1:AlgorithmParameter_TanimotoCoefficient a ns1:AlgorithmParameter ;
+    ns1:hasDefaultValue "0.5" ;
+    ns1:hasRange "0.0 to 1.0" ;
+    rdfs:comment "A parameter for the Tanimoto Coefficient algorithm, specifying default value and range." .
+
+ns1:ChemicalSafety a owl:DatatypeProperty ;
+    rdfs:label "ChemicalSafety" ;
+    rdfs:comment "Represents safety information related to chemical compounds, including hazards and precautions." ;
+    rdfs:domain ns1:ChemicalSafety ;
+    rdfs:range xsd:string .
+
+ns1:ChemicalSynthesis a owl:DatatypeProperty ;
+    rdfs:label "ChemicalSynthesis" ;
+    rdfs:comment "Represents methods and protocols used for the synthesis of chemical compounds." ;
+    rdfs:domain ns1:ChemicalSynthesis ;
+    rdfs:range xsd:string .
+
+ns1:ConfidenceInterval_LogP_Aspirin a ns1:ConfidenceInterval ;
+    ns1:confidenceInterval 0.05 ;
+    rdfs:comment "The confidence interval for the logP descriptor value of aspirin." .
+
+ns1:ConfidenceScore_OpenBabel a ns1:ConfidenceScore ;
+    ns1:ConfidenceScore 0.95,
+        "\"0.95\"^^http://www.w3.org/2001/XMLSchema#float" ;
+    ns1:confidenceScore 0.95 ;
+    rdfs:comment "The confidence score of the OpenBabel software implementation." .
+
+ns1:DescriptorOntology a owl:DatatypeProperty ;
+    rdfs:label "DescriptorOntology" ;
+    rdfs:comment "Represents ontologies used for describing chemical descriptors and their properties." ;
+    rdfs:domain ns1:DescriptorOntology ;
+    rdfs:range xsd:string .
+
+ns1:EnvironmentalSafety a owl:DatatypeProperty ;
+    rdfs:label "EnvironmentalSafety" ;
+    rdfs:comment "Represents environmental safety information related to chemical compounds." ;
+    rdfs:domain ns1:EnvironmentalSafety ;
+    rdfs:range xsd:string .
+
+ns1:HazardStatement a owl:DatatypeProperty ;
+    rdfs:label "HazardStatement" ;
+    rdfs:comment "Represents hazard statements indicating potential risks associated with chemical compounds." ;
+    rdfs:domain ns1:HazardStatement ;
+    rdfs:range xsd:string .
+
+ns1:MOL a owl:DatatypeProperty ;
+    rdfs:label "MOL" ;
+    rdfs:comment "Represents the MOL file format used for representing molecular structures." ;
+    rdfs:domain ns1:MOL ;
+    rdfs:range xsd:string .
+
+ns1:MappingType a owl:DatatypeProperty ;
+    rdfs:label "MappingType" ;
+    rdfs:comment "Represents the type of mapping between CHEMINF and external ontologies, such as exact match or close match." ;
+    rdfs:domain ns1:MappingType ;
+    rdfs:range xsd:string .
+
+ns1:MeasurementMethod_LogP_Aspirin a ns1:MeasurementMethod ;
+    ns1:measurementMethod "Experimental determination" ;
+    rdfs:comment "The measurement method for the logP descriptor value of aspirin." .
+
+ns1:MolecularWeight a owl:DatatypeProperty ;
+    rdfs:label "MolecularWeight" ;
+    rdfs:comment "Represents the molecular weight of a chemical compound, calculated based on atomic composition." ;
+    rdfs:domain ns1:ChemicalDescriptor .
+
+ns1:OntologyAlignment a owl:DatatypeProperty ;
+    rdfs:label "OntologyAlignment" ;
+    rdfs:comment "Represents the alignment of the CHEMINF ontology with other ontologies, such as ChEBI or SIO." ;
+    rdfs:domain ns1:OntologyAlignment ;
+    rdfs:range xsd:string .
+
+ns1:PDB a owl:DatatypeProperty ;
+    rdfs:label "PDB" ;
+    rdfs:comment "Represents the Protein Data Bank (PDB) format used for representing protein structures." ;
+    rdfs:domain ns1:PDB ;
+    rdfs:range xsd:string .
+
+ns1:PrecautionaryStatement a owl:DatatypeProperty ;
+    rdfs:label "PrecautionaryStatement" ;
+    rdfs:comment "Represents precautionary statements indicating safety measures for handling chemical compounds." ;
+    rdfs:domain ns1:PrecautionaryStatement ;
+    rdfs:range xsd:string .
+
+ns1:RDFGraph a owl:DatatypeProperty ;
+    rdfs:label "RDFGraph" ;
+    rdfs:comment "Represents RDF graphs used for semantic representation of chemical data." ;
+    rdfs:domain ns1:RDFGraph ;
+    rdfs:range xsd:string .
+
+ns1:ReasoningMethod a owl:DatatypeProperty ;
+    rdfs:label "ReasoningMethod" ;
+    rdfs:comment "Represents reasoning methods used by inference engines for logical inference." ;
+    rdfs:domain ns1:ReasoningMethod ;
+    rdfs:range xsd:string .
+
+ns1:SDF a owl:DatatypeProperty ;
+    rdfs:label "SDF" ;
+    rdfs:comment "Represents the Structure Data File (SDF) format used for chemical data exchange." ;
+    rdfs:domain ns1:SDF ;
+    rdfs:range xsd:string .
+
+ns1:SDF_Format a ns1:SDF,
+        ns1:TextFormat ;
+    ns1:SDF "Structure Data File Format" ;
+    ns1:hasSchema ns1:Schema_SDF ;
+    rdfs:comment "An instance of the SDF data format, used to represent molecular structures." .
+
+ns1:SoftwareVersion_OpenBabel a ns1:SoftwareVersion ;
+    ns1:hasVersion "2.4.1" ;
+    rdfs:comment "The version of the OpenBabel software implementation." .
+
+ns1:StandardDeviation_LogP_Aspirin a ns1:StandardDeviation ;
+    ns1:standardDeviation 0.02 ;
+    rdfs:comment "The standard deviation for the logP descriptor value of aspirin." .
+
+ns1:AlgorithmParameter a owl:Class ;
+    rdfs:label "AlgorithmParameter" ;
+    rdfs:comment "A class representing parameters for algorithms." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ChemicalAnalysis a owl:DatatypeProperty ;
+    rdfs:label "ChemicalAnalysis" ;
+    rdfs:comment "Represents analytical techniques used for the analysis of chemical compounds." ;
+    rdfs:domain ns1:ChemicalAnalysis ;
+    rdfs:range xsd:string .
+
+ns1:ChemicalKinetics a owl:DatatypeProperty ;
+    rdfs:label "ChemicalKinetics" ;
+    rdfs:comment "Represents the kinetic properties of chemical reactions, including rate constants." ;
+    rdfs:domain ns1:ChemicalKinetics ;
+    rdfs:range xsd:string .
+
+ns1:ConfidenceInterval a owl:Class ;
+    rdfs:label "ConfidenceInterval" ;
+    rdfs:comment "A class representing confidence intervals for descriptor values." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ExternalOntologyClass a owl:DatatypeProperty ;
+    rdfs:label "ExternalOntologyClass" ;
+    rdfs:comment "Represents classes from external ontologies that are mapped to CHEMINF concepts." ;
+    rdfs:domain ns1:ExternalOntologyClass ;
+    rdfs:range xsd:string .
+
+ns1:License_OpenSource a ns1:License ;
+    ns1:License "Open Source License" ;
+    ns1:hasType "Open Source" ;
+    ns1:hasURL "http://example.org/licenses/open-source" ;
+    rdfs:comment "A license for open-source software implementations." .
+
+ns1:MeasurementMethod a owl:Class ;
+    rdfs:label "MeasurementMethod" ;
+    rdfs:comment "A class representing measurement methods for descriptor values." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OntologyMapping a owl:DatatypeProperty ;
+    rdfs:label "OntologyMapping" ;
+    rdfs:comment "Represents mappings between the CHEMINF ontology and external ontologies." ;
+    rdfs:domain ns1:OntologyMapping ;
+    rdfs:range xsd:string .
+
+ns1:OpenBabel a ns1:OpenSourceSoftware,
+        ns1:SoftwareTool ;
+    ns1:hasConfidenceScore ns1:ConfidenceScore_OpenBabel ;
+    ns1:hasLicense ns1:License_OpenSource ;
+    ns1:hasVersion ns1:SoftwareVersion_OpenBabel ;
+    ns1:supportsDataFormat ns1:SDF_Format .
+
+ns1:Reasoner a owl:DatatypeProperty ;
+    rdfs:label "Reasoner" ;
+    rdfs:comment "Represents reasoners used for logical inference over chemical data." ;
+    rdfs:domain ns1:Reasoner ;
+    rdfs:range xsd:string .
+
+ns1:StandardDeviation a owl:Class ;
+    rdfs:label "StandardDeviation" ;
+    rdfs:comment "A class representing standard deviations for descriptor values." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StructureRepresentation a owl:DatatypeProperty ;
+    rdfs:label "StructureRepresentation" ;
+    rdfs:comment "Represents the structural representation of a chemical compound, such as SMILES or InChI strings." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range xsd:string .
+
+ns1:ToxicologicalSafety a owl:DatatypeProperty ;
+    rdfs:label "ToxicologicalSafety" ;
+    rdfs:comment "Represents toxicological safety information related to chemical compounds." ;
+    rdfs:domain ns1:ToxicologicalSafety ;
+    rdfs:range xsd:string .
+
+ns1:InferenceEngine a owl:DatatypeProperty ;
+    rdfs:label "InferenceEngine" ;
+    rdfs:comment "Represents inference engines used for reasoning over chemical data." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range xsd:string .
+
+ns1:Schema a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "Schema" ;
+    rdfs:comment "A class representing schemas for data formats.",
+        "Represents schemas used for validating data formats in the CHEMINF ontology." ;
+    rdfs:domain ns1:Schema ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ChemicalDataset a owl:DatatypeProperty ;
+    rdfs:label "ChemicalDataset" ;
+    rdfs:comment "Represents datasets containing chemical data, used for analysis and prediction." ;
+    rdfs:domain ns1:ChemicalDataset ;
+    rdfs:range xsd:string .
+
+ns1:ConfidenceScore a owl:DatatypeProperty ;
+    rdfs:label "ConfidenceScore" ;
+    rdfs:comment "Represents the confidence score of a prediction or calculation, indicating its reliability." ;
+    rdfs:domain ns1:ConfidenceScore .
+
+ns1:ChemicalIdentifier a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "ChemicalIdentifier" ;
+    rdfs:comment "A class representing identifiers for chemical entities.",
+        "Represents identifiers used to uniquely identify chemical compounds, such as PubChem IDs." ;
+    rdfs:domain ns1:ChemicalIdentifier ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:License a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "License" ;
+    rdfs:comment "A class representing licenses for software implementations.",
+        "Represents licenses associated with software implementations or datasets." ;
+    rdfs:domain ns1:License ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Unit a owl:DatatypeProperty ;
+    rdfs:label "Unit" ;
+    rdfs:comment "Represents units of measurement used for chemical properties." ;
+    rdfs:domain ns1:Unit ;
+    rdfs:range xsd:string .
+
+ns1:Citation a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "Citation" ;
+    rdfs:comment "A class representing citations for provenance information.",
+        "Represents citations for provenance information, including DOI, title, authors, journal, and year." ;
+    rdfs:domain ns1:Citation ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DatasetMetadata a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "DatasetMetadata" ;
+    rdfs:comment "A class representing metadata for chemical datasets.",
+        "Represents metadata associated with chemical datasets, including creator, creation date, description, and license." ;
+    rdfs:domain ns1:DatasetMetadata ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Thing .
+

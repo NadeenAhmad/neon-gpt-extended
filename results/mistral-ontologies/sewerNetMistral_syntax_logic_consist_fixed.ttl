@@ -1,0 +1,1835 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://example.org/sewernet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:AccessManhole1 a ns1:AccessManhole ;
+    ns1:hasLocation ns1:GeospatialPoint1 ;
+    rdfs:comment "A specific access manhole in the sewer network." .
+
+ns1:ActiveStatus1 a ns1:ActiveStatus ;
+    rdfs:comment "A specific active status in the sewer network." .
+
+ns1:AirQualityImpact1 a ns1:AirQualityImpact ;
+    rdfs:comment "A specific air quality impact in the sewer network." .
+
+ns1:ApprovedStatus1 a ns1:ApprovedStatus ;
+    rdfs:comment "A specific approved status in the sewer network." .
+
+ns1:Capacity1 a ns1:Capacity ;
+    ns1:hasCapacity "3.0"^^xsd:float ;
+    rdfs:comment "A specific capacity measurement in the sewer network." .
+
+ns1:CapacityValue a owl:DatatypeProperty ;
+    rdfs:comment "Represents the capacity value of a hydraulic property." ;
+    rdfs:domain ns1:Capacity ;
+    rdfs:range xsd:float .
+
+ns1:CatchBasin1 a ns1:CatchBasin ;
+    ns1:hasLocation ns1:GeospatialPoint5 ;
+    rdfs:comment "A specific catch basin in the sewer network." .
+
+ns1:City1 a ns1:City ;
+    rdfs:label "Munich" ;
+    rdfs:comment "A specific city in the administrative region." .
+
+ns1:CityCouncil1 a ns1:CityCouncil ;
+    rdfs:label "Munich City Council" ;
+    rdfs:comment "A specific city council in the municipal authority." .
+
+ns1:CleaningActivity a owl:Class ;
+    rdfs:comment "A class representing cleaning activities in the sewer network." ;
+    rdfs:subClassOf ns1:OperationalEvent .
+
+ns1:CombinedSewerOverflow1 a ns1:CombinedSewerOverflow ;
+    ns1:hasOverflowDate "2021-09-06T16:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific combined sewer overflow in the sewer network." .
+
+ns1:CompleteBlockage1 a ns1:CompleteBlockage ;
+    ns1:hasBlockageDate "2021-09-05T15:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific complete blockage in the sewer network." .
+
+ns1:CompletionDate a owl:DatatypeProperty ;
+    rdfs:comment "Specifies the completion date of a repair." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range xsd:dateTime .
+
+ns1:ComplianceInspection1 a ns1:ComplianceInspection ;
+    ns1:hasInspectionDate "2021-10-05T10:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific compliance inspection in the sewer network." .
+
+ns1:CompliantStatus1 a ns1:CompliantStatus ;
+    rdfs:comment "A specific compliant status in the sewer network." .
+
+ns1:ConstructionRecord1 a ns1:ConstructionRecord ;
+    ns1:hasReportedDate "2021-06-01T09:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific construction record in the historical record." .
+
+ns1:CorrectiveMaintenance1 a ns1:CorrectiveMaintenance ;
+    ns1:hasMaintenanceDate "2021-08-10T13:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific corrective maintenance activity in the sewer network." .
+
+ns1:Country1 a ns1:Country ;
+    rdfs:label "Germany" ;
+    rdfs:comment "A specific country in the administrative region." .
+
+ns1:CriticalCondition1 a ns1:CriticalCondition ;
+    rdfs:comment "A specific critical condition status in the sewer network." .
+
+ns1:DOLCE-lite a owl:Class ;
+    rdfs:comment "A subclass of FoundationalOntology representing the DOLCE-lite ontology." ;
+    rdfs:subClassOf ns1:FoundationalOntology .
+
+ns1:DecommissionedStatus1 a ns1:DecommissionedStatus ;
+    rdfs:comment "A specific decommissioned status in the sewer network." .
+
+ns1:DeterioratedCondition a owl:Class ;
+    rdfs:comment "A subclass of StructuralCondition representing deteriorated condition." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:DischargePoint1 a ns1:DischargePoint ;
+    ns1:hasLocation ns1:GeospatialPoint7 ;
+    rdfs:comment "A specific discharge point in the sewer network." .
+
+ns1:District1 a ns1:District ;
+    rdfs:label "Maxvorstadt" ;
+    rdfs:comment "A specific district in the administrative region." .
+
+ns1:DroughtEvent1 a ns1:DroughtEvent ;
+    ns1:hasReportedDate "2021-12-21T11:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific drought event in the sewer network." .
+
+ns1:EarthquakeEvent1 a ns1:EarthquakeEvent ;
+    ns1:hasReportedDate "2021-09-05T15:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific earthquake event in the sewer network." .
+
+ns1:EmergencyInspection1 a ns1:EmergencyInspection ;
+    ns1:hasInspectionDate "2021-07-20T14:30:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific emergency inspection in the sewer network." .
+
+ns1:EmergencyInspectionSchedule1 a ns1:EmergencyInspectionSchedule ;
+    ns1:hasScheduledDate "2021-07-20T14:30:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific emergency inspection schedule in the sewer network." .
+
+ns1:EmergencyMaintenancePermit1 a ns1:EmergencyMaintenancePermit ;
+    rdfs:comment "A specific emergency maintenance permit in the sewer network." .
+
+ns1:EmergencyMaintenanceSchedule1 a ns1:EmergencyMaintenanceSchedule ;
+    ns1:hasScheduledDate "2021-08-10T13:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific emergency maintenance schedule in the sewer network." .
+
+ns1:EmergencyPumpingStation1 a ns1:EmergencyPumpingStation ;
+    ns1:hasLocation ns1:GeospatialPoint12 ;
+    rdfs:comment "A specific emergency pumping station in the sewer network." .
+
+ns1:EmergencyRepair1 a ns1:EmergencyRepair ;
+    ns1:hasRepairDate "2021-12-22T10:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific emergency repair activity in the sewer network." .
+
+ns1:EmergencyRepairPermit1 a ns1:EmergencyRepairPermit ;
+    rdfs:comment "A specific emergency repair permit in the sewer network." .
+
+ns1:EnvironmentalAgency1 a ns1:EnvironmentalAgency ;
+    rdfs:label "Bavarian Environmental Agency" ;
+    rdfs:comment "A specific environmental agency in the regulatory authority." .
+
+ns1:ExpiredStatus1 a ns1:ExpiredStatus ;
+    rdfs:comment "A specific expired status in the sewer network." .
+
+ns1:FairCondition1 a ns1:FairCondition ;
+    rdfs:comment "A specific fair condition status in the sewer network." .
+
+ns1:FloodEvent1 a ns1:FloodEvent ;
+    ns1:hasReportedDate "2021-07-15T12:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific flood event in the sewer network." .
+
+ns1:FlowRate1 a ns1:FlowRate ;
+    ns1:hasFlowRate "1.5"^^xsd:float ;
+    rdfs:comment "A specific flow rate measurement in the sewer network." .
+
+ns1:FlowRateValue a owl:DatatypeProperty ;
+    rdfs:comment "Represents the flow rate value of a hydraulic property." ;
+    rdfs:domain ns1:FlowRate ;
+    rdfs:range xsd:float .
+
+ns1:FlowVolumeValue a owl:DatatypeProperty ;
+    rdfs:comment "Represents the flow volume value of a hydraulic property." ;
+    rdfs:domain ns1:FlowVolume ;
+    rdfs:range xsd:float .
+
+ns1:GeospatialArea a owl:Class ;
+    rdfs:comment "A subclass of GeospatialData representing geospatial areas." ;
+    rdfs:subClassOf ns1:GeospatialData .
+
+ns1:GeospatialLine a owl:Class ;
+    rdfs:comment "A subclass of GeospatialData representing geospatial lines." ;
+    rdfs:subClassOf ns1:GeospatialData .
+
+ns1:GeospatialPolygon a owl:Class ;
+    rdfs:comment "A subclass of GeospatialData representing geospatial polygons." ;
+    rdfs:subClassOf ns1:GeospatialData .
+
+ns1:GoodCondition1 a ns1:GoodCondition ;
+    rdfs:comment "A specific good condition status in the sewer network." .
+
+ns1:HealthDepartment1 a ns1:HealthDepartment ;
+    rdfs:label "Munich Health Department" ;
+    rdfs:comment "A specific health department in the regulatory authority." .
+
+ns1:INSPIREDirective a ns1:INSPIRECompliance ;
+    rdfs:comment "A European Union directive for spatial data infrastructure known as INSPIRE." .
+
+ns1:INSPIREDirective2007_001 a ns1:INSPIREDirective2007 .
+
+ns1:INSPIREDirective2007_1 a ns1:INSPIREDirective2007 ;
+    rdfs:comment "A specific compliance with INSPIRE Directive 2007 in the sewer network." .
+
+ns1:INSPIREDirective2010_1 a ns1:INSPIREDirective2010 ;
+    rdfs:comment "A specific compliance with INSPIRE Directive 2010 in the sewer network." .
+
+ns1:InactiveStatus1 a ns1:InactiveStatus ;
+    rdfs:comment "A specific inactive status in the sewer network." .
+
+ns1:InspectionEvent2021 a ns1:Inspection ;
+    rdfs:comment "An inspection event that took place in the year 2021." .
+
+ns1:InspectionManhole1 a ns1:InspectionManhole ;
+    ns1:hasLocation ns1:GeospatialPoint3 ;
+    rdfs:comment "A specific inspection manhole in the sewer network." .
+
+ns1:InspectionRecord1 a ns1:InspectionRecord ;
+    ns1:hasReportedDate "2021-05-15T08:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific inspection record in the historical record." .
+
+ns1:JunctionManhole1 a ns1:JunctionManhole ;
+    ns1:hasLocation ns1:GeospatialPoint2 ;
+    rdfs:comment "A specific junction manhole in the sewer network." .
+
+ns1:LateralPipe1 a ns1:LateralPipe ;
+    ns1:hasDiameter "0.3"^^xsd:float ;
+    ns1:hasFlowCapacity "0.8"^^xsd:float ;
+    ns1:hasMaterial "HDPE"^^xsd:string ;
+    ns1:hasSlope "0.001"^^xsd:float ;
+    rdfs:comment "A specific lateral pipe in the sewer network." .
+
+ns1:MainPipe1 a ns1:MainPipe ;
+    ns1:hasDiameter "0.75"^^xsd:float ;
+    ns1:hasFlowCapacity "2.0"^^xsd:float ;
+    ns1:hasMaterial "PVC"^^xsd:string ;
+    ns1:hasSlope "0.003"^^xsd:float ;
+    rdfs:comment "A specific main pipe in the sewer network." .
+
+ns1:MainSewerLine a ns1:NetworkComponent ;
+    rdfs:comment "A primary component of the sewer system responsible for transporting wastewater." .
+
+ns1:MaintenanceFrequency a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Indicates how often maintenance is performed on the infrastructure component." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range xsd:string .
+
+ns1:MaintenanceRecord1 a ns1:MaintenanceRecord ;
+    ns1:hasReportedDate "2021-08-10T13:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific maintenance record in the historical record." .
+
+ns1:MaintenanceStatus1 a ns1:MaintenanceStatus ;
+    rdfs:comment "A specific maintenance status in the sewer network." .
+
+ns1:MajorRepair1 a ns1:MajorRepair ;
+    ns1:hasRepairDate "2021-09-07T14:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific major repair activity in the sewer network." .
+
+ns1:MajorRepairPermit1 a ns1:MajorRepairPermit ;
+    rdfs:comment "A specific major repair permit in the sewer network." .
+
+ns1:Manhole123 a ns1:Manhole ;
+    rdfs:comment "A specific manhole identified for access or inspection purposes in the sewer system." .
+
+ns1:MeasurementDate a owl:DatatypeProperty ;
+    rdfs:comment "Indicates the measurement date of a hydraulic property." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range xsd:dateTime .
+
+ns1:MinorRepair1 a ns1:MinorRepair ;
+    ns1:hasRepairDate "2021-07-17T09:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific minor repair activity in the sewer network." .
+
+ns1:MinorRepairPermit1 a ns1:MinorRepairPermit ;
+    rdfs:comment "A specific minor repair permit in the sewer network." .
+
+ns1:MinorRepair_001 a ns1:MinorRepair ;
+    ns1:restores ns1:StructuralCondition_001 .
+
+ns1:NonCompliantStatus1 a ns1:NonCompliantStatus ;
+    rdfs:comment "A specific non-compliant status in the sewer network." .
+
+ns1:OverflowPoint1 a ns1:OverflowPoint ;
+    ns1:hasLocation ns1:GeospatialPoint8 ;
+    rdfs:comment "A specific overflow point in the sewer network." .
+
+ns1:PartialBlockage1 a ns1:PartialBlockage ;
+    ns1:hasBlockageDate "2021-07-15T12:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific partial blockage in the sewer network." .
+
+ns1:PendingComplianceStatus1 a ns1:PendingComplianceStatus ;
+    rdfs:comment "A specific pending compliance status in the sewer network." .
+
+ns1:PendingStatus1 a ns1:PendingStatus ;
+    rdfs:comment "A specific pending status in the sewer network." .
+
+ns1:PeriodicInspectionSchedule1 a ns1:PeriodicInspectionSchedule ;
+    ns1:hasScheduledDate "2021-10-05T10:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific periodic inspection schedule in the sewer network." .
+
+ns1:PeriodicMaintenanceSchedule1 a ns1:PeriodicMaintenanceSchedule ;
+    ns1:hasScheduledDate "2021-11-15T11:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific periodic maintenance schedule in the sewer network." .
+
+ns1:Pipe1 a ns1:Pipe ;
+    ns1:hasDiameter "0.5"^^xsd:float ;
+    ns1:hasFlowCapacity "1.2"^^xsd:float ;
+    ns1:hasMaterial "Concrete"^^xsd:string ;
+    ns1:hasSlope "0.002"^^xsd:float ;
+    rdfs:comment "A specific pipe in the sewer network." .
+
+ns1:PoorCondition1 a ns1:PoorCondition ;
+    rdfs:comment "A specific poor condition status in the sewer network." .
+
+ns1:PredictiveMaintenance1 a ns1:PredictiveMaintenance ;
+    ns1:hasMaintenanceDate "2021-11-15T11:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific predictive maintenance activity in the sewer network." .
+
+ns1:Pressure1 a ns1:Pressure ;
+    ns1:hasPressure "2.0"^^xsd:float ;
+    rdfs:comment "A specific pressure measurement in the sewer network." .
+
+ns1:PressureValue a owl:DatatypeProperty ;
+    rdfs:comment "Represents the pressure value of a hydraulic property." ;
+    rdfs:domain ns1:Pressure ;
+    rdfs:range xsd:float .
+
+ns1:PreventiveMaintenance1 a ns1:PreventiveMaintenance ;
+    ns1:hasMaintenanceDate "2021-06-01T09:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific preventive maintenance activity in the sewer network." .
+
+ns1:PreventiveMaintenance_001 a ns1:PreventiveMaintenance ;
+    ns1:MaintenanceDate "2023-10-05T14:00:00Z" ;
+    ns1:addresses ns1:StructuralCondition_001 ;
+    ns1:hasMaintenanceDate "2023-10-05T14:00:00Z" .
+
+ns1:PrimaryPumpingStation1 a ns1:PrimaryPumpingStation ;
+    ns1:hasLocation ns1:GeospatialPoint10 ;
+    rdfs:comment "A specific primary pumping station in the sewer network." .
+
+ns1:RAEPAStandard a ns1:RAEPACompliance ;
+    rdfs:comment "A regulatory or technical standard published by RAEPA for sewer infrastructure." .
+
+ns1:RAEPAv1.2Compliance_001 a ns1:RAEPAv1.2Compliance .
+
+ns1:RAEPAv1_2Compliance1 a ns1:RAEPAv1.2Compliance ;
+    rdfs:comment "A specific compliance with RAEPA v1.2 standards in the sewer network." .
+
+ns1:RAEPAv1_3Compliance1 a ns1:RAEPAv1.3Compliance ;
+    rdfs:comment "A specific compliance with RAEPA v1.3 standards in the sewer network." .
+
+ns1:RecurringBlockage1 a ns1:RecurringBlockage ;
+    ns1:hasBlockageDate "2021-12-20T10:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific recurring blockage in the sewer network." .
+
+ns1:RejectedStatus1 a ns1:RejectedStatus ;
+    rdfs:comment "A specific rejected status in the sewer network." .
+
+ns1:RepairActivity456 a ns1:Repair ;
+    rdfs:comment "A specific repair activity logged in the system, identified by the ID 456." .
+
+ns1:RepairRecord1 a ns1:RepairRecord ;
+    ns1:hasReportedDate "2021-11-15T11:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific repair record in the historical record." .
+
+ns1:ReportedDate a owl:DatatypeProperty ;
+    rdfs:comment "Denotes the reported date of a blockage or overflow." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range xsd:dateTime .
+
+ns1:RoofDrain1 a ns1:RoofDrain ;
+    ns1:hasLocation ns1:GeospatialPoint6 ;
+    rdfs:comment "A specific roof drain in the sewer network." .
+
+ns1:RoutineInspection1 a ns1:RoutineInspection ;
+    ns1:hasInspectionDate "2021-05-15T08:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific routine inspection in the sewer network." .
+
+ns1:RoutineInspectionSchedule1 a ns1:RoutineInspectionSchedule ;
+    ns1:hasScheduledDate "2021-05-15T08:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific routine inspection schedule in the sewer network." .
+
+ns1:RoutineInspection_001 a ns1:RoutineInspection ;
+    ns1:InspectionDate "2023-10-01T09:00:00Z" ;
+    ns1:hasInspectionDate "2023-10-01T09:00:00Z" ;
+    ns1:targets ns1:MainPipe_001 .
+
+ns1:RoutineMaintenancePermit1 a ns1:RoutineMaintenancePermit ;
+    rdfs:comment "A specific routine maintenance permit in the sewer network." .
+
+ns1:RoutineMaintenanceSchedule1 a ns1:RoutineMaintenanceSchedule ;
+    ns1:hasScheduledDate "2021-06-01T09:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific routine maintenance schedule in the sewer network." .
+
+ns1:SanitarySewerOverflow1 a ns1:SanitarySewerOverflow ;
+    ns1:hasOverflowDate "2021-07-16T13:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific sanitary sewer overflow in the sewer network." .
+
+ns1:SanitarySewerOverflow_001 a ns1:SanitarySewerOverflow ;
+    ns1:OverflowDate "2023-10-04T12:00:00Z" ;
+    ns1:hasOverflowDate "2023-10-04T12:00:00Z" ;
+    ns1:resultsFrom ns1:PartialBlockage_001 .
+
+ns1:ScheduledDate a owl:DatatypeProperty ;
+    rdfs:comment "Indicates the scheduled date for an inspection or maintenance activity." ;
+    rdfs:domain ns1:InspectionSchedule ;
+    rdfs:range xsd:dateTime .
+
+ns1:SecondaryPumpingStation1 a ns1:SecondaryPumpingStation ;
+    ns1:hasLocation ns1:GeospatialPoint11 ;
+    rdfs:comment "A specific secondary pumping station in the sewer network." .
+
+ns1:ServicePipe1 a ns1:ServicePipe ;
+    ns1:hasDiameter "0.2"^^xsd:float ;
+    ns1:hasFlowCapacity "0.5"^^xsd:float ;
+    ns1:hasMaterial "Cast Iron"^^xsd:string ;
+    ns1:hasSlope "0.0015"^^xsd:float ;
+    rdfs:comment "A specific service pipe in the sewer network." .
+
+ns1:SewerNetOntology a owl:Ontology ;
+    dcterms:created "2023-10-01" ;
+    dcterms:creator "Environmental Engineering Expert" ;
+    dcterms:description "An ontology for representing sewer network components, operational events, geospatial information, and compliance with established standards." ;
+    dcterms:modified "2023-10-01" ;
+    dcterms:title "SewerNet Ontology" .
+
+ns1:SoilErosionImpact1 a ns1:SoilErosionImpact ;
+    rdfs:comment "A specific soil erosion impact in the sewer network." .
+
+ns1:State1 a ns1:State ;
+    rdfs:label "Bavaria" ;
+    rdfs:comment "A specific state in the administrative region." .
+
+ns1:StormDrain1 a ns1:StormDrain ;
+    ns1:hasLocation ns1:GeospatialPoint4 ;
+    rdfs:comment "A specific storm drain in the sewer network." .
+
+ns1:StormDrain_001 a ns1:StormDrain ;
+    ns1:GeospatialCoordinates "52.5200, 13.4050" ;
+    ns1:hasCoordinates "52.5200, 13.4050" .
+
+ns1:StormEvent1 a ns1:StormEvent ;
+    ns1:hasReportedDate "2021-12-20T10:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific storm event in the sewer network." .
+
+ns1:StormwaterOverflow1 a ns1:StormwaterOverflow ;
+    ns1:hasOverflowDate "2021-12-21T11:00:00+00:00"^^xsd:dateTime ;
+    rdfs:comment "A specific stormwater overflow in the sewer network." .
+
+ns1:StructuralConditionAssessmentDate a owl:DatatypeProperty ;
+    rdfs:comment "Specifies the date when a structural condition was assessed." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range xsd:dateTime .
+
+ns1:StructuralDamageImpact1 a ns1:StructuralDamageImpact ;
+    rdfs:comment "A specific structural damage impact in the sewer network." .
+
+ns1:TimeOntology a owl:Class ;
+    rdfs:comment "A subclass of FoundationalOntology representing the Time ontology." ;
+    rdfs:subClassOf ns1:FoundationalOntology .
+
+ns1:TownCouncil1 a ns1:TownCouncil ;
+    rdfs:label "Garching Town Council" ;
+    rdfs:comment "A specific town council in the municipal authority." .
+
+ns1:TreatmentPlantOutlet1 a ns1:TreatmentPlantOutlet ;
+    ns1:hasLocation ns1:GeospatialPoint9 ;
+    rdfs:comment "A specific treatment plant outlet in the sewer network." .
+
+ns1:UpdateDate a owl:DatatypeProperty ;
+    rdfs:comment "Represents the update date of geospatial data." ;
+    rdfs:domain ns1:GeospatialData ;
+    rdfs:range xsd:dateTime .
+
+ns1:Velocity1 a ns1:Velocity ;
+    ns1:hasVelocity "1.2"^^xsd:float ;
+    rdfs:comment "A specific velocity measurement in the sewer network." .
+
+ns1:VelocityValue a owl:DatatypeProperty ;
+    rdfs:comment "Represents the velocity value of a hydraulic property." ;
+    rdfs:domain ns1:Velocity ;
+    rdfs:range xsd:float .
+
+ns1:VillageCouncil1 a ns1:VillageCouncil ;
+    rdfs:label "Feldmoching Village Council" ;
+    rdfs:comment "A specific village council in the municipal authority." .
+
+ns1:WaterAuthority1 a ns1:WaterAuthority ;
+    rdfs:label "Bavarian Water Authority" ;
+    rdfs:comment "A specific water authority in the regulatory authority." .
+
+ns1:WaterQualityImpact1 a ns1:WaterQualityImpact ;
+    rdfs:comment "A specific water quality impact in the sewer network." .
+
+ns1:affects a owl:ObjectProperty ;
+    rdfs:comment "Relates a hydraulic property to the structural condition it affects." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:causes a owl:ObjectProperty ;
+    rdfs:comment "Relates a blockage to the overflow it causes." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range ns1:Overflow .
+
+ns1:defines a owl:ObjectProperty ;
+    rdfs:comment "Relates geospatial data to the administrative region it defines." ;
+    rdfs:domain ns1:GeospatialData ;
+    rdfs:range ns1:AdministrativeRegion .
+
+ns1:governs a owl:ObjectProperty ;
+    rdfs:comment "Relates an INSPIRE directive to the sewer network it governs." ;
+    rdfs:domain ns1:INSPIRECompliance ;
+    rdfs:range ns1:SewerNetwork .
+
+ns1:hasAssessmentDate a owl:DatatypeProperty ;
+    rdfs:comment "The assessment date of a structural condition." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasCapacity a owl:DatatypeProperty ;
+    rdfs:comment "The capacity of a hydraulic property." ;
+    rdfs:domain ns1:Capacity ;
+    rdfs:range xsd:float .
+
+ns1:hasCompletionDate a owl:DatatypeProperty ;
+    rdfs:comment "The completion date of a repair." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasComplianceStatus a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its compliance status." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:ComplianceStatus .
+
+ns1:hasEnvironmentalImpact a owl:ObjectProperty ;
+    rdfs:comment "Relates an environmental event to its environmental impact." ;
+    rdfs:domain ns1:EnvironmentalEvent ;
+    rdfs:range ns1:EnvironmentalImpact .
+
+ns1:hasFlowRate a owl:DatatypeProperty ;
+    rdfs:comment "The flow rate of a hydraulic property." ;
+    rdfs:domain ns1:FlowRate ;
+    rdfs:range xsd:float .
+
+ns1:hasHistoricalRecord a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its historical record." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:HistoricalRecord .
+
+ns1:hasHydraulicProperty a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its hydraulic properties." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:HydraulicProperty .
+
+ns1:hasInspectionSchedule a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its inspection schedule." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:InspectionSchedule .
+
+ns1:hasMaintenanceHistory a owl:ObjectProperty ;
+    rdfs:comment "Relates a pumping station to its maintenance history." ;
+    rdfs:domain ns1:PumpingStation ;
+    rdfs:range ns1:MaintenanceActivity .
+
+ns1:hasMaintenanceSchedule a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its maintenance schedule." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:MaintenanceSchedule .
+
+ns1:hasMeasurementDate a owl:DatatypeProperty ;
+    rdfs:comment "The measurement date of a hydraulic property." ;
+    rdfs:domain ns1:HydraulicProperty ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasOperationalStatus a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its operational status." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:OperationalStatus .
+
+ns1:hasPermitStatus a owl:ObjectProperty ;
+    rdfs:comment "Relates a maintenance permit to its status." ;
+    rdfs:domain ns1:MaintenancePermit ;
+    rdfs:range ns1:PermitStatus .
+
+ns1:hasPressure a owl:DatatypeProperty ;
+    rdfs:comment "The pressure of a hydraulic property." ;
+    rdfs:domain ns1:Pressure ;
+    rdfs:range xsd:float .
+
+ns1:hasRegulatoryJurisdiction a owl:ObjectProperty ;
+    rdfs:comment "Relates a regulatory authority to the administrative region it has jurisdiction over." ;
+    rdfs:domain ns1:RegulatoryAuthority ;
+    rdfs:range ns1:AdministrativeRegion .
+
+ns1:hasReportedDate a owl:DatatypeProperty ;
+    rdfs:comment "The reported date of a blockage or overflow." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasScheduledDate a owl:DatatypeProperty ;
+    rdfs:comment "The scheduled date of an inspection or maintenance activity." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasStructuralCondition a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its structural condition." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:hasUpdateDate a owl:DatatypeProperty ;
+    rdfs:comment "The update date of geospatial data." ;
+    rdfs:domain ns1:GeospatialData ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasVelocity a owl:DatatypeProperty ;
+    rdfs:comment "The velocity of a hydraulic property." ;
+    rdfs:domain ns1:Velocity ;
+    rdfs:range xsd:float .
+
+ns1:impacts a owl:ObjectProperty ;
+    rdfs:comment "Relates an overflow to the structural condition it impacts." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:includes a owl:ObjectProperty ;
+    rdfs:comment "Relates a maintenance activity to the repair it includes." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range ns1:Repair .
+
+ns1:influences a owl:ObjectProperty ;
+    rdfs:comment "Relates a structural condition to the hydraulic property it influences." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range ns1:HydraulicProperty .
+
+ns1:isAddressedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of addresses." ;
+    owl:inverseOf ns1:addresses .
+
+ns1:isAffectedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of occursAt.",
+        "Relates a network component to the environmental event it is affected by." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:EnvironmentalEvent ;
+    owl:inverseOf ns1:occursAt .
+
+ns1:isAlignedWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of alignsWith." ;
+    owl:inverseOf ns1:alignsWith .
+
+ns1:isCompliedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of compliesWith." ;
+    owl:inverseOf ns1:compliesWith .
+
+ns1:isConnectedVia a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of connectedTo." ;
+    owl:inverseOf ns1:connectedTo .
+
+ns1:isIssuedBy a owl:ObjectProperty ;
+    rdfs:comment "Relates a maintenance permit to the regulatory authority that issued it." ;
+    rdfs:domain ns1:MaintenancePermit ;
+    rdfs:range ns1:RegulatoryAuthority .
+
+ns1:isLocatedIn a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of hasLocation." ;
+    owl:inverseOf ns1:hasLocation .
+
+ns1:isPartOf a owl:ObjectProperty ;
+    rdfs:comment "Relates an inspection to the maintenance activity it is part of." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range ns1:MaintenanceActivity .
+
+ns1:isRestoredBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of restores." ;
+    owl:inverseOf ns1:restores .
+
+ns1:isScheduledFor a owl:ObjectProperty ;
+    rdfs:comment "Relates a maintenance schedule to the maintenance activity it is scheduled for." ;
+    rdfs:domain ns1:MaintenanceSchedule ;
+    rdfs:range ns1:MaintenanceActivity .
+
+ns1:isTargetedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of targets." ;
+    owl:inverseOf ns1:targets .
+
+ns1:isUsedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of usesFoundationalOntology." ;
+    owl:inverseOf ns1:usesFoundationalOntology .
+
+ns1:mitigates a owl:ObjectProperty ;
+    rdfs:comment "Relates a repair to the blockage it mitigates." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range ns1:Blockage .
+
+ns1:regulates a owl:ObjectProperty ;
+    rdfs:comment "Relates a RAEPA standard to the sewer network it regulates." ;
+    rdfs:domain ns1:RAEPACompliance ;
+    rdfs:range ns1:SewerNetwork .
+
+ns1:requiresPermit a owl:ObjectProperty ;
+    rdfs:comment "Relates a maintenance activity to the permit it requires." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range ns1:MaintenancePermit .
+
+ns1:requiresUpgradeToComplyWith a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to the RAEPA standard it requires an upgrade to comply with." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:RAEPACompliance .
+
+ns1:resultsIn a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of resultsFrom." ;
+    owl:inverseOf ns1:resultsFrom .
+
+ns1:AccessManhole_001 a ns1:AccessManhole ;
+    ns1:PipeMaterial "Cast Iron" ;
+    ns1:hasLocation ns1:GeospatialPoint_001 ;
+    ns1:hasMaterial "Cast Iron" .
+
+ns1:ActiveStatus a owl:Class ;
+    rdfs:comment "A subclass of OperationalStatus representing active status." ;
+    rdfs:subClassOf ns1:OperationalStatus .
+
+ns1:AirQualityImpact a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalImpact representing air quality impacts." ;
+    rdfs:subClassOf ns1:EnvironmentalImpact .
+
+ns1:ApprovedStatus a owl:Class ;
+    rdfs:comment "A subclass of PermitStatus representing approved status." ;
+    rdfs:subClassOf ns1:PermitStatus .
+
+ns1:City a owl:Class ;
+    rdfs:comment "A subclass of AdministrativeRegion representing cities." ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:CityCouncil a owl:Class ;
+    rdfs:comment "A subclass of MunicipalAuthority representing city councils." ;
+    rdfs:subClassOf ns1:MunicipalAuthority .
+
+ns1:CompliantStatus a owl:Class ;
+    rdfs:comment "A subclass of ComplianceStatus representing compliant status." ;
+    rdfs:subClassOf ns1:ComplianceStatus .
+
+ns1:ConstructionRecord a owl:Class ;
+    rdfs:comment "A subclass of HistoricalRecord representing construction records." ;
+    rdfs:subClassOf ns1:HistoricalRecord .
+
+ns1:Country a owl:Class ;
+    rdfs:comment "A subclass of AdministrativeRegion representing countries." ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:CriticalCondition a owl:Class ;
+    rdfs:comment "A subclass of StructuralCondition representing critical condition." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:DecommissionedStatus a owl:Class ;
+    rdfs:comment "A subclass of OperationalStatus representing decommissioned status." ;
+    rdfs:subClassOf ns1:OperationalStatus .
+
+ns1:District a owl:Class ;
+    rdfs:comment "A subclass of AdministrativeRegion representing districts." ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:DroughtEvent a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalEvent representing drought events." ;
+    rdfs:subClassOf ns1:EnvironmentalEvent .
+
+ns1:EarthquakeEvent a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalEvent representing earthquake events." ;
+    rdfs:subClassOf ns1:EnvironmentalEvent .
+
+ns1:EmergencyInspectionSchedule a owl:Class ;
+    rdfs:comment "A subclass of InspectionSchedule representing emergency inspection schedules." ;
+    rdfs:subClassOf ns1:InspectionSchedule .
+
+ns1:EmergencyMaintenancePermit a owl:Class ;
+    rdfs:comment "A subclass of MaintenancePermit representing emergency maintenance permits." ;
+    rdfs:subClassOf ns1:MaintenancePermit .
+
+ns1:EmergencyMaintenanceSchedule a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceSchedule representing emergency maintenance schedules." ;
+    rdfs:subClassOf ns1:MaintenanceSchedule .
+
+ns1:EmergencyRepairPermit a owl:Class ;
+    rdfs:comment "A subclass of RepairPermit representing emergency repair permits." ;
+    rdfs:subClassOf ns1:RepairPermit .
+
+ns1:EnvironmentalAgency a owl:Class ;
+    rdfs:comment "A subclass of RegulatoryAuthority representing environmental agencies." ;
+    rdfs:subClassOf ns1:RegulatoryAuthority .
+
+ns1:ExpiredStatus a owl:Class ;
+    rdfs:comment "A subclass of PermitStatus representing expired status." ;
+    rdfs:subClassOf ns1:PermitStatus .
+
+ns1:FairCondition a owl:Class ;
+    rdfs:comment "A subclass of StructuralCondition representing fair condition." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:FloodEvent a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalEvent representing flood events." ;
+    rdfs:subClassOf ns1:EnvironmentalEvent .
+
+ns1:FlowVolume a owl:Class ;
+    rdfs:comment "A subclass of HydraulicProperty representing flow volume." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:GeospatialPoint1 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7128° N, 74.0060° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint10 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7146° N, 74.0078° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint11 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7148° N, 74.0080° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint12 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7150° N, 74.0082° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint2 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7130° N, 74.0062° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint3 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7132° N, 74.0064° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint4 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7134° N, 74.0066° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint5 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7136° N, 74.0068° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint6 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7138° N, 74.0070° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint7 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7140° N, 74.0072° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint8 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7142° N, 74.0074° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint9 a ns1:GeospatialPoint ;
+    ns1:hasCoordinates "40.7144° N, 74.0076° W"^^xsd:string ;
+    rdfs:comment "A specific geospatial point in the sewer network." .
+
+ns1:GeospatialPoint_001 a ns1:GeospatialPoint ;
+    ns1:GeospatialCoordinates "52.5200, 13.4050" ;
+    ns1:hasCoordinates "52.5200, 13.4050" .
+
+ns1:GoodCondition a owl:Class ;
+    rdfs:comment "A subclass of StructuralCondition representing good condition." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:HealthDepartment a owl:Class ;
+    rdfs:comment "A subclass of RegulatoryAuthority representing health departments." ;
+    rdfs:subClassOf ns1:RegulatoryAuthority .
+
+ns1:INSPIREDirective2010 a owl:Class ;
+    rdfs:comment "A subclass of INSPIRECompliance representing compliance with INSPIRE Directive 2010." ;
+    rdfs:subClassOf ns1:INSPIRECompliance .
+
+ns1:InactiveStatus a owl:Class ;
+    rdfs:comment "A subclass of OperationalStatus representing inactive status." ;
+    rdfs:subClassOf ns1:OperationalStatus .
+
+ns1:InspectionRecord a owl:Class ;
+    rdfs:comment "A subclass of HistoricalRecord representing inspection records." ;
+    rdfs:subClassOf ns1:HistoricalRecord .
+
+ns1:MaintenanceRecord a owl:Class ;
+    rdfs:comment "A subclass of HistoricalRecord representing maintenance records." ;
+    rdfs:subClassOf ns1:HistoricalRecord .
+
+ns1:MaintenanceStatus a owl:Class ;
+    rdfs:comment "A subclass of OperationalStatus representing maintenance status." ;
+    rdfs:subClassOf ns1:OperationalStatus .
+
+ns1:MajorRepairPermit a owl:Class ;
+    rdfs:comment "A subclass of RepairPermit representing major repair permits." ;
+    rdfs:subClassOf ns1:RepairPermit .
+
+ns1:MinorRepairPermit a owl:Class ;
+    rdfs:comment "A subclass of RepairPermit representing minor repair permits." ;
+    rdfs:subClassOf ns1:RepairPermit .
+
+ns1:NonCompliantStatus a owl:Class ;
+    rdfs:comment "A subclass of ComplianceStatus representing non-compliant status." ;
+    rdfs:subClassOf ns1:ComplianceStatus .
+
+ns1:PartialBlockage_001 a ns1:PartialBlockage ;
+    ns1:BlockageDate "2023-10-03T10:00:00Z" ;
+    ns1:occursAt ns1:MainPipe_001 .
+
+ns1:PendingComplianceStatus a owl:Class ;
+    rdfs:comment "A subclass of ComplianceStatus representing pending compliance status." ;
+    rdfs:subClassOf ns1:ComplianceStatus .
+
+ns1:PendingStatus a owl:Class ;
+    rdfs:comment "A subclass of PermitStatus representing pending status." ;
+    rdfs:subClassOf ns1:PermitStatus .
+
+ns1:PeriodicInspectionSchedule a owl:Class ;
+    rdfs:comment "A subclass of InspectionSchedule representing periodic inspection schedules." ;
+    rdfs:subClassOf ns1:InspectionSchedule .
+
+ns1:PeriodicMaintenanceSchedule a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceSchedule representing periodic maintenance schedules." ;
+    rdfs:subClassOf ns1:MaintenanceSchedule .
+
+ns1:PoorCondition a owl:Class ;
+    rdfs:comment "A subclass of StructuralCondition representing poor condition." ;
+    rdfs:subClassOf ns1:StructuralCondition .
+
+ns1:RAEPAv1.3Compliance a owl:Class ;
+    rdfs:comment "A subclass of RAEPACompliance representing compliance with RAEPA v1.3 standards." ;
+    rdfs:subClassOf ns1:RAEPACompliance .
+
+ns1:RejectedStatus a owl:Class ;
+    rdfs:comment "A subclass of PermitStatus representing rejected status." ;
+    rdfs:subClassOf ns1:PermitStatus .
+
+ns1:RepairRecord a owl:Class ;
+    rdfs:comment "A subclass of HistoricalRecord representing repair records." ;
+    rdfs:subClassOf ns1:HistoricalRecord .
+
+ns1:RoutineInspectionSchedule a owl:Class ;
+    rdfs:comment "A subclass of InspectionSchedule representing routine inspection schedules." ;
+    rdfs:subClassOf ns1:InspectionSchedule .
+
+ns1:RoutineMaintenancePermit a owl:Class ;
+    rdfs:comment "A subclass of MaintenancePermit representing routine maintenance permits." ;
+    rdfs:subClassOf ns1:MaintenancePermit .
+
+ns1:RoutineMaintenanceSchedule a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceSchedule representing routine maintenance schedules." ;
+    rdfs:subClassOf ns1:MaintenanceSchedule .
+
+ns1:SoilErosionImpact a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalImpact representing soil erosion impacts." ;
+    rdfs:subClassOf ns1:EnvironmentalImpact .
+
+ns1:State a owl:Class ;
+    rdfs:comment "A subclass of AdministrativeRegion representing states." ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:StormEvent a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalEvent representing storm events." ;
+    rdfs:subClassOf ns1:EnvironmentalEvent .
+
+ns1:StructuralDamageImpact a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalImpact representing structural damage impacts." ;
+    rdfs:subClassOf ns1:EnvironmentalImpact .
+
+ns1:TownCouncil a owl:Class ;
+    rdfs:comment "A subclass of MunicipalAuthority representing town councils." ;
+    rdfs:subClassOf ns1:MunicipalAuthority .
+
+ns1:VillageCouncil a owl:Class ;
+    rdfs:comment "A subclass of MunicipalAuthority representing village councils." ;
+    rdfs:subClassOf ns1:MunicipalAuthority .
+
+ns1:WaterAuthority a owl:Class ;
+    rdfs:comment "A subclass of RegulatoryAuthority representing water authorities." ;
+    rdfs:subClassOf ns1:RegulatoryAuthority .
+
+ns1:WaterQualityImpact a owl:Class ;
+    rdfs:comment "A subclass of EnvironmentalImpact representing water quality impacts." ;
+    rdfs:subClassOf ns1:EnvironmentalImpact .
+
+ns1:alignsWith a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to the INSPIRE directive it aligns with." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:INSPIRECompliance .
+
+ns1:compliesWith a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to the RAEPA standard it complies with." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:RAEPACompliance .
+
+ns1:usesFoundationalOntology a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to the foundational ontology it uses." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:FoundationalOntology .
+
+ns1:INSPIREDirective2007 a owl:Class ;
+    rdfs:comment "A subclass of INSPIRECompliance representing compliance with INSPIRE Directive 2007." ;
+    rdfs:subClassOf ns1:INSPIRECompliance .
+
+ns1:InspectionDate a owl:DatatypeProperty ;
+    rdfs:comment "Specifies the date on which an inspection was performed, important for tracking maintenance schedules." ;
+    rdfs:disjointWith ns1:BlockageDate,
+        ns1:GeospatialCoordinates,
+        ns1:OverflowDate,
+        ns1:RepairDate ;
+    rdfs:domain ns1:Inspection .
+
+ns1:MainPipe_001 a ns1:MainPipe ;
+    ns1:PipeDiameter "1.2"^^xsd:float ;
+    ns1:PipeMaterial "Concrete" ;
+    ns1:connectedTo ns1:AccessManhole_001 ;
+    ns1:hasDiameter "1.2"^^xsd:float ;
+    ns1:hasMaterial "Concrete" .
+
+ns1:MaintenanceDate a owl:DatatypeProperty ;
+    rdfs:comment "Represents the date when a maintenance activity was carried out." ;
+    rdfs:disjointWith ns1:BlockageDate,
+        ns1:GeospatialCoordinates ;
+    rdfs:domain ns1:MaintenanceActivity .
+
+ns1:PipeDiameter a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Represents the diameter of a pipe, relevant to hydraulic flow characteristics." ;
+    rdfs:disjointWith ns1:PipeFlowCapacity,
+        ns1:PipeMaterial,
+        ns1:PipeSlope ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:RAEPAv1.2Compliance a owl:Class ;
+    rdfs:comment "A subclass of RAEPACompliance representing compliance with RAEPA v1.2 standards." ;
+    rdfs:subClassOf ns1:RAEPACompliance .
+
+ns1:StandardCompliance a owl:Class ;
+    rdfs:comment "A class representing compliance with standards." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StructuralCondition_001 a ns1:StructuralCondition .
+
+ns1:Capacity a owl:Class ;
+    rdfs:comment "A subclass of HydraulicProperty representing capacity." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:FlowRate a owl:Class ;
+    rdfs:comment "A subclass of HydraulicProperty representing flow rate." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:FoundationalOntology a owl:Class ;
+    rdfs:comment "A class representing foundational ontologies used in the sewer network ontology." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MunicipalAuthority a owl:Class ;
+    rdfs:comment "A class representing municipal authorities." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PipeMaterial a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Denotes the material composition of the pipe, which impacts durability and load-bearing capacity." ;
+    rdfs:disjointWith ns1:PipeFlowCapacity,
+        ns1:PipeSlope ;
+    rdfs:range xsd:string .
+
+ns1:Pressure a owl:Class ;
+    rdfs:comment "A subclass of HydraulicProperty representing pressure." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:RepairPermit a owl:Class ;
+    rdfs:comment "A class representing repair permits." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Velocity a owl:Class ;
+    rdfs:comment "A subclass of HydraulicProperty representing velocity." ;
+    rdfs:subClassOf ns1:HydraulicProperty .
+
+ns1:hasDiameter a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "The diameter of a pipe." ;
+    rdfs:disjointWith ns1:hasFlowCapacity,
+        ns1:hasMaterial,
+        ns1:hasSlope ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:hasInspectionDate a owl:DatatypeProperty ;
+    rdfs:comment "The date of an inspection." ;
+    rdfs:disjointWith ns1:hasCoordinates,
+        ns1:hasOverflowDate,
+        ns1:hasRepairDate ;
+    rdfs:domain ns1:Inspection .
+
+ns1:hasMaintenanceDate a owl:DatatypeProperty ;
+    rdfs:comment "The date of a maintenance activity." ;
+    rdfs:disjointWith ns1:hasBlockageDate,
+        ns1:hasCoordinates ;
+    rdfs:domain ns1:MaintenanceActivity .
+
+ns1:BackupPumpingStation a owl:Class ;
+    rdfs:comment "A subclass of PumpingStation representing backup pumping stations." ;
+    rdfs:subClassOf ns1:PumpingStation .
+
+ns1:BlockageDate a owl:DatatypeProperty ;
+    rdfs:comment "Denotes the date when a blockage occurred." ;
+    rdfs:disjointWith ns1:GeospatialCoordinates,
+        ns1:OverflowDate,
+        ns1:RepairDate ;
+    rdfs:domain ns1:Blockage .
+
+ns1:ComplianceStatus a owl:Class ;
+    rdfs:comment "A class representing compliance statuses." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DrainagePipe a owl:Class ;
+    rdfs:comment "A subclass of Pipe representing drainage pipes." ;
+    rdfs:subClassOf ns1:Pipe .
+
+ns1:EmergencyMaintenance a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceActivity representing emergency maintenance." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:GroundInlet a owl:Class ;
+    rdfs:comment "A subclass of Inlet representing ground inlets." ;
+    rdfs:subClassOf ns1:Inlet .
+
+ns1:GroundwaterOverflow a owl:Class ;
+    rdfs:comment "A subclass of Overflow representing groundwater overflows." ;
+    rdfs:subClassOf ns1:Overflow .
+
+ns1:MaintenanceManhole a owl:Class ;
+    rdfs:comment "A subclass of Manhole representing maintenance manholes." ;
+    rdfs:subClassOf ns1:Manhole .
+
+ns1:OverflowDate a owl:DatatypeProperty ;
+    rdfs:comment "Specifies the date when an overflow event happened." ;
+    rdfs:disjointWith ns1:GeospatialCoordinates,
+        ns1:RepairDate ;
+    rdfs:domain ns1:Overflow .
+
+ns1:PeriodicInspection a owl:Class ;
+    rdfs:comment "A subclass of Inspection representing periodic inspections." ;
+    rdfs:subClassOf ns1:Inspection .
+
+ns1:PipeSlope a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Represents the slope of a pipe, affecting flow dynamics." ;
+    rdfs:disjointWith ns1:PipeFlowCapacity ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:SevereBlockage a owl:Class ;
+    rdfs:comment "A subclass of Blockage representing severe blockages." ;
+    rdfs:subClassOf ns1:Blockage .
+
+ns1:StormwaterOutlet a owl:Class ;
+    rdfs:comment "A subclass of Outlet representing stormwater outlets." ;
+    rdfs:subClassOf ns1:Outlet .
+
+ns1:TemporaryRepair a owl:Class ;
+    rdfs:comment "A subclass of Repair representing temporary repairs." ;
+    rdfs:subClassOf ns1:Repair .
+
+ns1:hasBlockageDate a owl:DatatypeProperty ;
+    rdfs:comment "The date of a blockage." ;
+    rdfs:disjointWith ns1:hasCoordinates,
+        ns1:hasOverflowDate ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasMaterial a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "The material of a network component." ;
+    rdfs:disjointWith ns1:hasFlowCapacity,
+        ns1:hasSlope ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range xsd:string .
+
+ns1:hasRepairDate a owl:DatatypeProperty ;
+    rdfs:comment "The date of a repair." ;
+    rdfs:disjointWith ns1:hasCoordinates ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range xsd:dateTime .
+
+ns1:EnvironmentalImpact a owl:Class ;
+    rdfs:comment "A class representing environmental impacts." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HistoricalRecord a owl:Class ;
+    rdfs:comment "A class representing historical records." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:INSPIRECompliance a owl:Class ;
+    rdfs:comment "A subclass of StandardCompliance representing compliance with INSPIRE directives." ;
+    rdfs:subClassOf ns1:StandardCompliance .
+
+ns1:InspectionSchedule a owl:Class ;
+    rdfs:comment "A class representing inspection schedules." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MaintenancePermit a owl:Class ;
+    rdfs:comment "A class representing maintenance permits." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MaintenanceSchedule a owl:Class ;
+    rdfs:comment "A class representing maintenance schedules." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OperationalStatus a owl:Class ;
+    rdfs:comment "A class representing operational statuses." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PermitStatus a owl:Class ;
+    rdfs:comment "A class representing permit statuses." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PipeFlowCapacity a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Indicates the flow capacity of a pipe, crucial for hydraulic performance." ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:RegulatoryAuthority a owl:Class ;
+    rdfs:comment "A class representing regulatory authorities." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:RepairDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Indicates the date when a repair was completed." ;
+    rdfs:disjointWith ns1:GeospatialCoordinates ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range xsd:dateTime .
+
+ns1:StormwaterNetwork a owl:Class ;
+    rdfs:comment "A subclass of SewerNetwork representing the stormwater network." ;
+    rdfs:subClassOf ns1:SewerNetwork .
+
+ns1:WastewaterNetwork a owl:Class ;
+    rdfs:comment "A subclass of SewerNetwork representing the wastewater network." ;
+    rdfs:subClassOf ns1:SewerNetwork .
+
+ns1:hasComponent a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to its components." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:hasOverflowDate a owl:DatatypeProperty ;
+    rdfs:comment "The date of an overflow." ;
+    rdfs:disjointWith ns1:hasCoordinates ;
+    rdfs:domain ns1:Overflow .
+
+ns1:hasSlope a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "The slope of a pipe." ;
+    rdfs:disjointWith ns1:hasFlowCapacity ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:AdministrativeRegion a owl:Class ;
+    rdfs:comment "A class representing administrative regions." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CatchBasin a owl:Class ;
+    rdfs:comment "A subclass of Inlet representing catch basins." ;
+    rdfs:subClassOf ns1:Inlet .
+
+ns1:CombinedSewerOverflow a owl:Class ;
+    rdfs:comment "A subclass of Overflow representing combined sewer overflows." ;
+    rdfs:subClassOf ns1:Overflow .
+
+ns1:CompleteBlockage a owl:Class ;
+    rdfs:comment "A subclass of Blockage representing complete blockages." ;
+    rdfs:subClassOf ns1:Blockage .
+
+ns1:ComplianceInspection a owl:Class ;
+    rdfs:comment "A subclass of Inspection representing compliance inspections." ;
+    rdfs:subClassOf ns1:Inspection .
+
+ns1:CorrectiveMaintenance a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceActivity representing corrective maintenance." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:DischargePoint a owl:Class ;
+    rdfs:comment "A subclass of Outlet representing discharge points." ;
+    rdfs:subClassOf ns1:Outlet .
+
+ns1:EmergencyInspection a owl:Class ;
+    rdfs:comment "A subclass of Inspection representing emergency inspections." ;
+    rdfs:subClassOf ns1:Inspection .
+
+ns1:EmergencyPumpingStation a owl:Class ;
+    rdfs:comment "A subclass of PumpingStation representing emergency pumping stations." ;
+    rdfs:subClassOf ns1:PumpingStation .
+
+ns1:EmergencyRepair a owl:Class ;
+    rdfs:comment "A subclass of Repair representing emergency repairs." ;
+    rdfs:subClassOf ns1:Repair .
+
+ns1:EnvironmentalEvent a owl:Class ;
+    rdfs:comment "A class representing environmental events." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Inlet a owl:Class ;
+    rdfs:comment "A class representing inlets in the sewer network." ;
+    rdfs:subClassOf ns1:NetworkComponent ;
+    owl:disjointWith ns1:Outlet,
+        ns1:PumpingStation ;
+    owl:equivalentClass [ owl:unionOf ( ns1:StormDrain ns1:CatchBasin ns1:RoofDrain ns1:GroundInlet ) ],
+        [ owl:unionOf ( ns1:StormDrain ns1:CatchBasin ns1:RoofDrain ns1:GroundInlet ) ],
+        [ owl:unionOf ( ns1:StormDrain ns1:CatchBasin ns1:RoofDrain ns1:GroundInlet ) ],
+        [ owl:unionOf ( ns1:StormDrain ns1:CatchBasin ns1:RoofDrain ) ],
+        [ owl:unionOf ( ns1:StormDrain ns1:CatchBasin ns1:RoofDrain ns1:GroundInlet ) ] .
+
+ns1:InspectionManhole a owl:Class ;
+    rdfs:comment "A subclass of Manhole representing inspection manholes." ;
+    rdfs:subClassOf ns1:Manhole .
+
+ns1:JunctionManhole a owl:Class ;
+    rdfs:comment "A subclass of Manhole representing junction manholes." ;
+    rdfs:subClassOf ns1:Manhole .
+
+ns1:LateralPipe a owl:Class ;
+    rdfs:comment "A subclass of Pipe representing lateral pipes." ;
+    rdfs:subClassOf ns1:Pipe .
+
+ns1:MajorRepair a owl:Class ;
+    rdfs:comment "A subclass of Repair representing major repairs." ;
+    rdfs:subClassOf ns1:Repair .
+
+ns1:Manhole a owl:Class ;
+    rdfs:comment "A class representing manholes in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasLocation ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasLocation ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasLocation ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasLocation ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasLocation ],
+        ns1:NetworkComponent ;
+    owl:disjointWith ns1:Inlet,
+        ns1:Outlet,
+        ns1:PumpingStation ;
+    owl:equivalentClass [ owl:unionOf ( ns1:AccessManhole ns1:JunctionManhole ns1:InspectionManhole ns1:MaintenanceManhole ) ],
+        [ owl:unionOf ( ns1:AccessManhole ns1:JunctionManhole ns1:InspectionManhole ) ],
+        [ owl:unionOf ( ns1:AccessManhole ns1:JunctionManhole ns1:InspectionManhole ns1:MaintenanceManhole ) ],
+        [ owl:unionOf ( ns1:AccessManhole ns1:JunctionManhole ns1:InspectionManhole ns1:MaintenanceManhole ) ],
+        [ owl:unionOf ( ns1:AccessManhole ns1:JunctionManhole ns1:InspectionManhole ns1:MaintenanceManhole ) ] .
+
+ns1:OperationalEvent a owl:Class ;
+    rdfs:comment "A general class representing operational events in the sewer network." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OverflowPoint a owl:Class ;
+    rdfs:comment "A subclass of Outlet representing overflow points." ;
+    rdfs:subClassOf ns1:Outlet .
+
+ns1:PredictiveMaintenance a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceActivity representing predictive maintenance." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:PrimaryPumpingStation a owl:Class ;
+    rdfs:comment "A subclass of PumpingStation representing primary pumping stations." ;
+    rdfs:subClassOf ns1:PumpingStation .
+
+ns1:RAEPACompliance a owl:Class ;
+    rdfs:comment "A subclass of StandardCompliance representing compliance with RAEPA standards." ;
+    rdfs:subClassOf ns1:StandardCompliance .
+
+ns1:RecurringBlockage a owl:Class ;
+    rdfs:comment "A subclass of Blockage representing recurring blockages." ;
+    rdfs:subClassOf ns1:Blockage .
+
+ns1:RoofDrain a owl:Class ;
+    rdfs:comment "A subclass of Inlet representing roof drains." ;
+    rdfs:subClassOf ns1:Inlet .
+
+ns1:SecondaryPumpingStation a owl:Class ;
+    rdfs:comment "A subclass of PumpingStation representing secondary pumping stations." ;
+    rdfs:subClassOf ns1:PumpingStation .
+
+ns1:ServicePipe a owl:Class ;
+    rdfs:comment "A subclass of Pipe representing service pipes." ;
+    rdfs:subClassOf ns1:Pipe .
+
+ns1:StormwaterOverflow a owl:Class ;
+    rdfs:comment "A subclass of Overflow representing stormwater overflows." ;
+    rdfs:subClassOf ns1:Overflow .
+
+ns1:TreatmentPlantOutlet a owl:Class ;
+    rdfs:comment "A subclass of Outlet representing treatment plant outlets." ;
+    rdfs:subClassOf ns1:Outlet .
+
+ns1:addresses a owl:ObjectProperty ;
+    rdfs:comment "Relates a maintenance activity to the structural condition it addresses." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:connectedTo a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to another component it is connected to." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:hasFlowCapacity a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "The flow capacity of a pipe." ;
+    rdfs:domain ns1:Pipe ;
+    rdfs:range xsd:float .
+
+ns1:hasLocation a owl:ObjectProperty ;
+    rdfs:comment "Relates a network component to its geospatial location." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:GeospatialData .
+
+ns1:occursAt a owl:ObjectProperty ;
+    rdfs:comment "Relates a blockage to the component it occurs at." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range ns1:Pipe .
+
+ns1:restores a owl:ObjectProperty ;
+    rdfs:comment "Relates a repair to the structural condition it restores." ;
+    rdfs:domain ns1:Repair ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:resultsFrom a owl:ObjectProperty ;
+    rdfs:comment "Relates an overflow to the blockage it results from." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:Blockage .
+
+ns1:targets a owl:ObjectProperty ;
+    rdfs:comment "Relates an inspection to the component it targets." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:AccessManhole a owl:Class ;
+    rdfs:comment "A subclass of Manhole representing access manholes." ;
+    rdfs:subClassOf ns1:Manhole .
+
+ns1:GeospatialCoordinates a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "Describes the geographic location of an infrastructure component using spatial coordinates." ;
+    rdfs:domain ns1:GeospatialData ;
+    rdfs:range xsd:string .
+
+ns1:MainPipe a owl:Class ;
+    rdfs:comment "A subclass of Pipe representing main pipes." ;
+    rdfs:subClassOf ns1:Pipe .
+
+ns1:MinorRepair a owl:Class ;
+    rdfs:comment "A subclass of Repair representing minor repairs." ;
+    rdfs:subClassOf ns1:Repair .
+
+ns1:Outlet a owl:Class ;
+    rdfs:comment "A class representing outlets in the sewer network." ;
+    rdfs:subClassOf ns1:NetworkComponent ;
+    owl:disjointWith ns1:PumpingStation ;
+    owl:equivalentClass [ owl:unionOf ( ns1:DischargePoint ns1:OverflowPoint ns1:TreatmentPlantOutlet ns1:StormwaterOutlet ) ],
+        [ owl:unionOf ( ns1:DischargePoint ns1:OverflowPoint ns1:TreatmentPlantOutlet ns1:StormwaterOutlet ) ],
+        [ owl:unionOf ( ns1:DischargePoint ns1:OverflowPoint ns1:TreatmentPlantOutlet ) ],
+        [ owl:unionOf ( ns1:DischargePoint ns1:OverflowPoint ns1:TreatmentPlantOutlet ns1:StormwaterOutlet ) ],
+        [ owl:unionOf ( ns1:DischargePoint ns1:OverflowPoint ns1:TreatmentPlantOutlet ns1:StormwaterOutlet ) ] .
+
+ns1:PartialBlockage a owl:Class ;
+    rdfs:comment "A subclass of Blockage representing partial blockages." ;
+    rdfs:subClassOf ns1:Blockage .
+
+ns1:PreventiveMaintenance a owl:Class ;
+    rdfs:comment "A subclass of MaintenanceActivity representing preventive maintenance." ;
+    rdfs:subClassOf ns1:MaintenanceActivity .
+
+ns1:RoutineInspection a owl:Class ;
+    rdfs:comment "A subclass of Inspection representing routine inspections." ;
+    rdfs:subClassOf ns1:Inspection .
+
+ns1:SanitarySewerOverflow a owl:Class ;
+    rdfs:comment "A subclass of Overflow representing sanitary sewer overflows." ;
+    rdfs:subClassOf ns1:Overflow .
+
+ns1:StormDrain a owl:Class ;
+    rdfs:comment "A subclass of Inlet representing storm drains." ;
+    rdfs:subClassOf ns1:Inlet .
+
+ns1:SewerNetwork a owl:Class ;
+    rdfs:comment "The main class representing the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasComponent ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasComponent ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasComponent ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasComponent ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:hasComponent ],
+        owl:Thing ;
+    owl:equivalentClass [ owl:unionOf ( ns1:WastewaterNetwork ns1:StormwaterNetwork ) ],
+        [ owl:unionOf ( ns1:WastewaterNetwork ns1:StormwaterNetwork ) ],
+        [ owl:unionOf ( ns1:WastewaterNetwork ns1:StormwaterNetwork ) ],
+        [ owl:unionOf ( ns1:WastewaterNetwork ns1:StormwaterNetwork ) ],
+        [ owl:unionOf ( ns1:WastewaterNetwork ns1:StormwaterNetwork ) ] .
+
+ns1:hasCoordinates a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "The coordinates of geospatial data." ;
+    rdfs:domain ns1:GeospatialData ;
+    rdfs:range xsd:string .
+
+ns1:Overflow a owl:Class ;
+    rdfs:comment "A class representing overflows in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:OverflowDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasOverflowDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:resultsFrom ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:resultsFrom ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasOverflowDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:resultsFrom ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasOverflowDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:resultsFrom ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:OverflowDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:resultsFrom ],
+        ns1:OperationalEvent ;
+    owl:equivalentClass [ owl:unionOf ( ns1:SanitarySewerOverflow ns1:CombinedSewerOverflow ns1:StormwaterOverflow ns1:GroundwaterOverflow ) ],
+        [ owl:unionOf ( ns1:SanitarySewerOverflow ns1:CombinedSewerOverflow ns1:StormwaterOverflow ns1:GroundwaterOverflow ) ],
+        [ owl:unionOf ( ns1:SanitarySewerOverflow ns1:CombinedSewerOverflow ns1:StormwaterOverflow ns1:GroundwaterOverflow ) ],
+        [ owl:unionOf ( ns1:SanitarySewerOverflow ns1:CombinedSewerOverflow ns1:StormwaterOverflow ns1:GroundwaterOverflow ) ],
+        [ owl:unionOf ( ns1:SanitarySewerOverflow ns1:CombinedSewerOverflow ns1:StormwaterOverflow ) ] .
+
+ns1:PumpingStation a owl:Class ;
+    rdfs:comment "A class representing pumping stations in the sewer network." ;
+    rdfs:subClassOf ns1:NetworkComponent ;
+    owl:equivalentClass [ owl:unionOf ( ns1:PrimaryPumpingStation ns1:SecondaryPumpingStation ns1:EmergencyPumpingStation ns1:BackupPumpingStation ) ],
+        [ owl:unionOf ( ns1:PrimaryPumpingStation ns1:SecondaryPumpingStation ns1:EmergencyPumpingStation ns1:BackupPumpingStation ) ],
+        [ owl:unionOf ( ns1:PrimaryPumpingStation ns1:SecondaryPumpingStation ns1:EmergencyPumpingStation ) ],
+        [ owl:unionOf ( ns1:PrimaryPumpingStation ns1:SecondaryPumpingStation ns1:EmergencyPumpingStation ns1:BackupPumpingStation ) ],
+        [ owl:unionOf ( ns1:PrimaryPumpingStation ns1:SecondaryPumpingStation ns1:EmergencyPumpingStation ns1:BackupPumpingStation ) ] .
+
+ns1:GeospatialData a owl:Class ;
+    rdfs:comment "A class representing geospatial data of sewer network components." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasCoordinates ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasCoordinates ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:GeospatialCoordinates ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:GeospatialCoordinates ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasCoordinates ;
+            owl:someValuesFrom xsd:string ],
+        owl:Thing .
+
+ns1:HydraulicProperty a owl:Class ;
+    rdfs:comment "A class representing hydraulic properties of sewer network components." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Inspection a owl:Class ;
+    rdfs:comment "A class representing inspections in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasInspectionDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:targets ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasInspectionDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:targets ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:InspectionDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:targets ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:InspectionDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:targets ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasInspectionDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:targets ],
+        ns1:OperationalEvent ;
+    owl:equivalentClass [ owl:unionOf ( ns1:RoutineInspection ns1:EmergencyInspection ns1:ComplianceInspection ns1:PeriodicInspection ) ],
+        [ owl:unionOf ( ns1:RoutineInspection ns1:EmergencyInspection ns1:ComplianceInspection ns1:PeriodicInspection ) ],
+        [ owl:unionOf ( ns1:RoutineInspection ns1:EmergencyInspection ns1:ComplianceInspection ns1:PeriodicInspection ) ],
+        [ owl:unionOf ( ns1:RoutineInspection ns1:EmergencyInspection ns1:ComplianceInspection ) ],
+        [ owl:unionOf ( ns1:RoutineInspection ns1:EmergencyInspection ns1:ComplianceInspection ns1:PeriodicInspection ) ] .
+
+ns1:Blockage a owl:Class ;
+    rdfs:comment "A class representing blockages in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasBlockageDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:occursAt ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasBlockageDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:occursAt ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:BlockageDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:occursAt ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:BlockageDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasBlockageDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:occursAt ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:occursAt ],
+        ns1:OperationalEvent ;
+    owl:equivalentClass [ owl:unionOf ( ns1:PartialBlockage ns1:CompleteBlockage ns1:RecurringBlockage ns1:SevereBlockage ) ],
+        [ owl:unionOf ( ns1:PartialBlockage ns1:CompleteBlockage ns1:RecurringBlockage ns1:SevereBlockage ) ],
+        [ owl:unionOf ( ns1:PartialBlockage ns1:CompleteBlockage ns1:RecurringBlockage ns1:SevereBlockage ) ],
+        [ owl:unionOf ( ns1:PartialBlockage ns1:CompleteBlockage ns1:RecurringBlockage ns1:SevereBlockage ) ],
+        [ owl:unionOf ( ns1:PartialBlockage ns1:CompleteBlockage ns1:RecurringBlockage ) ] .
+
+ns1:Pipe a owl:Class ;
+    rdfs:comment "A class representing pipes in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasDiameter ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasMaterial ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasSlope ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFlowCapacity ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:connectedTo ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasDiameter ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasMaterial ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasSlope ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFlowCapacity ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:connectedTo ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:connectedTo ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeDiameter ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeMaterial ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeSlope ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeFlowCapacity ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:connectedTo ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeDiameter ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeMaterial ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeSlope ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:PipeFlowCapacity ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasDiameter ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasMaterial ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasSlope ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFlowCapacity ;
+            owl:someValuesFrom xsd:float ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:connectedTo ],
+        ns1:NetworkComponent ;
+    owl:disjointWith ns1:Inlet,
+        ns1:Manhole,
+        ns1:Outlet,
+        ns1:PumpingStation ;
+    owl:equivalentClass [ owl:unionOf ( ns1:MainPipe ns1:LateralPipe ns1:ServicePipe ) ],
+        [ owl:unionOf ( ns1:MainPipe ns1:LateralPipe ns1:ServicePipe ns1:DrainagePipe ) ],
+        [ owl:unionOf ( ns1:MainPipe ns1:LateralPipe ns1:ServicePipe ns1:DrainagePipe ) ],
+        [ owl:unionOf ( ns1:MainPipe ns1:LateralPipe ns1:ServicePipe ns1:DrainagePipe ) ],
+        [ owl:unionOf ( ns1:MainPipe ns1:LateralPipe ns1:ServicePipe ns1:DrainagePipe ) ] .
+
+ns1:Repair a owl:Class ;
+    rdfs:comment "A class representing repairs in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasRepairDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:restores ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasRepairDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:restores ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:RepairDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:restores ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:RepairDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasRepairDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:restores ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:restores ],
+        ns1:OperationalEvent ;
+    owl:equivalentClass [ owl:unionOf ( ns1:MinorRepair ns1:MajorRepair ns1:EmergencyRepair ns1:TemporaryRepair ) ],
+        [ owl:unionOf ( ns1:MinorRepair ns1:MajorRepair ns1:EmergencyRepair ns1:TemporaryRepair ) ],
+        [ owl:unionOf ( ns1:MinorRepair ns1:MajorRepair ns1:EmergencyRepair ns1:TemporaryRepair ) ],
+        [ owl:unionOf ( ns1:MinorRepair ns1:MajorRepair ns1:EmergencyRepair ns1:TemporaryRepair ) ],
+        [ owl:unionOf ( ns1:MinorRepair ns1:MajorRepair ns1:EmergencyRepair ) ] .
+
+ns1:GeospatialPoint a owl:Class ;
+    rdfs:comment "A subclass of GeospatialData representing geospatial points." ;
+    rdfs:subClassOf ns1:GeospatialData .
+
+ns1:MaintenanceActivity a owl:Class ;
+    rdfs:comment "A class representing maintenance activities in the sewer network." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasMaintenanceDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:addresses ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasMaintenanceDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:addresses ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:MaintenanceDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:addresses ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:MaintenanceDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:addresses ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasMaintenanceDate ;
+            owl:someValuesFrom xsd:dateTime ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ns1:addresses ],
+        ns1:OperationalEvent ;
+    owl:equivalentClass [ owl:unionOf ( ns1:PreventiveMaintenance ns1:CorrectiveMaintenance ns1:PredictiveMaintenance ns1:EmergencyMaintenance ) ],
+        [ owl:unionOf ( ns1:PreventiveMaintenance ns1:CorrectiveMaintenance ns1:PredictiveMaintenance ns1:EmergencyMaintenance ) ],
+        [ owl:unionOf ( ns1:PreventiveMaintenance ns1:CorrectiveMaintenance ns1:PredictiveMaintenance ns1:EmergencyMaintenance ) ],
+        [ owl:unionOf ( ns1:PreventiveMaintenance ns1:CorrectiveMaintenance ns1:PredictiveMaintenance ns1:EmergencyMaintenance ) ],
+        [ owl:unionOf ( ns1:PreventiveMaintenance ns1:CorrectiveMaintenance ns1:PredictiveMaintenance ) ] .
+
+ns1:StructuralCondition a owl:Class ;
+    rdfs:comment "A class representing structural conditions of sewer network components." ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NetworkComponent a owl:Class ;
+    rdfs:comment "A general class representing any component of the sewer network." ;
+    rdfs:subClassOf owl:Thing .
+
