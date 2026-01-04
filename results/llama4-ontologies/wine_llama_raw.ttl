@@ -1,0 +1,1459 @@
+# Generated Turtle ontology
+
+# --- Turtle block from step_08_turtle_serialization ---
+# Prefix declaration
+@prefix : <http://example.org/wine-ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Ontology declaration
+:WineOntology rdf:type owl:Ontology ;
+              rdfs:label "Wine Ontology"@en .
+
+# Classes
+:Wine rdf:type owl:Class ;
+      rdfs:label "Wine"@en ;
+      rdfs:comment "A wine is an alcoholic beverage made from fermented grapes."@en .
+
+:GrapeVariety rdf:type owl:Class ;
+              rdfs:label "Grape Variety"@en ;
+              rdfs:comment "A cultivar of grape used in winemaking."@en .
+
+:ViticulturalPractice rdf:type owl:Class ;
+                      rdfs:label "Viticultural Practice"@en ;
+                      rdfs:comment "Techniques used in vineyard management."@en .
+
+:WinemakingProcess rdf:type owl:Class ;
+                   rdfs:label "Winemaking Process"@en ;
+                   rdfs:comment "Processes involved in making wine."@en .
+
+:WineAttribute rdf:type owl:Class ;
+               rdfs:label "Wine Attribute"@en ;
+               rdfs:comment "Sensory or chemical characteristics of wine."@en .
+
+:GeographicalIndication rdf:type owl:Class ;
+                        rdfs:label "Geographical Indication"@en ;
+                        rdfs:comment "Appellations or regions of origin for wine."@en .
+
+:Winery rdf:type owl:Class ;
+        rdfs:label "Winery"@en ;
+        rdfs:comment "A producer of wine."@en .
+
+:Vintage rdf:type owl:Class ;
+         rdfs:label "Vintage"@en ;
+         rdfs:comment "The harvest year of a wine."@en .
+
+:WinePairing rdf:type owl:Class ;
+             rdfs:label "Wine Pairing"@en ;
+             rdfs:comment "Guidelines for matching wine with food."@en .
+
+:RegulatoryAspect rdf:type owl:Class ;
+                  rdfs:label "Regulatory Aspect"@en ;
+                  rdfs:comment "Labeling, classification, and legal standards for wine."@en .
+
+# Subclasses
+:RedWine rdf:type owl:Class ;
+         rdfs:subClassOf :Wine ;
+         rdfs:label "Red Wine"@en .
+
+:WhiteWine rdf:type owl:Class ;
+           rdfs:subClassOf :Wine ;
+           rdfs:label "White Wine"@en .
+
+:RoséWine rdf:type owl:Class ;
+          rdfs:subClassOf :Wine ;
+          rdfs:label "Rosé Wine"@en .
+
+:SparklingWine rdf:type owl:Class ;
+               rdfs:subClassOf :Wine ;
+               rdfs:label "Sparkling Wine"@en .
+
+:FortifiedWine rdf:type owl:Class ;
+               rdfs:subClassOf :Wine ;
+               rdfs:label "Fortified Wine"@en .
+
+# Object Properties
+:hasGrapeVariety rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :GrapeVariety ;
+                 rdfs:label "has grape variety"@en .
+
+:isMadeFrom rdf:type owl:ObjectProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :GrapeVariety ;
+            rdfs:label "is made from"@en .
+
+:hasViticulturalPractice rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Winery ;
+                         rdfs:range :ViticulturalPractice ;
+                         rdfs:label "has viticultural practice"@en .
+
+:hasWinemakingProcess rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Winery ;
+                       rdfs:range :WinemakingProcess ;
+                       rdfs:label "has winemaking process"@en .
+
+:hasWineAttribute rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :WineAttribute ;
+                  rdfs:label "has wine attribute"@en .
+
+:isFrom rdf:type owl:ObjectProperty ;
+        rdfs:domain :Wine ;
+        rdfs:range :GeographicalIndication ;
+        rdfs:label "is from"@en .
+
+:isProducedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range :Winery ;
+              rdfs:label "is produced by"@en .
+
+:hasVintage rdf:type owl:ObjectProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :Vintage ;
+            rdfs:label "has vintage"@en .
+
+:hasWinePairing rdf:type owl:ObjectProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range :WinePairing ;
+                rdfs:label "has wine pairing"@en .
+
+:isSubjectTo rdf:type owl:ObjectProperty ;
+             rdfs:domain :Wine ;
+             rdfs:range :RegulatoryAspect ;
+             rdfs:label "is subject to"@en .
+
+# Data Properties
+:hasColor rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range xsd:string ;
+          rdfs:label "has color"@en .
+
+:hasAlcoholContent rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Wine ;
+                   rdfs:range xsd:float ;
+                   rdfs:label "has alcohol content"@en .
+
+:hasResidualSugar rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range xsd:float ;
+                  rdfs:label "has residual sugar"@en .
+
+:hasAcidity rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range xsd:float ;
+            rdfs:label "has acidity"@en .
+
+:hasTanninLevel rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range xsd:float ;
+                rdfs:label "has tannin level"@en .
+
+# Instances
+:Chardonnay rdf:type :GrapeVariety ;
+            rdfs:label "Chardonnay"@en .
+
+:CabernetSauvignon rdf:type :GrapeVariety ;
+                   rdfs:label "Cabernet Sauvignon"@en .
+
+:Burgundy rdf:type :GeographicalIndication ;
+          rdfs:label "Burgundy"@en .
+
+:DomaineDeLaRomanéeConti rdf:type :Winery ;
+                         rdfs:label "Domaine de la Romanée-Conti"@en .
+
+:Montrachet rdf:type :Wine ;
+            :isMadeFrom :Chardonnay ;
+            :isFrom :Burgundy ;
+            :isProducedBy :DomaineDeLaRomanéeConti ;
+            :hasVintage :Vintage2015 ;
+            :hasAlcoholContent 13.5 ;
+            :hasResidualSugar 0.5 ;
+            :hasAcidity 6.2 ;
+            :hasTanninLevel 3.5 .
+
+:Vintage2015 rdf:type :Vintage ;
+             rdfs:label "Vintage 2015"@en .
+
+# --- Turtle block from step_09_refine_turtle ---
+# Prefix declaration
+@prefix : <http://example.org/wine-ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foodon: <http://purl.obolibrary.org/obo/FOODON_> .
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix eurovoc: <http://eurovoc.europa.eu/> .
+@prefix mesh: <http://id.nlm.nih.gov/mesh/> .
+@prefix unspsc: <http://purl.obo.org/unspsc/> .
+
+# Ontology declaration
+:WineOntology rdf:type owl:Ontology ;
+              rdfs:label "Wine Ontology"@en .
+
+# Classes
+:Wine rdf:type owl:Class ;
+      rdfs:label "Wine"@en ;
+      rdfs:comment "An alcoholic beverage made from fermented grapes."@en .
+
+:GrapeVariety rdf:type owl:Class ;
+              rdfs:label "Grape Variety"@en ;
+              rdfs:comment "A cultivar of grape used in winemaking."@en ;
+              owl:equivalentClass foodon:FOODON_00002121 .
+
+:ViticulturalPractice rdf:type owl:Class ;
+                      rdfs:label "Viticultural Practice"@en ;
+                      rdfs:comment "Techniques used in vineyard management."@en .
+
+:WinemakingProcess rdf:type owl:Class ;
+                   rdfs:label "Winemaking Process"@en ;
+                   rdfs:comment "Processes involved in making wine."@en .
+
+:WineAttribute rdf:type owl:Class ;
+               rdfs:label "Wine Attribute"@en ;
+               rdfs:comment "Sensory or chemical characteristics of wine."@en .
+
+:GeographicalIndication rdf:type owl:Class ;
+                        rdfs:label "Geographical Indication"@en ;
+                        rdfs:comment "Appellations or regions of origin for wine."@en .
+
+:Winery rdf:type owl:Class ;
+        rdfs:label "Winery"@en ;
+        rdfs:comment "A producer of wine."@en .
+
+:Vintage rdf:type owl:Class ;
+         rdfs:label "Vintage"@en ;
+         rdfs:comment "The harvest year of a wine."@en .
+
+:WinePairing rdf:type owl:Class ;
+             rdfs:label "Wine Pairing"@en ;
+             rdfs:comment "Guidelines for matching wine with food."@en .
+
+:RegulatoryAspect rdf:type owl:Class ;
+                  rdfs:label "Regulatory Aspect"@en ;
+                  rdfs:comment "Labeling, classification, and legal standards for wine."@en .
+
+# Subclasses
+:RedWine rdf:type owl:Class ;
+         rdfs:subClassOf :Wine ;
+         rdfs:label "Red Wine"@en .
+
+:WhiteWine rdf:type owl:Class ;
+           rdfs:subClassOf :Wine ;
+           rdfs:label "White Wine"@en .
+
+:RoséWine rdf:type owl:Class ;
+          rdfs:subClassOf :Wine ;
+          rdfs:label "Rosé Wine"@en .
+
+:SparklingWine rdf:type owl:Class ;
+               rdfs:subClassOf :Wine ;
+               rdfs:label "Sparkling Wine"@en .
+
+:FortifiedWine rdf:type owl:Class ;
+               rdfs:subClassOf :Wine ;
+               rdfs:label "Fortified Wine"@en .
+
+# Object Properties
+:hasGrapeVariety rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :GrapeVariety ;
+                 rdfs:label "has grape variety"@en ;
+                 owl:inverseOf :isGrapeVarietyOf .
+
+:isMadeFrom rdf:type owl:ObjectProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :GrapeVariety ;
+            rdfs:label "is made from"@en ;
+            owl:propertyChainAxiom ( :hasGrapeVariety ) .
+
+:hasViticulturalPractice rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Winery ;
+                         rdfs:range :ViticulturalPractice ;
+                         rdfs:label "has viticultural practice"@en .
+
+:hasWinemakingProcess rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Winery ;
+                       rdfs:range :WinemakingProcess ;
+                       rdfs:label "has winemaking process"@en .
+
+:hasWineAttribute rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :WineAttribute ;
+                  rdfs:label "has wine attribute"@en .
+
+:isFrom rdf:type owl:ObjectProperty ;
+        rdfs:domain :Wine ;
+        rdfs:range :GeographicalIndication ;
+        rdfs:label "is from"@en ;
+        owl:inverseOf :hasWine .
+
+:isProducedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range :Winery ;
+              rdfs:label "is produced by"@en ;
+              owl:inverseOf :producesWine .
+
+:hasVintage rdf:type owl:ObjectProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :Vintage ;
+            rdfs:label "has vintage"@en .
+
+:hasWinePairing rdf:type owl:ObjectProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range :WinePairing ;
+                rdfs:label "has wine pairing"@en .
+
+:isSubjectTo rdf:type owl:ObjectProperty ;
+             rdfs:domain :Wine ;
+             rdfs:range :RegulatoryAspect ;
+             rdfs:label "is subject to"@en .
+
+# Data Properties
+:hasColor rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range xsd:string ;
+          rdfs:label "has color"@en .
+
+:hasAlcoholContent rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Wine ;
+                   rdfs:range xsd:float ;
+                   rdfs:label "has alcohol content"@en .
+
+:hasResidualSugar rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range xsd:float ;
+                  rdfs:label "has residual sugar"@en .
+
+:hasAcidity rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range xsd:float ;
+            rdfs:label "has acidity"@en .
+
+:hasTanninLevel rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range xsd:float ;
+                rdfs:label "has tannin level"@en .
+
+# Instances
+:Chardonnay rdf:type :GrapeVariety ;
+            rdfs:label "Chardonnay"@en ;
+            owl:sameAs agrovoc:c_1615 .
+
+:CabernetSauvignon rdf:type :GrapeVariety ;
+                   rdfs:label "Cabernet Sauvignon"@en ;
+                   owl:sameAs agrovoc:c_3336 .
+
+:Burgundy rdf:type :GeographicalIndication ;
+          rdfs:label "Burgundy"@en .
+
+:DomaineDeLaRomanéeConti rdf:type :Winery ;
+                         rdfs:label "Domaine de la Romanée-Conti"@en .
+
+:Montrachet rdf:type :Wine ;
+            :isMadeFrom :Chardonnay ;
+            :isFrom :Burgundy ;
+            :isProducedBy :DomaineDeLaRomanéeConti ;
+            :hasVintage :Vintage2015 ;
+            :hasAlcoholContent 13.5 ;
+            :hasResidualSugar 0.5 ;
+            :hasAcidity 6.2 ;
+            :hasTanninLevel 3.5 .
+
+:Vintage2015 rdf:type :Vintage ;
+             rdfs:label "Vintage 2015"@en .
+
+# Axioms and additional statements
+:Wine rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :isMadeFrom ;
+                        owl:someValuesFrom :GrapeVariety ] .
+
+:GrapeVariety owl:equivalentClass agrovoc:Grape .
+
+:Wine :classifiedAs eurovoc:PDO_ProtectedDesignationOfOrigin .
+
+:Wine :containsCompound mesh:Ethanol .
+
+:WineLabel :compliesWith eurovoc:WineLabelingDirective .
+
+:Wine :hasComponent mesh:TartaricAcid .
+
+:Wine :soldUnder unspsc:50202201 .
+
+:Vineyard :partOf agrovoc:Viticulture .
+
+:Wine :hasPreservative mesh:SulfurDioxide .
+
+:Wine :hasAdditive mesh:AscorbicAcid .
+
+:Wine :hasAcidity mesh:MalicAcid ;
+       :hasAcidity mesh:LacticAcid .
+
+:Wine :hasColor agrovoc:Anthocyanin .
+
+:Wine :hasFlavor agrovoc:Terpene .
+
+:Wine :hasAroma agrovoc:Esters .
+
+:Wine :hasBody agrovoc:Glycerol .
+
+:Wine :hasSweetness agrovoc:Glucose .
+
+:Wine :hasBitterness agrovoc:Tannin .
+
+:Wine :hasViscosity agrovoc:Polysaccharides .
+
+:Wine :hasAlcoholContent agrovoc:Ethanol .
+
+# --- Turtle block from step_10_refine_turtle ---
+@prefix : <http://example.org/wine-ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foodon: <http://purl.obolibrary.org/obo/foodon#> .
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix eurovoc: <http://eurovoc.europa.eu/> .
+@prefix mesh: <http://purl.obolibrary.org/obo/mesh#> .
+@prefix unspsc: <http://purl.obolibrary.org/obo/unspsc#> .
+
+:WineOntology rdf:type owl:Ontology ;
+              rdfs:label "Wine Ontology"@en .
+
+:Wine rdf:type owl:Class ;
+      rdfs:label "Wine"@en ;
+      rdfs:comment "An alcoholic beverage made from fermented grapes."@en .
+
+:GrapeVariety rdf:type owl:Class ;
+              rdfs:label "Grape Variety"@en ;
+              rdfs:comment "A cultivar of grape used in winemaking."@en ;
+              rdfs:subClassOf foodon:FOODON_00002140 . # Grape
+
+:ViticulturalPractice rdf:type owl:Class ;
+                      rdfs:label "Viticultural Practice"@en ;
+                      rdfs:comment "Techniques used in vineyard management."@en .
+
+:WinemakingProcess rdf:type owl:Class ;
+                   rdfs:label "Winemaking Process"@en ;
+                   rdfs:comment "Processes involved in making wine."@en .
+
+:WineAttribute rdf:type owl:Class ;
+               rdfs:label "Wine Attribute"@en ;
+               rdfs:comment "Sensory or chemical characteristics of wine."@en .
+
+:GeographicalIndication rdf:type owl:Class ;
+                        rdfs:label "Geographical Indication"@en ;
+                        rdfs:comment "Appellations or regions of origin for wine."@en .
+
+:Winery rdf:type owl:Class ;
+        rdfs:label "Winery"@en ;
+        rdfs:comment "A producer of wine."@en .
+
+:Vintage rdf:type owl:Class ;
+         rdfs:label "Vintage"@en ;
+         rdfs:comment "The harvest year of a wine."@en .
+
+:WinePairing rdf:type owl:Class ;
+             rdfs:label "Wine Pairing"@en ;
+             rdfs:comment "Guidelines for matching wine with food."@en .
+
+:RegulatoryAspect rdf:type owl:Class ;
+                  rdfs:label "Regulatory Aspect"@en ;
+                  rdfs:comment "Labeling, classification, and legal standards for wine."@en .
+
+:RedWine rdf:type owl:Class ;
+         rdfs:subClassOf :Wine ;
+         rdfs:label "Red Wine"@en .
+
+:WhiteWine rdf:type owl:Class ;
+           rdfs:subClassOf :Wine ;
+           rdfs:label "White Wine"@en .
+
+:RoséWine rdf:type owl:Class ;
+          rdfs:subClassOf :Wine ;
+          rdfs:label "Rosé Wine"@en .
+
+:SparklingWine rdf:type owl:Class ;
+               rdfs:subClassOf :Wine ;
+               rdfs:label "Sparkling Wine"@en .
+
+:FortifiedWine rdf:type owl:Class ;
+               rdfs:subClassOf :Wine ;
+               rdfs:label "Fortified Wine"@en .
+
+:hasGrapeVariety rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range :GrapeVariety ;
+                 rdfs:label "has grape variety"@en ;
+                 owl:inverseOf :isGrapeVarietyOf .
+
+:isGrapeVarietyOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain :GrapeVariety ;
+                  rdfs:range :Wine ;
+                  rdfs:label "is grape variety of"@en .
+
+:hasViticulturalPractice rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Winery ;
+                         rdfs:range :ViticulturalPractice ;
+                         rdfs:label "has viticultural practice"@en .
+
+:hasWinemakingProcess rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Winery ;
+                       rdfs:range :WinemakingProcess ;
+                       rdfs:label "has winemaking process"@en .
+
+:hasWineAttribute rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :WineAttribute ;
+                  rdfs:label "has wine attribute"@en .
+
+:isFrom rdf:type owl:ObjectProperty ;
+        rdfs:domain :Wine ;
+        rdfs:range :GeographicalIndication ;
+        rdfs:label "is from"@en ;
+        owl:inverseOf :producesWine .
+
+:producesWine rdf:type owl:ObjectProperty ;
+              rdfs:domain :GeographicalIndication ;
+              rdfs:range :Wine ;
+              rdfs:label "produces wine"@en .
+
+:isProducedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range :Winery ;
+              rdfs:label "is produced by"@en ;
+              owl:inverseOf :produces .
+
+:produces rdf:type owl:ObjectProperty ;
+          rdfs:domain :Winery ;
+          rdfs:range :Wine ;
+          rdfs:label "produces"@en .
+
+:hasVintage rdf:type owl:ObjectProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :Vintage ;
+            rdfs:label "has vintage"@en .
+
+:hasWinePairing rdf:type owl:ObjectProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range :WinePairing ;
+                rdfs:label "has wine pairing"@en .
+
+:isSubjectTo rdf:type owl:ObjectProperty ;
+             rdfs:domain :Wine ;
+             rdfs:range :RegulatoryAspect ;
+             rdfs:label "is subject to"@en .
+
+:hasColor rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range xsd:string ;
+          rdfs:label "has color"@en .
+
+:hasAlcoholContent rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Wine ;
+                   rdfs:range xsd:float ;
+                   rdfs:label "has alcohol content"@en .
+
+:hasResidualSugar rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range xsd:float ;
+                  rdfs:label "has residual sugar"@en .
+
+:hasAcidity rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range xsd:float ;
+            rdfs:label "has acidity"@en .
+
+:hasTanninLevel rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range xsd:float ;
+                rdfs:label "has tannin level"@en .
+
+:hasIngredient rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :GrapeVariety ;
+               rdfs:label "has ingredient"@en .
+
+:classifiedAs rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range eurovoc:PDO_ProtectedDesignationOfOrigin ;
+              rdfs:label "classified as"@en .
+
+:containsCompound rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range mesh:Ethanol ;
+                  rdfs:label "contains compound"@en .
+
+:compliesWith rdf:type owl:ObjectProperty ;
+              rdfs:domain :WineLabel ;
+              rdfs:range eurovoc:WineLabelingDirective ;
+              rdfs:label "complies with"@en .
+
+:hasComponent rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range mesh:TartaricAcid ;
+              rdfs:label "has component"@en .
+
+:soldUnder rdf:type owl:ObjectProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range unspsc:50202201 ;
+           rdfs:label "sold under"@en .
+
+:hasPreservative rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Wine ;
+                 rdfs:range mesh:SulfurDioxide ;
+                 rdfs:label "has preservative"@en .
+
+:hasAdditive rdf:type owl:ObjectProperty ;
+             rdfs:domain :Wine ;
+             rdfs:range mesh:AscorbicAcid ;
+             rdfs:label "has additive"@en .
+
+:hasFlavor rdf:type owl:ObjectProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range agrovoc:Terpene ;
+           rdfs:label "has flavor"@en .
+
+:hasAroma rdf:type owl:ObjectProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range agrovoc:Esters ;
+          rdfs:label "has aroma"@en .
+
+:hasBody rdf:type owl:ObjectProperty ;
+         rdfs:domain :Wine ;
+         rdfs:range agrovoc:Glycerol ;
+         rdfs:label "has body"@en .
+
+:hasSweetness rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range agrovoc:Glucose ;
+              rdfs:label "has sweetness"@en .
+
+:hasBitterness rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range agrovoc:Tannin ;
+               rdfs:label "has bitterness"@en .
+
+:hasViscosity rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range agrovoc:Polysaccharides ;
+              rdfs:label "has viscosity"@en .
+
+:Chardonnay rdf:type :GrapeVariety ;
+            rdfs:label "Chardonnay"@en .
+
+:CabernetSauvignon rdf:type :GrapeVariety ;
+                   rdfs:label "Cabernet Sauvignon"@en .
+
+:Burgundy rdf:type :GeographicalIndication ;
+          rdfs:label "Burgundy"@en .
+
+:DomaineDeLaRomanéeConti rdf:type :Winery ;
+                         rdfs:label "Domaine de la Romanée-Conti"@en .
+
+:Montrachet rdf:type :Wine ;
+            :isMadeFrom :Chardonnay ;
+            :isFrom :Burgundy ;
+            :isProducedBy :DomaineDeLaRomanéeConti ;
+            :hasVintage :Vintage2015 ;
+            :hasAlcoholContent 13.5 ;
+            :hasResidualSugar 0.5 ;
+            :hasAcidity 6.2 ;
+            :hasTanninLevel 3.5 ;
+            :hasIngredient :Chardonnay ;
+            :classifiedAs eurovoc:PDO_ProtectedDesignationOfOrigin ;
+            :containsCompound mesh:Ethanol ;
+            :hasComponent mesh:TartaricAcid ;
+            :soldUnder unspsc:50202201 ;
+            :hasPreservative mesh:SulfurDioxide ;
+            :hasAdditive mesh:AscorbicAcid ;
+            :hasFlavor agrovoc:Terpene ;
+            :hasAroma agrovoc:Esters ;
+            :hasBody agrovoc:Glycerol ;
+            :hasSweetness agrovoc:Glucose ;
+            :hasBitterness agrovoc:Tannin ;
+            :hasViscosity agrovoc:Polysaccharides .
+
+:Vintage2015 rdf:type :Vintage ;
+             rdfs:label "Vintage 2015"@en .
+
+# --- Turtle block from step_11_data_properties ---
+# Data Properties for GrapeVariety
+:hasFlavorProfile rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :GrapeVariety ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "has flavor profile"@en ;
+                  rdfs:comment "Describes the typical flavor characteristics associated with a grape variety."@en .
+
+:hasGeneticLineage rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :GrapeVariety ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "has genetic lineage"@en ;
+                   rdfs:comment "Provides information on the genetic lineage or parentage of a grape variety."@en .
+
+# Data Properties for ViticulturalPractice
+:hasPruningMethod rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ViticulturalPractice ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "has pruning method"@en ;
+                  rdfs:comment "Specifies the pruning technique used in vineyard management."@en .
+
+:hasPestControlMethod rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :ViticulturalPractice ;
+                      rdfs:range xsd:string ;
+                      rdfs:label "has pest control method"@en ;
+                      rdfs:comment "Describes the methods used for controlling pests in the vineyard."@en .
+
+# Data Properties for WinemakingProcess
+:hasFermentationTechnique rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :WinemakingProcess ;
+                          rdfs:range xsd:string ;
+                          rdfs:label "has fermentation technique"@en ;
+                          rdfs:comment "Specifies the techniques used during the fermentation process."@en .
+
+:hasAgingVessel rdf:type owl:DatatypeProperty ;
+                rdfs:domain :WinemakingProcess ;
+                rdfs:range xsd:string ;
+                rdfs:label "has aging vessel"@en ;
+                rdfs:comment "Describes the type of vessel used for aging the wine."@en .
+
+# Data Properties for WineAttribute
+:hasAroma rdf:type owl:DatatypeProperty ;
+          rdfs:domain :WineAttribute ;
+          rdfs:range xsd:string ;
+          rdfs:label "has aroma"@en ;
+          rdfs:comment "Describes the aroma characteristics of a wine."@en .
+
+:hasBody rdf:type owl:DatatypeProperty ;
+         rdfs:domain :WineAttribute ;
+         rdfs:range xsd:string ;
+         rdfs:label "has body"@en ;
+         rdfs:comment "Describes the body or weight of a wine in the mouth."@en .
+
+# Data Properties for GeographicalIndication
+:hasClimate rdf:type owl:DatatypeProperty ;
+            rdfs:domain :GeographicalIndication ;
+            rdfs:range xsd:string ;
+            rdfs:label "has climate"@en ;
+            rdfs:comment "Describes the general climate characteristics of a geographical indication."@en .
+
+:hasSoilType rdf:type owl:DatatypeProperty ;
+             rdfs:domain :GeographicalIndication ;
+             rdfs:range xsd:string ;
+             rdfs:label "has soil type"@en ;
+             rdfs:comment "Specifies the types of soil found in a geographical indication."@en .
+
+# Data Properties for Winery
+:hasProductionVolume rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Winery ;
+                     rdfs:range xsd:integer ;
+                     rdfs:label "has production volume"@en ;
+                     rdfs:comment "Indicates the volume of wine produced by a winery."@en .
+
+:hasHistory rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Winery ;
+            rdfs:range xsd:string ;
+            rdfs:label "has history"@en ;
+            rdfs:comment "Provides historical information about a winery."@en .
+
+# Data Properties for Vintage
+:hasHarvestDate rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Vintage ;
+                rdfs:range xsd:date ;
+                rdfs:label "has harvest date"@en ;
+                rdfs:comment "Specifies the date or period when the grapes were harvested for a vintage."@en .
+
+:hasClimaticConditions rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :Vintage ;
+                       rdfs:range xsd:string ;
+                       rdfs:label "has climatic conditions"@en ;
+                       rdfs:comment "Describes the climatic conditions during a vintage year."@en .
+
+# Data Properties for WinePairing
+:hasFoodPairing rdf:type owl:DatatypeProperty ;
+                rdfs:domain :WinePairing ;
+                rdfs:range xsd:string ;
+                rdfs:label "has food pairing"@en ;
+                rdfs:comment "Suggests food pairing recommendations for a wine."@en .
+
+:hasPairingReason rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :WinePairing ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "has pairing reason"@en ;
+                  rdfs:comment "Provides reasons or rationale behind a specific wine and food pairing."@en .
+
+# Data Properties for RegulatoryAspect
+:hasLabelingRequirement rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :RegulatoryAspect ;
+                        rdfs:range xsd:string ;
+                        rdfs:label "has labeling requirement"@en ;
+                        rdfs:comment "Specifies the labeling requirements for wine under a regulatory aspect."@en .
+
+:hasClassificationSystem rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :RegulatoryAspect ;
+                         rdfs:range xsd:string ;
+                         rdfs:label "has classification system"@en ;
+                         rdfs:comment "Describes the classification system used for wine under a regulatory aspect."@en .
+
+# Additional instances and data property assertions for existing individuals
+:Chardonnay :hasFlavorProfile "Buttery, vanilla, and green apple flavors."@en ;
+             :hasGeneticLineage "Chardonnay is believed to be a cross between Pinot and Gouais Blanc."@en .
+
+:CabernetSauvignon :hasFlavorProfile "Tannic with flavors of dark fruit, spice, and sometimes hints of green pepper."@en ;
+                   :hasGeneticLineage "Cabernet Sauvignon is a cross between Cabernet Franc and Sauvignon Blanc."@en .
+
+:Burgundy :hasClimate "Burgundy has a temperate climate with continental influences."@en ;
+           :hasSoilType "Limestone and clay soils are prevalent in Burgundy."@en .
+
+:DomaineDeLaRomanéeConti :hasProductionVolume 8000 ;
+                         :hasHistory "Domaine de la Romanée-Conti is renowned for producing some of the world's most prestigious wines, with a history dating back to the 13th century."@en .
+
+:Montrachet :hasAroma "Complex aromas of stone fruits, citrus, and toasted nuts."@en ;
+             :hasBody "Full-bodied with a rich texture."@en .
+
+:Vintage2015 :hasHarvestDate "2015-09-20"^^xsd:date ;
+              :hasClimaticConditions "The 2015 vintage was marked by favorable weather conditions, resulting in high-quality grapes."@en .
+
+# --- Turtle block from step_12_inverse_properties ---
+# Inverse Object Properties
+
+:isMadeFromInverse rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isMadeFrom ;
+                   rdfs:domain :GrapeVariety ;
+                   rdfs:range :Wine ;
+                   rdfs:label "is used to make"@en ;
+                   rdfs:comment "The inverse property of isMadeFrom, indicating the wine made from a grape variety."@en .
+
+:hasGrapeVarietyInverse rdf:type owl:ObjectProperty ;
+                        owl:inverseOf :hasGrapeVariety ;
+                        rdfs:domain :GrapeVariety ;
+                        rdfs:range :Wine ;
+                        rdfs:label "is grape variety of"@en ;
+                        rdfs:comment "The inverse property of hasGrapeVariety, indicating the wine that has a specific grape variety."@en .
+
+:hasViticulturalPracticeInverse rdf:type owl:ObjectProperty ;
+                                owl:inverseOf :hasViticulturalPractice ;
+                                rdfs:domain :ViticulturalPractice ;
+                                rdfs:range :Winery ;
+                                rdfs:label "is practiced by"@en ;
+                                rdfs:comment "The inverse property of hasViticulturalPractice, indicating the winery that practices a specific viticultural practice."@en .
+
+:hasWinemakingProcessInverse rdf:type owl:ObjectProperty ;
+                             owl:inverseOf :hasWinemakingProcess ;
+                             rdfs:domain :WinemakingProcess ;
+                             rdfs:range :Winery ;
+                             rdfs:label "is used by"@en ;
+                             rdfs:comment "The inverse property of hasWinemakingProcess, indicating the winery that uses a specific winemaking process."@en .
+
+:hasWineAttributeInverse rdf:type owl:ObjectProperty ;
+                         owl:inverseOf :hasWineAttribute ;
+                         rdfs:domain :WineAttribute ;
+                         rdfs:range :Wine ;
+                         rdfs:label "is attribute of"@en ;
+                         rdfs:comment "The inverse property of hasWineAttribute, indicating the wine that has a specific attribute."@en .
+
+:isFromInverse rdf:type owl:ObjectProperty ;
+               owl:inverseOf :isFrom ;
+               rdfs:domain :GeographicalIndication ;
+               rdfs:range :Wine ;
+               rdfs:label "is origin of"@en ;
+               rdfs:comment "The inverse property of isFrom, indicating the wine that originates from a geographical indication."@en .
+
+:isProducedByInverse rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isProducedBy ;
+                     rdfs:domain :Winery ;
+                     rdfs:range :Wine ;
+                     rdfs:label "produces"@en ;
+                     rdfs:comment "The inverse property of isProducedBy, indicating the winery that produces a wine."@en .
+
+:hasVintageInverse rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :hasVintage ;
+                   rdfs:domain :Vintage ;
+                   rdfs:range :Wine ;
+                   rdfs:label "is vintage of"@en ;
+                   rdfs:comment "The inverse property of hasVintage, indicating the wine that has a specific vintage."@en .
+
+:hasWinePairingInverse rdf:type owl:ObjectProperty ;
+                       owl:inverseOf :hasWinePairing ;
+                       rdfs:domain :WinePairing ;
+                       rdfs:range :Wine ;
+                       rdfs:label "is pairing for"@en ;
+                       rdfs:comment "The inverse property of hasWinePairing, indicating the wine pairing that is associated with a wine."@en .
+
+:isSubjectToInverse rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isSubjectTo ;
+                    rdfs:domain :RegulatoryAspect ;
+                    rdfs:range :Wine ;
+                    rdfs:label "regulates"@en ;
+                    rdfs:comment "The inverse property of isSubjectTo, indicating the regulatory aspect that applies to a wine."@en .
+
+# --- Turtle block from step_13_reflexive_properties ---
+:isSimilarTo rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+             rdfs:domain :Wine ;
+             rdfs:range :Wine ;
+             rdfs:label "is similar to"@en ;
+             rdfs:comment "A wine is similar to another wine."@en .
+
+:hasSameGrapeVariety rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                      rdfs:domain :Wine ;
+                      rdfs:range :Wine ;
+                      rdfs:label "has same grape variety"@en ;
+                      rdfs:comment "Two wines have the same grape variety."@en .
+
+:hasSameViticulturalPractice rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                             rdfs:domain :Winery ;
+                             rdfs:range :Winery ;
+                             rdfs:label "has same viticultural practice"@en ;
+                             rdfs:comment "Two wineries have the same viticultural practice."@en .
+
+:hasSameWinemakingProcess rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                           rdfs:domain :Winery ;
+                           rdfs:range :Winery ;
+                           rdfs:label "has same winemaking process"@en ;
+                           rdfs:comment "Two wineries have the same winemaking process."@en .
+
+:isAssociatedWith rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                   rdfs:domain :GeographicalIndication ;
+                   rdfs:range :GeographicalIndication ;
+                   rdfs:label "is associated with"@en ;
+                   rdfs:comment "A geographical indication is associated with another."@en .
+
+:isRelatedTo rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+             rdfs:domain :WineAttribute ;
+             rdfs:range :WineAttribute ;
+             rdfs:label "is related to"@en ;
+             rdfs:comment "A wine attribute is related to another."@en .
+
+:hasSameVintage rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                 rdfs:domain :Vintage ;
+                 rdfs:range :Vintage ;
+                 rdfs:label "has same vintage"@en ;
+                 rdfs:comment "Two vintages are the same."@en .
+
+:isComparableTo rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                 rdfs:domain :WinePairing ;
+                 rdfs:range :WinePairing ;
+                 rdfs:label "is comparable to"@en ;
+                 rdfs:comment "A wine pairing is comparable to another."@en .
+
+:isRegulatedBy rdf:type owl:ReflexiveProperty ;
+               rdfs:domain :RegulatoryAspect ;
+               rdfs:range :RegulatoryAspect ;
+               rdfs:label "is regulated by"@en ;
+               rdfs:comment "A regulatory aspect regulates itself."@en .
+
+:hasSameRegulatoryAspect rdf:type owl:SymmetricProperty, owl:ReflexiveProperty ;
+                         rdfs:domain :RegulatoryAspect ;
+                         rdfs:range :RegulatoryAspect ;
+                         rdfs:label "has same regulatory aspect"@en ;
+                         rdfs:comment "Two regulatory aspects are the same."@en .
+
+# --- Turtle block from step_14_symmetric_properties ---
+:isMadeFrom owl:inverseOf :hasGrapeVariety ;
+           rdfs:comment "Inverse property of hasGrapeVariety, indicating the grape variety used to make a wine."@en ;
+           rdf:type owl:SymmetricProperty .
+
+:hasGrapeVariety rdf:type owl:SymmetricProperty ;
+                 rdfs:comment "Indicates the grape variety used in the production of a wine, symmetric to isMadeFrom."@en .
+
+:isProducedBy owl:inverseOf :producesWine ;
+              rdfs:comment "Inverse property indicating the winery that produces a wine."@en .
+
+:producesWine rdf:type owl:ObjectProperty ;
+              rdfs:domain :Winery ;
+              rdfs:range :Wine ;
+              rdfs:label "produces wine"@en ;
+              owl:inverseOf :isProducedBy ;
+              rdfs:comment "Indicates the wines produced by a winery."@en .
+
+:hasWinePairing rdf:type owl:SymmetricProperty ;
+                rdfs:comment "Indicates a recommended pairing between a wine and a food item, symmetric in nature."@en .
+
+:isFrom owl:inverseOf :producesWineFrom ;
+        rdfs:comment "Inverse property indicating the geographical origin of a wine."@en .
+
+:producesWineFrom rdf:type owl:ObjectProperty ;
+                  rdfs:domain :GeographicalIndication ;
+                  rdfs:range :Wine ;
+                  rdfs:label "produces wine from"@en ;
+                  owl:inverseOf :isFrom ;
+                  rdfs:comment "Indicates wines originating from a specific geographical indication."@en .
+
+:hasViticulturalPractice owl:inverseOf :isUsedIn ;
+                         rdfs:comment "Inverse property indicating the viticultural practices employed by a winery."@en .
+
+:isUsedIn rdf:type owl:ObjectProperty ;
+          rdfs:domain :ViticulturalPractice ;
+          rdfs:range :Winery ;
+          rdfs:label "is used in"@en ;
+          owl:inverseOf :hasViticulturalPractice ;
+          rdfs:comment "Indicates the wineries that utilize a specific viticultural practice."@en .
+
+:hasWinemakingProcess owl:inverseOf :isAppliedIn ;
+                      rdfs:comment "Inverse property indicating the winemaking processes used by a winery."@en .
+
+:isAppliedIn rdf:type owl:ObjectProperty ;
+             rdfs:domain :WinemakingProcess ;
+             rdfs:range :Winery ;
+             rdfs:label "is applied in"@en ;
+             owl:inverseOf :hasWinemakingProcess ;
+             rdfs:comment "Indicates the wineries that apply a specific winemaking process."@en .
+
+:hasWineAttribute owl:inverseOf :describesWine ;
+                  rdfs:comment "Inverse property indicating the attributes that describe a wine."@en .
+
+:describesWine rdf:type owl:ObjectProperty ;
+               rdfs:domain :WineAttribute ;
+               rdfs:range :Wine ;
+               rdfs:label "describes wine"@en ;
+               owl:inverseOf :hasWineAttribute ;
+               rdfs:comment "Indicates the wines described by a specific wine attribute."@en .
+
+:isSubjectTo owl:inverseOf :regulates ;
+             rdfs:comment "Inverse property indicating the regulatory aspects that govern a wine."@en .
+
+:regulates rdf:type owl:ObjectProperty ;
+           rdfs:domain :RegulatoryAspect ;
+           rdfs:range :Wine ;
+           rdfs:label "regulates"@en ;
+           owl:inverseOf :isSubjectTo ;
+           rdfs:comment "Indicates the wines regulated by a specific regulatory aspect."@en .
+
+# --- Turtle block from step_16_transitive_properties ---
+:isMadeFrom rdf:type owl:TransitiveProperty ;
+            rdfs:comment "If a wine is made from a grape variety, and that grape variety is a descendant of another, then the wine is also made from that ancestor grape variety."@en .
+
+:hasViticulturalPractice rdf:type owl:TransitiveProperty ;
+                         rdfs:comment "If a winery has a viticultural practice, and that practice involves another practice, then the winery also has that other practice."@en .
+
+:hasWinemakingProcess rdf:type owl:TransitiveProperty ;
+                       rdfs:comment "If a winery has a winemaking process, and that process involves another process, then the winery also has that other process."@en .
+
+:isFrom rdf:type owl:TransitiveProperty ;
+        rdfs:comment "If a wine is from a geographical indication, and that indication is part of a larger region, then the wine is also from that larger region."@en .
+
+:isProducedBy rdf:type owl:TransitiveProperty ;
+              rdfs:comment "If a wine is produced by a winery, and that winery is owned by another entity, then the wine is also produced by that other entity."@en .
+
+:hasWineAttribute rdf:type owl:TransitiveProperty ;
+                  rdfs:comment "If a wine has a certain attribute, and that attribute is related to another attribute, then the wine also has that other attribute."@en .
+
+:hasWinePairing rdf:type owl:TransitiveProperty ;
+                rdfs:comment "If a wine has a pairing suggestion, and that suggestion is related to another food or wine, then the wine also pairs with that other food or wine."@en .
+
+:isSubjectTo rdf:type owl:TransitiveProperty ;
+             rdfs:comment "If a wine is subject to a regulatory aspect, and that aspect is part of a larger regulatory framework, then the wine is also subject to that larger framework."@en .
+
+# --- Turtle block from step_17_individuals ---
+# Additional instances for GrapeVariety class
+:PinotNoir rdf:type :GrapeVariety ;
+           rdfs:label "Pinot Noir"@en ;
+           rdfs:comment "A red grape variety known for producing light-bodied wines with flavors of cherry and earth."@en .
+
+:SauvignonBlanc rdf:type :GrapeVariety ;
+                rdfs:label "Sauvignon Blanc"@en ;
+                rdfs:comment "A white grape variety known for crisp acidity and flavors of green apple and citrus."@en .
+
+:Merlot rdf:type :GrapeVariety ;
+        rdfs:label "Merlot"@en ;
+        rdfs:comment "A red grape variety known for producing smooth, approachable wines with flavors of plum and blackberry."@en .
+
+:Riesling rdf:type :GrapeVariety ;
+          rdfs:label "Riesling"@en ;
+          rdfs:comment "A white grape variety known for producing wines ranging from dry to sweet with high acidity."@en .
+
+# Additional instances for ViticulturalPractice class
+:CanopyManagement rdf:type :ViticulturalPractice ;
+                  rdfs:label "Canopy Management"@en ;
+                  rdfs:comment "A viticultural practice involving the management of the leaf and shoot growth to optimize grape quality."@en .
+
+:Irrigation rdf:type :ViticulturalPractice ;
+            rdfs:label "Irrigation"@en ;
+            rdfs:comment "The application of controlled amounts of water to plants at needed intervals to support grape production."@en .
+
+:OrganicFarming rdf:type :ViticulturalPractice ;
+                rdfs:label "Organic Farming"@en ;
+                rdfs:comment "A farming practice that avoids the use of synthetic fertilizers, pesticides, and genetically modified organisms."@en .
+
+# Additional instances for WinemakingProcess class
+:Fermentation rdf:type :WinemakingProcess ;
+              rdfs:label "Fermentation"@en ;
+              rdfs:comment "The process by which sugars in grape juice are converted into alcohol by yeast."@en .
+
+:AgingInOak rdf:type :WinemakingProcess ;
+            rdfs:label "Aging in Oak"@en ;
+            rdfs:comment "The process of aging wine in oak barrels to impart flavors of vanilla and toast."@en .
+
+:ReverseOsmosis rdf:type :WinemakingProcess ;
+                rdfs:label "Reverse Osmosis"@en ;
+                rdfs:comment "A winemaking technique used to adjust the concentration of grape must or wine."@en .
+
+# Additional instances for WineAttribute class
+:Aroma rdf:type :WineAttribute ;
+       rdfs:label "Aroma"@en ;
+       rdfs:comment "The smell of a wine, which can include a wide range of scents from fruits to spices."@en .
+
+:Flavor rdf:type :WineAttribute ;
+        rdfs:label "Flavor"@en ;
+        rdfs:comment "The taste of a wine, encompassing its sweetness, acidity, tannins, and body."@en .
+
+# Additional instances for GeographicalIndication class
+:Tuscany rdf:type :GeographicalIndication ;
+         rdfs:label "Tuscany"@en ;
+         rdfs:comment "A region in central Italy known for producing Chianti and other renowned wines."@en .
+
+:Bordeaux rdf:type :GeographicalIndication ;
+          rdfs:label "Bordeaux"@en ;
+          rdfs:comment "A region in southwestern France known for producing some of the world's most prestigious red blends."@en .
+
+:NapaValley rdf:type :GeographicalIndication ;
+            rdfs:label "Napa Valley"@en ;
+            rdfs:comment "A prominent wine region in California, USA, known for its Cabernet Sauvignon and Chardonnay."@en .
+
+# Additional instances for Winery class
+:ChâteauLafiteRothschild rdf:type :Winery ;
+                        rdfs:label "Château Lafite Rothschild"@en ;
+                        rdfs:comment "A prestigious wine producer in Bordeaux, France, known for its high-quality red wines."@en .
+
+:OpusOne rdf:type :Winery ;
+         rdfs:label "Opus One"@en ;
+         rdfs:comment "A winery in Napa Valley, California, known for its Bordeaux-style red blends."@en .
+
+# Additional instances for Vintage class
+:Vintage2018 rdf:type :Vintage ;
+             rdfs:label "Vintage 2018"@en ;
+             rdfs:comment "The harvest year 2018, notable for its weather conditions affecting grape quality and yield."@en .
+
+:Vintage2020 rdf:type :Vintage ;
+             rdfs:label "Vintage 2020"@en ;
+             rdfs:comment "The harvest year 2020, characterized by its specific climatic conditions."@en .
+
+# Additional instances for WinePairing class
+:GrilledSalmon rdf:type :WinePairing ;
+               rdfs:label "Grilled Salmon"@en ;
+               rdfs:comment "A dish pairing option that goes well with certain white wines like Sauvignon Blanc."@en .
+
+:SteakAuPoivre rdf:type :WinePairing ;
+               rdfs:label "Steak au Poivre"@en ;
+               rdfs:comment "A pepper-crusted steak dish that pairs well with full-bodied red wines."@en .
+
+# Additional instances for RegulatoryAspect class
+:AppellationContrôlée rdf:type :RegulatoryAspect ;
+                       rdfs:label "Appellation d'Origine Contrôlée"@en ;
+                       rdfs:comment "A French certification that guarantees the origin and quality of wines."@en .
+
+:DOCG rdf:type :RegulatoryAspect ;
+      rdfs:label "Denominazione di Origine Controllata e Garantita"@en ;
+      rdfs:comment "The highest classification for Italian wines, guaranteeing their origin and quality."@en .
+
+# Property assertions for new instances
+:ChâteauLafiteRothschild :hasViticulturalPractice :CanopyManagement ;
+                         :hasWinemakingProcess :AgingInOak .
+
+:OpusOne :hasViticulturalPractice :OrganicFarming ;
+         :hasWinemakingProcess :Fermentation .
+
+:PinotNoir :isUsedIn :Burgundy .
+
+:SauvignonBlanc :isUsedIn :NapaValley .
+
+:Tuscany :produces :Chianti .
+
+:Bordeaux :produces :ChâteauLafiteRothschild .
+
+:NapaValley :produces :OpusOne .
+
+# Additional data properties for Wine instances
+:ChâteauLafiteRothschild2015 rdf:type :Wine ;
+                            :hasAlcoholContent 13.0 ;
+                            :hasResidualSugar 0.2 ;
+                            :hasAcidity 6.0 ;
+                            :hasTanninLevel 4.0 .
+
+:OpusOne2018 rdf:type :Wine ;
+             :hasAlcoholContent 14.0 ;
+             :hasResidualSugar 0.3 ;
+             :hasAcidity 6.5 ;
+             :hasTanninLevel 4.5 .
+
+# Linking instances with existing classes and properties
+:Chardonnay :isUsedIn :Burgundy .
+:CabernetSauvignon :isUsedIn :Bordeaux .
+
+:DomaineDeLaRomanéeConti :hasViticulturalPractice :OrganicFarming .
+
+:Montrachet :hasWineAttribute :Aroma .
+
+# --- Turtle block from step_19_comments ---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Definition of the ontology prefix
+@prefix : <http://example.org/wine-ontology#> .
+
+# Adding comments for the main classes
+:rdfs:Class rdfs:comment "The class of RDFS classes." .
+:owl:Class rdfs:comment "The class of OWL classes." .
+
+# Adding comments for properties
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> rdfs:comment "The subject's type or class." .
+<http://www.w3.org/2000/01/rdf-schema#label> rdfs:comment "A human-readable label for the resource." .
+
+# Define the wine ontology
+:WineOntology rdfs:comment "An ontology for describing wine-related concepts and relationships." .
+
+# Comments for the main classes in the ontology
+:Wine rdfs:comment "A class representing wine." .
+:Winery rdfs:comment "A place where wine is produced." .
+:Vineyard rdfs:comment "A plot of land where grapes are grown." .
+
+# Adding natural language descriptions to the main properties
+:madeFrom rdfs:comment "Relates a wine to its ingredients or the material from which it is made." .
+:hasColor rdfs:comment "A property to describe the color of a wine." .
+:hasFlavor rdfs:comment "A property to describe the flavor profile of a wine." .
+
+# Creating relationships between entities
+:GrapeVariety rdfs:subClassOf :WineGrape .
+:Winemaker rdfs:subClassOf :Person .
+
+# Define some key properties for wine and food pairing
+:hasFoodPairing rdfs:comment "Relates a wine to a food that it pairs well with." .
+:isPairedWith rdfs:inverseOf :hasFoodPairing .
+
+# --- Turtle block from step_19_comments ---
+# Additional triples to further enrich the ontology
+:hasRegion rdfs:domain :Wine ;
+    rdfs:range :Region .
+
+:hasAppellation rdfs:subPropertyOf :hasRegion .
+
+:WineRegion rdfs:subClassOf :Region .
+
+:Winery a :Winery ;
+    :produces :Wine .
+
+:Wine a owl:Class .
+
+:hasTannin rdfs:domain :Wine ;
+    rdfs:range :TanninLevel .
+
+:hasSugar rdfs:domain :Wine ;
+    rdfs:range :SugarLevel .
+
+:hasBody rdfs:domain :Wine ;
+    rdfs:range :WineBody .
+
+:containsTannins a :Tannin ;
+    :tanninLevel "high" .
+
+:Vintage a :VintageYear ;
+    :vintageYear "2018" .
+
+:hasVintage :Vintage ;
+    rdfs:label "Vintage" .
+
+:isMature rdfs:domain :Wine ;
+    rdfs:range :Maturity .
+
+:WineColor rdfs:domain :Wine ;
+    rdfs:range :Color .
+
+# --- Turtle block from step_19_comments ---
+@prefix wine: <http://example.org/wine#> .
+@prefix vin: <http://example.org/vin#> .
+
+wine:Merlot a wine:GrapeVariety ;
+    rdfs:label "Merlot" .
+
+vin:Chardonnay a wine:GrapeVariety ;
+    rdfs:label "Chardonnay" .
+
+wine:CabernetSauvignon a wine:GrapeVariety ;
+    rdfs:label "Cabernet Sauvignon" .
+
+# --- Turtle block from step_19_comments ---
+# End of the ontology
+###end_output###
+
+However, reformatted to the strict response format:
+
+###start_turtle###
+# No additional content here as the original response was reformatted to fit the specified structure.
+
+# --- Turtle block from step_20_refinement ---
+# Additional Prefix declaration
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix eurovoc: <http://eurovoc.europa.eu/> .
+@prefix mesh: <http://id.nlm.nih.gov/mesh/> .
+@prefix unspsc: <http://www.unspsc.org/> .
+
+# New Classes
+:WineLabel rdf:type owl:Class ;
+           rdfs:label "Wine Label"@en ;
+           rdfs:comment "Information on the label of a wine."@en .
+
+:Vineyard rdf:type owl:Class ;
+          rdfs:label "Vineyard"@en ;
+          rdfs:comment "A plot of land where grapes are cultivated."@en .
+
+:Grape rdf:type owl:Class ;
+       rdfs:subClassOf :GrapeVariety ;
+       rdfs:label "Grape"@en ;
+       rdfs:comment "A fruit used in winemaking."@en .
+
+:Compound rdf:type owl:Class ;
+          rdfs:label "Compound"@en ;
+          rdfs:comment "A chemical substance present in wine."@en .
+
+:Preservative rdf:type owl:Class ;
+              rdfs:subClassOf :Compound ;
+              rdfs:label "Preservative"@en ;
+              rdfs:comment "A substance added to wine to prevent spoilage."@en .
+
+:Additive rdf:type owl:Class ;
+          rdfs:subClassOf :Compound ;
+          rdfs:label "Additive"@en ;
+          rdfs:comment "A substance added to wine for a specific purpose."@en .
+
+:FlavorComponent rdf:type owl:Class ;
+                 rdfs:subClassOf :Compound ;
+                 rdfs:label "Flavor Component"@en ;
+                 rdfs:comment "A compound contributing to the flavor of wine."@en .
+
+:AromaComponent rdf:type owl:Class ;
+                rdfs:subClassOf :Compound ;
+                rdfs:label "Aroma Component"@en ;
+                rdfs:comment "A compound contributing to the aroma of wine."@en .
+
+# New Object Properties
+:hasIngredient rdf:type owl:ObjectProperty ;
+                rdfs:domain :Wine ;
+                rdfs:range :GrapeVariety ;
+                rdfs:label "has ingredient"@en ;
+                rdfs:comment "The grape variety used in the production of a wine."@en .
+
+:classifiedAs rdf:type owl:ObjectProperty ;
+              rdfs:domain :Wine ;
+              rdfs:range eurovoc:PDO_ProtectedDesignationOfOrigin ;
+              rdfs:label "classified as"@en ;
+              rdfs:comment "The classification of a wine according to a protected designation of origin."@en .
+
+:containsCompound rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :Compound ;
+                  rdfs:label "contains compound"@en ;
+                  rdfs:comment "A chemical compound present in a wine."@en .
+
+:compliesWith rdf:type owl:ObjectProperty ;
+              rdfs:domain :WineLabel ;
+              rdfs:range eurovoc:WineLabelingDirective ;
+              rdfs:label "complies with"@en ;
+              rdfs:comment "The wine label complies with a specific labeling directive."@en .
+
+:hasComponent rdf:type owl:ObjectProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :Compound ;
+               rdfs:label "has component"@en ;
+               rdfs:comment "A component of the wine."@en .
+
+:soldUnder rdf:type owl:ObjectProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range unspsc:50202201 ;
+           rdfs:label "sold under"@en ;
+           rdfs:comment "The UNSPSC code for the wine."@en .
+
+:partOf rdf:type owl:ObjectProperty ;
+        rdfs:domain :Vineyard ;
+        rdfs:range agrovoc:Viticulture ;
+        rdfs:label "part of"@en ;
+        rdfs:comment "The vineyard is part of the broader domain of viticulture."@en .
+
+:hasPreservative rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :containsCompound ;
+                 rdfs:label "has preservative"@en ;
+                 rdfs:comment "A preservative added to the wine."@en .
+
+:hasAdditive rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :containsCompound ;
+             rdfs:label "has additive"@en ;
+             rdfs:comment "An additive in the wine."@en .
+
+:hasFlavor rdf:type owl:ObjectProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range :FlavorComponent ;
+           rdfs:label "has flavor"@en ;
+           rdfs:comment "The flavor profile of the wine."@en .
+
+:hasAroma rdf:type owl:ObjectProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range :AromaComponent ;
+          rdfs:label "has aroma"@en ;
+          rdfs:comment "The aroma profile of the wine."@en .
+
+# New Data Properties and Individuals
+:Ethanol rdf:type :Compound ;
+         rdfs:label "Ethanol"@en .
+
+:TartaricAcid rdf:type :Compound ;
+              rdfs:label "Tartaric Acid"@en .
+
+:SulfurDioxide rdf:type :Preservative ;
+               rdfs:label "Sulfur Dioxide"@en .
+
+:AscorbicAcid rdf:type :Additive ;
+              rdfs:label "Ascorbic Acid"@en .
+
+:MalicAcid rdf:type :Compound ;
+           rdfs:label "Malic Acid"@en .
+
+:LacticAcid rdf:type :Compound ;
+            rdfs:label "Lactic Acid"@en .
+
+:Anthocyanin rdf:type :Compound ;
+             rdfs:label "Anthocyanin"@en .
+
+:Terpene rdf:type :FlavorComponent ;
+         rdfs:label "Terpene"@en .
+
+:Esters rdf:type :AromaComponent ;
+        rdfs:label "Esters"@en .
+
+:Glycerol rdf:type :Compound ;
+          rdfs:label "Glycerol"@en .
+
+:Glucose rdf:type :Compound ;
+         rdfs:label "Glucose"@en .
+
+:Tannin rdf:type :Compound ;
+        rdfs:label "Tannin"@en .
+
+:Polysaccharides rdf:type :Compound ;
+                 rdfs:label "Polysaccharides"@en .
+
+# New Triples for existing Individuals
+:Montrachet :hasIngredient :Chardonnay .
+:Montrachet :containsCompound :Ethanol .
+:Montrachet :containsCompound :TartaricAcid .
+:Montrachet :hasPreservative :SulfurDioxide .
+:Montrachet :hasAdditive :AscorbicAcid .
+:Montrachet :hasComponent :MalicAcid .
+:Montrachet :hasComponent :LacticAcid .
+:Montrachet :hasFlavor :Terpene .
+:Montrachet :hasAroma :Esters .
+:Montrachet :hasComponent :Glycerol .
+:Montrachet :hasComponent :Glucose .
+:Montrachet :hasComponent :Tannin .
+:Montrachet :hasComponent :Polysaccharides .
+:Montrachet :hasColor :Anthocyanin .
+
+:DomaineDeLaRomanéeConti :partOf agrovoc:Viticulture .
+
+:Montrachet :soldUnder unspsc:50202201 .
+:Montrachet :classifiedAs eurovoc:PDO_ProtectedDesignationOfOrigin .
+

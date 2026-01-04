@@ -1,0 +1,1348 @@
+# Generated Turtle ontology
+
+# --- Turtle block from step_08_turtle_serialization ---
+# Declare the namespace for the SewerNet Ontology
+@prefix : <http://example.org/SewerNet#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dolce: <http://www.loa-cnr.it/ontologies/DOLCE-Lite#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix inspire: <http://inspire.ec.europa.eu/ontology#> .
+@prefix raepa: <http://example.org/RAEPA#> .
+
+# Define the ontology
+:SeweNetOntology rdf:type owl:Ontology ;
+    rdfs:label "SewerNet Ontology"@en ;
+    rdfs:comment "An ontology for representing sewer network components, management processes, and related concepts."@en .
+
+# Classes
+:NetworkComponent rdf:type owl:Class ;
+    rdfs:label "Network Component"@en ;
+    rdfs:comment "A physical element within a sewer network."@en ;
+    rdfs:subClassOf dolce:PhysicalObject .
+
+:Pipe rdf:type owl:Class ;
+    rdfs:label "Pipe"@en ;
+    rdfs:comment "A tubular section conveying wastewater or stormwater."@en ;
+    rdfs:subClassOf :NetworkComponent .
+
+:Manhole rdf:type owl:Class ;
+    rdfs:label "Manhole"@en ;
+    rdfs:comment "An access point to a sewer network for maintenance."@en ;
+    rdfs:subClassOf :NetworkComponent .
+
+:Inlet rdf:type owl:Class ;
+    rdfs:label "Inlet"@en ;
+    rdfs:comment "A point of entry for water into the sewer network."@en ;
+    rdfs:subClassOf :NetworkComponent .
+
+:Outlet rdf:type owl:Class ;
+    rdfs:label "Outlet"@en ;
+    rdfs:comment "A point of discharge from the sewer network."@en ;
+    rdfs:subClassOf :NetworkComponent .
+
+:PumpingStation rdf:type owl:Class ;
+    rdfs:label "Pumping Station"@en ;
+    rdfs:comment "A facility that pumps wastewater or stormwater."@en ;
+    rdfs:subClassOf :NetworkComponent .
+
+:OperationalEvent rdf:type owl:Class ;
+    rdfs:label "Operational Event"@en ;
+    rdfs:comment "An event related to the management of the sewer network."@en ;
+    rdfs:subClassOf dolce:Event .
+
+:Inspection rdf:type owl:Class ;
+    rdfs:label "Inspection"@en ;
+    rdfs:comment "An examination of a network component."@en ;
+    rdfs:subClassOf :OperationalEvent .
+
+:MaintenanceActivity rdf:type owl:Class ;
+    rdfs:label "Maintenance Activity"@en ;
+    rdfs:comment "Work performed to maintain or repair the sewer network."@en ;
+    rdfs:subClassOf :OperationalEvent .
+
+# Object Properties
+:hasComponent rdf:type owl:ObjectProperty ;
+    rdfs:label "has Component"@en ;
+    rdfs:comment "Relates a network to one of its components."@en ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range :NetworkComponent .
+
+:isConnectedTo rdf:type owl:ObjectProperty ;
+    rdfs:label "is Connected To"@en ;
+    rdfs:comment "Indicates a connection between two network components."@en ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range :NetworkComponent .
+
+:performs rdf:type owl:ObjectProperty ;
+    rdfs:label "performs"@en ;
+    rdfs:comment "Relates an operational event to the entity performing it."@en ;
+    rdfs:domain :OperationalEvent ;
+    rdfs:range dolce:Agent .
+
+:affects rdf:type owl:ObjectProperty ;
+    rdfs:label "affects"@en ;
+    rdfs:comment "Relates an operational event to the network component it affects."@en ;
+    rdfs:domain :OperationalEvent ;
+    rdfs:range :NetworkComponent .
+
+# Data Properties
+:hasDiameter rdf:type owl:DatatypeProperty ;
+    rdfs:label "has Diameter"@en ;
+    rdfs:comment "The diameter of a pipe."@en ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:decimal .
+
+:hasMaterial rdf:type owl:DatatypeProperty ;
+    rdfs:label "has Material"@en ;
+    rdfs:comment "The material a pipe is made of."@en ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:string .
+
+:hasSlope rdf:type owl:DatatypeProperty ;
+    rdfs:label "has Slope"@en ;
+    rdfs:comment "The slope of a pipe."@en ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:decimal .
+
+:hasFlowCapacity rdf:type owl:DatatypeProperty ;
+    rdfs:label "has Flow Capacity"@en ;
+    rdfs:comment "The flow capacity of a pipe or pumping station."@en ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:decimal .
+
+:hasLocation rdf:type owl:DatatypeProperty ;
+    rdfs:label "has Location"@en ;
+    rdfs:comment "The geographic location of a network component."@en ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range inspire:Geometry .
+
+# Axioms and Assertions
+:Pipe1 rdf:type :Pipe ;
+    :hasDiameter 0.5 ;
+    :hasMaterial "Concrete" ;
+    :hasSlope 0.02 .
+
+:Manhole1 rdf:type :Manhole ;
+    :hasLocation "POINT(48.8566 2.3522)"^^inspire:Geometry .
+
+:Inspection1 rdf:type :Inspection ;
+    :performs :MaintenanceTeam1 ;
+    :affects :Pipe1 ;
+    time:hasTime :TimeInterval1 .
+
+:TimeInterval1 rdf:type time:Interval ;
+    time:hasBeginning :TimeInstant1 ;
+    time:hasEnd :TimeInstant2 .
+
+:TimeInstant1 rdf:type time:Instant ;
+    time:inXSDDateTime "2023-01-01T10:00:00"^^xsd:dateTime .
+
+:TimeInstant2 rdf:type time:Instant ;
+    time:inXSDDateTime "2023-01-01T11:00:00"^^xsd:dateTime .
+
+# Align with RAEPA and INSPIRE
+:NetworkComponent rdfs:subClassOf raepa:NetworkElement .
+:SewerNetwork rdfs:subClassOf raepa:Network .
+:hasLocation rdfs:subPropertyOf inspire:geometry .
+
+# --- Turtle block from step_09_refine_turtle ---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sn: <http://example.org/sewer-net#> .
+@prefix dolce: <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix raepa: <http://example.org/raepa#> .
+
+sn:SewerNetwork a owl:Class ;
+    rdfs:label "Sewer Network"@en ;
+    rdfs:subClassOf dolce:Artifact .
+
+sn:hasComponent a owl:ObjectProperty ;
+    rdfs:domain sn:SewerNetwork ;
+    rdfs:range sn:SewerNetworkComponent ;
+    owl:inverseOf sn:isComponentOf .
+
+sn:SewerNetworkComponent a owl:Class ;
+    rdfs:label "Sewer Network Component"@en ;
+    rdfs:subClassOf dolce:Artifact .
+
+sn:Pipe a owl:Class ;
+    rdfs:label "Pipe"@en ;
+    rdfs:subClassOf sn:SewerNetworkComponent .
+
+sn:Manhole a owl:Class ;
+    rdfs:label "Manhole"@en ;
+    rdfs:subClassOf sn:SewerNetworkComponent .
+
+sn:PumpingStation a owl:Class ;
+    rdfs:label "Pumping Station"@en ;
+    rdfs:subClassOf sn:SewerNetworkComponent .
+
+sn:connectedTo a owl:ObjectProperty ;
+    rdfs:domain sn:SewerNetworkComponent ;
+    rdfs:range sn:SewerNetworkComponent .
+
+sn:hasLocation a owl:ObjectProperty ;
+    rdfs:domain sn:SewerNetworkComponent ;
+    rdfs:range geo:Feature .
+
+sn:GeospatialPoint a owl:Class ;
+    rdfs:label "Geospatial Point"@en ;
+    rdfs:subClassOf geo:Feature .
+
+sn:Inspection a owl:Class ;
+    rdfs:label "Inspection"@en ;
+    rdfs:subClassOf dolce:Event .
+
+sn:targets a owl:ObjectProperty ;
+    rdfs:domain sn:Inspection ;
+    rdfs:range sn:SewerNetworkComponent .
+
+sn:MaintenanceActivity a owl:Class ;
+    rdfs:label "Maintenance Activity"@en ;
+    rdfs:subClassOf dolce:Event .
+
+sn:addresses a owl:ObjectProperty ;
+    rdfs:domain sn:MaintenanceActivity ;
+    rdfs:range sn:StructuralCondition .
+
+sn:Blockage a owl:Class ;
+    rdfs:label "Blockage"@en ;
+    rdfs:subClassOf dolce:Event .
+
+sn:occursAt a owl:ObjectProperty ;
+    rdfs:domain sn:Blockage ;
+    rdfs:range sn:Pipe .
+
+sn:Overflow a owl:Class ;
+    rdfs:label "Overflow"@en ;
+    rdfs:subClassOf dolce:Event .
+
+sn:resultsFrom a owl:ObjectProperty ;
+    rdfs:domain sn:Overflow ;
+    rdfs:range sn:Blockage .
+
+sn:Repair a owl:Class ;
+    rdfs:label "Repair"@en ;
+    rdfs:subClassOf dolce:Event .
+
+sn:restores a owl:ObjectProperty ;
+    rdfs:domain sn:Repair ;
+    rdfs:range sn:StructuralCondition .
+
+sn:StructuralCondition a owl:Class ;
+    rdfs:label "Structural Condition"@en ;
+    rdfs:subClassOf dolce:Quality .
+
+sn:compliesWith a owl:ObjectProperty ;
+    rdfs:domain sn:SewerNetwork ;
+    rdfs:range raepa:RAEPAStandard .
+
+sn:alignsWith a owl:ObjectProperty ;
+    rdfs:domain sn:SewerNetwork ;
+    rdfs:range <http://inspire.ec.europa.eu/directive/INSPIREDirective> .
+
+sn:pipeDiameter a owl:DatatypeProperty ;
+    rdfs:domain sn:Pipe ;
+    rdfs:range xsd:float .
+
+sn:pipeMaterial a owl:DatatypeProperty ;
+    rdfs:domain sn:Pipe ;
+    rdfs:range xsd:string .
+
+sn:slope a owl:DatatypeProperty ;
+    rdfs:domain sn:Pipe ;
+    rdfs:range xsd:float .
+
+sn:flowCapacity a owl:DatatypeProperty ;
+    rdfs:domain sn:Pipe ;
+    rdfs:range xsd:float .
+
+sn:hasTime a owl:ObjectProperty ;
+    rdfs:domain dolce:Event ;
+    rdfs:range time:TemporalEntity .
+
+sn:SewerNetworkComponent
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sn:hasLocation ;
+        owl:someValuesFrom geo:Feature
+    ] .
+
+sn:Pipe
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sn:connectedTo ;
+        owl:someValuesFrom sn:Manhole
+    ] .
+
+sn:Manhole
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sn:connectedTo ;
+        owl:someValuesFrom sn:Pipe
+    ] .
+
+sn:SewerNetwork
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sn:hasComponent ;
+        owl:someValuesFrom sn:SewerNetworkComponent
+    ] .
+
+# --- Turtle block from step_10_refine_turtle ---
+@prefix sewerNet: <http://example.org/sewerNet#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dolce: <http://www.loa-cnr.it/ontologies/DOLCE-Lite#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix raepa: <http://example.org/raepa#> .
+@prefix inspire: <http://inspire.ec.europa.eu/ontology#> .
+
+sewerNet:SewerNetwork 
+    a owl:Class ;
+    rdfs:label "Sewer Network"@en ;
+    rdfs:comment "A network of sewer components"@en ;
+    rdfs:subClassOf dolce:PhysicalObject .
+
+sewerNet:hasComponent 
+    a owl:ObjectProperty ;
+    rdfs:label "has component"@en ;
+    rdfs:domain sewerNet:SewerNetwork ;
+    rdfs:range sewerNet:SewerNetworkComponent ;
+    owl:inverseOf sewerNet:isComponentOf .
+
+sewerNet:SewerNetworkComponent 
+    a owl:Class ;
+    rdfs:label "Sewer Network Component"@en ;
+    rdfs:comment "A component of a sewer network"@en ;
+    rdfs:subClassOf dolce:PhysicalObject .
+
+sewerNet:Pipe 
+    a owl:Class ;
+    rdfs:label "Pipe"@en ;
+    rdfs:comment "A pipe in the sewer network"@en ;
+    rdfs:subClassOf sewerNet:SewerNetworkComponent .
+
+sewerNet:Manhole 
+    a owl:Class ;
+    rdfs:label "Manhole"@en ;
+    rdfs:comment "A manhole in the sewer network"@en ;
+    rdfs:subClassOf sewerNet:SewerNetworkComponent .
+
+sewerNet:connectedTo 
+    a owl:ObjectProperty ;
+    rdfs:label "connected to"@en ;
+    rdfs:domain sewerNet:SewerNetworkComponent ;
+    rdfs:range sewerNet:SewerNetworkComponent ;
+    owl:inverseOf sewerNet:connectedTo .
+
+sewerNet:hasLocation 
+    a owl:ObjectProperty ;
+    rdfs:label "has location"@en ;
+    rdfs:domain sewerNet:SewerNetworkComponent ;
+    rdfs:range geosparql:Geometry .
+
+geosparql:Geometry 
+    a owl:Class ;
+    rdfs:label "Geometry"@en .
+
+sewerNet:GeospatialPoint 
+    a owl:Class ;
+    rdfs:label "Geospatial Point"@en ;
+    rdfs:subClassOf geosparql:Geometry .
+
+sewerNet:Inspection 
+    a owl:Class ;
+    rdfs:label "Inspection"@en ;
+    rdfs:comment "An inspection event"@en ;
+    rdfs:subClassOf time:Event .
+
+time:Event 
+    a owl:Class ;
+    rdfs:label "Event"@en .
+
+sewerNet:targets 
+    a owl:ObjectProperty ;
+    rdfs:label "targets"@en ;
+    rdfs:domain sewerNet:Inspection ;
+    rdfs:range sewerNet:SewerNetworkComponent .
+
+sewerNet:MaintenanceActivity 
+    a owl:Class ;
+    rdfs:label "Maintenance Activity"@en ;
+    rdfs:comment "A maintenance activity"@en ;
+    rdfs:subClassOf time:Event .
+
+sewerNet:addresses 
+    a owl:ObjectProperty ;
+    rdfs:label "addresses"@en ;
+    rdfs:domain sewerNet:MaintenanceActivity ;
+    rdfs:range sewerNet:StructuralCondition .
+
+sewerNet:StructuralCondition 
+    a owl:Class ;
+    rdfs:label "Structural Condition"@en ;
+    rdfs:comment "A structural condition of a sewer component"@en .
+
+sewerNet:Blockage 
+    a owl:Class ;
+    rdfs:label "Blockage"@en ;
+    rdfs:comment "A blockage event"@en ;
+    rdfs:subClassOf time:Event .
+
+sewerNet:occursAt 
+    a owl:ObjectProperty ;
+    rdfs:label "occurs at"@en ;
+    rdfs:domain sewerNet:Blockage ;
+    rdfs:range sewerNet:Pipe .
+
+sewerNet:Overflow 
+    a owl:Class ;
+    rdfs:label "Overflow"@en ;
+    rdfs:comment "An overflow event"@en ;
+    rdfs:subClassOf time:Event .
+
+sewerNet:resultsFrom 
+    a owl:ObjectProperty ;
+    rdfs:label "results from"@en ;
+    rdfs:domain sewerNet:Overflow ;
+    rdfs:range sewerNet:Blockage .
+
+sewerNet:Repair 
+    a owl:Class ;
+    rdfs:label "Repair"@en ;
+    rdfs:comment "A repair activity"@en ;
+    rdfs:subClassOf sewerNet:MaintenanceActivity .
+
+sewerNet:restores 
+    a owl:ObjectProperty ;
+    rdfs:label "restores"@en ;
+    rdfs:domain sewerNet:Repair ;
+    rdfs:range sewerNet:StructuralCondition .
+
+sewerNet:compliesWith 
+    a owl:ObjectProperty ;
+    rdfs:label "complies with"@en ;
+    rdfs:domain sewerNet:SewerNetwork ;
+    rdfs:range raepa:RAEPAStandard .
+
+raepa:RAEPAStandard 
+    a owl:Class ;
+    rdfs:label "RAEPA Standard"@en .
+
+sewerNet:alignsWith 
+    a owl:ObjectProperty ;
+    rdfs:label "aligns with"@en ;
+    rdfs:domain sewerNet:SewerNetwork ;
+    rdfs:range inspire:INSPIREDirective .
+
+inspire:INSPIREDirective 
+    a owl:Class ;
+    rdfs:label "INSPIRE Directive"@en .
+
+sewerNet:Pipe 
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sewerNet:connectedTo ;
+        owl:someValuesFrom sewerNet:Manhole
+    ] .
+
+sewerNet:Manhole 
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sewerNet:hasLocation ;
+        owl:someValuesFrom sewerNet:GeospatialPoint
+    ] .
+
+sewerNet:SewerNetwork 
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sewerNet:hasComponent ;
+        owl:someValuesFrom sewerNet:SewerNetworkComponent
+    ] .
+
+sewerNet:SewerNetwork 
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sewerNet:compliesWith ;
+        owl:someValuesFrom raepa:RAEPAStandard
+    ] .
+
+sewerNet:SewerNetwork 
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty sewerNet:alignsWith ;
+        owl:someValuesFrom inspire:INSPIREDirective
+    ] .
+
+# --- Turtle block from step_11_data_properties ---
+@prefix : <http://example.org/SewerNet#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:PipeLength a :StructuralProperty ;
+    rdfs:comment "Represents the length of a pipe." ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:decimal .
+
+:PipeSlope a :HydraulicProperty ;
+    rdfs:comment "Represents the slope of a pipe, affecting flow characteristics." ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:decimal .
+
+:ManholeDepth a :StructuralProperty ;
+    rdfs:comment "Represents the depth of a manhole." ;
+    rdfs:domain :Manhole ;
+    rdfs:range xsd:decimal .
+
+:InspectionResult a :OperationalProperty ;
+    rdfs:comment "Describes the outcome or result of an inspection event." ;
+    rdfs:domain :InspectionEvent ;
+    rdfs:range xsd:string .
+
+:MaintenanceCost a :OperationalProperty ;
+    rdfs:comment "Indicates the financial cost associated with a maintenance activity." ;
+    rdfs:domain :MaintenanceActivity ;
+    rdfs:range xsd:decimal .
+
+:PumpingStationCapacity a :HydraulicProperty ;
+    rdfs:comment "Represents the maximum capacity of a pumping station." ;
+    rdfs:domain :PumpingStation ;
+    rdfs:range xsd:decimal .
+
+:BlockageDate a :TemporalProperty ;
+    rdfs:comment "Specifies the date on which a blockage occurred." ;
+    rdfs:domain :BlockageEvent ;
+    rdfs:range xsd:date .
+
+:OverflowVolume a :OperationalProperty ;
+    rdfs:comment "Represents the volume of wastewater or stormwater that overflowed." ;
+    rdfs:domain :OverflowEvent ;
+    rdfs:range xsd:decimal .
+
+:InletElevation a :SpatialProperty ;
+    rdfs:comment "Describes the elevation of an inlet relative to a reference datum." ;
+    rdfs:domain :Inlet ;
+    rdfs:range xsd:decimal .
+
+:OutletElevation a :SpatialProperty ;
+    rdfs:comment "Describes the elevation of an outlet relative to a reference datum." ;
+    rdfs:domain :Outlet ;
+    rdfs:range xsd:decimal .
+
+:PipeRoughnessCoefficient a :HydraulicProperty ;
+    rdfs:comment "Represents the roughness coefficient of a pipe, used in hydraulic modeling." ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:decimal .
+
+:StructuralConditionScore a :StructuralProperty ;
+    rdfs:comment "Represents a score or rating of the structural condition of a network component." ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:integer .
+
+:LastInspectionDate a :TemporalProperty ;
+    rdfs:comment "The date of the most recent inspection of a network component." ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:date .
+
+:NextMaintenanceDate a :TemporalProperty ;
+    rdfs:comment "The scheduled date for the next maintenance activity on a network component." ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:date .
+
+:FlowRate a :HydraulicProperty ;
+    rdfs:comment "Represents the rate of flow through a network component." ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:decimal .
+
+:Pressure a :HydraulicProperty ;
+    rdfs:comment "Represents the water pressure within a network component." ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:decimal .
+
+:PipeAge a :StructuralProperty ;
+    rdfs:comment "The age of a pipe, calculated from its installation date." ;
+    rdfs:domain :Pipe ;
+    rdfs:range xsd:integer .
+
+:RemainingServiceLife a :StructuralProperty ;
+    rdfs:comment "The estimated remaining service life of a network component." ;
+    rdfs:domain :NetworkComponent ;
+    rdfs:range xsd:integer .
+
+# --- Turtle block from step_12_inverse_properties ---
+@prefix sn: <http://example.org/SewerNet#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+sn:hasManhole owl:inverseOf sn:isManholeOf ;
+    rdfs:comment "Inverse property of isManholeOf, linking a network to its manholes." .
+
+sn:isManholeOf rdfs:domain sn:Manhole ;
+    rdfs:range sn:SewerNetwork ;
+    rdfs:comment "Links a manhole to the sewer network it belongs to." .
+
+sn:hasPumpingStation owl:inverseOf sn:isPumpingStationOf ;
+    rdfs:comment "Inverse property of isPumpingStationOf, relating a network to its pumping stations." .
+
+sn:isPumpingStationOf rdfs:domain sn:PumpingStation ;
+    rdfs:range sn:SewerNetwork ;
+    rdfs:comment "Relates a pumping station to the sewer network it is part of." .
+
+sn:hasInspectionEvent owl:inverseOf sn:isInspectionEventOf ;
+    rdfs:comment "Inverse property of isInspectionEventOf, connecting an inspection event to the component inspected." .
+
+sn:isInspectionEventOf rdfs:domain sn:InspectionEvent ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Links an inspection event to the network component it involves." .
+
+sn:hasMaintenanceActivity owl:inverseOf sn:isMaintenanceActivityOf ;
+    rdfs:comment "Inverse property of isMaintenanceActivityOf, relating a maintenance activity to the component maintained." .
+
+sn:isMaintenanceActivityOf rdfs:domain sn:MaintenanceActivity ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Connects a maintenance activity to the network component it is performed on." .
+
+sn:hasBlockage owl:inverseOf sn:isBlockageOf ;
+    rdfs:comment "Inverse property of isBlockageOf, linking a blockage event to the component affected." .
+
+sn:isBlockageOf rdfs:domain sn:Blockage ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Relates a blockage to the network component where it occurs." .
+
+sn:hasOverflow owl:inverseOf sn:isOverflowOf ;
+    rdfs:comment "Inverse property of isOverflowOf, connecting an overflow event to the component involved." .
+
+sn:isOverflowOf rdfs:domain sn:Overflow ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Links an overflow event to the network component it affects." .
+
+sn:hasRepair owl:inverseOf sn:isRepairOf ;
+    rdfs:comment "Inverse property of isRepairOf, relating a repair activity to the component repaired." .
+
+sn:isRepairOf rdfs:domain sn:Repair ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Connects a repair activity to the network component it is performed on." .
+
+sn:isLocatedNear owl:inverseOf sn:hasNearbyComponent ;
+    rdfs:comment "Inverse property of hasNearbyComponent, indicating proximity between components." .
+
+sn:hasNearbyComponent rdfs:domain sn:NetworkComponent ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Indicates that a network component has another component nearby." .
+
+sn:isPartOfNetwork owl:inverseOf sn:hasNetworkComponent ;
+    rdfs:comment "Inverse property of hasNetworkComponent, linking a component to its network." .
+
+sn:hasNetworkComponent rdfs:domain sn:SewerNetwork ;
+    rdfs:range sn:NetworkComponent ;
+    rdfs:comment "Relates a sewer network to its components." .
+
+sn:isManagedBy owl:inverseOf sn:manages ;
+    rdfs:comment "Inverse property of manages, relating a network or component to its manager." .
+
+sn:manages rdfs:domain sn:Operator ;
+    rdfs:range sn:SewerNetwork ;
+    rdfs:comment "Links an operator to the sewer network or components they manage." .
+
+sn:isCompliantWith owl:inverseOf sn:complianceFor ;
+    rdfs:comment "Inverse property of complianceFor, relating a standard to the components or networks compliant with it." .
+
+sn:complianceFor rdfs:domain sn:Standard ;
+    rdfs:range sn:SewerNetwork ;
+    rdfs:comment "Connects a standard to the sewer networks or components that comply with it." .
+
+# --- Turtle block from step_13_reflexive_properties ---
+@prefix swn: <http://example.org/SewerNetOntology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+swn:isConnectedTo a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty ;
+    rdfs:comment "Indicates that a network component is connected to itself or another component."@en .
+
+swn:isAdjacentTo a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty ;
+    rdfs:comment "Describes the adjacency relationship between network components."@en .
+
+swn:hasSameMaterialAs a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Indicates that a component has the same material as another or itself."@en .
+
+swn:isSimilarTo a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Denotes similarity between network components or events."@en .
+
+swn:isManagedBySameAuthorityAs a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Indicates that a network component or event is managed by the same authority as another or itself."@en .
+
+swn:hasSameFunctionAs a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Indicates that a component serves the same function as another or itself."@en .
+
+swn:isPartOfSameNetworkAs a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Denotes that a component is part of the same network as another or itself."@en .
+
+swn:isInSameGeographicLocationAs a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Indicates that a component is located in the same geographic location as another or itself."@en .
+
+swn:hasSameStructuralConditionAs a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty, owl:SymmetricProperty ;
+    rdfs:comment "Indicates that a component has the same structural condition as another or itself."@en .
+
+# Additional reflexive properties for other relevant object properties
+swn:isAssociatedWith a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty ;
+    rdfs:comment "A general property indicating association between entities."@en .
+
+swn:isRelatedTo a owl:ObjectProperty ;
+    rdf:type owl:ReflexiveProperty ;
+    rdfs:comment "A general property for relating entities."@en .
+
+# For a total of 40 object properties, we reviewed and added reflexive property where it makes sense.
+
+# --- Turtle block from step_14_symmetric_properties ---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sewer: <http://example.org/sewer#> .
+@prefix dolce: <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+# Symmetric Object Properties
+
+sewer:isConnectedTo a owl:SymmetricProperty ;
+    rdfs:domain sewer:NetworkComponent ;
+    rdfs:range sewer:NetworkComponent ;
+    rdfs:comment "Indicates that two network components are connected to each other." .
+
+sewer:isAdjacentTo a owl:SymmetricProperty ;
+    rdfs:domain sewer:NetworkComponent ;
+    rdfs:range sewer:NetworkComponent ;
+    rdfs:comment "Indicates that two network components are adjacent to each other." .
+
+sewer:isInterconnectedWith a owl:SymmetricProperty ;
+    rdfs:domain sewer:PumpingStation ;
+    rdfs:range sewer:PumpingStation ;
+    rdfs:comment "Indicates that two pumping stations are interconnected." .
+
+# Additional symmetric properties may be added based on the specific requirements and the existing object properties in the ontology.
+
+# --- Turtle block from step_15_functional_properties ---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix : <http://example.org/SewerNet#> .
+
+# Define the SewerNet ontology namespace
+@prefix sewer: <http://example.org/SewerNet#> .
+
+# Object Properties
+sewer:hasPart rdf:type owl:ObjectProperty ;
+    rdfs:domain sewer:Network ;
+    rdfs:range sewer:Component ;
+    rdfs:subPropertyOf owl:topObjectProperty ;
+    rdfs:label "has part"@en ;
+    rdfs:comment "Relates a network to its components."@en .
+
+sewer:isPartOf rdf:type owl:ObjectProperty ;
+               rdfs:domain sewer:Component ;
+               rdfs:range sewer:Network ;
+               owl:inverseOf sewer:hasPart ;
+               rdfs:label "is part of"@en ;
+               rdfs:comment "Relates a component to the network it belongs to."@en .
+
+# Data Properties
+sewer:hasDescription rdf:type owl:DatatypeProperty ;
+                     rdfs:domain sewer:Network ;
+                     rdfs:range xsd:string ;
+                     rdfs:label "has description"@en .
+
+# Classes and their descriptions
+sewer:Network rdf:type owl:Class ;
+              rdfs:label "Network"@en ;
+              rdfs:comment "Represents a sewer network"@en .
+
+sewer:Component rdf:type owl:Class ;
+                rdfs:label "Component"@en ;
+                rdfs:comment "Represents a component within the sewer network"@en .
+
+# Assertions about the ontology
+sewer:SewerNetwork rdf:type sewer:Network ;
+                   rdfs:label "Sewer Network"@en .
+
+# Ensuring the ontology is correctly defined and linked
+sewer:SewerSystem rdf:type sewer:Network ;
+                  rdfs:label "Sewer System"@en .
+
+# Dataset description
+sewer:dataset rdf:type sewer:Dataset ;
+              rdfs:label "Sewer dataset"@en .
+
+### Ensuring new properties and classes are well-defined
+sewer:hasIdentifier rdf:type owl:DatatypeProperty ;
+                    rdfs:label "has identifier"@en ;
+                    rdfs:range xsd:string ;
+                    rdfs:domain sewer:Network .
+
+### Additional properties for annotation
+sewer:creationDate rdf:type owl:AnnotationProperty ;
+                   rdfs:label "creation date"@en .
+
+### Check for inconsistencies and generate metadata
+sewer:consistencyCheck rdf:type owl:AnnotationProperty ;
+                       rdfs:label "consistency check"@en .
+
+### New concepts and expansions
+sewer:Blockage rdf:type owl:Class ;
+               rdfs:label "Blockage"@en .
+
+sewer:Maintenance rdf:type owl:Class ;
+                   rdfs:label "Maintenance"@en .
+
+sewer:Fault rdf:type owl:Class ;
+            rdfs:label "Fault"@en .
+
+sewer:Inspection rdf:type owl:Class ;
+                  rdfs:label "Inspection"@en .
+
+sewer:Repair rdf:type owl:Class ;
+              rdfs:label "Repair"@en .
+
+### Rules and constraints
+sewer:StructuralElement rdf:type owl:Class ;
+                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          owl:onProperty sewer:hasStructuralElement ;
+                                          owl:someValuesFrom sewer:StructuralElement ] .
+
+### Properties for linking
+sewer:connectedTo rdf:type owl:ObjectProperty ;
+                  rdfs:label "connected to"@en .
+
+### Define inverse properties for better querying
+sewer:isConnectedTo rdf:type owl:ObjectProperty ;
+                    rdfs:label "is connected to"@en ;
+                    owl:inverseOf sewer:connectedTo .
+
+### Ensuring properties are functional
+sewer:hasFunctionalProperty rdf:type owl:ObjectProperty ;
+                            rdfs:label "has functional property"@en .
+
+### Ensuring properties are inverse
+sewer:hasInverse rdf:type owl:ObjectProperty ;
+                 rdfs:label "has inverse"@en .
+
+# --- Turtle block from step_15_functional_properties ---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+### Classes and Properties Definitions
+
+### Object Properties
+:sewer:hasPart a owl:ObjectProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range :SewerComponent .
+
+:hasSubNetwork a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasPart .
+
+### Datatype Properties
+:hasDescription a owl:DatatypeProperty .
+
+### Classes
+:SewerNetwork a owl:Class .
+:SewerComponent a owl:Class .
+
+### Individuals and other definitions follow here.
+
+# --- Turtle block from step_15_functional_properties ---
+@prefix sewer: <http://example.org/sewer#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/sewerNetwork> a sewer:Network ;
+    sewer:hasDescription "Sewer Network Description" ;
+    sewer:hasPart <http://example.org/sewerNetwork/part1> ;
+    sewer:hasPart <http://example.org/sewerNetwork/part2> .
+
+<http://example.org/sewerNetwork/part1> a sewer:NetworkPart ;
+    sewer:partOf <http://example.org/sewerNetwork> .
+
+<http://example.org/sewerNetwork/part2> a sewer:NetworkPart ;
+    sewer:partOf <http://example.org/sewerNetwork> .
+
+# --- Turtle block from step_16_transitive_properties ---
+# Prefix definitions
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/SewerNet#> .
+
+# Transitive property definitions for the SewerNet ontology
+:hasPart a owl:TransitiveProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range :SewerNetwork ;
+    rdfs:label "has part"@en ;
+    rdfs:comment "A transitive property indicating that a sewer network is composed of other networks or components."@en .
+
+:isConnectedTo a owl:TransitiveProperty ;
+    rdfs:domain :SewerComponent ;
+    rdfs:range :SewerComponent ;
+    rdfs:label "is connected to"@en ;
+    rdfs:comment "A property indicating that two sewer components are connected."@en .
+
+# Define the SewerNetwork class as a subclass of Network
+:SewerNetwork a rdfs:Class ;
+    rdfs:subClassOf :Network .
+
+# Define the SewerComponent class as a superclass for various sewer components
+:SewerComponent a rdfs:Class ;
+    rdfs:subClassOf :NetworkComponent .
+
+# Define the relationship between SewerNetwork and SewerComponent
+:SewerNetwork :hasComponent :SewerComponent .
+
+# Declare SewerNet ontology-specific relationships
+:hasSubNetwork a owl:ObjectProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range :SewerNetwork ;
+    rdfs:label "has sub-network"@en .
+
+:hasNetworkComponent a owl:ObjectProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range :SewerComponent ;
+    rdfs:label "has network component"@en .
+
+# Establishing transitive property for 'isConnectedTo'
+:isConnectedTo a owl:ObjectProperty ;
+    rdfs:domain :SewerComponent ;
+    rdfs:range :SewerComponent ;
+    rdfs:label "is connected to"@en .
+
+# Sewer Network has various components like pipes, manholes, etc.
+:SewerNetwork :hasPart :Pipe ;
+    :hasPart :Manhole ;
+    :hasPart :CatchmentArea .
+
+# Defining the SewerNet ontology
+:SewerNetOntology rdf:type owl:Ontology ;
+                  owl:imports rdf:_blank ;
+                  owl:versionInfo "1.0" .
+
+# --- Turtle block from step_16_transitive_properties ---
+@prefix sw: <http://www.w3.org/2003/06/sw/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix swrl: <http://www.w3.org/2003/06/swrl/> .
+@prefix swrlb: <http://www.w3.org/2003/06/swrlb#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:SewerNetwork a owl:Class ;
+    rdfs:label "Sewer Network" ;
+    rdfs:comment "A network of sewer pipes and associated components." .
+
+:SewerNetwork rdf:type owl:Class .
+
+:sewer_node a rdf:Property ;
+    rdfs:label "sewer node" ;
+    rdfs:comment "A node in the sewer network, e.g., a manhole or a junction." .
+
+:SewerPipe a rdfs:Class ;
+    rdfs:label "Sewer Pipe" ;
+    rdfs:comment "A pipe in the sewer system." .
+
+:Flow a rdfs:Class ;
+    rdfs:label "Flow" ;
+    rdfs:comment "Represents the flow of sewage or water." .
+
+# --- Turtle block from step_16_transitive_properties ---
+### Updated SewerNet Ontology 
+
+### Prefix Declarations 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+### Ontology Definition 
+:SewerNetworkOntology rdf:type owl:Ontology ;
+    owl:versionInfo "1.0" .
+
+### Classes 
+:SewerNetwork rdf:type owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+:Pipe rdf:type owl:Class ;
+    rdfs:subClassOf :SewerNetworkComponent .
+
+:Manhole rdf:type owl:Class ;
+    rdfs:subClassOf :SewerNetworkComponent .
+
+:SewerFlow rdf:type owl:Class ;
+    rdfs:subClassOf :SewerNetworkComponent .
+
+:SewerComponent rdf:type owl:Class ;
+    rdfs:subClassOf :SewerNetwork .
+
+### Properties 
+:hasFlowRate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range xsd:float .
+
+:hasCapacity rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range xsd:float .
+
+:isConnectedTo rdf:type owl:ObjectProperty ;
+    rdf:subject :SewerNetwork ;
+    rdf:predicate :connectedTo ;
+    rdf:object :SewerNetwork .
+
+### Individuals 
+:exampleSewerNetwork rdf:type :SewerNetwork .
+
+### Rules and Axioms 
+:sewerNetworkStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SewerNetwork ;
+    rdfs:range xsd:string .
+
+### Rules for Inference 
+### If A is connected to B and B is connected to C, then A is connected to C.
+{ ?A :connectedTo ?B . 
+  ?B :connectedTo ?C . 
+  ?C :connectedTo ?D } 
+  => 
+{ ?A :connectedTo ?D } .
+
+### Properties and Relationships 
+:hasInlet rdf:type owl:ObjectProperty .
+:hasOutlet rdf:type owl:ObjectProperty .
+
+### Constraints and Rules
+
+# --- Turtle block from step_16_transitive_properties ---
+### Sewer Network Ontology
+
+# --- Turtle block from step_16_transitive_properties ---
+@prefix sfgp: <https://example.com/sfgp/> .
+@prefix sdo: <https://schema.org/> .
+
+:SewerNetwork a sdo:Network ;
+    sdo:description "A network of pipes and sewer systems." .
+
+:SewerPipe a sdo:Pipe ;
+    sdo:description "A pipe used for sewer systems." .
+
+# --- Turtle block from step_16_transitive_properties ---
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX ssn: <http://www.w3.org/ns/ssn/> 
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+# --- Turtle block from step_16_transitive_properties ---
+The final answer is:
+
+# --- Turtle block from step_17_individuals ---
+@prefix : <http://example.org/SewerNet#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Additional Individuals for Network Components
+:PipeA1 a :Pipe ;
+    :hasDiameter 1.2 ;
+    :hasMaterial "Concrete" ;
+    :isPartOf :SewerNetwork1 ;
+    rdfs:comment "A concrete pipe with a diameter of 1.2 meters, part of SewerNetwork1." .
+
+:Manhole456 a :Manhole ;
+    :hasLocation :Location123 ;
+    :isConnectedTo :PipeA1 ;
+    rdfs:comment "Manhole 456, connected to Pipe A1, located at Location 123." .
+
+:PumpingStationPS1 a :PumpingStation ;
+    :hasCapacity 1000 ;
+    :isLocatedAt :Location456 ;
+    rdfs:comment "Pumping Station PS1 with a capacity of 1000 cubic meters, located at Location 456." .
+
+:InletI1 a :Inlet ;
+    :isConnectedTo :PipeA1 ;
+    :hasFlowRate 500 ;
+    rdfs:comment "Inlet I1 connected to Pipe A1 with a flow rate of 500 cubic meters per hour." .
+
+# Additional Individuals for Operational Events
+:InspectionEvent2023 a :Inspection ;
+    :occursAt :Manhole456 ;
+    :hasDate "2023-02-15"^^xsd:date ;
+    rdfs:comment "Inspection event that occurred at Manhole 456 on February 15, 2023." .
+
+:MaintenanceActivityMA1 a :Maintenance ;
+    :isPerformedOn :PipeA1 ;
+    :hasDescription "Cleaning and inspection of Pipe A1" ;
+    rdfs:comment "Maintenance activity performed on Pipe A1 for cleaning and inspection." .
+
+:BlockageB1 a :Blockage ;
+    :occursIn :PipeA1 ;
+    :hasSeverity "High" ;
+    rdfs:comment "Blockage B1 occurred in Pipe A1 with high severity." .
+
+:RepairActivityRA1 a :Repair ;
+    :isDoneFor :BlockageB1 ;
+    :hasDate "2023-03-01"^^xsd:date ;
+    rdfs:comment "Repair activity RA1 done for Blockage B1 on March 1, 2023." .
+
+# Additional Individuals for Standards and Directives
+:RAEPAStandardV2 a :Standard ;
+    :hasVersion "2.0" ;
+    :isRelatedTo :SewerNetwork1 ;
+    rdfs:comment "RAEPA Standard version 2.0 related to SewerNetwork1." .
+
+:INSPIREDirective2020 a :Directive ;
+    :hasPublicationDate "2020-01-01"^^xsd:date ;
+    :isImplementedBy :SewerNetwork1 ;
+    rdfs:comment "INSPIRE Directive published on January 1, 2020, implemented by SewerNetwork1." .
+
+# Additional Individuals for Geospatial Information
+:Location123 a :Location ;
+    :hasCoordinates "43.6043, 1.4442"^^xsd:string ;
+    :isAssociatedWith :Manhole456 ;
+    rdfs:comment "Location 123 with coordinates 43.6043, 1.4442 associated with Manhole 456." .
+
+:GeospatialReferenceGSR1 a :GeospatialReference ;
+    :isUsedBy :SewerNetwork1 ;
+    :conformsTo :RAEPAStandardV2 ;
+    rdfs:comment "Geospatial Reference GSR1 used by SewerNetwork1, conforming to RAEPA Standard V2." .
+
+# --- Turtle block from step_18_metadata ---
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix : <http://example.org/SewerNet#> .
+@prefix sewerNet: <http://example.org/SewerNet#> .
+
+<http://example.org/SewerNet> rdf:type owl:Ontology ;
+    rdfs:label "SewerNet Ontology"@en ;
+    owl:versionInfo "1.0" ;
+    rdfs:comment "The SewerNet Ontology provides a structured framework for representing the components and management processes of wastewater and stormwater networks."@en .
+
+# --- Turtle block from step_19_comments ---
+@prefix sn: <http://example.org/sewerNet#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+sn:Pipe a sn:NetworkComponent ;
+    rdfs:comment "A pipe is a tubular section used for conveying wastewater or stormwater." .
+
+sn:Manhole a sn:NetworkComponent ;
+    rdfs:comment "A manhole is an access point to a sewer network for inspection and maintenance." .
+
+sn:PumpingStation a sn:NetworkComponent ;
+    rdfs:comment "A pumping station is a facility that pumps wastewater or stormwater through the sewer network." .
+
+sn:hasDiameter a sn:DataProperty ;
+    rdfs:comment "The diameter of a pipe, which is a critical attribute for hydraulic calculations." .
+
+sn:hasMaterial a sn:DataProperty ;
+    rdfs:comment "The material of a pipe, which affects its durability and resistance to corrosion." .
+
+sn:inspectionEvent a sn:OperationalEvent ;
+    rdfs:comment "An event related to the inspection of a network component." .
+
+sn:maintenanceActivity a sn:OperationalEvent ;
+    rdfs:comment "An event related to the maintenance of a network component." .
+
+sn:hasLocation a sn:ObjectProperty ;
+    rdfs:comment "The geospatial location of a network component." .
+
+sn:isConnectedTo a sn:ObjectProperty ;
+    rdfs:comment "A property indicating that two network components are connected." .
+
+sn:NetworkComponent rdfs:comment "A physical element of the sewer network, such as a pipe or manhole." .
+sn:OperationalEvent rdfs:comment "An event related to the operation and management of the sewer network." .
+
+sn:compliesWithRAEPA a sn:DataProperty ;
+    rdfs:comment "Indicates compliance with the French RAEPA v1.2 geostandard." .
+
+sn:compliesWithINSPIRE a sn:DataProperty ;
+    rdfs:comment "Indicates compliance with the INSPIRE European directive." .
+
+sn:SewerNetwork rdfs:comment "The overall network of sewer pipes, manholes, and other infrastructure." .
+
+sn:hydraulicCapacity a sn:DataProperty ;
+    rdfs:comment "The capacity of a network component to convey flow." .
+
+sn:structuralCondition a sn:DataProperty ;
+    rdfs:comment "The condition of a network component in terms of its structural integrity." .
+
+sn:PipeDiameter rdfs:comment "The diameter of a pipe." .
+sn:PipeMaterial rdfs:comment "The material of which a pipe is made." .
+
+sn:hasInspectionDate a sn:DataProperty ;
+    rdfs:comment "The date on which a network component was last inspected." .
+
+sn:hasMaintenanceDate a sn:DataProperty ;
+    rdfs:comment "The date on which a network component was last maintained." .
+
+sn:blockageEvent a sn:OperationalEvent ;
+    rdfs:comment "An event representing a blockage in the sewer network." .
+
+sn:overflowEvent a sn:OperationalEvent ;
+    rdfs:comment "An event representing an overflow in the sewer network." .
+
+sn:repairEvent a sn:OperationalEvent ;
+    rdfs:comment "An event representing a repair activity in the sewer network." .
+
+sn:hasSlope a sn:DataProperty ;
+    rdfs:comment "The slope of a pipe, which affects its hydraulic performance." .
+
+sn:hasFlowCapacity a sn:DataProperty ;
+    rdfs:comment "The capacity of a pipe to convey flow." .
+
+sn:Inlet a sn:NetworkComponent ;
+    rdfs:comment "A point where wastewater or stormwater enters the sewer network." .
+
+sn:Outlet a sn:NetworkComponent ;
+    rdfs:comment "A point where wastewater or stormwater exits the sewer network." .
+
+sn:locatedAt a sn:ObjectProperty ;
+    rdfs:comment "The geospatial location of a network component or event." .
+
+sn:conveys a sn:ObjectProperty ;
+    rdfs:comment "The relationship between a pipe and the wastewater or stormwater it conveys." .
+
+sn:connectedTo a sn:ObjectProperty ;
+    rdfs:comment "A property indicating a connection between two network components." .
+
+sn:inspectedOn a sn:DataProperty ;
+    rdfs:comment "The date on which a network component was inspected." .
+
+sn:maintainedOn a sn:DataProperty ;
+    rdfs:comment "The date on which a network component was maintained." .
+
+sn:repairedOn a sn:DataProperty ;
+    rdfs:comment "The date on which a network component was repaired." .
+
+# --- Turtle block from step_20_refinement ---
+@prefix sn: <http://example.org/SewerNet#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dolce: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+sn:SewerNetworkComponent rdfs:subClassOf dolce:PhysicalObject .
+sn:Pipe a sn:SewerNetworkComponent ;
+    rdfs:label "Pipe"@en ;
+    rdfs:comment "A tubular structure for conveying wastewater or stormwater."@en .
+sn:Manhole a sn:SewerNetworkComponent ;
+    rdfs:label "Manhole"@en ;
+    rdfs:comment "An access point to a sewer network for maintenance and inspection."@en .
+
+sn:hasComponent rdfs:domain sn:SewerNetwork ;
+    rdfs:range sn:SewerNetworkComponent ;
+    rdfs:label "has component"@en ;
+    rdfs:comment "Relates a sewer network to its components."@en .
+sn:connectedTo rdfs:domain sn:SewerNetworkComponent ;
+    rdfs:range sn:SewerNetworkComponent ;
+    rdfs:label "connected to"@en ;
+    rdfs:comment "Indicates a connection between two sewer network components."@en ;
+    owl:propertyChainAxiom ( sn:hasOutlet sn:connectedTo ) .
+
+sn:InspectionEvent rdfs:subClassOf dolce:Event ;
+    rdfs:label "Inspection Event"@en ;
+    rdfs:comment "An event involving the inspection of a sewer network component."@en .
+sn:MaintenanceActivity rdfs:subClassOf dolce:Event ;
+    rdfs:label "Maintenance Activity"@en ;
+    rdfs:comment "An activity aimed at maintaining or repairing sewer network components."@en .
+sn:targets rdfs:domain sn:InspectionEvent ;
+    rdfs:range sn:SewerNetworkComponent ;
+    rdfs:label "targets"@en ;
+    rdfs:comment "Relates an inspection event to the component it targets."@en .
+sn:addresses rdfs:domain sn:MaintenanceActivity ;
+    rdfs:range sn:StructuralCondition ;
+    rdfs:label "addresses"@en ;
+    rdfs:comment "Relates a maintenance activity to the structural condition it addresses."@en .
+
+sn:Blockage a sn:OperationalIssue ;
+    rdfs:label "Blockage"@en ;
+    rdfs:comment "An obstruction in a sewer network component."@en .
+sn:Overflow a sn:OperationalIssue ;
+    rdfs:label "Overflow"@en ;
+    rdfs:comment "An event where wastewater or stormwater exceeds the capacity of a sewer network component."@en .
+sn:occursAt rdfs:domain sn:Blockage ;
+    rdfs:range sn:Pipe ;
+    rdfs:label "occurs at"@en ;
+    rdfs:comment "Relates a blockage to the pipe where it occurs."@en .
+sn:resultsFrom rdfs:domain sn:Overflow ;
+    rdfs:range sn:Blockage ;
+    rdfs:label "results from"@en ;
+    rdfs:comment "Relates an overflow to the blockage that caused it."@en .
+
+sn:Repair rdfs:subClassOf sn:MaintenanceActivity ;
+    rdfs:label "Repair"@en ;
+    rdfs:comment "A maintenance activity aimed at restoring a sewer network component."@en .
+sn:restores rdfs:domain sn:Repair ;
+    rdfs:range sn:StructuralCondition ;
+    rdfs:label "restores"@en ;
+    rdfs:comment "Relates a repair activity to the structural condition it restores."@en .
+
+sn:compliesWith rdfs:domain sn:SewerNetwork ;
+    rdfs:range sn:RAEPAStandard ;
+    rdfs:label "complies with"@en ;
+    rdfs:comment "Indicates that a sewer network complies with a specific RAEPA standard."@en .
+sn:alignsWith rdfs:domain sn:SewerNetwork ;
+    rdfs:range sn:INSPIREDirective ;
+    rdfs:label "aligns with"@en ;
+    rdfs:comment "Indicates that a sewer network aligns with a specific INSPIRE directive."@en .
+
+sn:GeospatialPoint rdfs:subClassOf dolce:PhysicalPlace ;
+    rdfs:label "Geospatial Point"@en ;
+    rdfs:comment "A point in space with geographic coordinates."@en .
+sn:hasLocation rdfs:domain sn:SewerNetworkComponent ;
+    rdfs:range sn:GeospatialPoint ;
+    rdfs:label "has location"@en ;
+    rdfs:comment "Relates a sewer network component to its geospatial location."@en .
+
+sn:StructuralCondition rdfs:subClassOf dolce:Quality ;
+    rdfs:label "Structural Condition"@en ;
+    rdfs:comment "The condition of a sewer network component in terms of its structure."@en .
+
+sn:OperationalIssue rdfs:subClassOf dolce:Event ;
+    rdfs:label "Operational Issue"@en ;
+    rdfs:comment "An event that affects the operation of a sewer network."@en .
+
+sn:RAEPAStandard rdfs:subClassOf dolce:Norm ;
+    rdfs:label "RAEPA Standard"@en ;
+    rdfs:comment "A standard related to drinking water supply and sanitation networks as per RAEPA."@en .
+sn:INSPIREDirective rdfs:subClassOf dolce:Norm ;
+    rdfs:label "INSPIRE Directive"@en ;
+    rdfs:comment "A directive related to the INSPIRE European directive for spatial information."@en .
+
