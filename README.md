@@ -14,7 +14,7 @@ This stage begins with structured inputs: a domain description, a curated set of
 
  🔁 **2. NeOn-GPT pipeline**
 
-Once the draft is generated, it is passed through a three-stage validation and refinement process: (a) syntax checking using RDFLib, (b) logical consistency verification with OWL reasoners such as HermiT and Pellet, and (c) pitfall detection using the OOPS! Framework. Errors identified by these tools—such as syntax violations, unsatisfiable classes, or modeling pitfalls—are fed back to the LLM as diagnostic prompts. The model is then prompted to revise and repair the ontology, enabling an iterative refinement loop that produces a syntactically valid, logically consistent, and semantically robust output.
+Once the draft is generated, it is passed through a three-stage validation and refinement process: (a) syntax checking using RDFLib, (b) logical consistency verification with OWL reasoners such as HermiT and Pellet, and (c) pitfall detection using the OOPS! Framework. Errors identified by these tools—such as syntax violations, logical inconsistency, or modeling pitfalls—are fed back to the LLM as diagnostic prompts. The model is then prompted to revise and repair the ontology, enabling an iterative refinement loop that produces a syntactically valid, logically consistent, and semantically robust output.
 
 <div align="center">
   <img src="./images/pipeline.png" width="600" alt="NeOn-GPT Workflow"/>
@@ -42,7 +42,8 @@ Figure 3: Ontology evaluation framework combining structural analysis, lexical m
   - **`neon_gpt_ontology_generation.py`**: This script is responsible for generating ontologies using NeOn-GPT methodology.
   - **`validate_fix_ontology_syntax.py`**: This script deals with validating and fixing the syntax of an ontology. It checks for syntactic errors in RDF/OWL files and attempts to repair or reformat the ontology to ensure it adheres to the correct syntax rules using LLM-based correction introduced in the NeOn-GPT methodology. 
   - **`validate_fix_ontology_consistency.py`**: This script is used to validate the consistency of an ontology. This script ensures compatibility with OWL standards. It interacts with reasoners like HermiT and the ROBOT tool to verify logical coherence and consistency in the ontology. If any inconsistencies are found, the script attempts to automatically correct them using an LLM-based approach introduced in the NeOn-GPT methodology.
-  
+  -   - **`validate_fix_ontology_pitfall.py`**: This script is responsible for detecting and correcting critical ontology modelling pitfalls identified by the OOPS! (Ontology Pitfall Scanner!) framework. It automatically analyzes the generated ontology against common ontology design anti-patterns (e.g., missing domain/range axioms, misuse of equivalence or disjointness, hierarchy anomalies, and incomplete class descriptions).
+For each detected pitfall, the script formulates targeted corrective prompts and leverages an LLM to propose refined OWL axioms that resolve the issue while preserving the intended semantics. The corrected axioms are then reintegrated into the ontology, enabling an iterative refinement loop that improves modelling quality beyond syntactic validity and logical consistency.
 - **`results/`**:
   - **`gpt-4o-ontologies/`**: Ontologies generated using GPT-4o across multiple domains, including environmental microbiology (AquaDiva), cheminformatics, urban infrastructure (SewerNet), and viticulture (wine).
   - **`mistral-ontologies/`**: Ontologies generated using Mistral across multiple domains, including environmental microbiology (AquaDiva), cheminformatics, urban infrastructure (SewerNet), and viticulture (wine).
@@ -51,8 +52,8 @@ Figure 3: Ontology evaluation framework combining structural analysis, lexical m
  
 - **`eval/`**:
   - **`llm_vs_goldstandard_ontology_analyzer_script.py`**: structural comparison of gold standard ontology and llm-generated ontology
-  - **`semantic_eval.py`**: semantic comparison of gold standard ontology and llm-generated ontology
-  - **`lexical_eval.py`**: lexical comparison of gold standard ontology and llm-generated ontology
+  - **`semantic_eval.py`**: semantic comparison of gold standard ontology and LLM-generated ontology
+  - **`lexical_eval.py`**: lexical comparison of gold standard ontology and LLM-generated ontology
 
 - **`LICENSE`**: Project license.
 - **`README.md`**: Project description and usage instructions.
