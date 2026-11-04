@@ -22,6 +22,8 @@ Once the draft is generated, it is passed through a three-stage validation and r
 
  Figure 2: Full NeOn-GPT workflow showing ontology generation, validation, and iterative refinement using LLM prompts guided by diagnostic feedback from RDFLib, OWL reasoners, and OOPS!
 
+ 
+
 📊 **3. Ontology Evaluation Framework**
 
 We evaluate generated ontologies against expert-developed gold standards using a three-part framework: (a) Structural metrics: Entity counts, hierarchy depth, and axiom coverage; (b) Lexical analysis: Name overlap and string similarity; and (c) Semantic similarity, Embedding-based comparisons via Sentence Transformers.
@@ -30,6 +32,7 @@ We evaluate generated ontologies against expert-developed gold standards using a
   <img src="./images/eval.png" width="600" alt="NeOn-GPT Evaluation Framework"/>
 </div>
 Figure 3: Ontology evaluation framework combining structural analysis, lexical matching, and semantic similarity to compare LLM-generated ontologies against expert-developed gold standards.
+
 
 
 
