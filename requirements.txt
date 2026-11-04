@@ -1,0 +1,12 @@
+# Core runtime dependencies required by the ontology pipeline and LLM API layer
+requests>=2.32.0
+rdflib>=7.0.0
+python-dotenv
+
+# Optional dependencies for evaluation scripts only; install separately if needed
+# numpy>=1.26.0
+# pandas>=2.2.0
+# matplotlib>=3.8.0
+# scikit-learn>=1.4.0
+# sentence-transformers>=3.0.0
+# matplotlib-venn>=0.11.9

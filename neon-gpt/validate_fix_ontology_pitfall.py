@@ -4,6 +4,9 @@ from rdflib import Graph, Namespace, URIRef, BNode, Literal
 from rdflib.namespace import RDF, RDFS, OWL
 import os
 import re
+from api_utils import load_runtime_config
+
+load_runtime_config()
 
 # =========================
 # CONFIGURATION

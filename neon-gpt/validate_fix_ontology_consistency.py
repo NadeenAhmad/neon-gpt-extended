@@ -44,6 +44,8 @@ import requests
 from rdflib import BNode, Graph, Literal, URIRef
 from rdflib.namespace import OWL, RDF, RDFS, XSD
 
+api_utils.load_runtime_config()
+
 # =============================================================================
 # CONFIG (edit these values)
 # =============================================================================
@@ -69,9 +71,15 @@ CONFIG: Dict[str, Any] = {
     # --- Slicing ---
     "SLICE_BNODE_DEPTH": 2,
 
-    # --- LLM (OpenRouter) ---
-    "OPENROUTER_API_KEY": None,  # if None, will use env var OPENROUTER_API_KEY
-    "OPENROUTER_MODEL": "deepseek/deepseek-v3.2-exp",
+    # --- LLM provider selection ---
+    "LLM_PROVIDER": os.getenv("NEON_LLM_PROVIDER", "openrouter"),
+    "LLM_MODEL": os.getenv("NEON_MODEL", "deepseek/deepseek-v3.2-exp"),
+    "LLM_API_KEY": None,
+    "LLM_API_BASE": None,
+    "LLM_API_VERSION": None,
+    # Backwards compatibility with older OpenRouter-specific config names.
+    "OPENROUTER_API_KEY": None,
+    "OPENROUTER_MODEL": None,
     "LLM_MAX_ITERATIONS": 25,
     "EVIDENCE_MAX_TRIPLES": 1200,
 
@@ -928,8 +936,48 @@ def load_problem_iris(report_json_path: Path) -> Set[str]:
 
 
 # =============================================================================
-# LLM patch loop (OpenRouter)
+# LLM patch loop
 # =============================================================================
+
+
+def get_llm_runtime_config() -> dict:
+    """Read the active provider/model settings from configuration or env vars."""
+    provider = (
+        CONFIG.get("LLM_PROVIDER")
+        or CONFIG.get("OPENROUTER_PROVIDER")
+        or os.getenv("NEON_LLM_PROVIDER")
+        or os.getenv("LLM_PROVIDER")
+        or "openrouter"
+    )
+    model = (
+        CONFIG.get("LLM_MODEL")
+        or CONFIG.get("OPENROUTER_MODEL")
+        or os.getenv("NEON_MODEL")
+        or os.getenv("MODEL")
+        or "deepseek/deepseek-v3.2-exp"
+    )
+    api_key = (
+        CONFIG.get("LLM_API_KEY")
+        or CONFIG.get("OPENROUTER_API_KEY")
+        or os.getenv("NEON_API_KEY")
+        or os.getenv("OPENROUTER_API_KEY")
+        or os.getenv("API_KEY")
+    )
+    api_base = (
+        CONFIG.get("LLM_API_BASE")
+        or CONFIG.get("OPENROUTER_API_URL")
+        or os.getenv("NEON_API_BASE")
+        or os.getenv("OPENROUTER_API_URL")
+    )
+    api_version = CONFIG.get("LLM_API_VERSION") or os.getenv("AZURE_OPENAI_API_VERSION")
+    return {
+        "provider": str(provider).strip().lower(),
+        "model": str(model).strip(),
+        "api_key": api_key,
+        "api_base": api_base,
+        "api_version": api_version,
+    }
+
 
 def build_targeted_evidence(
     ontology_path: Path,
@@ -966,13 +1014,20 @@ def build_targeted_evidence(
 
 _JSON_OBJ_RE = re.compile(r"(\{.*\})", re.DOTALL)
 
-def openrouter_chat_json(*, prompt: str, step_name: str) -> dict:
+def llm_chat_json(*, prompt: str, step_name: str, provider: str = None, model: str = None, api_key: str = None, api_base: str = None, api_version: str = None) -> dict:
     """
-    Uses api_utils.send_prompt() (unchanged) to call OpenRouter and returns parsed JSON dict.
+    Uses api_utils.send_prompt() to call the configured LLM provider and returns parsed JSON dict.
 
     api_utils.send_prompt() returns the extracted content between markers if present,
     otherwise it returns the full reply. We parse JSON from that string.
     """
+    runtime = get_llm_runtime_config()
+    provider_name = provider or runtime["provider"]
+    model_name = model or runtime["model"]
+    api_key_value = api_key or runtime["api_key"]
+    api_base_value = api_base or runtime["api_base"]
+    api_version_value = api_version or runtime.get("api_version")
+
     # IMPORTANT: persona must force output markers and JSON-only content.
     persona = (
         "You are an ontology debugging assistant.\n"
@@ -984,6 +1039,11 @@ def openrouter_chat_json(*, prompt: str, step_name: str) -> dict:
         prompt=prompt,
         persona=persona,
         step_name=step_name,
+        provider=provider_name,
+        model=model_name,
+        api_key=api_key_value,
+        api_base=api_base_value,
+        api_version=api_version_value,
         max_retries=3,
         wait_time=20,
     )
@@ -1012,6 +1072,10 @@ def openrouter_chat_json(*, prompt: str, step_name: str) -> dict:
             f"Model output did not contain a JSON object. step={step_name}\n"
             f"Preview:\n{text[:1500]}"
         )
+
+
+# Backwards compatibility alias.
+openrouter_chat_json = llm_chat_json
 
 
 def _to_node(x: Any):
@@ -1188,7 +1252,7 @@ def llm_fix_by_target_iris(
         evidence = build_targeted_evidence(current_onto, target_iris, max_triples=evidence_max_triples)
         prompt = make_prompt(explanation_md=md, evidence=evidence, target_iris=target_iris)
 
-        patch = openrouter_chat_json(
+        patch = llm_chat_json(
             prompt=prompt,
             step_name=f"patch_{it:03d}"
             )
@@ -1301,13 +1365,13 @@ def main() -> None:
 
     # LLM fix loop
     if CONFIG["RUN_LLM_FIXES"]:
-        # If using api_utils, the key is managed there (hardcoded in api_utils.py).
-        # We still allow CONFIG/env override, but we don't require it.
-        api_key = CONFIG["OPENROUTER_API_KEY"] or os.environ.get("OPENROUTER_API_KEY")
+        llm_cfg = get_llm_runtime_config()
+        provider_name = llm_cfg["provider"]
+        api_key = llm_cfg["api_key"]
         if api_key:
-            log("🔑 Using OpenRouter API key from CONFIG/env (but api_utils will still use its own API_KEY unless you change api_utils).")
+            log(f"🔑 Using {provider_name.upper()} API key from CONFIG/env.")
         else:
-            log("🔑 No OPENROUTER_API_KEY provided to pipeline. Using api_utils.API_KEY as-is.")
+            log(f"🔑 No API key provided for provider '{provider_name}'. Set NEON_API_KEY or the provider-specific key env var.")
 
         llm_dir = out_dir / "llm_fixes"
         result = llm_fix_by_target_iris(

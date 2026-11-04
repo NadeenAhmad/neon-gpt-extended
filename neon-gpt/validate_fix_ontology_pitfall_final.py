@@ -7,7 +7,9 @@ import os
 import re
 
 # [FIX 1] Import LLM utilities used by the other repair scripts
-from api_utils import send_prompt, extract_between_markers
+from api_utils import send_prompt, extract_between_markers, load_runtime_config
+
+load_runtime_config()
 
 # =========================
 # CONFIGURATION

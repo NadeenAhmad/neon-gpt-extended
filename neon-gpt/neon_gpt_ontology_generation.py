@@ -3,10 +3,12 @@
 # ==========================================================
 
 import time
-from api_utils import send_prompt
+from api_utils import send_prompt, load_runtime_config
 from ontology_utils import init_ontology_file, extract_and_save_turtle, load_previous_output
 from ontology_utils import append_output
 from ontology_utils import load_previous_output
+
+load_runtime_config()
 
 
 # === ONTOLOGY CONFIGURATIONS === #

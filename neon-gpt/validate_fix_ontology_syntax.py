@@ -1,7 +1,9 @@
 import re
 import time
 from rdflib import Graph
-from api_utils import send_prompt, extract_between_markers
+from api_utils import send_prompt, extract_between_markers, load_runtime_config
+
+load_runtime_config()
 
 def sanitize_turtle_text(turtle_text: str) -> str:
     """Remove non-RDF noise and malformed fragments like ?A :connectedTo ?B ."""
