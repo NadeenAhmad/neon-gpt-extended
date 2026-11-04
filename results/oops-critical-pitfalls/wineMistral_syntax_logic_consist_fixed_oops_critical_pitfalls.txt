@@ -1,0 +1,4 @@
+Ontology: results/mistral-ontologies/wineMistral_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+

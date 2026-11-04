@@ -1,0 +1,71 @@
+Ontology: results/llama4-ontologies/cheminf_llama_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P28: Defining wrong symmetric relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/CHEMINF#hasData
+
+========================================================================================================================
+P28 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/CHEMINF#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:hasData a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has Data"@en ;
+    rdfs:comment "Relates a data format to the chemical data it represents."@en ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range ns1:ChemicalData ;
+    owl:inverseOf ns1:hasFormat .
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/CHEMINF#hasProvenance
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/CHEMINF#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:isProvenanceOf owl:inverseOf ns1:hasProvenance .
+
+ns1:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "has Provenance"@en ;
+    rdfs:comment "Chemical data can have provenance information related to itself."@en,
+        "Chemical data has provenance information that is considered unique or primary."@en,
+        "Relates chemical data to its provenance information, transitively."@en,
+        "Relates chemical data to its provenance information."@en ;
+    rdfs:domain ns1:ChemicalData,
+        ns1:ChemicalDescriptor ;
+    rdfs:range ns1:Provenance,
+        ns1:ProvenanceInformation .
+

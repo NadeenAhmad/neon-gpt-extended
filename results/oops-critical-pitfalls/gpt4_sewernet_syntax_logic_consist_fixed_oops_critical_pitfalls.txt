@@ -1,0 +1,249 @@
+Ontology: results/gpt-4o-ontologies/gpt4_sewernet_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P29: Defining wrong transitive relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/sewerNet#involvesComponent
+
+========================================================================================================================
+P29 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/sewerNet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:isInvolvedIn owl:inverseOf ns1:involvesComponent .
+
+ns1:involvesComponent a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "An event may involve a component which could be itself part of the cause.",
+        "If event A involves B, and B involves C, then A involves C.",
+        "Links events to involved components." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/sewerNet#isDetectedBy
+http://example.org/sewerNet#hasZoneType
+http://example.org/sewerNet#occursAt
+http://example.org/sewerNet#isAlignedTo
+http://example.org/sewerNet#hasBlockage
+http://example.org/sewerNet#isRestoredBy
+http://example.org/sewerNet#producesFinding
+http://example.org/sewerNet#locationOf
+http://example.org/sewerNet#affectsPerformanceOf
+http://example.org/sewerNet#requiresRepair
+http://example.org/sewerNet#isRepairFor
+http://example.org/sewerNet#addresses
+http://example.org/sewerNet#connectedTo
+http://example.org/sewerNet#isComplianceTargetOf
+http://example.org/sewerNet#resultsFrom
+http://example.org/sewerNet#isInvolvedIn
+http://example.org/sewerNet#isZoneTypeOf
+http://example.org/sewerNet#schedules
+http://example.org/sewerNet#isStatusOf
+http://example.org/sewerNet#isTargetOf
+http://example.org/sewerNet#hasComponent
+http://example.org/sewerNet#classifiesRegion
+http://example.org/sewerNet#alignsWith
+http://example.org/sewerNet#hasLocation
+http://example.org/sewerNet#classifiedBy
+http://example.org/sewerNet#isAddressedBy
+http://example.org/sewerNet#isMonitoredBy
+http://example.org/sewerNet#scheduledBy
+http://example.org/sewerNet#isProducedBy
+http://example.org/sewerNet#restores
+http://example.org/sewerNet#monitors
+http://example.org/sewerNet#targets
+http://example.org/sewerNet#involvesComponent
+http://example.org/sewerNet#detects
+http://example.org/sewerNet#hasPerformanceAffectedBy
+http://example.org/sewerNet#causesOverflow
+http://example.org/sewerNet#hasStatus
+http://example.org/sewerNet#componentOf
+http://example.org/sewerNet#compliesWith
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/sewerNet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:causesOverflow owl:inverseOf ns1:resultsFrom .
+
+ns1:classifiesRegion a owl:ObjectProperty ;
+    rdfs:comment "Links a zone type to the geospatial region it classifies." ;
+    owl:inverseOf ns1:classifiedBy .
+
+ns1:componentOf owl:inverseOf ns1:hasComponent .
+
+ns1:hasBlockage a owl:ObjectProperty ;
+    rdfs:comment "Links a pipe to a blockage that occurs in it." ;
+    owl:inverseOf ns1:occursAt .
+
+ns1:hasPerformanceAffectedBy owl:inverseOf ns1:affectsPerformanceOf .
+
+ns1:isAddressedBy owl:inverseOf ns1:addresses .
+
+ns1:isAlignedTo a owl:ObjectProperty ;
+    rdfs:comment "Links a directive to the network aligned with it." ;
+    owl:inverseOf ns1:alignsWith .
+
+ns1:isComplianceTargetOf a owl:ObjectProperty ;
+    rdfs:comment "Links a standard to the network complying with it." ;
+    owl:inverseOf ns1:compliesWith .
+
+ns1:isDetectedBy a owl:ObjectProperty ;
+    rdfs:comment "Links a condition to the sensor detecting it.",
+        "Links an overflow event to the alarm that detected it." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:OverflowAlarm ;
+    owl:inverseOf ns1:detects .
+
+ns1:isInvolvedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "A component may be recursively involved in a meta-event involving itself.",
+        "If A is involved in B, and B is involved in C, then A is involved in C.",
+        "Links a component to the event involving it." ;
+    owl:inverseOf ns1:involvesComponent .
+
+ns1:isProducedBy owl:inverseOf ns1:producesFinding .
+
+ns1:isRepairFor a owl:ObjectProperty ;
+    rdfs:comment "Links a repair to the condition it corrects." ;
+    owl:inverseOf ns1:requiresRepair .
+
+ns1:isRestoredBy a owl:ObjectProperty ;
+    rdfs:comment "Links a structural condition to the repair that restores it." ;
+    owl:inverseOf ns1:restores .
+
+ns1:isStatusOf a owl:ObjectProperty ;
+    rdfs:comment "Links a status back to the infrastructure component." ;
+    owl:inverseOf ns1:hasStatus .
+
+ns1:isTargetOf a owl:ObjectProperty ;
+    rdfs:comment "Links a sewer component to the inspection targeting it." ;
+    owl:inverseOf ns1:targets .
+
+ns1:isZoneTypeOf a owl:ObjectProperty ;
+    rdfs:comment "Links an urban zone type to its geospatial region." ;
+    owl:inverseOf ns1:hasZoneType .
+
+ns1:locationOf a owl:ObjectProperty ;
+    rdfs:comment "Links a geospatial point to the infrastructure component it describes." ;
+    owl:inverseOf ns1:hasLocation .
+
+ns1:schedules a owl:ObjectProperty ;
+    rdfs:comment "Links a plan to the maintenance it schedules." ;
+    owl:inverseOf ns1:scheduledBy .
+
+ns1:addresses a owl:ObjectProperty ;
+    rdfs:comment "Indicates that maintenance addresses a particular structural condition." ;
+    rdfs:domain ns1:MaintenanceActivity ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:affectsPerformanceOf a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:comment "A condition might reflexively relate to itself for recursive degradation modeling.",
+        "Structural condition influences performance." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:alignsWith a owl:ObjectProperty ;
+    rdfs:comment "Relates a sewer network to the INSPIRE directive it aligns with." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:INSPIREDirective .
+
+ns1:classifiedBy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:comment "A region may be classified by a type that also classifies itself in abstract hierarchy.",
+        "Each region is classified by one zone type for consistent planning.",
+        "Relates a region to its urban classification." ;
+    rdfs:domain ns1:GeospatialRegion ;
+    rdfs:range ns1:UrbanZoneType .
+
+ns1:connectedTo a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "A component is always connected to itself by default.",
+        "If component A is connected to B, and B is connected to C, then A is connected to C.",
+        "If one component is connected to another, the reverse is also true.",
+        "Indicates that two components are connected." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:SewerNetworkComponent ;
+    owl:SymmetricProperty true ;
+    owl:inverseOf ns1:connectedTo .
+
+ns1:hasComponent a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Each network has unique references to its individual components (logically functional).",
+        "If A has component B, and B has component C, then A has component C.",
+        "Relates a sewer network to its components." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:SewerNetworkComponent .
+
+ns1:hasLocation a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Defines the location of a network component.",
+        "Each component has exactly one geospatial location." ;
+    rdfs:domain ns1:SewerNetworkComponent ;
+    rdfs:range ns1:GeospatialPoint ;
+    owl:FunctionalProperty true .
+
+ns1:hasZoneType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Each geospatial region is classified by one urban zone type.",
+        "Urban classification of a spatial region." ;
+    rdfs:domain ns1:GeospatialRegion ;
+    rdfs:range ns1:UrbanZoneType .
+
+ns1:occursAt a owl:ObjectProperty ;
+    rdfs:comment "Indicates where a blockage occurs." ;
+    rdfs:domain ns1:Blockage ;
+    rdfs:range ns1:Pipe .
+
+ns1:producesFinding a owl:ObjectProperty ;
+    rdfs:comment "An inspection results in one or more findings." ;
+    rdfs:domain ns1:Inspection ;
+    rdfs:range ns1:Finding .
+
+ns1:requiresRepair a owl:ObjectProperty ;
+    rdfs:comment "Indicates that a condition requires a specific repair." ;
+    rdfs:domain ns1:StructuralCondition ;
+    rdfs:range ns1:Repair .
+
+ns1:resultsFrom a owl:ObjectProperty ;
+    rdfs:comment "Indicates the blockage that resulted in an overflow." ;
+    rdfs:domain ns1:Overflow ;
+    rdfs:range ns1:Blockage .
+

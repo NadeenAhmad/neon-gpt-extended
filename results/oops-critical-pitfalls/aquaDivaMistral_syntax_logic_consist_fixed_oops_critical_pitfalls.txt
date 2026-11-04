@@ -1,0 +1,71 @@
+Ontology: results/mistral-ontologies/aquaDivaMistral_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 3
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/aquaDiva#uses
+http://example.org/aquaDiva#affects
+http://example.org/aquaDiva#influences
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix : <http://example.org/aquaDiva#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:isAffectedBy owl:inverseOf :affects .
+
+:isAffectedBySamplingMethod owl:inverseOf :affects .
+
+:isAnnotationPropertyOf owl:inverseOf :uses .
+
+:isInfluencedBy owl:inverseOf :influences .
+
+:isUsedByOntology owl:inverseOf :uses .
+
+:isUsedByTemporalAnalysis owl:inverseOf :uses .
+
+:influences a owl:ObjectProperty ;
+    rdfs:comment "Indicates that a karst formation influences the distribution of microbial communities.",
+        "Indicates that humidity influences the chemistry of groundwater.",
+        "Indicates that temperature influences the chemistry of groundwater." ;
+    rdfs:domain :Humidity,
+        :KarstFormation,
+        :Temperature ;
+    rdfs:range :Distribution,
+        :GroundwaterChemistry .
+
+:affects a owl:ObjectProperty ;
+    rdfs:comment "Indicates that a habitat affects the quality of groundwater.",
+        "Indicates that a sampling method affects data collection.",
+        "Indicates that an environmental factor affects the distribution of microbial communities." ;
+    rdfs:domain :EnvironmentalFactor,
+        :Habitat,
+        :SamplingMethod ;
+    rdfs:range :DataCollection,
+        :GroundwaterQuality,
+        :MicrobialCommunityDistribution .
+
+:uses a owl:ObjectProperty ;
+    rdfs:comment "Indicates that an ontology uses a specific annotation property.",
+        "Indicates that an ontology uses a specific standardized term.",
+        "Indicates that temporal analysis uses a specific visualization technique." ;
+    rdfs:domain :Ontology,
+        :TemporalAnalysis ;
+    rdfs:range :AnnotationProperty,
+        :StandardizedTerm,
+        :VisualizationTechnique .
+

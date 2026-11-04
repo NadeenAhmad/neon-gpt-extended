@@ -1,0 +1,255 @@
+Ontology: results/mistral-ontologies/cheminfMistral_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 8
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/CHEMINF#regulates
+http://example.org/CHEMINF#isRegulatedBy
+http://example.org/CHEMINF#hasCitation
+http://example.org/CHEMINF#hasDataSource
+http://example.org/CHEMINF#includes
+http://example.org/CHEMINF#hasContextInformation
+http://example.org/CHEMINF#hasMolecularStructure
+http://example.org/CHEMINF#isCalculationMethodOf
+http://example.org/CHEMINF#mapsTo
+http://example.org/CHEMINF#isProvenanceOf
+http://example.org/CHEMINF#isInvolvedIn
+http://example.org/CHEMINF#catalyzes
+http://example.org/CHEMINF#analyzesEntity
+http://example.org/CHEMINF#isConformedBy
+http://example.org/CHEMINF#isImplementedIn
+http://example.org/CHEMINF#analyzes
+http://example.org/CHEMINF#involves
+http://example.org/CHEMINF#isDescribedBy
+http://example.org/CHEMINF#isSMILESOf
+http://example.org/CHEMINF#isDataSourceOf
+http://example.org/CHEMINF#isSupportedBy
+http://example.org/CHEMINF#isConfidenceScoreOf
+http://example.org/CHEMINF#hasAuthor
+http://example.org/CHEMINF#isActedOnBy
+http://example.org/CHEMINF#hasProvenance
+http://example.org/CHEMINF#implements
+http://example.org/CHEMINF#actsOn
+http://example.org/CHEMINF#hasLicense
+http://example.org/CHEMINF#hasStructureRepresentation
+http://example.org/CHEMINF#usesReasoner
+http://example.org/CHEMINF#encodes
+http://example.org/CHEMINF#isCalculatedBy
+http://example.org/CHEMINF#isUsedBy
+http://example.org/CHEMINF#isDescriptorOf
+http://example.org/CHEMINF#isCatalyzedBy
+http://example.org/CHEMINF#isIncludedIn
+http://example.org/CHEMINF#supportsInference
+http://example.org/CHEMINF#isAnalyzedByEntity
+http://example.org/CHEMINF#isInChIOf
+http://example.org/CHEMINF#isLicenseOf
+http://example.org/CHEMINF#calculates
+http://example.org/CHEMINF#isMolecularStructureOf
+http://example.org/CHEMINF#isAuthorOf
+http://example.org/CHEMINF#hasCalculationMethod
+http://example.org/CHEMINF#conformsTo
+http://example.org/CHEMINF#hasInChI
+http://example.org/CHEMINF#hasProperty
+http://example.org/CHEMINF#encodedIn
+http://example.org/CHEMINF#isCitationOf
+http://example.org/CHEMINF#hasSMILES
+http://example.org/CHEMINF#isContextInformationOf
+http://example.org/CHEMINF#describes
+http://example.org/CHEMINF#isPropertyOf
+http://example.org/CHEMINF#isStructureRepresentationOf
+http://example.org/CHEMINF#hasConfidenceScore
+http://example.org/CHEMINF#isRepresentedBy
+http://example.org/CHEMINF#represents
+http://example.org/CHEMINF#isAnalyzedBy
+http://example.org/CHEMINF#isMappedBy
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/CHEMINF#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:catalyzes a owl:ObjectProperty ;
+    rdfs:label "catalyzes" ;
+    rdfs:comment "Relates a chemical entity to a chemical reaction it catalyzes." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:ChemicalReaction ;
+    owl:inverseOf ns1:isCatalyzedBy .
+
+ns1:implements owl:inverseOf ns1:isImplementedIn .
+
+ns1:isActedOnBy a owl:ObjectProperty ;
+    rdfs:label "isActedOnBy" ;
+    rdfs:comment "Relates a data format to an inference engine that acts on it." ;
+    rdfs:domain ns1:InferenceEngine ;
+    rdfs:range ns1:DataFormat ;
+    owl:inverseOf ns1:actsOn .
+
+ns1:isAnalyzedBy owl:inverseOf ns1:analyzes .
+
+ns1:isAnalyzedByEntity owl:inverseOf ns1:analyzesEntity .
+
+ns1:isAuthorOf owl:inverseOf ns1:hasAuthor .
+
+ns1:isCalculationMethodOf a owl:ObjectProperty ;
+    rdfs:label "isCalculationMethodOf" ;
+    rdfs:comment "Relates a calculation method to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:CalculationMethod ;
+    owl:inverseOf ns1:hasCalculationMethod .
+
+ns1:isCitationOf owl:inverseOf ns1:hasCitation .
+
+ns1:isConfidenceScoreOf a owl:ObjectProperty ;
+    rdfs:label "isConfidenceScoreOf" ;
+    rdfs:comment "Relates a software implementation to its confidence score." ;
+    rdfs:domain ns1:ConfidenceScore ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:hasConfidenceScore .
+
+ns1:isConformedBy a owl:ObjectProperty ;
+    rdfs:label "isConformedBy" ;
+    rdfs:comment "Relates a data format specification to a chemical descriptor." ;
+    rdfs:domain ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:conformsTo .
+
+ns1:isContextInformationOf owl:inverseOf ns1:hasContextInformation .
+
+ns1:isDataSourceOf a owl:ObjectProperty ;
+    rdfs:label "isDataSourceOf" ;
+    rdfs:comment "Relates a data source to provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:DataSource ;
+    owl:inverseOf ns1:hasDataSource .
+
+ns1:isDescribedBy a owl:ObjectProperty ;
+    rdfs:label "isDescribedBy" ;
+    rdfs:comment "Relates a chemical reaction to chemical kinetics." ;
+    rdfs:domain ns1:ChemicalKinetics ;
+    rdfs:range ns1:ChemicalReaction ;
+    owl:inverseOf ns1:describes .
+
+ns1:isIncludedIn owl:inverseOf ns1:includes .
+
+ns1:isInvolvedIn a owl:ObjectProperty ;
+    rdfs:label "isInvolvedIn" ;
+    rdfs:comment "Relates a chemical entity to a chemical interaction." ;
+    rdfs:domain ns1:ChemicalInteraction ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:involves .
+
+ns1:isMappedBy owl:inverseOf ns1:mapsTo .
+
+ns1:isMolecularStructureOf owl:inverseOf ns1:hasMolecularStructure .
+
+ns1:isProvenanceOf a owl:ObjectProperty ;
+    rdfs:label "isProvenanceOf" ;
+    rdfs:comment "Relates a chemical descriptor to its provenance information." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenance .
+
+ns1:isSMILESOf a owl:ObjectProperty ;
+    rdfs:label "isSMILESOf" ;
+    rdfs:comment "Relates a SMILES string to a molecular structure." ;
+    rdfs:domain ns1:MolecularStructure ;
+    rdfs:range ns1:SMILES ;
+    owl:inverseOf ns1:hasSMILES .
+
+ns1:isSupportedBy a owl:ObjectProperty ;
+    rdfs:label "isSupportedBy" ;
+    rdfs:comment "Relates a data format to an inference engine that supports it." ;
+    rdfs:domain ns1:InferenceEngine ;
+    rdfs:range ns1:DataFormat ;
+    owl:inverseOf ns1:supportsInference .
+
+ns1:regulates a owl:ObjectProperty ;
+    rdfs:label "regulates" ;
+    rdfs:comment "Relates a chemical entity to a chemical pathway it regulates." ;
+    rdfs:domain ns1:ChemicalPathway ;
+    rdfs:range ns1:ChemicalEntity ;
+    owl:inverseOf ns1:isRegulatedBy .
+
+ns1:hasAuthor a owl:ObjectProperty ;
+    rdfs:label "hasAuthor" ;
+    rdfs:comment "Relates provenance information to an author." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range xsd:string ;
+    owl:functional true .
+
+ns1:hasCitation a owl:ObjectProperty ;
+    rdfs:label "hasCitation" ;
+    rdfs:comment "Relates provenance information to a citation." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:Citation ;
+    owl:functional true .
+
+ns1:hasMolecularStructure a owl:ObjectProperty ;
+    rdfs:label "hasMolecularStructure" ;
+    rdfs:comment "Relates a chemical entity to its molecular structure." ;
+    rdfs:domain ns1:ChemicalEntity ;
+    rdfs:range ns1:MolecularStructure ;
+    owl:functional true .
+
+
+========================================================================================================================
+PITFALL P39: Ambiguous namespace
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+(No affected elements found or inferred)
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/CHEMINF#hasLicense
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/CHEMINF#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:isLicenseOf owl:inverseOf ns1:hasLicense .
+
+ns1:hasLicense a owl:ObjectProperty ;
+    rdfs:label "hasLicense" ;
+    rdfs:comment "Relates a software implementation to its license.",
+        "Relates dataset metadata to its license." ;
+    rdfs:domain ns1:DatasetMetadata,
+        ns1:SoftwareImplementation ;
+    rdfs:range ns1:License ;
+    owl:functional true .
+

@@ -1,0 +1,661 @@
+Ontology: results/deepseek-ontologies/AquaDiva_deepseek_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 26
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://aquadiva.org/ontology#differsInCommunity
+http://aquadiva.org/ontology#hasSequencingTechnique
+http://aquadiva.org/ontology#hasEnvironmentalCondition
+http://aquadiva.org/ontology#hasPressure
+http://aquadiva.org/ontology#hasAbundanceValue
+http://aquadiva.org/ontology#hasTemporalContext
+http://aquadiva.org/ontology#hasFunction
+http://aquadiva.org/ontology#hasOxygenLevel
+http://aquadiva.org/ontology#differsInFunction
+http://aquadiva.org/ontology#hasSamplingDate
+http://aquadiva.org/ontology#associatedWith
+http://aquadiva.org/ontology#hasTaxonomicRank
+http://aquadiva.org/ontology#participatesIn
+http://aquadiva.org/ontology#locatedIn
+http://aquadiva.org/ontology#differsInStructure
+http://aquadiva.org/ontology#hasSampleID
+http://aquadiva.org/ontology#inhabits
+http://aquadiva.org/ontology#collectedUsing
+http://aquadiva.org/ontology#hasNutrientConcentration
+http://aquadiva.org/ontology#hasUnit
+http://aquadiva.org/ontology#hasProcessRate
+http://aquadiva.org/ontology#hasFunctionalGene
+http://aquadiva.org/ontology#performs
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:associatedWith a owl:ObjectProperty ;
+    rdfs:label "associated with" ;
+    rdfs:comment "Relates a microbial taxon to a biogeochemical process it is associated with" ;
+    rdfs:domain ns1:FunctionalGene,
+        ns1:MicrobialTaxon ;
+    rdfs:range ns1:BiogeochemicalProcess .
+
+ns1:collectedUsing a owl:ObjectProperty ;
+    rdfs:label "collected using" ;
+    rdfs:comment "Relates a sample to the device used for collection",
+        "Relates a sample to the measurement technique used for collection" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:MeasurementTechnique,
+        ns1:SequencingTechnique,
+        <http://gensc.org/mixs/terms/>,
+        <http://gensc.org/mixs/terms/0000001> .
+
+ns1:containsSample owl:inverseOf ns1:locatedIn .
+
+ns1:differsInCommunity a owl:ObjectProperty ;
+    rdfs:label "differs in community" ;
+    rdfs:domain ns1:MicrobialCommunity ;
+    rdfs:range ns1:ClayLayer,
+        ns1:SandstoneLayer .
+
+ns1:differsInFunction a owl:ObjectProperty ;
+    rdfs:label "differs in function" ;
+    rdfs:domain ns1:MicrobialCommunityFunction,
+        ns1:MicrobialFunction ;
+    rdfs:range ns1:AquiferType,
+        ns1:DiurnalScale,
+        ns1:SeasonalScale .
+
+ns1:differsInStructure a owl:ObjectProperty ;
+    rdfs:label "differs in structure" ;
+    rdfs:domain ns1:MicrobialCommunityStructure ;
+    rdfs:range ns1:ImpermeableZone,
+        ns1:PermeableZone .
+
+ns1:hasAbundanceValue a owl:DatatypeProperty ;
+    rdfs:label "has abundance value" ;
+    rdfs:comment "Relates a population to its abundance measurement value" ;
+    rdfs:domain ns1:Abundance,
+        ns1:Population ;
+    rdfs:range xsd:decimal .
+
+ns1:hasEnvironmentalCondition a owl:ObjectProperty ;
+    rdfs:label "has environmental condition" ;
+    rdfs:comment "Relates a sample to an environmental condition",
+        "Relates a sample to its environmental conditions" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:EnvironmentalCondition,
+        ns1:EnvironmentalParameter,
+        ns1:EnvironmentalVariable,
+        <http://purl.obolibrary.org/obo/ENVO_>,
+        <http://purl.obolibrary.org/obo/ENVO_01000216> .
+
+ns1:hasFunction a owl:ObjectProperty ;
+    rdfs:label "has function" ;
+    rdfs:comment "Relates a microbial community to an ecosystem function",
+        "Relates a microbial community to an ecosystem function it carries out" ;
+    rdfs:domain ns1:MicrobialCommunity ;
+    rdfs:range ns1:EcosystemFunction,
+        ns1:MicrobialFunction,
+        <http://purl.obolibrary.org/obo/ECO_> .
+
+ns1:hasFunctionalGene a owl:ObjectProperty ;
+    rdfs:domain ns1:MicrobialFunction,
+        ns1:MicrobialTaxon ;
+    rdfs:range ns1:FunctionalGene,
+        ns1:Gene .
+
+ns1:hasNutrientConcentration a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has nutrient concentration" ;
+    rdfs:comment "Assesses the concentration of essential nutrients (e.g., nitrogen, phosphorus) that limit or promote microbial growth.",
+        "Relates an environmental variable to its nutrient concentration value" ;
+    rdfs:domain ns1:EnvironmentalParameter,
+        ns1:EnvironmentalVariable ;
+    rdfs:range ns1:NutrientValue,
+        xsd:decimal .
+
+ns1:hasOxygenLevel a owl:DatatypeProperty ;
+    rdfs:label "has oxygen level" ;
+    rdfs:comment "Quantifies dissolved oxygen concentration, indicating redox conditions that shape microbial metabolic strategies.",
+        "Relates an environmental variable to its oxygen level value" ;
+    rdfs:domain ns1:EnvironmentalVariable,
+        ns1:SamplingSite ;
+    rdfs:range xsd:decimal .
+
+ns1:hasPressure a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has pressure" ;
+    rdfs:comment "Measures hydrostatic or lithostatic pressure in subsurface environments, influencing microbial physiology and habitat accessibility.",
+        "Relates an environmental variable to its pressure value" ;
+    rdfs:domain ns1:EnvironmentalParameter,
+        ns1:EnvironmentalVariable ;
+    rdfs:range <http://purl.obolibrary.org/obo/PATO_0001025>,
+        xsd:decimal .
+
+ns1:hasProcessRate a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has process rate" ;
+    rdfs:domain ns1:BiogeochemicalProcess ;
+    rdfs:range ns1:ProcessRate,
+        xsd:float .
+
+ns1:hasSampleID a owl:DatatypeProperty ;
+    rdfs:label "has sample ID" ;
+    rdfs:comment "Relates a sample to its unique identifier" ;
+    rdfs:domain ns1:Sample,
+        ns1:SamplingSite ;
+    rdfs:range xsd:string .
+
+ns1:hasSamplingDate a owl:DatatypeProperty ;
+    rdfs:label "has sampling date" ;
+    rdfs:comment "Relates a temporal context to its sampling date" ;
+    rdfs:domain ns1:Sample,
+        ns1:SamplingSite,
+        ns1:TemporalContext ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasSequencingTechnique a owl:ObjectProperty ;
+    rdfs:domain ns1:MicrobialTaxon,
+        ns1:Sample ;
+    rdfs:range ns1:SequencingTechnique .
+
+ns1:hasTaxonomicRank a owl:ObjectProperty ;
+    rdfs:label "has taxonomic rank" ;
+    rdfs:comment "Relates a microbial taxon to its taxonomic rank" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:TaxonomicRank,
+        <http://purl.obolibrary.org/obo/NCBITaxon_0000000> .
+
+ns1:hasUnit a owl:DatatypeProperty ;
+    rdfs:label "has unit" ;
+    rdfs:comment "Relates an environmental variable to its measurement unit" ;
+    rdfs:domain ns1:EnvironmentalParameter,
+        ns1:EnvironmentalVariable ;
+    rdfs:range xsd:string .
+
+ns1:inhabits a owl:ObjectProperty ;
+    rdfs:label "inhabits" ;
+    rdfs:comment "Relates a microbial taxon to a sampling environment it inhabits",
+        "Relates a microbial taxon to the environment it inhabits" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:Habitat,
+        ns1:SamplingEnvironment,
+        ns1:SubsurfaceZone ;
+    owl:inverseOf ns1:hasInhabitant .
+
+ns1:isTemporalContextOf owl:inverseOf ns1:hasTemporalContext .
+
+ns1:participatesIn a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "participates in" ;
+    rdfs:comment "A reflexive property indicating that an entity can participate in itself or other processes or interactions" ;
+    rdfs:domain ns1:MicrobialCommunity,
+        ns1:MicrobialTaxon ;
+    rdfs:range ns1:BiogeochemicalProcess,
+        ns1:SymbioticRelationship .
+
+ns1:performs a owl:ObjectProperty ;
+    rdfs:label "performs" ;
+    rdfs:comment "Relates a microbial taxon to a biological process it performs",
+        "Relates a microbial taxon to a function it performs" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:MicrobialFunction,
+        <http://purl.obolibrary.org/obo/GO_0008150> .
+
+ns1:hasTemporalContext a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has temporal context" ;
+    rdfs:comment "Assigns temporal attributes (e.g., sampling date) to a sample, supporting time-series and longitudinal studies.",
+        "If a sample has a temporal context, then that temporal context describes the sample's timing",
+        "Relates a sample to its temporal context" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:TemporalContext,
+        ns1:TimePoint .
+
+ns1:locatedIn a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "located in" ;
+    rdfs:comment "A transitive property indicating that if A is located in B and B is located in C, then A is located in C",
+        "If a sample is located in a sampling environment, then that sampling environment contains the sample",
+        "Relates a sample to its sampling environment",
+        "Specifies the sampling environment where a sample was collected, connecting physical location to analytical data." ;
+    rdfs:domain ns1:Sample,
+        ns1:SamplingSite ;
+    rdfs:range ns1:Habitat,
+        ns1:SamplingEnvironment,
+        ns1:SubsurfaceZone .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://aquadiva.org/ontology#hasMember
+http://aquadiva.org/ontology#hasParticipant
+http://aquadiva.org/ontology#hasParticipatingTaxon
+http://aquadiva.org/ontology#partOfStudy
+http://aquadiva.org/ontology#hasTemporalContext
+http://aquadiva.org/ontology#isFunctionalRoleOf
+http://aquadiva.org/ontology#hasSample
+http://aquadiva.org/ontology#isTechniqueFor
+http://aquadiva.org/ontology#isTemporalContextOf
+http://aquadiva.org/ontology#locatedIn
+http://aquadiva.org/ontology#memberOfPopulation
+http://aquadiva.org/ontology#mediatedBy
+http://aquadiva.org/ontology#containsSample
+http://aquadiva.org/ontology#hasMeasurementTechnique
+http://aquadiva.org/ontology#hasEnvironmentalVariable
+http://aquadiva.org/ontology#participatesInPathway
+http://aquadiva.org/ontology#hasSpatialContext
+http://aquadiva.org/ontology#isSpatialContextOf
+http://aquadiva.org/ontology#inhabits
+http://aquadiva.org/ontology#isMediatedBy
+http://aquadiva.org/ontology#isVariableOf
+http://aquadiva.org/ontology#mediatesProcess
+http://aquadiva.org/ontology#hasInhabitant
+http://aquadiva.org/ontology#hasFunctionalRole
+http://aquadiva.org/ontology#participatesInInteraction
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:containsSample a owl:ObjectProperty ;
+    rdfs:label "contains sample" ;
+    rdfs:comment "Relates a sampling environment to the samples located within it" ;
+    owl:inverseOf ns1:locatedIn .
+
+ns1:hasMember a owl:ObjectProperty,
+        owl:ReflexiveProperty ;
+    rdfs:label "has member" ;
+    rdfs:comment "A reflexive property indicating that a population or group can have itself or other organisms as members",
+        "Relates a population to the organisms that are members of it" ;
+    owl:inverseOf ns1:memberOfPopulation .
+
+ns1:hasParticipant a owl:ObjectProperty ;
+    rdfs:label "has participant" ;
+    rdfs:comment "Relates an ecosystem interaction to the organisms that participate in it" ;
+    owl:inverseOf ns1:participatesInInteraction .
+
+ns1:hasParticipatingTaxon a owl:ObjectProperty ;
+    rdfs:label "has participating taxon" ;
+    rdfs:comment "Relates a metabolic pathway to the microbial taxon that participates in it" ;
+    owl:inverseOf ns1:participatesInPathway .
+
+ns1:hasSample a owl:ObjectProperty ;
+    rdfs:label "has sample" ;
+    rdfs:comment "Relates a study to the samples that are part of it" ;
+    owl:inverseOf ns1:partOfStudy .
+
+ns1:inhabits a owl:ObjectProperty ;
+    rdfs:label "inhabits" ;
+    rdfs:comment "Relates a microbial taxon to a sampling environment it inhabits",
+        "Relates a microbial taxon to the environment it inhabits" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:Habitat,
+        ns1:SamplingEnvironment,
+        ns1:SubsurfaceZone ;
+    owl:inverseOf ns1:hasInhabitant .
+
+ns1:isFunctionalRoleOf a owl:ObjectProperty ;
+    rdfs:label "is functional role of" ;
+    rdfs:comment "Relates a functional role to the microbial taxon that performs it" ;
+    owl:inverseOf ns1:hasFunctionalRole .
+
+ns1:isMediatedBy a owl:ObjectProperty ;
+    rdfs:label "is mediated by" ;
+    rdfs:comment "Relates a biogeochemical process to the microbial taxon that mediates it" ;
+    owl:inverseOf ns1:mediatesProcess .
+
+ns1:isSpatialContextOf a owl:ObjectProperty ;
+    rdfs:label "is spatial context of" ;
+    rdfs:comment "Relates a spatial context to the sample it describes" ;
+    owl:inverseOf ns1:hasSpatialContext .
+
+ns1:isTechniqueFor a owl:ObjectProperty ;
+    rdfs:label "is technique for" ;
+    rdfs:comment "Relates a measurement technique to the samples it is used on" ;
+    owl:inverseOf ns1:hasMeasurementTechnique .
+
+ns1:isTemporalContextOf a owl:ObjectProperty ;
+    rdfs:label "is temporal context of" ;
+    rdfs:comment "Relates a temporal context to the sample it describes" ;
+    owl:inverseOf ns1:hasTemporalContext .
+
+ns1:isVariableOf a owl:ObjectProperty ;
+    rdfs:label "is variable of" ;
+    rdfs:comment "Relates an environmental variable to the sampling environment it characterizes" ;
+    owl:inverseOf ns1:hasEnvironmentalVariable .
+
+ns1:mediatedBy a owl:ObjectProperty ;
+    rdfs:label "mediated by" ;
+    rdfs:comment "Relates a biogeochemical process to a microbial taxon that mediates it",
+        "Relates a biogeochemical process to the microbial taxon that mediates it" ;
+    rdfs:domain ns1:BiogeochemicalProcess ;
+    rdfs:range ns1:MicrobialTaxon ;
+    owl:inverseOf ns1:mediatesProcess .
+
+ns1:hasEnvironmentalVariable a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has environmental variable" ;
+    rdfs:comment "Associates a sampling environment with measurable environmental parameters that define habitat conditions.",
+        "If a sampling environment has an environmental variable, then that environmental variable characterizes the sampling environment",
+        "Relates a sampling environment to its environmental variables" ;
+    rdfs:domain ns1:SamplingEnvironment ;
+    rdfs:range ns1:EnvironmentalVariable .
+
+ns1:hasFunctionalRole a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has functional role" ;
+    rdfs:comment "If a microbial taxon has a functional role, then that functional role is performed by the microbial taxon",
+        "Indicates that a microbial taxon performs a specific functional role in an ecosystem, linking taxonomy to ecological processes.",
+        "Relates a microbial taxon to its functional role" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:FunctionalRole .
+
+ns1:hasInhabitant a owl:ObjectProperty ;
+    rdfs:label "has inhabitant" ;
+    rdfs:comment "Relates a sampling environment to a microbial taxon that inhabits it" ;
+    rdfs:domain ns1:SamplingEnvironment ;
+    rdfs:range ns1:MicrobialTaxon .
+
+ns1:hasMeasurementTechnique a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has measurement technique" ;
+    rdfs:comment "If a sample has a measurement technique, then that measurement technique is used on the sample",
+        "Links a sample to the technique used for its analysis, ensuring reproducibility and methodological transparency.",
+        "Relates a sample to the measurement technique used" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:MeasurementTechnique .
+
+ns1:hasSpatialContext a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has spatial context" ;
+    rdfs:comment "Assigns spatial attributes (e.g., depth, coordinates) to a sample, enabling geospatial analysis and integration.",
+        "If a sample has a spatial context, then that spatial context describes the sample's location",
+        "Relates a sample to its spatial context" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:SpatialContext .
+
+ns1:hasTemporalContext a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has temporal context" ;
+    rdfs:comment "Assigns temporal attributes (e.g., sampling date) to a sample, supporting time-series and longitudinal studies.",
+        "If a sample has a temporal context, then that temporal context describes the sample's timing",
+        "Relates a sample to its temporal context" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:TemporalContext,
+        ns1:TimePoint .
+
+ns1:locatedIn a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "located in" ;
+    rdfs:comment "A transitive property indicating that if A is located in B and B is located in C, then A is located in C",
+        "If a sample is located in a sampling environment, then that sampling environment contains the sample",
+        "Relates a sample to its sampling environment",
+        "Specifies the sampling environment where a sample was collected, connecting physical location to analytical data." ;
+    rdfs:domain ns1:Sample,
+        ns1:SamplingSite ;
+    rdfs:range ns1:Habitat,
+        ns1:SamplingEnvironment,
+        ns1:SubsurfaceZone .
+
+ns1:memberOfPopulation a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "member of population" ;
+    rdfs:comment "A transitive property indicating that if A is a member of population B and B is part of population C, then A is a member of population C",
+        "If an organism is a member of a population, then that population includes the organism",
+        "Indicates that an organism belongs to a specific population, linking individual traits to group-level dynamics.",
+        "Relates an organism to a population it belongs to" ;
+    rdfs:domain ns1:Organism ;
+    rdfs:range ns1:Population .
+
+ns1:partOfStudy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "part of study" ;
+    rdfs:comment "A transitive property indicating that if A is part of study B and B is part of study C, then A is part of study C",
+        "Associates a sample with a research study, providing context for data provenance and experimental design.",
+        "If a sample is part of a study, then that study includes the sample",
+        "Relates a sample to a study it is part of" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:Study .
+
+ns1:participatesInInteraction a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "participates in interaction" ;
+    rdfs:comment "Connects an organism to an ecosystem interaction, such as mutualism or competition, revealing ecological relationships.",
+        "If an organism participates in an ecosystem interaction, then that ecosystem interaction involves the organism",
+        "Relates an organism to an ecosystem interaction it participates in" ;
+    rdfs:domain ns1:Organism ;
+    rdfs:range ns1:EcosystemInteraction .
+
+ns1:participatesInPathway a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "participates in pathway" ;
+    rdfs:comment "Associates a microbial taxon with a metabolic pathway it engages in, highlighting its biochemical capabilities.",
+        "If a microbial taxon participates in a metabolic pathway, then that metabolic pathway involves the microbial taxon",
+        "Relates a microbial taxon to a metabolic pathway it participates in" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:MetabolicPathway .
+
+ns1:mediatesProcess a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "mediates process" ;
+    rdfs:comment "Describes the role of a microbial taxon in facilitating a biogeochemical process, emphasizing microbial contributions to ecosystem functions.",
+        "If a microbial taxon mediates a biogeochemical process, then that biogeochemical process is mediated by the microbial taxon",
+        "Relates a microbial taxon to a biogeochemical process it mediates" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:BiogeochemicalProcess .
+
+
+========================================================================================================================
+PITFALL P28: Defining wrong symmetric relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 11
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://aquadiva.org/ontology#hasSpatialContext
+http://aquadiva.org/ontology#hasEnvironmentalVariable
+http://aquadiva.org/ontology#participatesInInteraction
+http://aquadiva.org/ontology#hasMeasurementTechnique
+http://aquadiva.org/ontology#hasTemporalContext
+http://aquadiva.org/ontology#hasFunctionalRole
+http://aquadiva.org/ontology#locatedIn
+http://aquadiva.org/ontology#participatesInPathway
+http://aquadiva.org/ontology#mediatesProcess
+http://aquadiva.org/ontology#partOfStudy
+http://aquadiva.org/ontology#memberOfPopulation
+
+========================================================================================================================
+P28 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://aquadiva.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:containsSample owl:inverseOf ns1:locatedIn .
+
+ns1:hasMember owl:inverseOf ns1:memberOfPopulation .
+
+ns1:hasParticipant owl:inverseOf ns1:participatesInInteraction .
+
+ns1:hasParticipatingTaxon owl:inverseOf ns1:participatesInPathway .
+
+ns1:hasSample owl:inverseOf ns1:partOfStudy .
+
+ns1:isFunctionalRoleOf owl:inverseOf ns1:hasFunctionalRole .
+
+ns1:isMediatedBy owl:inverseOf ns1:mediatesProcess .
+
+ns1:isSpatialContextOf owl:inverseOf ns1:hasSpatialContext .
+
+ns1:isTechniqueFor owl:inverseOf ns1:hasMeasurementTechnique .
+
+ns1:isTemporalContextOf owl:inverseOf ns1:hasTemporalContext .
+
+ns1:isVariableOf owl:inverseOf ns1:hasEnvironmentalVariable .
+
+ns1:mediatedBy owl:inverseOf ns1:mediatesProcess .
+
+ns1:hasEnvironmentalVariable a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has environmental variable" ;
+    rdfs:comment "Associates a sampling environment with measurable environmental parameters that define habitat conditions.",
+        "If a sampling environment has an environmental variable, then that environmental variable characterizes the sampling environment",
+        "Relates a sampling environment to its environmental variables" ;
+    rdfs:domain ns1:SamplingEnvironment ;
+    rdfs:range ns1:EnvironmentalVariable .
+
+ns1:hasFunctionalRole a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has functional role" ;
+    rdfs:comment "If a microbial taxon has a functional role, then that functional role is performed by the microbial taxon",
+        "Indicates that a microbial taxon performs a specific functional role in an ecosystem, linking taxonomy to ecological processes.",
+        "Relates a microbial taxon to its functional role" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:FunctionalRole .
+
+ns1:hasMeasurementTechnique a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has measurement technique" ;
+    rdfs:comment "If a sample has a measurement technique, then that measurement technique is used on the sample",
+        "Links a sample to the technique used for its analysis, ensuring reproducibility and methodological transparency.",
+        "Relates a sample to the measurement technique used" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:MeasurementTechnique .
+
+ns1:hasSpatialContext a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has spatial context" ;
+    rdfs:comment "Assigns spatial attributes (e.g., depth, coordinates) to a sample, enabling geospatial analysis and integration.",
+        "If a sample has a spatial context, then that spatial context describes the sample's location",
+        "Relates a sample to its spatial context" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:SpatialContext .
+
+ns1:hasTemporalContext a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has temporal context" ;
+    rdfs:comment "Assigns temporal attributes (e.g., sampling date) to a sample, supporting time-series and longitudinal studies.",
+        "If a sample has a temporal context, then that temporal context describes the sample's timing",
+        "Relates a sample to its temporal context" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:TemporalContext,
+        ns1:TimePoint .
+
+ns1:locatedIn a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "located in" ;
+    rdfs:comment "A transitive property indicating that if A is located in B and B is located in C, then A is located in C",
+        "If a sample is located in a sampling environment, then that sampling environment contains the sample",
+        "Relates a sample to its sampling environment",
+        "Specifies the sampling environment where a sample was collected, connecting physical location to analytical data." ;
+    rdfs:domain ns1:Sample,
+        ns1:SamplingSite ;
+    rdfs:range ns1:Habitat,
+        ns1:SamplingEnvironment,
+        ns1:SubsurfaceZone .
+
+ns1:memberOfPopulation a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "member of population" ;
+    rdfs:comment "A transitive property indicating that if A is a member of population B and B is part of population C, then A is a member of population C",
+        "If an organism is a member of a population, then that population includes the organism",
+        "Indicates that an organism belongs to a specific population, linking individual traits to group-level dynamics.",
+        "Relates an organism to a population it belongs to" ;
+    rdfs:domain ns1:Organism ;
+    rdfs:range ns1:Population .
+
+ns1:partOfStudy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "part of study" ;
+    rdfs:comment "A transitive property indicating that if A is part of study B and B is part of study C, then A is part of study C",
+        "Associates a sample with a research study, providing context for data provenance and experimental design.",
+        "If a sample is part of a study, then that study includes the sample",
+        "Relates a sample to a study it is part of" ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range ns1:Study .
+
+ns1:participatesInInteraction a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "participates in interaction" ;
+    rdfs:comment "Connects an organism to an ecosystem interaction, such as mutualism or competition, revealing ecological relationships.",
+        "If an organism participates in an ecosystem interaction, then that ecosystem interaction involves the organism",
+        "Relates an organism to an ecosystem interaction it participates in" ;
+    rdfs:domain ns1:Organism ;
+    rdfs:range ns1:EcosystemInteraction .
+
+ns1:participatesInPathway a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "participates in pathway" ;
+    rdfs:comment "Associates a microbial taxon with a metabolic pathway it engages in, highlighting its biochemical capabilities.",
+        "If a microbial taxon participates in a metabolic pathway, then that metabolic pathway involves the microbial taxon",
+        "Relates a microbial taxon to a metabolic pathway it participates in" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:MetabolicPathway .
+
+ns1:mediatesProcess a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "mediates process" ;
+    rdfs:comment "Describes the role of a microbial taxon in facilitating a biogeochemical process, emphasizing microbial contributions to ecosystem functions.",
+        "If a microbial taxon mediates a biogeochemical process, then that biogeochemical process is mediated by the microbial taxon",
+        "Relates a microbial taxon to a biogeochemical process it mediates" ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:BiogeochemicalProcess .
+

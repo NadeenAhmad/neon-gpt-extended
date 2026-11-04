@@ -1,0 +1,72 @@
+Ontology: results/llama4-ontologies/sewernet_llama_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 5
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/sewer-net#compliesWith
+http://example.org/SewerNet#isConnectedTo
+http://example.org/sewer-net#hasLocation
+http://example.org/sewer-net#alignsWith
+http://example.org/sewer-net#targets
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ns1: <http://example.org/SewerNet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:isConnectedTo a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is Connected To"@en,
+        "is connected to"@en ;
+    rdfs:comment "A property indicating that two sewer components are connected."@en,
+        "Indicates a connection between two network components."@en ;
+    rdfs:domain ns1:NetworkComponent,
+        ns1:SewerComponent ;
+    rdfs:range ns1:NetworkComponent,
+        ns1:SewerComponent .
+
+<http://example.org/sewer-net#alignsWith> a owl:ObjectProperty ;
+    rdfs:label "aligns with"@en ;
+    rdfs:comment "Indicates that a sewer network aligns with a specific INSPIRE directive."@en ;
+    rdfs:domain <http://example.org/sewer-net#SewerNetwork> ;
+    rdfs:range <http://example.org/sewer-net#INSPIREDirective>,
+        <http://inspire.ec.europa.eu/directive/INSPIREDirective> .
+
+<http://example.org/sewer-net#compliesWith> a owl:ObjectProperty ;
+    rdfs:label "complies with"@en ;
+    rdfs:comment "Indicates that a sewer network complies with a specific RAEPA standard."@en ;
+    rdfs:domain <http://example.org/sewer-net#SewerNetwork> ;
+    rdfs:range <http://example.org/RAEPA#RAEPAStandard>,
+        <http://example.org/sewer-net#RAEPAStandard> .
+
+<http://example.org/sewer-net#hasLocation> a <http://example.org/sewer-net#ObjectProperty>,
+        owl:ObjectProperty ;
+    rdfs:label "has location"@en ;
+    rdfs:comment "The geospatial location of a network component.",
+        "Relates a sewer network component to its geospatial location."@en ;
+    rdfs:domain <http://example.org/sewer-net#SewerNetworkComponent> ;
+    rdfs:range <http://example.org/sewer-net#GeospatialPoint>,
+        geo:Feature .
+
+<http://example.org/sewer-net#targets> a owl:ObjectProperty ;
+    rdfs:label "targets"@en ;
+    rdfs:comment "Relates an inspection event to the component it targets."@en ;
+    rdfs:domain <http://example.org/sewer-net#Inspection>,
+        <http://example.org/sewer-net#InspectionEvent> ;
+    rdfs:range <http://example.org/sewer-net#SewerNetworkComponent> .
+

@@ -1,0 +1,1208 @@
+Ontology: results/gpt-4o-ontologies/gpt4_wine_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P29: Defining wrong transitive relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 16
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine#consideredExceptionalFor
+http://example.org/wine#hasReputation
+http://example.org/wine#categorizedBy
+http://example.org/wine#hasAttributes
+http://example.org/wine#producedIn
+http://example.org/wine#producesIn
+http://example.org/wine#interrupts
+http://example.org/wine#influencedByRegion
+http://example.org/wine#isReputationOf
+http://example.org/wine#influences
+http://example.org/wine#categorizes
+http://example.org/wine#isExceptionalYearFor
+http://example.org/wine#interruptedBy
+http://example.org/wine#hasSensoryAttributesOf
+http://example.org/wine#classifiedBy
+http://example.org/wine#classifies
+
+========================================================================================================================
+P29 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:categorizedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the classification system used to categorize the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:EuropeanClassificationSystem ;
+    owl:equivalentProperty ns1:categorizes ;
+    owl:inverseOf ns1:categorizedBy,
+        ns1:categorizes .
+
+ns1:classifiedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the classification system used to categorize the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:FermentationProcess ;
+    owl:equivalentProperty ns1:classifies ;
+    owl:inverseOf ns1:classifiedBy,
+        ns1:classifies .
+
+ns1:consideredExceptionalFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the years considered exceptional for specific types of wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:YearOfProduction ;
+    owl:equivalentProperty ns1:isExceptionalYearFor ;
+    owl:inverseOf ns1:consideredExceptionalFor,
+        ns1:isExceptionalYearFor .
+
+ns1:hasAttributes a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the sensory attributes of the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:SensoryAttributes ;
+    owl:equivalentProperty ns1:hasSensoryAttributesOf ;
+    owl:inverseOf ns1:hasAttributes,
+        ns1:hasSensoryAttributesOf .
+
+ns1:hasReputation a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the reputation of the wine producer." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Reputation ;
+    owl:equivalentProperty ns1:isReputationOf ;
+    owl:inverseOf ns1:hasReputation,
+        ns1:isReputationOf .
+
+ns1:influencedByRegion a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:WineCharacteristics ;
+    rdfs:range ns1:Region ;
+    owl:equivalentProperty ns1:influences ;
+    owl:inverseOf ns1:influencedByRegion,
+        ns1:influences .
+
+ns1:interruptedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the method used to interrupt fermentation." ;
+    rdfs:domain ns1:SweetWine ;
+    rdfs:range ns1:FermentationInterruptionMethod ;
+    owl:equivalentProperty ns1:interrupts ;
+    owl:inverseOf ns1:interruptedBy,
+        ns1:interrupts .
+
+ns1:producedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the region where the wine is produced." ;
+    rdfs:domain ns1:Wine ;
+    owl:equivalentProperty ns1:producesIn ;
+    owl:inverseOf ns1:producedIn,
+        ns1:producesIn .
+
+ns1:categorizes a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:EuropeanClassificationSystem ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:categorizes .
+
+ns1:classifies a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:FermentationProcess ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:classifies .
+
+ns1:hasSensoryAttributesOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:SensoryAttributes ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:hasSensoryAttributesOf .
+
+ns1:influences a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Describes how one aspect influences another." ;
+    rdfs:domain ns1:Region ;
+    rdfs:range ns1:WineCharacteristics ;
+    owl:inverseOf ns1:influences .
+
+ns1:interrupts a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:FermentationInterruptionMethod ;
+    rdfs:range ns1:SweetWine ;
+    owl:inverseOf ns1:interrupts .
+
+ns1:isExceptionalYearFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:YearOfProduction ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isExceptionalYearFor .
+
+ns1:isReputationOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Reputation ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isReputationOf .
+
+ns1:producesIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:producesIn .
+
+[] owl:inverseOf ns1:producedIn .
+
+[] owl:inverseOf ns1:categorizedBy .
+
+[] owl:inverseOf ns1:classifiedBy .
+
+[] owl:inverseOf ns1:consideredExceptionalFor .
+
+[] owl:inverseOf ns1:hasAttributes .
+
+[] owl:inverseOf ns1:hasReputation .
+
+[] owl:inverseOf ns1:influencedByRegion .
+
+[] owl:inverseOf ns1:interruptedBy .
+
+
+========================================================================================================================
+PITFALL P27: Defining wrong equivalent properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 33
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine#typeOfMaceration
+http://example.org/wine#isTypeOfMacerationFor
+http://example.org/wine#hasSensoryAttributesOf
+http://example.org/wine#hasAttributes
+http://example.org/wine#renownedIn
+http://example.org/wine#isRenownedProducerIn
+http://example.org/wine#hasSugarLevel
+http://example.org/wine#isSugarLevelOf
+http://example.org/wine#categorizedBy
+http://example.org/wine#categorizes
+http://example.org/wine#classifiedBy
+http://example.org/wine#classifies
+http://example.org/wine#interruptedBy
+http://example.org/wine#interrupts
+http://example.org/wine#typeOfVariety
+http://example.org/wine#isVarietyOf
+http://example.org/wine#isUsedInProductionOf
+http://example.org/wine#usedIn
+http://example.org/wine#consideredExceptionalFor
+http://example.org/wine#isExceptionalYearFor
+http://example.org/wine#producesIn
+http://example.org/wine#producedIn
+http://example.org/wine#isDifferentiatedBy
+http://example.org/wine#differsFrom
+http://example.org/wine#hasAlcoholLevel
+http://example.org/wine#isAlcoholLevelOf
+http://example.org/wine#hasReputation
+http://example.org/wine#isReputationOf
+http://example.org/wine#hasProductionYear
+http://example.org/wine#isProductionYearOf
+http://example.org/wine#hasAppearance
+http://example.org/wine#isAppearanceOf
+http://example.org/wine#isAromaOf
+http://example.org/wine#hasAroma
+http://example.org/wine#isFlavorOf
+http://example.org/wine#hasFlavor
+http://example.org/wine#isSignificantFor
+http://example.org/wine#hasSignificance
+http://example.org/wine#hasAlcoholPercentageFor
+http://example.org/wine#variesBy
+http://example.org/wine#hasAcidityLevel
+http://example.org/wine#isAcidityLevelOf
+http://example.org/wine#hasAromaIntensity
+http://example.org/wine#isAromaIntensityOf
+http://example.org/wine#isProcessedBy
+http://example.org/wine#processedUsing
+http://example.org/wine#meetsCriteria
+http://example.org/wine#criteriaFor
+http://example.org/wine#isFermentationTypeOf
+http://example.org/wine#hasFermentationType
+http://example.org/wine#isReservaEspecialOf
+http://example.org/wine#designatedAs
+http://example.org/wine#foundIn
+http://example.org/wine#containsAroma
+http://example.org/wine#influences
+http://example.org/wine#influencedByRegion
+http://example.org/wine#interruptsFermentation
+http://example.org/wine#playsRoleIn
+http://example.org/wine#affectsWine
+http://example.org/wine#affectedBy
+http://example.org/wine#hasTaste
+http://example.org/wine#isTasteOf
+http://example.org/wine#isCategoryOf
+http://example.org/wine#hasCategory
+http://example.org/wine#classifiesAs
+http://example.org/wine#classifiedAs
+
+========================================================================================================================
+P27 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:categorizedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the classification system used to categorize the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:EuropeanClassificationSystem ;
+    owl:equivalentProperty ns1:categorizes ;
+    owl:inverseOf ns1:categorizedBy,
+        ns1:categorizes .
+
+ns1:classifiedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the classification system used to categorize the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:FermentationProcess ;
+    owl:equivalentProperty ns1:classifies ;
+    owl:inverseOf ns1:classifiedBy,
+        ns1:classifies .
+
+ns1:consideredExceptionalFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the years considered exceptional for specific types of wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:YearOfProduction ;
+    owl:equivalentProperty ns1:isExceptionalYearFor ;
+    owl:inverseOf ns1:consideredExceptionalFor,
+        ns1:isExceptionalYearFor .
+
+ns1:differsFrom a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the differences between classification systems." ;
+    rdfs:domain ns1:ClassificationSystem ;
+    owl:equivalentProperty ns1:isDifferentiatedBy ;
+    owl:inverseOf ns1:differsFrom,
+        ns1:isDifferentiatedBy .
+
+ns1:hasAlcoholLevel a owl:DatatypeProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the alcohol level present in the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range xsd:decimal ;
+    owl:equivalentProperty ns1:isAlcoholLevelOf ;
+    owl:inverseOf ns1:hasAlcoholLevel,
+        ns1:isAlcoholLevelOf .
+
+ns1:hasAttributes a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the sensory attributes of the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:SensoryAttributes ;
+    owl:equivalentProperty ns1:hasSensoryAttributesOf ;
+    owl:inverseOf ns1:hasAttributes,
+        ns1:hasSensoryAttributesOf .
+
+ns1:hasSugarLevel a owl:DatatypeProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the sugar level present in the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range xsd:decimal ;
+    owl:equivalentProperty ns1:isSugarLevelOf ;
+    owl:inverseOf ns1:hasSugarLevel,
+        ns1:isSugarLevelOf .
+
+ns1:interruptedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the method used to interrupt fermentation." ;
+    rdfs:domain ns1:SweetWine ;
+    rdfs:range ns1:FermentationInterruptionMethod ;
+    owl:equivalentProperty ns1:interrupts ;
+    owl:inverseOf ns1:interruptedBy,
+        ns1:interrupts .
+
+ns1:isRenownedProducerIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:WineIndustry ;
+    rdfs:range ns1:Producer ;
+    owl:equivalentProperty ns1:renownedIn ;
+    owl:inverseOf ns1:isRenownedProducerIn,
+        ns1:renownedIn .
+
+ns1:isTypeOfMacerationFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:MacerationProcess ;
+    rdfs:range ns1:Wine ;
+    owl:equivalentProperty ns1:typeOfMaceration ;
+    owl:inverseOf ns1:isTypeOfMacerationFor,
+        ns1:typeOfMaceration .
+
+ns1:isUsedInProductionOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:range ns1:Wine ;
+    owl:equivalentProperty ns1:usedIn ;
+    owl:inverseOf ns1:isUsedInProductionOf,
+        ns1:usedIn .
+
+ns1:isVarietyOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    owl:equivalentProperty ns1:typeOfVariety ;
+    owl:inverseOf ns1:isVarietyOf,
+        ns1:typeOfVariety .
+
+ns1:producedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the region where the wine is produced." ;
+    rdfs:domain ns1:Wine ;
+    owl:equivalentProperty ns1:producesIn ;
+    owl:inverseOf ns1:producedIn,
+        ns1:producesIn .
+
+ns1:categorizes a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:EuropeanClassificationSystem ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:categorizes .
+
+ns1:classifies a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:FermentationProcess ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:classifies .
+
+ns1:hasSensoryAttributesOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:SensoryAttributes ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:hasSensoryAttributesOf .
+
+ns1:interrupts a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:FermentationInterruptionMethod ;
+    rdfs:range ns1:SweetWine ;
+    owl:inverseOf ns1:interrupts .
+
+ns1:isDifferentiatedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:range ns1:ClassificationSystem ;
+    owl:inverseOf ns1:isDifferentiatedBy .
+
+ns1:isExceptionalYearFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:YearOfProduction ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isExceptionalYearFor .
+
+ns1:isSugarLevelOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain xsd:decimal ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isSugarLevelOf .
+
+ns1:producesIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:producesIn .
+
+ns1:renownedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the producer's recognition in the wine industry." ;
+    rdfs:domain ns1:Producer ;
+    rdfs:range ns1:WineIndustry ;
+    owl:inverseOf ns1:renownedIn .
+
+ns1:typeOfMaceration a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "The specific type of maceration process used in wine production." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:MacerationProcess ;
+    owl:inverseOf ns1:typeOfMaceration .
+
+ns1:typeOfVariety a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the type of grape variety used in wine production." ;
+    owl:inverseOf ns1:typeOfVariety .
+
+ns1:usedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the process or ingredient used in the production of wine." ;
+    rdfs:domain ns1:Wine ;
+    owl:inverseOf ns1:usedIn .
+
+[] owl:inverseOf ns1:isUsedInProductionOf .
+
+[] owl:inverseOf ns1:isVarietyOf .
+
+[] owl:inverseOf ns1:producedIn .
+
+[] owl:inverseOf ns1:categorizedBy .
+
+[] owl:inverseOf ns1:classifiedBy .
+
+[] owl:inverseOf ns1:consideredExceptionalFor .
+
+[] owl:inverseOf ns1:differsFrom .
+
+[] owl:inverseOf ns1:hasAlcoholLevel .
+
+[] owl:inverseOf ns1:hasAttributes .
+
+[] owl:inverseOf ns1:hasSugarLevel .
+
+[] owl:inverseOf ns1:interruptedBy .
+
+[] owl:inverseOf ns1:isRenownedProducerIn .
+
+[] owl:inverseOf ns1:isTypeOfMacerationFor .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 72
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+na03e0aed9f2b491487cadbc5860f2c72b53
+na03e0aed9f2b491487cadbc5860f2c72b23
+http://example.org/wine#playsRoleIn
+na03e0aed9f2b491487cadbc5860f2c72b114
+http://example.org/wine#hasSugarLevel
+na03e0aed9f2b491487cadbc5860f2c72b26
+http://example.org/wine#isAromaIntensityOf
+http://example.org/wine#isAcidityLevelOf
+http://example.org/wine#classifies
+na03e0aed9f2b491487cadbc5860f2c72b62
+na03e0aed9f2b491487cadbc5860f2c72b91
+na03e0aed9f2b491487cadbc5860f2c72b52
+na03e0aed9f2b491487cadbc5860f2c72b74
+http://example.org/wine#isUsedToProduceBy
+na03e0aed9f2b491487cadbc5860f2c72b60
+http://example.org/wine#producesIn
+na03e0aed9f2b491487cadbc5860f2c72b75
+na03e0aed9f2b491487cadbc5860f2c72b22
+na03e0aed9f2b491487cadbc5860f2c72b41
+http://example.org/wine#criteriaFor
+na03e0aed9f2b491487cadbc5860f2c72b20
+http://example.org/wine#categorizes
+http://example.org/wine#processedUsing
+na03e0aed9f2b491487cadbc5860f2c72b48
+http://example.org/wine#isTypeOfMacerationFor
+na03e0aed9f2b491487cadbc5860f2c72b19
+http://example.org/wine#consideredExceptionalFor
+na03e0aed9f2b491487cadbc5860f2c72b24
+na03e0aed9f2b491487cadbc5860f2c72b39
+http://example.org/wine#hasAppearance
+http://example.org/wine#isReservaEspecialOf
+na03e0aed9f2b491487cadbc5860f2c72b61
+na03e0aed9f2b491487cadbc5860f2c72b77
+http://example.org/wine#typeOfMaceration
+http://example.org/wine#isSignificantFor
+na03e0aed9f2b491487cadbc5860f2c72b45
+http://example.org/wine#differsFrom
+na03e0aed9f2b491487cadbc5860f2c72b70
+na03e0aed9f2b491487cadbc5860f2c72b21
+http://example.org/wine#isCharacteristicOf
+http://example.org/wine#isFlavorOf
+http://example.org/wine#influencedByRegion
+http://example.org/wine#isSugarLevelOf
+na03e0aed9f2b491487cadbc5860f2c72b92
+http://example.org/wine#isReputationOf
+http://example.org/wine#hasAlcoholPercentageFor
+http://example.org/wine#evaluatedBy
+na03e0aed9f2b491487cadbc5860f2c72b71
+http://example.org/wine#renownedIn
+na03e0aed9f2b491487cadbc5860f2c72b40
+http://example.org/wine#isExceptionalYearFor
+na03e0aed9f2b491487cadbc5860f2c72b72
+http://example.org/wine#categorizedBy
+na03e0aed9f2b491487cadbc5860f2c72b68
+na03e0aed9f2b491487cadbc5860f2c72b33
+http://example.org/wine#combinationOf
+na03e0aed9f2b491487cadbc5860f2c72b46
+http://example.org/wine#producedIn
+na03e0aed9f2b491487cadbc5860f2c72b119
+na03e0aed9f2b491487cadbc5860f2c72b38
+http://example.org/wine#isAffectedBy
+na03e0aed9f2b491487cadbc5860f2c72b47
+http://example.org/wine#isVarietyOf
+http://example.org/wine#hasAttributes
+http://example.org/wine#interruptsFermentation
+na03e0aed9f2b491487cadbc5860f2c72b37
+na03e0aed9f2b491487cadbc5860f2c72b73
+na03e0aed9f2b491487cadbc5860f2c72b16
+http://example.org/wine#hasFermentationType
+na03e0aed9f2b491487cadbc5860f2c72b34
+http://example.org/wine#hasSensoryAttributesOf
+http://example.org/wine#interruptedBy
+http://example.org/wine#usedIn
+http://example.org/wine#affectsWine
+http://example.org/wine#hasAroma
+http://example.org/wine#isTasteOf
+na03e0aed9f2b491487cadbc5860f2c72b15
+http://example.org/wine#isCombinationOf
+na03e0aed9f2b491487cadbc5860f2c72b96
+na03e0aed9f2b491487cadbc5860f2c72b64
+na03e0aed9f2b491487cadbc5860f2c72b4
+na03e0aed9f2b491487cadbc5860f2c72b5
+http://example.org/wine#usedToProduce
+http://example.org/wine#hasSignificance
+na03e0aed9f2b491487cadbc5860f2c72b18
+na03e0aed9f2b491487cadbc5860f2c72b44
+na03e0aed9f2b491487cadbc5860f2c72b113
+na03e0aed9f2b491487cadbc5860f2c72b67
+na03e0aed9f2b491487cadbc5860f2c72b35
+http://example.org/wine#isAlcoholLevelOf
+na03e0aed9f2b491487cadbc5860f2c72b50
+http://example.org/wine#isFermentationTypeOf
+na03e0aed9f2b491487cadbc5860f2c72b25
+na03e0aed9f2b491487cadbc5860f2c72b14
+na03e0aed9f2b491487cadbc5860f2c72b78
+http://example.org/wine#isProductionYearOf
+na03e0aed9f2b491487cadbc5860f2c72b17
+http://example.org/wine#isDifferentiatedBy
+http://example.org/wine#isVisionCharacteristicOf
+http://example.org/wine#affects
+na03e0aed9f2b491487cadbc5860f2c72b95
+na03e0aed9f2b491487cadbc5860f2c72b43
+http://example.org/wine#affectedBy
+na03e0aed9f2b491487cadbc5860f2c72b51
+na03e0aed9f2b491487cadbc5860f2c72b118
+http://example.org/wine#hasAlcoholLevel
+http://example.org/wine#usedInWine
+na03e0aed9f2b491487cadbc5860f2c72b29
+http://example.org/wine#foundIn
+http://example.org/wine#meetsCriteria
+http://example.org/wine#producedUsing
+na03e0aed9f2b491487cadbc5860f2c72b42
+http://example.org/wine#hasAromaIntensity
+na03e0aed9f2b491487cadbc5860f2c72b66
+na03e0aed9f2b491487cadbc5860f2c72b102
+na03e0aed9f2b491487cadbc5860f2c72b69
+http://example.org/wine#hasReputation
+http://example.org/wine#influences
+http://example.org/wine#designatedAs
+http://example.org/wine#classifiesAs
+na03e0aed9f2b491487cadbc5860f2c72b94
+na03e0aed9f2b491487cadbc5860f2c72b27
+http://example.org/wine#classifiedBy
+http://example.org/wine#hasCategory
+http://example.org/wine#hasTaste
+http://example.org/wine#hasAcidityLevel
+http://example.org/wine#hasFlavor
+http://example.org/wine#isProcessedBy
+na03e0aed9f2b491487cadbc5860f2c72b49
+http://example.org/wine#isRenownedProducerIn
+http://example.org/wine#isCategoryOf
+na03e0aed9f2b491487cadbc5860f2c72b76
+na03e0aed9f2b491487cadbc5860f2c72b59
+http://example.org/wine#variesBy
+na03e0aed9f2b491487cadbc5860f2c72b36
+http://example.org/wine#typeOfVariety
+http://example.org/wine#hasProductionYear
+http://example.org/wine#hasCharacteristics
+na03e0aed9f2b491487cadbc5860f2c72b63
+na03e0aed9f2b491487cadbc5860f2c72b93
+na03e0aed9f2b491487cadbc5860f2c72b101
+http://example.org/wine#containsAroma
+http://example.org/wine#classifiedAs
+http://example.org/wine#interrupts
+http://example.org/wine#isUsedInProductionOf
+na03e0aed9f2b491487cadbc5860f2c72b65
+http://example.org/wine#isAromaOf
+na03e0aed9f2b491487cadbc5860f2c72b28
+na03e0aed9f2b491487cadbc5860f2c72b54
+http://example.org/wine#isAppearanceOf
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:categorizedBy owl:equivalentProperty ns1:categorizes ;
+    owl:inverseOf ns1:categorizes .
+
+ns1:classifiedBy owl:equivalentProperty ns1:classifies ;
+    owl:inverseOf ns1:classifies .
+
+ns1:hasAcidityLevel owl:equivalentProperty ns1:isAcidityLevelOf ;
+    owl:inverseOf ns1:isAcidityLevelOf .
+
+ns1:hasAromaIntensity owl:equivalentProperty ns1:isAromaIntensityOf ;
+    owl:inverseOf ns1:isAromaIntensityOf .
+
+ns1:interrupts owl:equivalentProperty [ owl:inverseOf ns1:interruptedBy ] .
+
+ns1:interruptsFermentation owl:equivalentProperty ns1:playsRoleIn ;
+    owl:inverseOf ns1:playsRoleIn .
+
+ns1:isCharacteristicOf owl:equivalentProperty [ owl:inverseOf ns1:hasCharacteristics ] .
+
+ns1:isCombinationOf owl:equivalentProperty [ owl:inverseOf ns1:combinationOf ] .
+
+ns1:isUsedToProduceBy a owl:ObjectProperty ;
+    rdfs:domain ns1:GrapeVariety ;
+    owl:inverseOf ns1:usedToProduce .
+
+ns1:producedIn owl:equivalentProperty ns1:producesIn ;
+    owl:inverseOf ns1:producesIn .
+
+ns1:variesBy owl:equivalentProperty [ owl:inverseOf ns1:hasAlcoholPercentageFor ] .
+
+ns1:isExceptionalYearFor owl:equivalentProperty [ owl:equivalentProperty [ owl:inverseOf ns1:isExceptionalYearFor ] ;
+            owl:inverseOf ns1:consideredExceptionalFor ] .
+
+ns1:isProcessedBy owl:equivalentProperty ns1:processedUsing ;
+    owl:inverseOf ns1:processedUsing .
+
+ns1:criteriaFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:ClassificationCriteria ;
+    rdfs:range ns1:DOC ;
+    owl:equivalentProperty ns1:meetsCriteria ;
+    owl:inverseOf ns1:criteriaFor,
+        ns1:meetsCriteria .
+
+ns1:hasSugarLevel a owl:DatatypeProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the sugar level present in the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range xsd:decimal ;
+    owl:equivalentProperty ns1:isSugarLevelOf ;
+    owl:inverseOf ns1:hasSugarLevel,
+        ns1:isSugarLevelOf .
+
+ns1:isTypeOfMacerationFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:MacerationProcess ;
+    rdfs:range ns1:Wine ;
+    owl:equivalentProperty ns1:typeOfMaceration ;
+    owl:inverseOf ns1:isTypeOfMacerationFor,
+        ns1:typeOfMaceration .
+
+ns1:meetsCriteria owl:equivalentProperty [ owl:inverseOf ns1:criteriaFor ] .
+
+ns1:categorizes a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:EuropeanClassificationSystem ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:categorizes .
+
+ns1:classifies a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:FermentationProcess ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:classifies .
+
+ns1:isAcidityLevelOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain xsd:decimal ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isAcidityLevelOf .
+
+ns1:playsRoleIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the role played by an interruption method in the fermentation process." ;
+    rdfs:domain ns1:SulphurousAddition ;
+    rdfs:range ns1:FermentationInterruption ;
+    owl:inverseOf ns1:playsRoleIn .
+
+ns1:processedUsing a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "The process used to prepare the grapes for winemaking." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GrapeProcessing ;
+    owl:equivalentProperty [ owl:inverseOf ns1:isProcessedBy ] ;
+    owl:inverseOf ns1:processedUsing .
+
+ns1:producesIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:producesIn .
+
+ns1:isAromaIntensityOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:AromaIntensity ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isAromaIntensityOf .
+
+[] owl:equivalentProperty [ owl:inverseOf ns1:typeOfVariety ] .
+
+[] owl:equivalentProperty [ owl:inverseOf ns1:isAromaIntensityOf ] .
+
+[] owl:equivalentProperty [ owl:inverseOf ns1:isCategoryOf ] .
+
+[] owl:equivalentProperty [ owl:inverseOf ns1:isFermentationTypeOf ] .
+
+[] owl:equivalentProperty [ owl:inverseOf ns1:isFlavorOf ] .
+
+[] owl:inverseOf ns1:hasSugarLevel .
+
+[] owl:equivalentProperty [ owl:inverseOf ns1:influences ] .
+
+[] owl:inverseOf ns1:isTypeOfMacerationFor .
+
+
+========================================================================================================================
+PITFALL P28: Defining wrong symmetric relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 66
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine#categorizes
+http://example.org/wine#isAromaOf
+http://example.org/wine#isUsedInProductionOf
+http://example.org/wine#isReputationOf
+http://example.org/wine#meetsCriteria
+http://example.org/wine#isFermentationTypeOf
+http://example.org/wine#classifies
+http://example.org/wine#containsAroma
+http://example.org/wine#isSignificantFor
+http://example.org/wine#foundIn
+http://example.org/wine#isExceptionalYearFor
+http://example.org/wine#playsRoleIn
+http://example.org/wine#renownedIn
+http://example.org/wine#consideredExceptionalFor
+http://example.org/wine#isAromaIntensityOf
+http://example.org/wine#hasAlcoholPercentageFor
+http://example.org/wine#classifiedBy
+http://example.org/wine#classifiesAs
+http://example.org/wine#hasProductionYear
+http://example.org/wine#affectsWine
+http://example.org/wine#isVarietyOf
+http://example.org/wine#isAcidityLevelOf
+http://example.org/wine#hasCategory
+http://example.org/wine#hasSugarLevel
+http://example.org/wine#interruptsFermentation
+http://example.org/wine#designatedAs
+http://example.org/wine#interruptedBy
+http://example.org/wine#hasAttributes
+http://example.org/wine#typeOfVariety
+http://example.org/wine#isRenownedProducerIn
+http://example.org/wine#hasTaste
+http://example.org/wine#hasAroma
+http://example.org/wine#hasSignificance
+http://example.org/wine#influencedByRegion
+http://example.org/wine#influences
+http://example.org/wine#processedUsing
+http://example.org/wine#usedIn
+http://example.org/wine#isDifferentiatedBy
+http://example.org/wine#hasReputation
+http://example.org/wine#isReservaEspecialOf
+http://example.org/wine#variesBy
+http://example.org/wine#categorizedBy
+http://example.org/wine#hasAppearance
+http://example.org/wine#differsFrom
+http://example.org/wine#producedIn
+http://example.org/wine#criteriaFor
+http://example.org/wine#isCategoryOf
+http://example.org/wine#hasAlcoholLevel
+http://example.org/wine#isTasteOf
+http://example.org/wine#interrupts
+http://example.org/wine#hasSensoryAttributesOf
+http://example.org/wine#hasAcidityLevel
+http://example.org/wine#isProductionYearOf
+http://example.org/wine#hasFermentationType
+http://example.org/wine#isProcessedBy
+http://example.org/wine#isFlavorOf
+http://example.org/wine#affectedBy
+http://example.org/wine#isTypeOfMacerationFor
+http://example.org/wine#classifiedAs
+http://example.org/wine#hasFlavor
+http://example.org/wine#typeOfMaceration
+http://example.org/wine#hasAromaIntensity
+http://example.org/wine#producesIn
+http://example.org/wine#isSugarLevelOf
+http://example.org/wine#isAlcoholLevelOf
+http://example.org/wine#isAppearanceOf
+
+========================================================================================================================
+P28 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:affectedBy owl:equivalentProperty ns1:affectsWine ;
+    owl:inverseOf ns1:affectsWine .
+
+ns1:categorizedBy owl:equivalentProperty ns1:categorizes ;
+    owl:inverseOf ns1:categorizes .
+
+ns1:classifiedAs owl:equivalentProperty ns1:classifiesAs ;
+    owl:inverseOf ns1:classifiesAs .
+
+ns1:criteriaFor owl:equivalentProperty ns1:meetsCriteria ;
+    owl:inverseOf ns1:meetsCriteria .
+
+ns1:hasAcidityLevel owl:equivalentProperty ns1:isAcidityLevelOf ;
+    owl:inverseOf ns1:isAcidityLevelOf .
+
+ns1:hasAroma owl:equivalentProperty ns1:isAromaOf ;
+    owl:inverseOf ns1:isAromaOf .
+
+ns1:hasAromaIntensity owl:equivalentProperty ns1:isAromaIntensityOf ;
+    owl:inverseOf ns1:isAromaIntensityOf .
+
+ns1:hasFermentationType owl:equivalentProperty ns1:isFermentationTypeOf ;
+    owl:inverseOf ns1:isFermentationTypeOf .
+
+ns1:hasReputation owl:equivalentProperty ns1:isReputationOf ;
+    owl:inverseOf ns1:isReputationOf .
+
+ns1:hasSignificance owl:equivalentProperty ns1:isSignificantFor ;
+    owl:inverseOf ns1:isSignificantFor .
+
+ns1:isRenownedProducerIn owl:equivalentProperty ns1:renownedIn ;
+    owl:inverseOf ns1:renownedIn .
+
+ns1:classifiedBy a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the classification system used to categorize the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:FermentationProcess ;
+    owl:equivalentProperty ns1:classifies ;
+    owl:inverseOf ns1:classifiedBy,
+        ns1:classifies .
+
+ns1:consideredExceptionalFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Indicates the years considered exceptional for specific types of wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:YearOfProduction ;
+    owl:equivalentProperty ns1:isExceptionalYearFor ;
+    owl:inverseOf ns1:consideredExceptionalFor,
+        ns1:isExceptionalYearFor .
+
+ns1:containsAroma a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Region ;
+    rdfs:range ns1:Wine ;
+    owl:equivalentProperty ns1:foundIn ;
+    owl:inverseOf ns1:containsAroma,
+        ns1:foundIn .
+
+ns1:hasAlcoholPercentageFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:AlcoholPercentage ;
+    rdfs:range ns1:Wine ;
+    owl:equivalentProperty ns1:variesBy ;
+    owl:inverseOf ns1:hasAlcoholPercentageFor,
+        ns1:variesBy .
+
+ns1:hasCategory a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the category under which the wine is classified." ;
+    rdfs:domain ns1:EuropeanClassificationSystem ;
+    rdfs:range ns1:Category ;
+    owl:equivalentProperty ns1:isCategoryOf ;
+    owl:inverseOf ns1:hasCategory,
+        ns1:isCategoryOf .
+
+ns1:hasProductionYear a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the year the wine was produced." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:YearOfProduction ;
+    owl:equivalentProperty ns1:isProductionYearOf ;
+    owl:inverseOf ns1:hasProductionYear,
+        ns1:isProductionYearOf .
+
+ns1:hasSugarLevel a owl:DatatypeProperty,
+        owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the sugar level present in the wine." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range xsd:decimal ;
+    owl:equivalentProperty ns1:isSugarLevelOf ;
+    owl:inverseOf ns1:hasSugarLevel,
+        ns1:isSugarLevelOf .
+
+ns1:interruptsFermentation a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:FermentationInterruption ;
+    rdfs:range ns1:SulphurousAddition ;
+    owl:equivalentProperty ns1:playsRoleIn ;
+    owl:inverseOf ns1:interruptsFermentation,
+        ns1:playsRoleIn .
+
+ns1:isUsedInProductionOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:range ns1:Wine ;
+    owl:equivalentProperty ns1:usedIn ;
+    owl:inverseOf ns1:isUsedInProductionOf,
+        ns1:usedIn .
+
+ns1:isVarietyOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    owl:equivalentProperty ns1:typeOfVariety ;
+    owl:inverseOf ns1:isVarietyOf,
+        ns1:typeOfVariety .
+
+ns1:affectsWine a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:affectsWine .
+
+ns1:categorizes a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:EuropeanClassificationSystem ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:categorizes .
+
+ns1:classifies a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:FermentationProcess ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:classifies .
+
+ns1:classifiesAs a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:DOC ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:classifiesAs .
+
+ns1:foundIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the region where certain aroma characteristics are found." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Region ;
+    owl:inverseOf ns1:foundIn .
+
+ns1:isAcidityLevelOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain xsd:decimal ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isAcidityLevelOf .
+
+ns1:isAromaIntensityOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:AromaIntensity ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isAromaIntensityOf .
+
+ns1:isAromaOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:AromaCharacteristics ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isAromaOf .
+
+ns1:isExceptionalYearFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:YearOfProduction ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isExceptionalYearFor .
+
+ns1:isFermentationTypeOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isFermentationTypeOf .
+
+ns1:isReputationOf a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Reputation ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isReputationOf .
+
+ns1:isSignificantFor a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:PortugueseWine ;
+    rdfs:range ns1:ReservaEspecial ;
+    owl:inverseOf ns1:isSignificantFor .
+
+ns1:meetsCriteria a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the criteria met by the wine for classification." ;
+    rdfs:domain ns1:DOC ;
+    rdfs:range ns1:ClassificationCriteria ;
+    owl:inverseOf ns1:meetsCriteria .
+
+ns1:playsRoleIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the role played by an interruption method in the fermentation process." ;
+    rdfs:domain ns1:SulphurousAddition ;
+    rdfs:range ns1:FermentationInterruption ;
+    owl:inverseOf ns1:playsRoleIn .
+
+ns1:renownedIn a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Indicates the producer's recognition in the wine industry." ;
+    rdfs:domain ns1:Producer ;
+    rdfs:range ns1:WineIndustry ;
+    owl:inverseOf ns1:renownedIn .
+
+[] owl:inverseOf ns1:isUsedInProductionOf .
+
+[] owl:inverseOf ns1:isVarietyOf .
+
+[] owl:inverseOf ns1:classifiedBy .
+
+[] owl:inverseOf ns1:consideredExceptionalFor .
+
+[] owl:inverseOf ns1:containsAroma .
+
+[] owl:inverseOf ns1:hasAlcoholPercentageFor .
+
+[] owl:inverseOf ns1:hasCategory .
+
+[] owl:inverseOf ns1:hasProductionYear .
+
+[] owl:inverseOf ns1:hasSugarLevel .
+
+[] owl:inverseOf ns1:interruptsFermentation .
+
+
+========================================================================================================================
+PITFALL P31: Defining wrong equivalent classes
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 7
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+(No affected elements found or inferred)

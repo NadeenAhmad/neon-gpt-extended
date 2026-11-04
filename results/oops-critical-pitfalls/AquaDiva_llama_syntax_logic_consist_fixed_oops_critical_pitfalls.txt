@@ -1,0 +1,220 @@
+Ontology: results/llama4-ontologies/AquaDiva_llama_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 2
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/aquadiva/isAssociatedWith
+http://example.org/aquadiva/hasSamplingLocation
+http://example.org/aquadiva#contains
+http://example.org/aquadiva/isAffectedBy
+http://example.org/aquadiva/isFunctionalRoleOf
+http://example.org/aquadiva/hasOrganism
+http://example.org/aquadiva/affects
+http://example.org/aquadiva/isOrganismIn
+http://example.org/aquadiva/isInhabitedBy
+http://example.org/aquadiva/isSymbiosisWith
+http://example.org/aquadiva/classifies
+http://example.org/aquadiva#mediates
+http://example.org/aquadiva/hasPart
+http://example.org/aquadiva/hasSymbiosis
+http://example.org/aquadiva#locatedIn
+http://example.org/aquadiva/hasTaxonomicClassification
+http://example.org/aquadiva/isPartOf
+http://example.org/aquadiva/isTrophicRelationshipWith
+http://example.org/aquadiva/isLocationOf
+http://example.org/aquadiva/hasFunctionalRole
+http://example.org/aquadiva/isSampledFrom
+http://example.org/aquadiva/isBiogeochemicalProcessIn
+http://example.org/aquadiva/isMeasurementTechniqueFor
+http://example.org/aquadiva/hasBiogeochemicalProcess
+http://example.org/aquadiva/inhabits
+https://example.org/symmetricProperty
+http://example.org/aquadiva#inhabits
+http://example.org/aquadiva#isInhabitedBy
+http://example.org/aquadiva/hasTrophicRelationship
+http://example.org/aquadiva/hasSamplingEnvironment
+http://example.org/aquadiva#mediatedBy
+http://example.org/aquadiva/hasMeasurementTechnique
+https://example.org/inverseProperty
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/aquadiva#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.org/aquadiva/affects> owl:inverseOf <http://example.org/aquadiva/isAffectedBy> .
+
+<http://example.org/aquadiva/hasBiogeochemicalProcess> a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Relates an ecosystem process to a specific biogeochemical process."@en ;
+    rdfs:domain <http://example.org/aquadiva/EcosystemProcess> ;
+    rdfs:range <http://example.org/aquadiva/BiogeochemicalProcess> ;
+    owl:inverseOf <http://example.org/aquadiva/isBiogeochemicalProcessIn> .
+
+<http://example.org/aquadiva/hasFunctionalRole> owl:inverseOf <http://example.org/aquadiva/isFunctionalRoleOf> .
+
+<http://example.org/aquadiva/hasMeasurementTechnique> owl:inverseOf <http://example.org/aquadiva/isMeasurementTechniqueFor> .
+
+<http://example.org/aquadiva/hasOrganism> owl:inverseOf <http://example.org/aquadiva/isOrganismIn> .
+
+<http://example.org/aquadiva/hasSamplingEnvironment> owl:inverseOf <http://example.org/aquadiva/isSampledFrom> .
+
+<http://example.org/aquadiva/hasSamplingLocation> owl:inverseOf <http://example.org/aquadiva/isLocationOf> .
+
+<http://example.org/aquadiva/hasSymbiosis> owl:inverseOf <http://example.org/aquadiva/isSymbiosisWith> .
+
+<http://example.org/aquadiva/hasTaxonomicClassification> a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Links an organism to its taxonomic classification."@en ;
+    rdfs:domain <http://example.org/aquadiva/Organism> ;
+    rdfs:range <http://example.org/aquadiva/TaxonomicClassification> ;
+    owl:inverseOf <http://example.org/aquadiva/classifies> .
+
+<http://example.org/aquadiva/hasTrophicRelationship> owl:inverseOf <http://example.org/aquadiva/isTrophicRelationshipWith> .
+
+<http://example.org/aquadiva/inhabits> a owl:ObjectProperty ;
+    rdfs:label "inhabits"@en ;
+    rdfs:comment "A relation between an organism and its habitat."@en ;
+    rdfs:domain <http://example.org/aquadiva/MicrobialTaxon> ;
+    rdfs:range <http://example.org/aquadiva/Habitat> ;
+    owl:inverseOf <http://example.org/aquadiva/isInhabitedBy> .
+
+<http://example.org/aquadiva/isPartOf> owl:inverseOf <http://example.org/aquadiva/hasPart> .
+
+ns1:contains a owl:ObjectProperty ;
+    rdfs:label "contains"@en ;
+    rdfs:domain <http://purl.obolibrary.org/obo/envo#KarstSystem> ;
+    rdfs:range ns1:SamplingSite ;
+    owl:inverseOf ns1:locatedIn .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    rdfs:domain ns1:SamplingSite ;
+    rdfs:range <http://purl.obolibrary.org/obo/envo#EnvironmentalFeature>,
+        <http://purl.obolibrary.org/obo/envo#KarstSystem> ;
+    owl:inverseOf ns1:contains .
+
+ns1:mediatedBy owl:inverseOf ns1:mediates .
+
+ns1:mediates a owl:ObjectProperty ;
+    rdfs:label "mediates"@en ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:Process ;
+    owl:inverseOf ns1:mediatedBy .
+
+<http://example.org/aquadiva/classifies> rdfs:comment "The inverse property of hasTaxonomicClassification, linking a classification to the organism it classifies." .
+
+<http://example.org/aquadiva/hasPart> rdfs:comment "The inverse property of isPartOf, linking a whole to its parts." .
+
+<http://example.org/aquadiva/isAffectedBy> rdfs:comment "The inverse property of affects, linking an affected entity to the one affecting it." .
+
+<http://example.org/aquadiva/isAssociatedWith> a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Relates an organism to its associated organisms or environments."@en ;
+    owl:inverseOf <http://example.org/aquadiva/isAssociatedWith> .
+
+<http://example.org/aquadiva/isBiogeochemicalProcessIn> rdfs:comment "The inverse property of hasBiogeochemicalProcess, linking a biogeochemical process to its environment." .
+
+<http://example.org/aquadiva/isFunctionalRoleOf> rdfs:comment "The inverse property of hasFunctionalRole, linking a functional role to the organism performing it." .
+
+<http://example.org/aquadiva/isLocationOf> rdfs:comment "The inverse property of hasSamplingLocation, linking a location to its sample." .
+
+<http://example.org/aquadiva/isMeasurementTechniqueFor> rdfs:comment "The inverse property of hasMeasurementTechnique, linking a measurement technique to what it measures." .
+
+<http://example.org/aquadiva/isOrganismIn> rdfs:comment "The inverse property of hasOrganism, linking an organism to its environment or community." .
+
+<http://example.org/aquadiva/isSampledFrom> rdfs:comment "The inverse property of hasSamplingEnvironment, linking a sample to its environment." .
+
+<http://example.org/aquadiva/isSymbiosisWith> rdfs:comment "The inverse property of hasSymbiosis, linking a symbiosis to the organisms in the symbiotic relationship." .
+
+<http://example.org/aquadiva/isTrophicRelationshipWith> rdfs:comment "The inverse property of hasTrophicRelationship, linking a trophic relationship to the organisms involved." .
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 7
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/aquadiva#performs
+http://example.org/aquadiva#inhabits
+http://example.org/aquadiva#locatedIn
+http://example.org/aquadiva#collectedUsing
+http://example.org/aquadiva#hasEnvironmentalCondition
+http://example.org/aquadiva#hasTemperature
+http://example.org/aquadiva#haspH
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/aquadiva#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:collectedUsing a owl:ObjectProperty ;
+    rdfs:label "collected using"@en ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range <http://purl.obolibrary.org/obo/mixs#Filtration>,
+        <http://purl.obolibrary.org/obo/mixs#SamplingMethod> .
+
+ns1:hasEnvironmentalCondition a owl:ObjectProperty ;
+    rdfs:label "has environmental condition"@en ;
+    rdfs:domain ns1:Sample ;
+    rdfs:range <http://purl.obolibrary.org/obo/envo#EnvironmentalCondition>,
+        <http://purl.obolibrary.org/obo/envo#LowOxygen> .
+
+ns1:hasTemperature a owl:DatatypeProperty ;
+    rdfs:label "has temperature"@en ;
+    rdfs:domain ns1:Habitat,
+        ns1:Sample ;
+    rdfs:range xsd:float .
+
+ns1:haspH a owl:DatatypeProperty ;
+    rdfs:label "has pH"@en ;
+    rdfs:domain ns1:Habitat,
+        ns1:Sample ;
+    rdfs:range xsd:float .
+
+ns1:inhabits a owl:ObjectProperty ;
+    rdfs:label "inhabits"@en ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range ns1:Habitat,
+        <http://purl.obolibrary.org/obo/envo#Aquifer> ;
+    owl:inverseOf ns1:isInhabitedBy .
+
+ns1:performs a owl:ObjectProperty ;
+    rdfs:label "performs"@en ;
+    rdfs:domain ns1:MicrobialTaxon ;
+    rdfs:range <http://purl.obolibrary.org/obo/GO_0008150>,
+        <http://purl.obolibrary.org/obo/GO_0019641> .
+
+ns1:contains owl:inverseOf ns1:locatedIn .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    rdfs:domain ns1:SamplingSite ;
+    rdfs:range <http://purl.obolibrary.org/obo/envo#EnvironmentalFeature>,
+        <http://purl.obolibrary.org/obo/envo#KarstSystem> ;
+    owl:inverseOf ns1:contains .
+

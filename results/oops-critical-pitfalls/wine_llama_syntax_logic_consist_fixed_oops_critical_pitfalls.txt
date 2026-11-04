@@ -1,0 +1,531 @@
+Ontology: results/llama4-ontologies/wine_llama_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P29: Defining wrong transitive relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 8
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine-ontology#hasWinePairing
+http://example.org/wine-ontology#isProducedBy
+http://example.org/wine-ontology#hasWineAttribute
+http://example.org/wine-ontology#hasViticulturalPractice
+http://example.org/wine-ontology#hasWinemakingProcess
+http://example.org/wine-ontology#isFrom
+http://example.org/wine-ontology#isSubjectTo
+http://example.org/wine-ontology#isMadeFrom
+
+========================================================================================================================
+P29 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:hasViticulturalPracticeInverse owl:inverseOf ns1:hasViticulturalPractice .
+
+ns1:hasWineAttributeInverse owl:inverseOf ns1:hasWineAttribute .
+
+ns1:hasWinePairingInverse owl:inverseOf ns1:hasWinePairing .
+
+ns1:hasWinemakingProcessInverse owl:inverseOf ns1:hasWinemakingProcess .
+
+ns1:isFromInverse owl:inverseOf ns1:isFrom .
+
+ns1:isMadeFromInverse owl:inverseOf ns1:isMadeFrom .
+
+ns1:isProducedByInverse owl:inverseOf ns1:isProducedBy .
+
+ns1:isSubjectToInverse owl:inverseOf ns1:isSubjectTo .
+
+ns1:describesWine owl:inverseOf ns1:hasWineAttribute .
+
+ns1:hasWinePairing a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has wine pairing"@en ;
+    rdfs:comment "If a wine has a pairing suggestion, and that suggestion is related to another food or wine, then the wine also pairs with that other food or wine."@en,
+        "Indicates a recommended pairing between a wine and a food item, symmetric in nature."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WinePairing .
+
+ns1:isAppliedIn owl:inverseOf ns1:hasWinemakingProcess .
+
+ns1:isMadeFrom a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is made from"@en ;
+    rdfs:comment "If a wine is made from a grape variety, and that grape variety is a descendant of another, then the wine is also made from that ancestor grape variety."@en,
+        "Inverse property of hasGrapeVariety, indicating the grape variety used to make a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GrapeVariety ;
+    owl:inverseOf ns1:hasGrapeVariety ;
+    owl:propertyChainAxiom ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ) .
+
+ns1:isUsedIn owl:inverseOf ns1:hasViticulturalPractice .
+
+ns1:producesWineFrom owl:inverseOf ns1:isFrom .
+
+ns1:regulates owl:inverseOf ns1:isSubjectTo .
+
+ns1:hasViticulturalPractice a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has viticultural practice"@en ;
+    rdfs:comment "If a winery has a viticultural practice, and that practice involves another practice, then the winery also has that other practice."@en,
+        "Inverse property indicating the viticultural practices employed by a winery."@en ;
+    rdfs:domain ns1:Winery ;
+    rdfs:range ns1:ViticulturalPractice ;
+    owl:inverseOf ns1:isUsedIn .
+
+ns1:hasWineAttribute a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has wine attribute"@en ;
+    rdfs:comment "If a wine has a certain attribute, and that attribute is related to another attribute, then the wine also has that other attribute."@en,
+        "Inverse property indicating the attributes that describe a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WineAttribute ;
+    owl:inverseOf ns1:describesWine .
+
+ns1:hasWinemakingProcess a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has winemaking process"@en ;
+    rdfs:comment "If a winery has a winemaking process, and that process involves another process, then the winery also has that other process."@en,
+        "Inverse property indicating the winemaking processes used by a winery."@en ;
+    rdfs:domain ns1:Winery ;
+    rdfs:range ns1:WinemakingProcess ;
+    owl:inverseOf ns1:isAppliedIn .
+
+ns1:isFrom a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is from"@en ;
+    rdfs:comment "If a wine is from a geographical indication, and that indication is part of a larger region, then the wine is also from that larger region."@en,
+        "Inverse property indicating the geographical origin of a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GeographicalIndication ;
+    owl:inverseOf ns1:hasWine,
+        ns1:producesWine,
+        ns1:producesWineFrom .
+
+ns1:isProducedBy a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is produced by"@en ;
+    rdfs:comment "If a wine is produced by a winery, and that winery is owned by another entity, then the wine is also produced by that other entity."@en,
+        "Inverse property indicating the winery that produces a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Winery ;
+    owl:inverseOf ns1:produces,
+        ns1:producesWine .
+
+ns1:isSubjectTo a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is subject to"@en ;
+    rdfs:comment "If a wine is subject to a regulatory aspect, and that aspect is part of a larger regulatory framework, then the wine is also subject to that larger framework."@en,
+        "Inverse property indicating the regulatory aspects that govern a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:RegulatoryAspect ;
+    owl:inverseOf ns1:regulates .
+
+ns1:producesWine owl:inverseOf ns1:isProducedBy .
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 4
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine-ontology#producesWine
+http://example.org/wine-ontology#hasComponent
+http://example.org/wine-ontology#hasFlavor
+http://example.org/wine-ontology#containsCompound
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:containsCompound a owl:ObjectProperty ;
+    rdfs:label "contains compound"@en ;
+    rdfs:comment "A chemical compound present in a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Compound,
+        <http://id.nlm.nih.gov/mesh/Ethanol> .
+
+ns1:hasComponent a owl:ObjectProperty ;
+    rdfs:label "has component"@en ;
+    rdfs:comment "A component of the wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Compound,
+        <http://id.nlm.nih.gov/mesh/TartaricAcid> .
+
+ns1:hasFlavor a owl:ObjectProperty ;
+    rdfs:label "has flavor"@en ;
+    rdfs:comment "A property to describe the flavor profile of a wine.",
+        "The flavor profile of the wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/Terpene>,
+        ns1:FlavorComponent .
+
+ns1:isFrom owl:inverseOf ns1:producesWine .
+
+ns1:isProducedBy owl:inverseOf ns1:producesWine .
+
+ns1:producesWine a owl:ObjectProperty ;
+    rdfs:label "produces wine"@en ;
+    rdfs:comment "Indicates the wines produced by a winery."@en ;
+    rdfs:domain ns1:GeographicalIndication,
+        ns1:Winery ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isProducedBy .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 4
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine-ontology#producesWine
+http://example.org/wine-ontology#hasWineAttributeInverse
+http://example.org/wine-ontology#hasWinemakingProcessInverse
+http://example.org/wine-ontology#isGrapeVarietyOf
+http://example.org/wine-ontology#hasWine
+http://example.org/wine-ontology#isSubjectTo
+http://example.org/wine-ontology#hasWinePairingInverse
+http://example.org/wine-ontology#hasViticulturalPracticeInverse
+http://example.org/wine-ontology#isFrom
+http://example.org/wine-ontology#isProducedBy
+http://example.org/wine-ontology#hasWinePairing
+http://example.org/wine-ontology#isAppliedIn
+http://example.org/wine-ontology#hasWinemakingProcess
+http://example.org/wine-ontology#isProducedByInverse
+http://example.org/wine-ontology#hasWineAttribute
+http://example.org/wine-ontology#producesWineFrom
+http://example.org/wine-ontology#isMadeFrom
+http://example.org/wine-ontology#regulates
+http://example.org/wine-ontology#isSubjectToInverse
+http://example.org/wine-ontology#hasVintage
+http://example.org/wine-ontology#hasViticulturalPractice
+http://example.org/wine-ontology#hasGrapeVarietyInverse
+http://example.org/wine-ontology#produces
+http://example.org/wine-ontology#isMadeFromInverse
+http://example.org/wine-ontology#isFromInverse
+http://example.org/wine-ontology#hasVintageInverse
+http://example.org/wine-ontology#hasGrapeVariety
+http://example.org/wine-ontology#isUsedIn
+http://example.org/wine-ontology#describesWine
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:hasGrapeVarietyInverse a owl:ObjectProperty ;
+    rdfs:label "is grape variety of"@en ;
+    rdfs:comment "The inverse property of hasGrapeVariety, indicating the wine that has a specific grape variety."@en ;
+    rdfs:domain ns1:GrapeVariety ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:hasGrapeVariety .
+
+ns1:hasVintageInverse owl:inverseOf ns1:hasVintage .
+
+ns1:hasViticulturalPracticeInverse a owl:ObjectProperty ;
+    rdfs:label "is practiced by"@en ;
+    rdfs:comment "The inverse property of hasViticulturalPractice, indicating the winery that practices a specific viticultural practice."@en ;
+    rdfs:domain ns1:ViticulturalPractice ;
+    rdfs:range ns1:Winery ;
+    owl:inverseOf ns1:hasViticulturalPractice .
+
+ns1:hasWineAttributeInverse a owl:ObjectProperty ;
+    rdfs:label "is attribute of"@en ;
+    rdfs:comment "The inverse property of hasWineAttribute, indicating the wine that has a specific attribute."@en ;
+    rdfs:domain ns1:WineAttribute ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:hasWineAttribute .
+
+ns1:hasWinePairingInverse a owl:ObjectProperty ;
+    rdfs:label "is pairing for"@en ;
+    rdfs:comment "The inverse property of hasWinePairing, indicating the wine pairing that is associated with a wine."@en ;
+    rdfs:domain ns1:WinePairing ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:hasWinePairing .
+
+ns1:hasWinemakingProcessInverse a owl:ObjectProperty ;
+    rdfs:label "is used by"@en ;
+    rdfs:comment "The inverse property of hasWinemakingProcess, indicating the winery that uses a specific winemaking process."@en ;
+    rdfs:domain ns1:WinemakingProcess ;
+    rdfs:range ns1:Winery ;
+    owl:inverseOf ns1:hasWinemakingProcess .
+
+ns1:isFromInverse a owl:ObjectProperty ;
+    rdfs:label "is origin of"@en ;
+    rdfs:comment "The inverse property of isFrom, indicating the wine that originates from a geographical indication."@en ;
+    rdfs:domain ns1:GeographicalIndication ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isFrom .
+
+ns1:isMadeFromInverse a owl:ObjectProperty ;
+    rdfs:label "is used to make"@en ;
+    rdfs:comment "The inverse property of isMadeFrom, indicating the wine made from a grape variety."@en ;
+    rdfs:domain ns1:GrapeVariety ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isMadeFrom .
+
+ns1:isProducedByInverse a owl:ObjectProperty ;
+    rdfs:label "produces"@en ;
+    rdfs:comment "The inverse property of isProducedBy, indicating the winery that produces a wine."@en ;
+    rdfs:domain ns1:Winery ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isProducedBy .
+
+ns1:isSubjectToInverse a owl:ObjectProperty ;
+    rdfs:label "regulates"@en ;
+    rdfs:comment "The inverse property of isSubjectTo, indicating the regulatory aspect that applies to a wine."@en ;
+    rdfs:domain ns1:RegulatoryAspect ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isSubjectTo .
+
+ns1:describesWine owl:inverseOf ns1:hasWineAttribute .
+
+ns1:hasVintage a owl:ObjectProperty ;
+    rdfs:label "has vintage"@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Vintage .
+
+ns1:hasWinePairing a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has wine pairing"@en ;
+    rdfs:comment "If a wine has a pairing suggestion, and that suggestion is related to another food or wine, then the wine also pairs with that other food or wine."@en,
+        "Indicates a recommended pairing between a wine and a food item, symmetric in nature."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WinePairing .
+
+ns1:isAppliedIn a owl:ObjectProperty ;
+    rdfs:label "is applied in"@en ;
+    rdfs:comment "Indicates the wineries that apply a specific winemaking process."@en ;
+    rdfs:domain ns1:WinemakingProcess ;
+    rdfs:range ns1:Winery ;
+    owl:inverseOf ns1:hasWinemakingProcess .
+
+ns1:isGrapeVarietyOf a owl:ObjectProperty ;
+    rdfs:label "is grape variety of"@en ;
+    rdfs:domain ns1:GrapeVariety ;
+    rdfs:range ns1:Wine .
+
+ns1:isMadeFrom a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is made from"@en ;
+    rdfs:comment "If a wine is made from a grape variety, and that grape variety is a descendant of another, then the wine is also made from that ancestor grape variety."@en,
+        "Inverse property of hasGrapeVariety, indicating the grape variety used to make a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GrapeVariety ;
+    owl:inverseOf ns1:hasGrapeVariety ;
+    owl:propertyChainAxiom ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ) .
+
+ns1:isUsedIn owl:inverseOf ns1:hasViticulturalPractice .
+
+ns1:produces a owl:ObjectProperty ;
+    rdfs:label "produces"@en ;
+    rdfs:domain ns1:Winery ;
+    rdfs:range ns1:Wine .
+
+ns1:producesWineFrom a owl:ObjectProperty ;
+    rdfs:label "produces wine from"@en ;
+    rdfs:comment "Indicates wines originating from a specific geographical indication."@en ;
+    rdfs:domain ns1:GeographicalIndication ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isFrom .
+
+ns1:regulates a owl:ObjectProperty ;
+    rdfs:label "regulates"@en ;
+    rdfs:comment "Indicates the wines regulated by a specific regulatory aspect."@en ;
+    rdfs:domain ns1:RegulatoryAspect ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isSubjectTo .
+
+ns1:hasViticulturalPractice a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has viticultural practice"@en ;
+    rdfs:comment "If a winery has a viticultural practice, and that practice involves another practice, then the winery also has that other practice."@en,
+        "Inverse property indicating the viticultural practices employed by a winery."@en ;
+    rdfs:domain ns1:Winery ;
+    rdfs:range ns1:ViticulturalPractice ;
+    owl:inverseOf ns1:isUsedIn .
+
+ns1:hasWineAttribute a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has wine attribute"@en ;
+    rdfs:comment "If a wine has a certain attribute, and that attribute is related to another attribute, then the wine also has that other attribute."@en,
+        "Inverse property indicating the attributes that describe a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WineAttribute ;
+    owl:inverseOf ns1:describesWine .
+
+ns1:hasWinemakingProcess a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has winemaking process"@en ;
+    rdfs:comment "If a winery has a winemaking process, and that process involves another process, then the winery also has that other process."@en,
+        "Inverse property indicating the winemaking processes used by a winery."@en ;
+    rdfs:domain ns1:Winery ;
+    rdfs:range ns1:WinemakingProcess ;
+    owl:inverseOf ns1:isAppliedIn .
+
+ns1:isFrom a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is from"@en ;
+    rdfs:comment "If a wine is from a geographical indication, and that indication is part of a larger region, then the wine is also from that larger region."@en,
+        "Inverse property indicating the geographical origin of a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GeographicalIndication ;
+    owl:inverseOf ns1:hasWine,
+        ns1:producesWine,
+        ns1:producesWineFrom .
+
+ns1:isProducedBy a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is produced by"@en ;
+    rdfs:comment "If a wine is produced by a winery, and that winery is owned by another entity, then the wine is also produced by that other entity."@en,
+        "Inverse property indicating the winery that produces a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Winery ;
+    owl:inverseOf ns1:produces,
+        ns1:producesWine .
+
+ns1:isSubjectTo a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is subject to"@en ;
+    rdfs:comment "If a wine is subject to a regulatory aspect, and that aspect is part of a larger regulatory framework, then the wine is also subject to that larger framework."@en,
+        "Inverse property indicating the regulatory aspects that govern a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:RegulatoryAspect ;
+    owl:inverseOf ns1:regulates .
+
+ns1:producesWine a owl:ObjectProperty ;
+    rdfs:label "produces wine"@en ;
+    rdfs:comment "Indicates the wines produced by a winery."@en ;
+    rdfs:domain ns1:GeographicalIndication,
+        ns1:Winery ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:isProducedBy .
+
+ns1:hasGrapeVariety owl:inverseOf ns1:isGrapeVarietyOf .
+
+
+========================================================================================================================
+PITFALL P31: Defining wrong equivalent classes
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+(No affected elements found or inferred)
+
+========================================================================================================================
+PITFALL P28: Defining wrong symmetric relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 3
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/wine-ontology#hasWinePairing
+http://example.org/wine-ontology#isMadeFrom
+http://example.org/wine-ontology#hasGrapeVariety
+
+========================================================================================================================
+P28 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/wine-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:hasGrapeVarietyInverse owl:inverseOf ns1:hasGrapeVariety .
+
+ns1:hasWinePairingInverse owl:inverseOf ns1:hasWinePairing .
+
+ns1:isMadeFromInverse owl:inverseOf ns1:isMadeFrom .
+
+ns1:hasWinePairing a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has wine pairing"@en ;
+    rdfs:comment "If a wine has a pairing suggestion, and that suggestion is related to another food or wine, then the wine also pairs with that other food or wine."@en,
+        "Indicates a recommended pairing between a wine and a food item, symmetric in nature."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WinePairing .
+
+ns1:isMadeFrom a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is made from"@en ;
+    rdfs:comment "If a wine is made from a grape variety, and that grape variety is a descendant of another, then the wine is also made from that ancestor grape variety."@en,
+        "Inverse property of hasGrapeVariety, indicating the grape variety used to make a wine."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GrapeVariety ;
+    owl:inverseOf ns1:hasGrapeVariety ;
+    owl:propertyChainAxiom ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ),
+        ( ns1:hasGrapeVariety ) .
+
+ns1:hasGrapeVariety a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has grape variety"@en ;
+    rdfs:comment "Indicates the grape variety used in the production of a wine, symmetric to isMadeFrom."@en ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GrapeVariety ;
+    owl:inverseOf ns1:isGrapeVarietyOf .
+

@@ -1,0 +1,397 @@
+Ontology: results/deepseek-ontologies/SEWERNET_deepseek_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 9
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.semanticweb.org/swer-net-ontology#compliesWith
+http://www.semanticweb.org/swer-net-ontology#hasCondition
+http://www.semanticweb.org/swer-net-ontology#targets
+http://www.semanticweb.org/swer-net-ontology#hasFlowVelocity
+http://www.semanticweb.org/swer-net-ontology#occursAt
+http://www.semanticweb.org/swer-net#hasStormwaterComponent
+http://www.semanticweb.org/swer-net#hasWastewaterComponent
+http://www.semanticweb.org/swer-net-ontology#addresses
+http://www.semanticweb.org/swer-net-ontology#alignsWith
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.semanticweb.org/swer-net-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.semanticweb.org/swer-net#hasStormwaterComponent> a owl:ObjectProperty ;
+    rdfs:domain <http://www.semanticweb.org/swer-net#StormwaterNetwork> ;
+    rdfs:range <http://www.semanticweb.org/swer-net#StormwaterInlet>,
+        <http://www.semanticweb.org/swer-net#StormwaterManhole>,
+        <http://www.semanticweb.org/swer-net#StormwaterOutlet>,
+        <http://www.semanticweb.org/swer-net#StormwaterPipe>,
+        <http://www.semanticweb.org/swer-net#StormwaterPumpingStation> .
+
+<http://www.semanticweb.org/swer-net#hasWastewaterComponent> a owl:ObjectProperty ;
+    rdfs:domain <http://www.semanticweb.org/swer-net#WastewaterNetwork> ;
+    rdfs:range <http://www.semanticweb.org/swer-net#WastewaterInlet>,
+        <http://www.semanticweb.org/swer-net#WastewaterManhole>,
+        <http://www.semanticweb.org/swer-net#WastewaterOutlet>,
+        <http://www.semanticweb.org/swer-net#WastewaterPipe>,
+        <http://www.semanticweb.org/swer-net#WastewaterPumpingStation> .
+
+ns1:addresses a owl:ObjectProperty ;
+    rdfs:label "addresses" ;
+    rdfs:comment "Relates a maintenance activity to the structural condition it addresses.",
+        "Relates a maintenance event to the structural condition it addresses." ;
+    rdfs:domain ns1:Maintenance,
+        ns1:MaintenanceActivity ;
+    rdfs:range ns1:StructuralCondition .
+
+ns1:alignsWith a owl:ObjectProperty ;
+    rdfs:label "aligns with" ;
+    rdfs:comment "Indicates alignment of a sewer network with the INSPIRE directive." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:INSPIREDirective,
+        ns1:INSPIREStandard .
+
+ns1:compliesWithInverse owl:inverseOf ns1:compliesWith .
+
+ns1:hasCondition a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has condition" ;
+    rdfs:comment "Each structural property has exactly one condition assessment.",
+        "The structural condition of a network component.",
+        "The structural condition rating of a network component." ;
+    rdfs:domain ns1:StructuralCondition,
+        ns1:StructuralProperty ;
+    rdfs:range xsd:string .
+
+ns1:hasFlowVelocity a owl:DatatypeProperty ;
+    rdfs:label "has flow velocity" ;
+    rdfs:comment "The velocity of water flow in a network component.",
+        "The velocity of water flow in the network component." ;
+    rdfs:domain ns1:HydraulicCondition,
+        ns1:HydraulicProperty ;
+    rdfs:range xsd:decimal .
+
+ns1:occursAt a owl:ObjectProperty ;
+    rdfs:label "occurs at" ;
+    rdfs:comment "Relates a blockage event to the pipe where it occurs.",
+        "Relates an operational event to the network component where it occurs." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range ns1:NetworkComponent,
+        ns1:Pipe ;
+    owl:inverseOf ns1:hasEvent .
+
+ns1:targets a owl:ObjectProperty ;
+    rdfs:label "targets" ;
+    rdfs:comment "Relates an inspection event to the network component being inspected.",
+        "Relates an operational event to the network component it affects.",
+        "Relates an operational event to the network component it targets." ;
+    rdfs:domain ns1:Inspection,
+        ns1:OperationalEvent ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:compliesWith a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "complies with" ;
+    rdfs:comment "Each network component complies with exactly one standard instance.",
+        "If component A complies with standard B and standard B complies with standard C, then component A complies with standard C.",
+        "Indicates compliance of a network component with a standard.",
+        "Indicates compliance of a sewer network with a standard.",
+        "Standards can comply with themselves, supporting reflexive compliance verification in nested regulatory frameworks." ;
+    rdfs:domain ns1:NetworkComponent,
+        ns1:SewerNetwork ;
+    rdfs:range ns1:Standard .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.semanticweb.org/swer-net-ontology#hasEventInverse
+http://www.semanticweb.org/swer-net-ontology#hasPart
+http://www.semanticweb.org/swer-net-ontology#hasLocationInverse
+http://www.semanticweb.org/swer-net-ontology#hasPropertyInverse
+http://www.semanticweb.org/swer-net-ontology#compliesWith
+http://www.semanticweb.org/swer-net-ontology#hasStructuralProperty
+http://www.semanticweb.org/swer-net-ontology#compliesWithInverse
+http://www.semanticweb.org/swer-net-ontology#occursAt
+http://www.semanticweb.org/swer-net-ontology#hasDownstream
+http://www.semanticweb.org/swer-net-ontology#hasComponent
+http://www.semanticweb.org/swer-net-ontology#hasUpstream
+http://www.semanticweb.org/swer-net-ontology#hasHydraulicPropertyInverse
+http://www.semanticweb.org/swer-net-ontology#hasEndTimeInverse
+http://www.semanticweb.org/swer-net-ontology#connectedTo
+http://www.semanticweb.org/swer-net-ontology#hasStartTime
+http://www.semanticweb.org/swer-net-ontology#hasEvent
+http://www.semanticweb.org/swer-net-ontology#isPartOf
+http://www.semanticweb.org/swer-net-ontology#hasHydraulicProperty
+http://www.semanticweb.org/swer-net-ontology#hasProperty
+http://www.semanticweb.org/swer-net-ontology#hasLocation
+http://www.semanticweb.org/swer-net-ontology#connectedToInverse
+http://www.semanticweb.org/swer-net-ontology#isComponentOf
+http://www.semanticweb.org/swer-net-ontology#hasEndTime
+http://www.semanticweb.org/swer-net-ontology#hasStartTimeInverse
+http://www.semanticweb.org/swer-net#connectedFrom
+http://www.semanticweb.org/swer-net#connectedTo
+http://www.semanticweb.org/swer-net-ontology#hasStructuralPropertyInverse
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.semanticweb.org/swer-net-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+<http://www.semanticweb.org/swer-net#connectedTo> owl:inverseOf <http://www.semanticweb.org/swer-net#connectedFrom> .
+
+ns1:compliesWithInverse a owl:ObjectProperty ;
+    rdfs:label "is complied by" ;
+    rdfs:comment "Relates a standard to the network components that comply with it." ;
+    owl:inverseOf ns1:compliesWith .
+
+ns1:connectedToInverse a owl:ObjectProperty ;
+    rdfs:label "is connected to" ;
+    rdfs:comment "Relates a network component to another that is hydraulically connected to it." ;
+    owl:inverseOf ns1:connectedTo .
+
+ns1:hasEndTimeInverse a owl:ObjectProperty ;
+    rdfs:label "is end time of" ;
+    rdfs:comment "Relates a time instant to the operational event it ends." ;
+    owl:inverseOf ns1:hasEndTime .
+
+ns1:hasEventInverse a owl:ObjectProperty ;
+    rdfs:label "is event of" ;
+    rdfs:comment "Relates an operational event to the network component it affects." ;
+    owl:inverseOf ns1:hasEvent .
+
+ns1:hasHydraulicPropertyInverse a owl:ObjectProperty ;
+    rdfs:label "is hydraulic property of" ;
+    rdfs:comment "Relates a hydraulic property to the network component it characterizes." ;
+    owl:inverseOf ns1:hasHydraulicProperty .
+
+ns1:hasLocationInverse a owl:ObjectProperty ;
+    rdfs:label "is location of" ;
+    rdfs:comment "Relates a geospatial location to the network component it locates." ;
+    owl:inverseOf ns1:hasLocation .
+
+ns1:hasPropertyInverse a owl:ObjectProperty ;
+    rdfs:label "is property of" ;
+    rdfs:comment "Relates a property to the network component it characterizes." ;
+    owl:inverseOf ns1:hasProperty .
+
+ns1:hasStartTimeInverse a owl:ObjectProperty ;
+    rdfs:label "is start time of" ;
+    rdfs:comment "Relates a time instant to the operational event it starts." ;
+    owl:inverseOf ns1:hasStartTime .
+
+ns1:hasStructuralPropertyInverse owl:inverseOf ns1:hasStructuralProperty .
+
+ns1:isComponentOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is component of" ;
+    rdfs:comment "Relates a network component to the sewer network it belongs to." ;
+    owl:inverseOf ns1:hasComponent .
+
+ns1:isPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is part of" ;
+    rdfs:comment "A network component can be part of itself, enabling reflexive containment relationships in self-contained systems.",
+        "Relates a constituent part to the network component it belongs to." ;
+    owl:inverseOf ns1:hasPart .
+
+ns1:occursAt a owl:ObjectProperty ;
+    rdfs:label "occurs at" ;
+    rdfs:comment "Relates a blockage event to the pipe where it occurs.",
+        "Relates an operational event to the network component where it occurs." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range ns1:NetworkComponent,
+        ns1:Pipe ;
+    owl:inverseOf ns1:hasEvent .
+
+<http://www.semanticweb.org/swer-net#connectedFrom> a owl:ObjectProperty ;
+    rdfs:domain <http://www.semanticweb.org/swer-net#Manhole> ;
+    rdfs:range <http://www.semanticweb.org/swer-net#Pipe> .
+
+ns1:compliesWith a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "complies with" ;
+    rdfs:comment "Each network component complies with exactly one standard instance.",
+        "If component A complies with standard B and standard B complies with standard C, then component A complies with standard C.",
+        "Indicates compliance of a network component with a standard.",
+        "Indicates compliance of a sewer network with a standard.",
+        "Standards can comply with themselves, supporting reflexive compliance verification in nested regulatory frameworks." ;
+    rdfs:domain ns1:NetworkComponent,
+        ns1:SewerNetwork ;
+    rdfs:range ns1:Standard .
+
+ns1:hasComponent a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has component" ;
+    rdfs:comment "Relates a sewer network to its constituent components." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:hasDownstream a owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has downstream" ;
+    rdfs:comment "Relates a network component to its downstream components.",
+        "Relates a network component to its immediate downstream component in the flow direction." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:NetworkComponent ;
+    rdfs:subPropertyOf ns1:connectedTo ;
+    owl:inverseOf ns1:hasUpstream .
+
+ns1:hasEndTime a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has end time" ;
+    rdfs:comment "Each operational event has exactly one end time.",
+        "Relates an operational event to its end time.",
+        "Time instants can relate to themselves, supporting reflexive temporal modeling for instantaneous event boundaries." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range time:Instant .
+
+ns1:hasHydraulicProperty a owl:ObjectProperty ;
+    rdfs:label "has hydraulic property" ;
+    rdfs:comment "Hydraulic properties can relate to themselves, supporting reflexive modeling of interdependent flow characteristics.",
+        "Relates a network component to its hydraulic properties." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:HydraulicProperty ;
+    rdfs:subPropertyOf ns1:hasProperty .
+
+ns1:hasLocation a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has location" ;
+    rdfs:comment "Each network component has exactly one geographic location.",
+        "Geospatial locations can relate to themselves, enabling reflexive spatial relationships in co-located systems.",
+        "If component A has location B and component B has location C, then component A has location C.",
+        "Relates a network component to its geographic location." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:GeospatialLocation .
+
+ns1:hasPart a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has part" ;
+    rdfs:comment "A network component can be considered a part of itself, supporting reflexive part-whole relationships in hierarchical structures.",
+        "Relates a network component to its constituent parts." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:hasStartTime a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has start time" ;
+    rdfs:comment "Each operational event has exactly one start time.",
+        "Relates an operational event to its start time.",
+        "Time instants can relate to themselves, enabling reflexive temporal relationships in instantaneous events." ;
+    rdfs:domain ns1:OperationalEvent ;
+    rdfs:range time:Instant .
+
+ns1:hasStructuralProperty a owl:ObjectProperty ;
+    rdfs:label "has structural property" ;
+    rdfs:comment "Relates a network component to its structural properties.",
+        "Structural properties can relate to themselves, enabling reflexive condition assessments in complex structural systems." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:StructuralProperty ;
+    rdfs:subPropertyOf ns1:hasProperty .
+
+ns1:hasUpstream a owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has upstream" ;
+    rdfs:comment "Relates a network component to its immediate upstream component in the flow direction.",
+        "Relates a network component to its upstream components." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:NetworkComponent ;
+    rdfs:subPropertyOf ns1:connectedTo ;
+    owl:inverseOf ns1:hasDownstream .
+
+ns1:hasEvent a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has event" ;
+    rdfs:comment "If component A has event B and component B has event C, then component A has event C.",
+        "Operational events can relate to themselves, supporting reflexive event chains in complex maintenance workflows.",
+        "Relates a network component to operational events affecting it." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:OperationalEvent .
+
+ns1:connectedTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "connected to" ;
+    rdfs:comment "A network component can be connected to itself, representing self-connection scenarios in closed-loop systems or reflexive hydraulic relationships.",
+        "If component A is connected to B and B is connected to C, then A is connected to C.",
+        "Indicates bidirectional hydraulic connection between network components.",
+        "Relates two network components that are hydraulically connected." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:hasProperty a owl:ObjectProperty ;
+    rdfs:label "has property" ;
+    rdfs:comment "A property can relate to itself, allowing for reflexive property chains in complex attribute dependencies.",
+        "Relates a network component to its properties." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:Property .
+
+
+========================================================================================================================
+PITFALL P29: Defining wrong transitive relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 2
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.semanticweb.org/swer-net-ontology#hasComponent
+http://www.semanticweb.org/swer-net-ontology#hasEvent
+
+========================================================================================================================
+P29 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.semanticweb.org/swer-net-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:hasEventInverse owl:inverseOf ns1:hasEvent .
+
+ns1:isComponentOf owl:inverseOf ns1:hasComponent .
+
+ns1:occursAt owl:inverseOf ns1:hasEvent .
+
+ns1:hasComponent a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has component" ;
+    rdfs:comment "Relates a sewer network to its constituent components." ;
+    rdfs:domain ns1:SewerNetwork ;
+    rdfs:range ns1:NetworkComponent .
+
+ns1:hasEvent a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has event" ;
+    rdfs:comment "If component A has event B and component B has event C, then component A has event C.",
+        "Operational events can relate to themselves, supporting reflexive event chains in complex maintenance workflows.",
+        "Relates a network component to operational events affecting it." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:OperationalEvent .
+

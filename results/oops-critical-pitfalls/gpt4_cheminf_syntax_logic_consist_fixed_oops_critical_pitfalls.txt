@@ -1,0 +1,350 @@
+Ontology: results/gpt-4o-ontologies/gpt4_cheminf_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 2
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://purl.org/cheminf/ontology#isModelOf
+http://purl.org/cheminf/ontology#generates
+http://purl.org/cheminf/ontology#isPerformedOn
+http://purl.org/cheminf/ontology#isImplementedIn
+http://purl.org/cheminf/ontology#isCalculatedBy
+http://purl.org/cheminf/ontology#isAlignedBy
+http://purl.org/cheminf/ontology#isCalculatedFor
+http://purl.org/cheminf/ontology#isUsedIn
+http://purl.org/cheminf/ontology#isGeneratorOf
+http://purl.org/cheminf/ontology#reuses
+http://purl.org/cheminf/ontology#isContainedIn
+http://purl.org/cheminf/ontology#hasFingerprint
+http://purl.org/cheminf/ontology#wasDerivedFrom
+http://purl.org/cheminf/ontology#wasGeneratedBy
+http://purl.org/cheminf/ontology#contains
+http://purl.org/cheminf/ontology#hasVersion
+http://purl.org/cheminf/ontology#isAlgorithmFor
+http://purl.org/cheminf/ontology#isProvenanceFor
+http://purl.org/cheminf/ontology#encodedIn
+http://purl.org/cheminf/ontology#infers
+http://purl.org/cheminf/ontology#refersTo
+http://purl.org/cheminf/ontology#isImplementedBy
+http://purl.org/cheminf/ontology#isFingerprintOf
+http://purl.org/cheminf/ontology#isTrainingDataFor
+http://purl.org/cheminf/ontology#isReusedBy
+http://purl.org/cheminf/ontology#isValueOf
+http://purl.org/cheminf/ontology#isFormatFor
+http://purl.org/cheminf/ontology#isVersionOf
+http://purl.org/cheminf/ontology#annotatedWith
+http://purl.org/cheminf/ontology#hasStructure
+http://purl.org/cheminf/ontology#isEncodingOf
+http://purl.org/cheminf/ontology#performedBy
+http://purl.org/cheminf/ontology#isAnnotatedBy
+http://purl.org/cheminf/ontology#describedIn
+http://purl.org/cheminf/ontology#hasOutput
+http://purl.org/cheminf/ontology#hasValue
+http://purl.org/cheminf/ontology#isInferredBy
+http://purl.org/cheminf/ontology#isDescribedBy
+http://purl.org/cheminf/ontology#usesDescriptor
+http://purl.org/cheminf/ontology#isUsedAsFormatFor
+http://purl.org/cheminf/ontology#isGeneratedFrom
+http://purl.org/cheminf/ontology#usesAlgorithm
+http://purl.org/cheminf/ontology#isUsedBy
+http://purl.org/cheminf/ontology#represents
+http://purl.org/cheminf/ontology#isMetadataOf
+http://purl.org/cheminf/ontology#isUseContextOf
+http://purl.org/cheminf/ontology#alignedWith
+http://purl.org/cheminf/ontology#usesModel
+http://purl.org/cheminf/ontology#isDescriptorOf
+http://purl.org/cheminf/ontology#isScoreOf
+http://purl.org/cheminf/ontology#trainedOn
+http://purl.org/cheminf/ontology#isOperatedBy
+http://purl.org/cheminf/ontology#isComputationOf
+http://purl.org/cheminf/ontology#isFormatOf
+http://purl.org/cheminf/ontology#isStructureOf
+http://purl.org/cheminf/ontology#isSourceOf
+http://purl.org/cheminf/ontology#operatesOn
+http://purl.org/cheminf/ontology#hasDescriptor
+http://purl.org/cheminf/ontology#hasProvenance
+http://purl.org/cheminf/ontology#hasInput
+http://purl.org/cheminf/ontology#isResultOf
+http://purl.org/cheminf/ontology#hasSimilarityScore
+http://purl.org/cheminf/ontology#isRepresentedBy
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix cheminf: <http://purl.org/cheminf/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+cheminf:isAlgorithmFor a owl:ObjectProperty ;
+    rdfs:label "isAlgorithmFor" ;
+    rdfs:comment "Inverse of usesAlgorithm. Indicates which calculation uses this algorithm." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:DescriptorCalculation ;
+    owl:inverseOf cheminf:usesAlgorithm .
+
+cheminf:isAlignedBy a owl:ObjectProperty ;
+    rdfs:label "isAlignedBy" ;
+    rdfs:comment "Inverse of alignedWith. Indicates the alignment that maps to this ontology." ;
+    rdfs:domain cheminf:Ontology ;
+    rdfs:range cheminf:OntologyAlignment ;
+    owl:inverseOf cheminf:alignedWith .
+
+cheminf:isCalculatedFor a owl:ObjectProperty ;
+    rdfs:label "isCalculatedFor" ;
+    rdfs:comment "Inverse of isCalculatedBy. Indicates which descriptor is calculated by the algorithm." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:ChemicalDescriptor ;
+    owl:inverseOf cheminf:isCalculatedBy .
+
+cheminf:isContainedIn a owl:ObjectProperty ;
+    rdfs:label "isContainedIn" ;
+    rdfs:comment "Inverse of contains. Indicates which dataset contains a given entity." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalDataset ;
+    owl:inverseOf cheminf:contains .
+
+cheminf:isEncodingOf owl:inverseOf cheminf:encodedIn .
+
+cheminf:isFingerprintOf a owl:ObjectProperty ;
+    rdfs:label "isFingerprintOf" ;
+    rdfs:comment "Inverse of hasFingerprint. Indicates which entity the fingerprint belongs to." ;
+    rdfs:domain cheminf:SubstructureFingerprint ;
+    rdfs:range cheminf:ChemicalEntity ;
+    owl:inverseOf cheminf:hasFingerprint .
+
+cheminf:isFormatOf owl:inverseOf cheminf:encodedIn .
+
+cheminf:isGeneratedFrom owl:inverseOf cheminf:generates .
+
+cheminf:isGeneratorOf a owl:ObjectProperty ;
+    rdfs:label "isGeneratorOf" ;
+    rdfs:comment "Inverse of wasGeneratedBy. Indicates what provenance was generated by the tool." ;
+    rdfs:domain cheminf:SoftwareTool ;
+    rdfs:range cheminf:ProvenanceInformation ;
+    owl:inverseOf cheminf:wasGeneratedBy .
+
+cheminf:isImplementedBy a owl:ObjectProperty ;
+    rdfs:label "isImplementedBy" ;
+    rdfs:comment "Inverse of isImplementedIn. Indicates which software implements the algorithm." ;
+    rdfs:domain cheminf:SoftwareImplementation ;
+    rdfs:range cheminf:Algorithm ;
+    owl:inverseOf cheminf:isImplementedIn .
+
+cheminf:isInferredBy owl:inverseOf cheminf:infers .
+
+cheminf:isMetadataOf owl:inverseOf cheminf:refersTo .
+
+cheminf:isModelOf a owl:ObjectProperty ;
+    rdfs:label "isModelOf" ;
+    rdfs:comment "Inverse of usesModel. Indicates the task that uses a model." ;
+    rdfs:domain cheminf:QSAR ;
+    rdfs:range cheminf:ToxicityPrediction ;
+    owl:inverseOf cheminf:usesModel .
+
+cheminf:isPerformedOn a owl:ObjectProperty ;
+    rdfs:label "isPerformedOn" ;
+    rdfs:comment "Inverse of performedBy. Indicates which calculation was performed using the tool." ;
+    rdfs:domain cheminf:SoftwareTool ;
+    rdfs:range cheminf:DescriptorCalculation ;
+    owl:inverseOf cheminf:performedBy .
+
+cheminf:isProvenanceFor a owl:ObjectProperty ;
+    rdfs:label "isProvenanceFor" ;
+    rdfs:comment "Inverse of hasProvenance. Indicates which descriptor is associated with provenance metadata." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:ChemicalDescriptor ;
+    owl:inverseOf cheminf:hasProvenance .
+
+cheminf:isReusedBy a owl:ObjectProperty ;
+    rdfs:label "isReusedBy" ;
+    rdfs:comment "Inverse of reuses. Indicates which ontology reused this ontology." ;
+    rdfs:domain cheminf:Ontology ;
+    rdfs:range cheminf:DescriptorOntology ;
+    owl:inverseOf cheminf:reuses .
+
+cheminf:isSourceOf owl:inverseOf cheminf:wasDerivedFrom .
+
+cheminf:isTrainingDataFor a owl:ObjectProperty ;
+    rdfs:label "isTrainingDataFor" ;
+    rdfs:comment "Inverse of trainedOn. Indicates the model trained on this dataset." ;
+    rdfs:domain cheminf:ChemicalDataset ;
+    rdfs:range cheminf:QSAR ;
+    owl:inverseOf cheminf:trainedOn .
+
+cheminf:isUseContextOf owl:inverseOf cheminf:isUsedIn .
+
+cheminf:isVersionOf owl:inverseOf cheminf:hasVersion .
+
+cheminf:contains a owl:ObjectProperty ;
+    rdfs:label "contains" ;
+    rdfs:comment "Indicates that a dataset includes a particular chemical entity." ;
+    rdfs:domain cheminf:ChemicalDataset ;
+    rdfs:range cheminf:ChemicalEntity .
+
+cheminf:generates a owl:ObjectProperty ;
+    rdfs:label "generates" ;
+    rdfs:comment "Indicates the generation of a score from a fingerprint." ;
+    rdfs:domain cheminf:SubstructureFingerprint ;
+    rdfs:range cheminf:SimilarityScore .
+
+cheminf:hasFingerprint a owl:ObjectProperty ;
+    rdfs:label "hasFingerprint" ;
+    rdfs:comment "Relates a compound to its fingerprint." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:SubstructureFingerprint .
+
+cheminf:hasVersion a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasVersion" ;
+    rdfs:comment "A functional property specifying that a software implementation can have only one version associated at a given time.",
+        "Links a software implementation to its specific version.",
+        "Specifies the version of a software implementation." ;
+    rdfs:domain cheminf:SoftwareImplementation ;
+    rdfs:range cheminf:SoftwareVersion .
+
+cheminf:infers a owl:ObjectProperty ;
+    rdfs:label "infers" ;
+    rdfs:comment "Indicates that an inference engine can infer a descriptor value." ;
+    rdfs:domain cheminf:InferenceEngine ;
+    rdfs:range cheminf:DescriptorValue .
+
+cheminf:isCalculatedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "isCalculatedBy" ;
+    rdfs:comment "A functional property specifying that a chemical descriptor is calculated by one algorithm in a specific context.",
+        "Indicates the algorithm responsible for calculating a chemical descriptor.",
+        "Links a descriptor to the algorithm used for calculation." ;
+    rdfs:domain cheminf:ChemicalDescriptor ;
+    rdfs:range cheminf:Algorithm .
+
+cheminf:isImplementedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "isImplementedIn" ;
+    rdfs:comment "A functional property meaning each algorithm is implemented in one main software system.",
+        "Links an algorithm to the software implementation that realizes it.",
+        "Links an algorithm to the software that implements it." ;
+    rdfs:domain cheminf:Algorithm ;
+    rdfs:range cheminf:SoftwareImplementation .
+
+cheminf:isUsedIn a owl:ObjectProperty ;
+    rdfs:label "isUsedIn" ;
+    rdfs:comment "Indicates where a fingerprint is used." ;
+    rdfs:domain cheminf:SubstructureFingerprint ;
+    rdfs:range cheminf:TanimotoCoefficient .
+
+cheminf:refersTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "refersTo" ;
+    rdfs:comment "A functional property stating that a provenance record refers to one and only one descriptor calculation.",
+        "Relates provenance metadata to the calculation it describes." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:DescriptorCalculation .
+
+cheminf:reuses a owl:ObjectProperty ;
+    rdfs:label "reuses" ;
+    rdfs:comment "Indicates reuse of an ontology resource." ;
+    rdfs:domain cheminf:DescriptorOntology ;
+    rdfs:range cheminf:Ontology .
+
+cheminf:wasDerivedFrom a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "wasDerivedFrom" ;
+    rdfs:comment "A functional property indicating that provenance metadata stems from one original RDF graph.",
+        "Indicates the source graph for provenance data." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:RDFGraph .
+
+cheminf:wasGeneratedBy a owl:ObjectProperty ;
+    rdfs:label "wasGeneratedBy" ;
+    rdfs:comment "Indicates which tool generated provenance data." ;
+    rdfs:domain cheminf:ProvenanceInformation ;
+    rdfs:range cheminf:SoftwareTool .
+
+cheminf:encodedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "encodedIn" ;
+    rdfs:comment "A functional property stating that a molecular structure is encoded in only one primary format (e.g., SMILES or InChI).",
+        "Indicates the format used to encode a structure.",
+        "Specifies the format in which a chemical graph is encoded." ;
+    rdfs:domain cheminf:ChemicalGraph,
+        cheminf:MolecularStructure ;
+    rdfs:range cheminf:DataFormat,
+        cheminf:DataFormatSpecification .
+
+
+========================================================================================================================
+PITFALL P29: Defining wrong transitive relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://purl.org/cheminf/ontology#isPartOfDataset
+
+========================================================================================================================
+P29 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix cheminf: <http://purl.org/cheminf/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+cheminf:isPartOfDataset a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "isPartOfDataset" ;
+    rdfs:comment "A transitive property expressing hierarchical containment relationships within chemical datasets." ;
+    rdfs:domain cheminf:ChemicalEntity ;
+    rdfs:range cheminf:ChemicalDataset .
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://purl.org/cheminf/ontology#encodedIn
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix cheminf: <http://purl.org/cheminf/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+cheminf:isEncodingOf owl:inverseOf cheminf:encodedIn .
+
+cheminf:isFormatOf owl:inverseOf cheminf:encodedIn .
+
+cheminf:encodedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "encodedIn" ;
+    rdfs:comment "A functional property stating that a molecular structure is encoded in only one primary format (e.g., SMILES or InChI).",
+        "Indicates the format used to encode a structure.",
+        "Specifies the format in which a chemical graph is encoded." ;
+    rdfs:domain cheminf:ChemicalGraph,
+        cheminf:MolecularStructure ;
+    rdfs:range cheminf:DataFormat,
+        cheminf:DataFormatSpecification .
+

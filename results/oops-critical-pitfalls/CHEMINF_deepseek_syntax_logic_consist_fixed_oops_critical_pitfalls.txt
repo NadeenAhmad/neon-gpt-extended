@@ -1,0 +1,662 @@
+Ontology: results/deepseek-ontologies/CHEMINF_deepseek_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://purl.obolibrary.org/obo/cheminf.owl#hasDescriptorValue
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#isImplementedIn
+http://purl.obolibrary.org/obo/cheminf.owl#hasChemicalGraph
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#calculates
+http://purl.obolibrary.org/obo/cheminf.owl#isFormatOf
+http://purl.obolibrary.org/obo/cheminf.owl#isProvenanceInformationOf
+http://purl.obolibrary.org/obo/cheminf.owl#isConformedBy
+http://purl.obolibrary.org/obo/cheminf.owl#encodedIn
+http://purl.obolibrary.org/obo/cheminf.owl#isEncodingOf
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#isRepresentedBy
+http://purl.obolibrary.org/obo/cheminf.owl#hasProvenance
+http://semanticscience.org/resource/CHEMINF_isDescriptorOf
+http://purl.obolibrary.org/obo/cheminf.owl#hasFormat
+http://purl.obolibrary.org/obo/cheminf.owl#hasVersion
+http://purl.obolibrary.org/obo/cheminf.owl#implements
+http://purl.obolibrary.org/obo/cheminf.owl#isVersionOf
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#represents
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#hasDescriptor
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#encodedIn
+http://purl.obolibrary.org/obo/cheminf.owl#represents
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#encodes
+http://purl.obolibrary.org/obo/cheminf.owl#isChemicalGraphOf
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#isCalculatedBy
+http://purl.obolibrary.org/obo/cheminf.owl#isRepresentedBy
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#implements
+http://purl.obolibrary.org/obo/cheminf.owl#isValueOf
+http://semanticscience.org/resource/CHEMINF_hasDescriptor
+http://purl.obolibrary.org/obo/cheminf.owl#isImplementedIn
+http://purl.obolibrary.org/obo/cheminf.owl#hasProvenanceInformation
+http://purl.obolibrary.org/obo/cheminf.owl#isDescriptorOf
+http://purl.obolibrary.org/obo/cheminf.owl#hasSoftwareVersion
+http://purl.obolibrary.org/obo/cheminf.owl#calculatesDescriptor
+http://purl.obolibrary.org/obo/cheminf.owl#isProvenanceOf
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#isDescriptorOf
+http://purl.obolibrary.org/obo/cheminf.owl#conformsTo
+http://purl.obolibrary.org/obo/cheminf.owl#isCalculatedBy
+http://purl.obolibrary.org/obo/cheminf.owl#isImplementedBy
+http://purl.obolibrary.org/obo/cheminf.owl#hasDescriptor
+http://purl.obolibrary.org/obo/cheminf.owl#implementsAlgorithm
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://purl.obolibrary.org/obo/cheminf.owl#> .
+@prefix ns2: <http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:implements a owl:ObjectProperty ;
+    rdfs:label "implements" ;
+    rdfs:comment "Inverse of isImplementedIn." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:Algorithm ;
+    owl:inverseOf ns1:isImplementedIn .
+
+ns1:isChemicalGraphOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is chemical graph of" ;
+    rdfs:comment "A functional property indicating a chemical graph can represent only one chemical entity.",
+        "A symmetric property linking a chemical graph to its chemical entity and vice versa.",
+        "A transitive property indicating that a chemical graph represents a chemical entity through intermediate graphs.",
+        "Inverse of hasChemicalGraph - links a chemical graph representation to the chemical entity it represents.",
+        "Inverse of hasChemicalGraph." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasChemicalGraph .
+
+ns1:isConformedBy a owl:ObjectProperty ;
+    rdfs:label "is conformed by" ;
+    rdfs:comment "Inverse of conformsTo." ;
+    rdfs:domain ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:conformsTo .
+
+ns1:isEncodingOf a owl:ObjectProperty ;
+    rdfs:label "is encoding of" ;
+    rdfs:comment "Inverse of encodedIn." ;
+    rdfs:domain ns1:DataFormat,
+        ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:encodedIn .
+
+ns1:isFormatOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is format of" ;
+    rdfs:comment "A functional property indicating a data format can be associated with only one chemical graph.",
+        "A symmetric property linking a data format to its chemical graph and vice versa.",
+        "A transitive property indicating that a data format is used by chemical graphs through intermediate formats.",
+        "Inverse of hasFormat - links a data format to the chemical graph representations that use it.",
+        "Inverse of hasFormat." ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:hasFormat .
+
+ns1:isProvenanceInformationOf a owl:ObjectProperty ;
+    rdfs:label "is provenance information of" ;
+    rdfs:comment "Inverse of hasProvenanceInformation." ;
+    rdfs:domain ns1:ProvenanceInformation ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenanceInformation .
+
+ns1:isProvenanceOf owl:inverseOf ns1:hasProvenance .
+
+ns1:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "is represented by" ;
+    rdfs:comment "Inverse of represents." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:represents .
+
+ns1:isValueOf owl:inverseOf ns1:hasDescriptorValue .
+
+ns1:isVersionOf a owl:ObjectProperty ;
+    rdfs:label "is version of" ;
+    rdfs:comment "A reflexive property indicating that a software implementation is a version of itself, used for version tracking.",
+        "Inverse of hasSoftwareVersion.",
+        "Inverse of hasVersion." ;
+    rdfs:domain ns1:SoftwareImplementation,
+        ns1:SoftwareVersion ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:hasSoftwareVersion,
+        ns1:hasVersion .
+
+ns2:encodedIn a owl:ObjectProperty ;
+    rdfs:label "encoded in" ;
+    rdfs:domain ns2:ChemicalGraph ;
+    rdfs:range ns2:DataFormatSpecification ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000094> ;
+    owl:inverseOf ns2:encodes .
+
+ns2:isCalculatedBy a owl:ObjectProperty ;
+    rdfs:label "is calculated by" ;
+    rdfs:comment "Indicates the algorithm or software used to compute a descriptor value." ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:Algorithm ;
+    rdfs:subPropertyOf prov:wasGeneratedBy ;
+    owl:inverseOf ns2:calculates .
+
+ns2:isDescriptorOf owl:inverseOf ns2:hasDescriptor .
+
+ns2:isImplementedIn a owl:ObjectProperty ;
+    rdfs:label "is implemented in" ;
+    rdfs:domain ns2:Algorithm ;
+    rdfs:range ns2:SoftwareImplementation ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000671> ;
+    owl:inverseOf ns2:implements .
+
+ns2:represents a owl:ObjectProperty ;
+    rdfs:label "represents" ;
+    rdfs:comment "Connects a molecular representation (e.g., SMILES) to the chemical entity it depicts." ;
+    rdfs:domain ns2:ChemicalGraph ;
+    rdfs:range ns2:ChemicalEntity ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> ;
+    owl:inverseOf ns2:isRepresentedBy .
+
+<http://semanticscience.org/resource/CHEMINF_isDescriptorOf> a owl:ObjectProperty ;
+    owl:inverseOf <http://semanticscience.org/resource/CHEMINF_hasDescriptor> .
+
+ns1:encodedIn a owl:ObjectProperty ;
+    rdfs:label "encoded in" ;
+    rdfs:comment "Links a chemical graph to the specific format it is encoded in." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat,
+        ns1:DataFormatSpecification .
+
+ns1:hasChemicalGraph a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has chemical graph" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one chemical graph representation.",
+        "A symmetric property linking a chemical entity to its graph representation and vice versa.",
+        "A transitive property linking a chemical entity to its graph representations through intermediate graphs.",
+        "Links a chemical entity to its graph representation." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph .
+
+ns1:hasDescriptorValue a owl:ObjectProperty ;
+    rdfs:label "has descriptor value" ;
+    rdfs:comment "Links a chemical descriptor to its specific value instance." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:DescriptorValue .
+
+ns1:hasFormat a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has format" ;
+    rdfs:comment "A functional property indicating a chemical graph can have only one data format.",
+        "A symmetric property linking a chemical graph to its data format and vice versa.",
+        "A transitive property linking chemical graphs to their data formats through intermediate formats.",
+        "Links a chemical graph to its data format." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat .
+
+ns1:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has provenance" ;
+    rdfs:comment "A functional property indicating a chemical descriptor can have only one provenance entity.",
+        "A symmetric property linking a chemical descriptor to its provenance information and vice versa.",
+        "A transitive property linking chemical descriptors to their provenance information through intermediate provenance entities.",
+        "Links a chemical descriptor to its provenance information." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ProvenanceInformation,
+        prov:Entity .
+
+ns1:hasVersion a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has version" ;
+    rdfs:comment "Links a software implementation to its version string.",
+        "Links a software implementation to its version." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion,
+        xsd:string .
+
+ns1:represents a owl:ObjectProperty ;
+    rdfs:label "represents" ;
+    rdfs:comment "Links a chemical graph to the chemical entity it represents." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> .
+
+ns2:calculates a owl:ObjectProperty ;
+    rdfs:label "calculates" ;
+    rdfs:domain ns2:Algorithm ;
+    rdfs:range ns2:ChemicalDescriptor ;
+    rdfs:subPropertyOf prov:generated .
+
+ns2:encodes a owl:ObjectProperty ;
+    rdfs:label "encodes" ;
+    rdfs:domain ns2:DataFormatSpecification ;
+    rdfs:range ns2:ChemicalGraph ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000094> .
+
+ns2:hasDescriptor a owl:ObjectProperty ;
+    rdfs:label "has descriptor" ;
+    rdfs:comment "Relates a chemical entity to a chemical descriptor that characterizes it." ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range ns2:ChemicalDescriptor ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> .
+
+ns2:implements a owl:ObjectProperty ;
+    rdfs:label "implements" ;
+    rdfs:domain ns2:SoftwareImplementation ;
+    rdfs:range ns2:Algorithm ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000671> .
+
+ns2:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "is represented by" ;
+    rdfs:domain ns2:ChemicalEntity ;
+    rdfs:range ns2:ChemicalGraph ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000628> .
+
+
+========================================================================================================================
+PITFALL P28: Defining wrong symmetric relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 12
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://purl.obolibrary.org/obo/cheminf.owl#isChemicalGraphOf
+http://purl.obolibrary.org/obo/cheminf.owl#isDescriptorOf
+http://purl.obolibrary.org/obo/cheminf.owl#calculatesDescriptor
+http://purl.obolibrary.org/obo/cheminf.owl#hasFormat
+http://purl.obolibrary.org/obo/cheminf.owl#isImplementedBy
+http://purl.obolibrary.org/obo/cheminf.owl#isFormatOf
+http://purl.obolibrary.org/obo/cheminf.owl#hasChemicalGraph
+http://purl.obolibrary.org/obo/cheminf.owl#hasDescriptor
+http://purl.obolibrary.org/obo/cheminf.owl#isProvenanceOf
+http://purl.obolibrary.org/obo/cheminf.owl#isCalculatedBy
+http://purl.obolibrary.org/obo/cheminf.owl#implementsAlgorithm
+http://purl.obolibrary.org/obo/cheminf.owl#hasProvenance
+
+========================================================================================================================
+P28 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://purl.obolibrary.org/obo/cheminf.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:isCalculatedBy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is calculated by" ;
+    rdfs:comment "A functional property indicating a descriptor can be calculated by only one algorithm.",
+        "A symmetric property linking a descriptor to the algorithm that calculates it and vice versa.",
+        "A transitive property indicating that a descriptor is calculated by algorithms through intermediate calculations.",
+        "Inverse of calculatesDescriptor - links a chemical descriptor to the algorithm that computes it.",
+        "Inverse of calculatesDescriptor." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:Algorithm ;
+    owl:inverseOf ns1:calculatesDescriptor .
+
+ns1:isChemicalGraphOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is chemical graph of" ;
+    rdfs:comment "A functional property indicating a chemical graph can represent only one chemical entity.",
+        "A symmetric property linking a chemical graph to its chemical entity and vice versa.",
+        "A transitive property indicating that a chemical graph represents a chemical entity through intermediate graphs.",
+        "Inverse of hasChemicalGraph - links a chemical graph representation to the chemical entity it represents.",
+        "Inverse of hasChemicalGraph." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasChemicalGraph .
+
+ns1:isDescriptorOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is descriptor of" ;
+    rdfs:comment "A functional property indicating a descriptor can belong to only one chemical entity.",
+        "A symmetric property linking a descriptor to its chemical entity and vice versa.",
+        "A transitive property indicating that a descriptor belongs to a chemical entity through intermediate descriptors.",
+        "Inverse of hasDescriptor - links a chemical descriptor to the chemical entity it describes.",
+        "Inverse of hasDescriptor." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasDescriptor .
+
+ns1:isFormatOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is format of" ;
+    rdfs:comment "A functional property indicating a data format can be associated with only one chemical graph.",
+        "A symmetric property linking a data format to its chemical graph and vice versa.",
+        "A transitive property indicating that a data format is used by chemical graphs through intermediate formats.",
+        "Inverse of hasFormat - links a data format to the chemical graph representations that use it.",
+        "Inverse of hasFormat." ;
+    rdfs:domain ns1:DataFormat ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:hasFormat .
+
+ns1:isImplementedBy a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is implemented by" ;
+    rdfs:comment "A functional property indicating an algorithm can be implemented by only one software implementation.",
+        "A symmetric property linking an algorithm to its software implementation and vice versa.",
+        "A transitive property indicating that an algorithm is implemented by software through intermediate implementations.",
+        "Inverse of implementsAlgorithm - links an algorithm to the software implementation that executes it.",
+        "Inverse of implementsAlgorithm." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:implementsAlgorithm .
+
+ns1:isProvenanceOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is provenance of" ;
+    rdfs:comment "A functional property indicating a provenance entity can be associated with only one chemical descriptor.",
+        "A symmetric property linking provenance information to its chemical descriptor and vice versa.",
+        "A transitive property indicating that provenance information applies to chemical descriptors through intermediate provenance entities.",
+        "Inverse of hasProvenance - links provenance information to the chemical descriptor it describes.",
+        "Inverse of hasProvenance." ;
+    rdfs:domain ns1:ProvenanceInformation,
+        prov:Entity ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenance .
+
+ns1:calculatesDescriptor a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "calculates descriptor" ;
+    rdfs:comment "A functional property indicating an algorithm can calculate only one descriptor.",
+        "A symmetric property linking an algorithm to the descriptor it calculates and vice versa.",
+        "A transitive property linking algorithms to descriptors they calculate through intermediate calculations.",
+        "Links an algorithm to the descriptor it calculates." ;
+    rdfs:domain ns1:Algorithm ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:hasChemicalGraph a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has chemical graph" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one chemical graph representation.",
+        "A symmetric property linking a chemical entity to its graph representation and vice versa.",
+        "A transitive property linking a chemical entity to its graph representations through intermediate graphs.",
+        "Links a chemical entity to its graph representation." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph .
+
+ns1:hasDescriptor a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has descriptor" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one specific descriptor value.",
+        "A symmetric property linking a chemical entity to its descriptor and vice versa.",
+        "A transitive property linking a chemical entity to its descriptors through intermediate entities.",
+        "Links a chemical entity to its descriptor." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:hasFormat a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has format" ;
+    rdfs:comment "A functional property indicating a chemical graph can have only one data format.",
+        "A symmetric property linking a chemical graph to its data format and vice versa.",
+        "A transitive property linking chemical graphs to their data formats through intermediate formats.",
+        "Links a chemical graph to its data format." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat .
+
+ns1:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has provenance" ;
+    rdfs:comment "A functional property indicating a chemical descriptor can have only one provenance entity.",
+        "A symmetric property linking a chemical descriptor to its provenance information and vice versa.",
+        "A transitive property linking chemical descriptors to their provenance information through intermediate provenance entities.",
+        "Links a chemical descriptor to its provenance information." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ProvenanceInformation,
+        prov:Entity .
+
+ns1:implementsAlgorithm a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "implements algorithm" ;
+    rdfs:comment "A functional property indicating a software implementation can implement only one algorithm.",
+        "A symmetric property linking a software implementation to its algorithm and vice versa.",
+        "A transitive property linking software implementations to algorithms they implement through intermediate implementations.",
+        "Links a software implementation to the algorithm it implements." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:Algorithm .
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 19
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#hasVersion
+http://purl.obolibrary.org/obo/cheminf.owl#hasValue
+http://purl.obolibrary.org/obo/cheminf.owl#hasVersion
+http://purl.obolibrary.org/obo/cheminf.owl#isDescriptorOf
+http://purl.obolibrary.org/obo/cheminf.owl#isRepresentedBy
+http://purl.obolibrary.org/obo/cheminf.owl#isEncodingOf
+http://purl.obolibrary.org/obo/cheminf.owl#encodedIn
+http://semanticscience.org/resource/CHEMINF_hasVersion
+http://purl.obolibrary.org/obo/cheminf.owl#hasProvenance
+http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#hasProvenance
+http://purl.obolibrary.org/obo/cheminf.owl#isVersionOf
+http://purl.obolibrary.org/obo/cheminf.owl#hasChemicalGraph
+http://purl.obolibrary.org/obo/cheminf.owl#isProvenanceOf
+http://purl.obolibrary.org/obo/cheminf.owl#hasDescriptor
+http://purl.obolibrary.org/obo/cheminf.owl#represents
+http://semanticscience.org/resource/CHEMINF_encodedIn
+http://purl.obolibrary.org/obo/cheminf.owl#isChemicalGraphOf
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://purl.obolibrary.org/obo/cheminf.owl#> .
+@prefix ns2: <http://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:hasValue a owl:DatatypeProperty ;
+    rdfs:label "has value" ;
+    rdfs:comment "Links a descriptor to its numerical value." ;
+    rdfs:domain ns1:ChemicalDescriptor,
+        ns1:DescriptorValue ;
+    rdfs:range xsd:double .
+
+ns1:isChemicalGraphOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is chemical graph of" ;
+    rdfs:comment "A functional property indicating a chemical graph can represent only one chemical entity.",
+        "A symmetric property linking a chemical graph to its chemical entity and vice versa.",
+        "A transitive property indicating that a chemical graph represents a chemical entity through intermediate graphs.",
+        "Inverse of hasChemicalGraph - links a chemical graph representation to the chemical entity it represents.",
+        "Inverse of hasChemicalGraph." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasChemicalGraph .
+
+ns1:isDescriptorOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is descriptor of" ;
+    rdfs:comment "A functional property indicating a descriptor can belong to only one chemical entity.",
+        "A symmetric property linking a descriptor to its chemical entity and vice versa.",
+        "A transitive property indicating that a descriptor belongs to a chemical entity through intermediate descriptors.",
+        "Inverse of hasDescriptor - links a chemical descriptor to the chemical entity it describes.",
+        "Inverse of hasDescriptor." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    owl:inverseOf ns1:hasDescriptor .
+
+ns1:isEncodingOf a owl:ObjectProperty ;
+    rdfs:label "is encoding of" ;
+    rdfs:comment "Inverse of encodedIn." ;
+    rdfs:domain ns1:DataFormat,
+        ns1:DataFormatSpecification ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:encodedIn .
+
+ns1:isProvenanceOf a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is provenance of" ;
+    rdfs:comment "A functional property indicating a provenance entity can be associated with only one chemical descriptor.",
+        "A symmetric property linking provenance information to its chemical descriptor and vice versa.",
+        "A transitive property indicating that provenance information applies to chemical descriptors through intermediate provenance entities.",
+        "Inverse of hasProvenance - links provenance information to the chemical descriptor it describes.",
+        "Inverse of hasProvenance." ;
+    rdfs:domain ns1:ProvenanceInformation,
+        prov:Entity ;
+    rdfs:range ns1:ChemicalDescriptor ;
+    owl:inverseOf ns1:hasProvenance .
+
+ns1:isRepresentedBy a owl:ObjectProperty ;
+    rdfs:label "is represented by" ;
+    rdfs:comment "Inverse of represents." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph ;
+    owl:inverseOf ns1:represents .
+
+ns1:isVersionOf a owl:ObjectProperty ;
+    rdfs:label "is version of" ;
+    rdfs:comment "A reflexive property indicating that a software implementation is a version of itself, used for version tracking.",
+        "Inverse of hasSoftwareVersion.",
+        "Inverse of hasVersion." ;
+    rdfs:domain ns1:SoftwareImplementation,
+        ns1:SoftwareVersion ;
+    rdfs:range ns1:SoftwareImplementation ;
+    owl:inverseOf ns1:hasSoftwareVersion,
+        ns1:hasVersion .
+
+ns2:hasProvenance a owl:ObjectProperty ;
+    rdfs:label "has provenance" ;
+    rdfs:comment "Associates data with provenance information describing its origin and processing history." ;
+    rdfs:domain ns2:ChemicalDescriptor ;
+    rdfs:range ns2:Provenance,
+        ns2:ProvenanceInformation ;
+    rdfs:subPropertyOf prov:has_provenance .
+
+ns2:hasVersion a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has version" ;
+    rdfs:domain ns2:SoftwareImplementation ;
+    rdfs:range ns2:SoftwareVersion,
+        xsd:string ;
+    rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000300> .
+
+<http://semanticscience.org/resource/CHEMINF_encodedIn> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_ChemicalGraph> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_DataFormatSpecification>,
+        <http://semanticscience.org/resource/CHEMINF_StructureRepresentation> .
+
+<http://semanticscience.org/resource/CHEMINF_hasVersion> a owl:ObjectProperty ;
+    rdfs:domain <http://semanticscience.org/resource/CHEMINF_SoftwareImplementation> ;
+    rdfs:range <http://semanticscience.org/resource/CHEMINF_SoftwareVersion>,
+        <http://semanticscience.org/resource/CHEMINF_Version> .
+
+ns1:encodedIn a owl:ObjectProperty ;
+    rdfs:label "encoded in" ;
+    rdfs:comment "Links a chemical graph to the specific format it is encoded in." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:DataFormat,
+        ns1:DataFormatSpecification .
+
+ns1:hasChemicalGraph a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has chemical graph" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one chemical graph representation.",
+        "A symmetric property linking a chemical entity to its graph representation and vice versa.",
+        "A transitive property linking a chemical entity to its graph representations through intermediate graphs.",
+        "Links a chemical entity to its graph representation." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalGraph .
+
+ns1:hasDescriptor a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has descriptor" ;
+    rdfs:comment "A functional property indicating a chemical entity can have only one specific descriptor value.",
+        "A symmetric property linking a chemical entity to its descriptor and vice versa.",
+        "A transitive property linking a chemical entity to its descriptors through intermediate entities.",
+        "Links a chemical entity to its descriptor." ;
+    rdfs:domain ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> ;
+    rdfs:range ns1:ChemicalDescriptor .
+
+ns1:hasProvenance a owl:FunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has provenance" ;
+    rdfs:comment "A functional property indicating a chemical descriptor can have only one provenance entity.",
+        "A symmetric property linking a chemical descriptor to its provenance information and vice versa.",
+        "A transitive property linking chemical descriptors to their provenance information through intermediate provenance entities.",
+        "Links a chemical descriptor to its provenance information." ;
+    rdfs:domain ns1:ChemicalDescriptor ;
+    rdfs:range ns1:ProvenanceInformation,
+        prov:Entity .
+
+ns1:hasVersion a owl:DatatypeProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has version" ;
+    rdfs:comment "Links a software implementation to its version string.",
+        "Links a software implementation to its version." ;
+    rdfs:domain ns1:SoftwareImplementation ;
+    rdfs:range ns1:SoftwareVersion,
+        xsd:string .
+
+ns1:represents a owl:ObjectProperty ;
+    rdfs:label "represents" ;
+    rdfs:comment "Links a chemical graph to the chemical entity it represents." ;
+    rdfs:domain ns1:ChemicalGraph ;
+    rdfs:range ns1:ChemicalEntity,
+        <http://semanticscience.org/resource/SIO_010004> .
+

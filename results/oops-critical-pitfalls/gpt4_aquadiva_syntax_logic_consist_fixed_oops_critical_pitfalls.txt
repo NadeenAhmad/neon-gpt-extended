@@ -1,0 +1,4 @@
+Ontology: results/gpt-4o-ontologies/gpt4_aquadiva_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+

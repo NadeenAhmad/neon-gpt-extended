@@ -1,0 +1,730 @@
+Ontology: results/deepseek-ontologies/WINE_deepseek_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P19: Defining multiple domains or ranges in properties
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 21
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.wine-ontology.org/hasSweetness
+http://www.wine-ontology.org/classifiedAs
+http://www.wine-ontology.org/hasAroma
+http://www.wine-ontology.org/soldUnder
+http://www.wine-ontology.org/locatedIn
+http://www.wine-ontology.org/hasAdditive
+http://www.wine-ontology.org/hasIngredient
+http://www.wine-ontology.org/hasViscosity
+http://www.wine-ontology.org/hasColor
+http://www.wine-ontology.org/hasBitterness
+http://www.wine-ontology.org/hasComponent
+http://www.wine-ontology.org/compliesWith
+http://www.wine-ontology.org/hasBody
+http://www.wine-ontology.org/partOf
+http://www.wine-ontology.org/containsCompound
+http://www.wine-ontology.org/hasAcidity
+http://www.wine-ontology.org/hasFlavor
+http://www.wine-ontology.org/hasPreservative
+http://www.wine-ontology.org/hasName
+http://www.wine-ontology.org/hasDescription
+http://www.wine-ontology.org/compatibleWith
+
+========================================================================================================================
+P19 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.wine-ontology.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:acidityIn owl:inverseOf ns1:hasAcidity .
+
+ns1:aromaOf owl:inverseOf ns1:hasAroma .
+
+ns1:bitternessOf owl:inverseOf ns1:hasBitterness .
+
+ns1:bodyOf owl:inverseOf ns1:hasBody .
+
+ns1:classificationFor owl:inverseOf ns1:classifiedAs .
+
+ns1:compatibleWith a owl:ObjectProperty,
+        owl:ReflexiveProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "compatible with" ;
+    rdfs:comment "Relates a wine to another wine that can be paired or served together, including self-compatibility.",
+        "Symmetric relationship indicating mutual compatibility between wine styles." ;
+    rdfs:domain ns1:Wine,
+        ns1:WineStyle ;
+    rdfs:range ns1:Wine,
+        ns1:WineStyle .
+
+ns1:complianceFor owl:inverseOf ns1:compliesWith .
+
+ns1:containsVineyard owl:inverseOf ns1:partOf .
+
+ns1:flavorOf owl:inverseOf ns1:hasFlavor .
+
+ns1:hasDescription a owl:DatatypeProperty ;
+    rdfs:label "has description" ;
+    rdfs:comment "A textual description of a wine or related entity." ;
+    rdfs:range xsd:string .
+
+ns1:hasName a owl:DatatypeProperty ;
+    rdfs:label "has name" ;
+    rdfs:comment "The name of a wine, grape variety, region, or other entity." ;
+    rdfs:range xsd:string .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in" ;
+    rdfs:comment "Relates a vineyard to its geographical region." ;
+    rdfs:domain ns1:Vineyard,
+        ns1:Winery ;
+    rdfs:range ns1:Region,
+        ns1:WineRegion ;
+    owl:inverseOf ns1:containsWinery .
+
+ns1:productCategoryFor owl:inverseOf ns1:soldUnder .
+
+ns1:sweetnessOf owl:inverseOf ns1:hasSweetness .
+
+ns1:viscosityOf owl:inverseOf ns1:hasViscosity .
+
+ns1:additiveIn owl:inverseOf ns1:hasAdditive .
+
+ns1:classifiedAs a owl:ObjectProperty ;
+    rdfs:label "classified as" ;
+    rdfs:comment "Relates a wine to its classification such as PDO.",
+        "Relates a wine to its protected designation of origin.",
+        "Relates a wine to its regulatory or quality classification." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://eurovoc.europa.eu/1434>,
+        <http://eurovoc.europa.eu/4026>,
+        <http://eurovoc.europa.eu/PDO_ProtectedDesignationOfOrigin>,
+        ns1:RegulatoryDesignation .
+
+ns1:colorOf owl:inverseOf ns1:hasColor .
+
+ns1:compliesWith a owl:ObjectProperty ;
+    rdfs:label "complies with" ;
+    rdfs:comment "Relates a wine label to regulations it complies with.",
+        "Relates a wine label to regulatory standards and directives.",
+        "Relates a wine label to wine labeling directives." ;
+    rdfs:domain ns1:WineLabel ;
+    rdfs:range <http://eurovoc.europa.eu/1435>,
+        <http://eurovoc.europa.eu/Legislation>,
+        <http://eurovoc.europa.eu/WineLabelingDirective> .
+
+ns1:componentOf owl:inverseOf ns1:hasComponent .
+
+ns1:compoundIn owl:inverseOf ns1:containsCompound .
+
+ns1:containsCompound a owl:ObjectProperty ;
+    rdfs:label "contains compound" ;
+    rdfs:comment "Relates a wine to chemical compounds it contains.",
+        "Relates a wine to specific chemical compounds present in its composition." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://id.nlm.nih.gov/mesh/D004794>,
+        ns1:ChemicalCompound,
+        ns1:WineComponent ;
+    owl:inverseOf ns1:compoundIn .
+
+ns1:hasAcidity a owl:ObjectProperty ;
+    rdfs:label "has acidity" ;
+    rdfs:comment "Describes the level of acidity in a wine, affecting taste and preservation.",
+        "Relates a wine to its acid components.",
+        "Relates a wine to its acidic components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Acid,
+        ns1:ChemicalCompound,
+        ns1:WineAcidity ;
+    owl:inverseOf ns1:acidityOf .
+
+ns1:hasAdditive a owl:ObjectProperty ;
+    rdfs:label "has additive" ;
+    rdfs:comment "Relates a wine to additives used during winemaking.",
+        "Relates a wine to additives used." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://id.nlm.nih.gov/mesh/D001205>,
+        ns1:Additive,
+        ns1:ChemicalCompound,
+        ns1:WineAdditive ;
+    owl:inverseOf ns1:additiveIn .
+
+ns1:hasAroma a owl:ObjectProperty ;
+    rdfs:label "has aroma" ;
+    rdfs:comment "Describes the scent profile characteristic of a wine.",
+        "Relates a wine to its aroma compounds.",
+        "Relates a wine to its aromatic compounds and bouquet." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_2663>,
+        ns1:AromaAttribute,
+        ns1:ChemicalCompound .
+
+ns1:hasBitterness a owl:ObjectProperty ;
+    rdfs:label "has bitterness" ;
+    rdfs:comment "Relates a wine to compounds affecting its bitterness.",
+        "Relates a wine to its bitterness characteristics and compounds.",
+        "Relates a wine to its bitterness components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_7598>,
+        ns1:BitternessAttribute,
+        ns1:ChemicalCompound .
+
+ns1:hasBody a owl:ObjectProperty ;
+    rdfs:label "has body" ;
+    rdfs:comment "Refers to the perceived weight and texture of a wine in the mouth.",
+        "Relates a wine to compounds affecting its body.",
+        "Relates a wine to its body and mouthfeel characteristics.",
+        "Relates a wine to its body components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_3298>,
+        ns1:BodyAttribute,
+        ns1:ChemicalCompound .
+
+ns1:hasColor a owl:ObjectProperty ;
+    rdfs:label "has color" ;
+    rdfs:comment "Relates a wine to its color characteristics and compounds.",
+        "Relates a wine to its color compounds." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_448>,
+        ns1:ChemicalCompound,
+        ns1:ColorAttribute,
+        ns1:WineColor ;
+    owl:inverseOf ns1:colorOf .
+
+ns1:hasComponent a owl:ObjectProperty ;
+    rdfs:label "has component" ;
+    rdfs:comment "Relates a wine to its chemical components.",
+        "Relates a wine to its various chemical and sensory components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://id.nlm.nih.gov/mesh/D013645>,
+        ns1:ChemicalCompound,
+        ns1:WineComponent ;
+    owl:inverseOf ns1:componentOf .
+
+ns1:hasFlavor a owl:ObjectProperty ;
+    rdfs:label "has flavor" ;
+    rdfs:comment "Captures the combined taste and aroma experience of a wine.",
+        "Relates a wine to its flavor compounds.",
+        "Relates a wine to its flavor profile and compounds." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_7662>,
+        ns1:ChemicalCompound,
+        ns1:FlavorAttribute .
+
+ns1:hasIngredient a owl:ObjectProperty ;
+    rdfs:label "has ingredient" ;
+    rdfs:comment "Relates a wine to its constituent ingredients beyond grape varieties.",
+        "Relates a wine to its ingredients." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://purl.obolibrary.org/obo/00002403>,
+        ns1:GrapeVariety,
+        ns1:WineComponent,
+        ns1:WineIngredient ;
+    owl:inverseOf ns1:ingredientOf .
+
+ns1:hasPreservative a owl:ObjectProperty ;
+    rdfs:label "has preservative" ;
+    rdfs:comment "Relates a wine to preservative compounds used in its production.",
+        "Relates a wine to preservatives used." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://id.nlm.nih.gov/mesh/D013458>,
+        ns1:ChemicalCompound,
+        ns1:Preservative,
+        ns1:WinePreservative ;
+    owl:inverseOf ns1:preservativeIn .
+
+ns1:hasSweetness a owl:ObjectProperty ;
+    rdfs:label "has sweetness" ;
+    rdfs:comment "Relates a wine to compounds affecting its sweetness.",
+        "Relates a wine to its sweetness characteristics and compounds.",
+        "Relates a wine to its sweetness components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_3278>,
+        ns1:ChemicalCompound,
+        ns1:SweetnessAttribute .
+
+ns1:hasViscosity a owl:ObjectProperty ;
+    rdfs:label "has viscosity" ;
+    rdfs:comment "Relates a wine to compounds affecting its viscosity.",
+        "Relates a wine to its viscosity characteristics and compounds.",
+        "Relates a wine to its viscosity components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_6004>,
+        ns1:ChemicalCompound,
+        ns1:ViscosityAttribute .
+
+ns1:ingredientOf owl:inverseOf ns1:hasIngredient .
+
+ns1:partOf a owl:ObjectProperty ;
+    rdfs:label "part of" ;
+    rdfs:comment "Relates a vineyard to broader viticultural practices and systems.",
+        "Relates a vineyard to viticulture." ;
+    rdfs:domain ns1:Vineyard ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/Viticulture>,
+        <http://aims.fao.org/aos/agrovoc/c_8183>,
+        ns1:ViticulturePractice .
+
+ns1:preservativeIn owl:inverseOf ns1:hasPreservative .
+
+ns1:soldUnder a owl:ObjectProperty ;
+    rdfs:label "sold under" ;
+    rdfs:comment "Relates a wine to its UNSPSC classification.",
+        "Relates a wine to its commercial classification or product code.",
+        "Relates a wine to its product classification." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://www.unspsc.org/50202201>,
+        <http://www.unspsc.org/ProductCategory> .
+
+
+========================================================================================================================
+PITFALL P06: Including cycles in a class hierarchy
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.wine-ontology.org/ChemicalCompound
+http://www.wine-ontology.org/WineComponent
+
+========================================================================================================================
+P06 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.wine-ontology.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:Acid rdfs:subClassOf ns1:ChemicalCompound .
+
+ns1:Additive rdfs:subClassOf ns1:ChemicalCompound .
+
+ns1:Anthocyanin a ns1:ChemicalCompound .
+
+ns1:AscorbicAcid a ns1:ChemicalCompound .
+
+ns1:Esters a ns1:ChemicalCompound .
+
+ns1:Ethanol a ns1:ChemicalCompound .
+
+ns1:Glucose a ns1:ChemicalCompound .
+
+ns1:Glycerol a ns1:ChemicalCompound .
+
+ns1:LacticAcid a ns1:ChemicalCompound .
+
+ns1:MalicAcid a ns1:ChemicalCompound .
+
+ns1:Polysaccharides a ns1:ChemicalCompound .
+
+ns1:Preservative rdfs:subClassOf ns1:ChemicalCompound .
+
+ns1:SulfurDioxide a ns1:ChemicalCompound .
+
+ns1:Tannin a ns1:ChemicalCompound .
+
+ns1:TartaricAcid a ns1:ChemicalCompound .
+
+ns1:Terpene a ns1:ChemicalCompound .
+
+ns1:WineAlcoholCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineAromaCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineBitternessCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineBodyCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineFlavorCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineIngredient rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineSweetnessCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:WineViscosityCompound rdfs:subClassOf ns1:WineComponent .
+
+ns1:componentOf rdfs:domain ns1:WineComponent .
+
+ns1:compoundIn rdfs:domain ns1:WineComponent .
+
+ns1:containsCompound rdfs:range ns1:ChemicalCompound,
+        ns1:WineComponent .
+
+ns1:hasAcidity rdfs:range ns1:ChemicalCompound .
+
+ns1:hasAdditive rdfs:range ns1:ChemicalCompound .
+
+ns1:hasAroma rdfs:range ns1:ChemicalCompound .
+
+ns1:hasBitterness rdfs:range ns1:ChemicalCompound .
+
+ns1:hasBody rdfs:range ns1:ChemicalCompound .
+
+ns1:hasColor rdfs:range ns1:ChemicalCompound .
+
+ns1:hasComponent rdfs:range ns1:ChemicalCompound,
+        ns1:WineComponent .
+
+ns1:hasFlavor rdfs:range ns1:ChemicalCompound .
+
+ns1:hasIngredient rdfs:range ns1:WineComponent .
+
+ns1:hasPreservative rdfs:range ns1:ChemicalCompound .
+
+ns1:hasSweetness rdfs:range ns1:ChemicalCompound .
+
+ns1:hasViscosity rdfs:range ns1:ChemicalCompound .
+
+ns1:WineComponent a owl:Class ;
+    rdfs:label "Wine Component" ;
+    rdfs:comment "Chemical compounds and substances present in wine." ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/00002497>,
+        ns1:ChemicalCompound .
+
+ns1:ChemicalCompound a owl:Class ;
+    rdfs:label "Chemical Compound" ;
+    rdfs:comment "A chemical substance present in wine.",
+        "Specific chemical entities contributing to wine characteristics." ;
+    rdfs:subClassOf ns1:WineComponent .
+
+
+========================================================================================================================
+PITFALL P29: Defining wrong transitive relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 1
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.wine-ontology.org/madeFromBlend
+
+========================================================================================================================
+P29 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.wine-ontology.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:madeFromBlend a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "made from blend" ;
+    rdfs:comment "Transitive property relating wines to grape varieties through blending relationships." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:GrapeVariety ;
+    rdfs:subPropertyOf ns1:madeFromGrape .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+affected elements (count): 15
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://www.wine-ontology.org/hasBitterness
+http://www.wine-ontology.org/alcoholCompoundIn
+http://www.wine-ontology.org/hasAlcoholCompound
+http://www.wine-ontology.org/componentOf
+http://www.wine-ontology.org/pairingForWine
+http://www.wine-ontology.org/hasWineType
+http://www.wine-ontology.org/hasViscosityCompound
+http://www.wine-ontology.org/hasClimate
+http://www.wine-ontology.org/characteristicOfVintage
+http://www.wine-ontology.org/regionProduces
+http://www.wine-ontology.org/styleOfWine
+http://www.wine-ontology.org/hasQualityRating
+http://www.wine-ontology.org/techniqueUsedBy
+http://www.wine-ontology.org/productCategoryFor
+http://www.wine-ontology.org/producedInRegion
+http://www.wine-ontology.org/climateOf
+http://www.wine-ontology.org/hasClarificationMethod
+http://www.wine-ontology.org/clarificationMethodFor
+http://www.wine-ontology.org/hasFoodPairing
+http://www.wine-ontology.org/hasVintage
+http://www.wine-ontology.org/compliesWith
+http://www.wine-ontology.org/soldUnder
+http://www.wine-ontology.org/acidityOf
+http://www.wine-ontology.org/bitternessOf
+http://www.wine-ontology.org/hasBitternessCompound
+http://www.wine-ontology.org/hasBodyCompound
+http://www.wine-ontology.org/foodPairingFor
+http://www.wine-ontology.org/chemicalCompositionOf
+http://www.wine-ontology.org/bodyCompoundIn
+http://www.wine-ontology.org/usedIn
+http://www.wine-ontology.org/sweetnessCompoundIn
+http://www.wine-ontology.org/producesWine
+http://www.wine-ontology.org/hasViscosity
+http://www.wine-ontology.org/winemakerProduces
+http://www.wine-ontology.org/tastingNoteOf
+http://www.wine-ontology.org/containsCompound
+http://www.wine-ontology.org/appellationFor
+http://www.wine-ontology.org/hasPreservative
+http://www.wine-ontology.org/agingProcessOf
+http://www.wine-ontology.org/hasSoilType
+http://www.wine-ontology.org/hasTastingNote
+http://www.wine-ontology.org/hasProductionMethod
+http://www.wine-ontology.org/flavorOf
+http://www.wine-ontology.org/colorOf
+http://www.wine-ontology.org/wineTypeOf
+http://www.wine-ontology.org/hasIngredient
+http://www.wine-ontology.org/sweetnessOf
+http://www.wine-ontology.org/producedIn
+http://www.wine-ontology.org/containsVineyard
+http://www.wine-ontology.org/hasViticulturalPractice
+http://www.wine-ontology.org/hasComponent
+http://www.wine-ontology.org/hasLabelingInformation
+http://www.wine-ontology.org/vintageOf
+http://www.wine-ontology.org/flavorCompoundIn
+http://www.wine-ontology.org/compoundIn
+http://www.wine-ontology.org/ingredientOf
+http://www.wine-ontology.org/practiceAppliedTo
+http://www.wine-ontology.org/hasAcidity
+http://www.wine-ontology.org/hasAppellation
+http://www.wine-ontology.org/aromaCompoundIn
+http://www.wine-ontology.org/hasWinemaker
+http://www.wine-ontology.org/viscosityCompoundIn
+http://www.wine-ontology.org/hasColor
+http://www.wine-ontology.org/preservativeIn
+http://www.wine-ontology.org/hasSweetnessCompound
+http://www.wine-ontology.org/hasAgingProcess
+http://www.wine-ontology.org/classificationFor
+http://www.wine-ontology.org/hasWineStyle
+http://www.wine-ontology.org/additiveIn
+http://www.wine-ontology.org/classifiedAs
+http://www.wine-ontology.org/partOf
+http://www.wine-ontology.org/bodyOf
+http://www.wine-ontology.org/containsWinery
+http://www.wine-ontology.org/underwentFermentation
+http://www.wine-ontology.org/hasBody
+http://www.wine-ontology.org/typeOfWine
+http://www.wine-ontology.org/soilTypeIn
+http://www.wine-ontology.org/aromaOf
+http://www.wine-ontology.org/contentOfWine
+http://www.wine-ontology.org/hasAroma
+http://www.wine-ontology.org/producedBy
+http://www.wine-ontology.org/hasFlavor
+http://www.wine-ontology.org/usedInWine
+http://www.wine-ontology.org/hasSensoryProfile
+http://www.wine-ontology.org/hasFlavorCompound
+http://www.wine-ontology.org/hasWinemakingTechnique
+http://www.wine-ontology.org/sensoryProfileOf
+http://www.wine-ontology.org/locatedIn
+http://www.wine-ontology.org/hasChemicalComposition
+http://www.wine-ontology.org/hasAdditive
+http://www.wine-ontology.org/qualityRatingOf
+http://www.wine-ontology.org/labelingInformationFor
+http://www.wine-ontology.org/hasVintageCharacteristic
+http://www.wine-ontology.org/bottlingProcessOf
+http://www.wine-ontology.org/madeFrom
+http://www.wine-ontology.org/methodUsedFor
+http://www.wine-ontology.org/acidityIn
+http://www.wine-ontology.org/bitternessCompoundIn
+http://www.wine-ontology.org/hasAlcoholContent
+http://www.wine-ontology.org/hasBottlingProcess
+http://www.wine-ontology.org/fermentationOf
+http://www.wine-ontology.org/hasAromaCompound
+http://www.wine-ontology.org/viscosityOf
+http://www.wine-ontology.org/madeFromGrape
+http://www.wine-ontology.org/hasSweetness
+http://www.wine-ontology.org/complianceFor
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://www.wine-ontology.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:bitternessOf a owl:ObjectProperty ;
+    rdfs:label "bitterness of" ;
+    rdfs:comment "Relates a bitterness attribute to the wines exhibiting it." ;
+    owl:inverseOf ns1:hasBitterness .
+
+ns1:characteristicOfVintage a owl:ObjectProperty ;
+    rdfs:label "characteristic of vintage" ;
+    rdfs:comment "Relates vintage characteristics to the vintages they describe." ;
+    owl:inverseOf ns1:hasVintageCharacteristic .
+
+ns1:clarificationMethodFor a owl:ObjectProperty ;
+    rdfs:label "clarification method for" ;
+    rdfs:comment "Relates a clarification method to the wines it is applied to." ;
+    owl:inverseOf ns1:hasClarificationMethod .
+
+ns1:climateOf a owl:ObjectProperty ;
+    rdfs:label "climate of" ;
+    rdfs:comment "Relates a climate to the regions that experience it." ;
+    owl:inverseOf ns1:hasClimate .
+
+ns1:complianceFor owl:inverseOf ns1:compliesWith .
+
+ns1:hasAcidity owl:inverseOf ns1:acidityOf .
+
+ns1:hasAlcoholCompound a owl:ObjectProperty ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WineAlcoholCompound ;
+    owl:inverseOf ns1:alcoholCompoundIn .
+
+ns1:hasBitternessCompound a owl:ObjectProperty ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WineBitternessCompound ;
+    owl:inverseOf ns1:bitternessCompoundIn .
+
+ns1:hasViscosityCompound a owl:ObjectProperty ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WineViscosityCompound ;
+    owl:inverseOf ns1:viscosityCompoundIn .
+
+ns1:pairingForWine a owl:ObjectProperty ;
+    rdfs:label "pairing for wine" ;
+    rdfs:comment "Relates a food pairing to the wines it is recommended for." ;
+    owl:inverseOf ns1:hasFoodPairing .
+
+ns1:producedIn owl:inverseOf ns1:regionProduces .
+
+ns1:productCategoryFor a owl:ObjectProperty ;
+    rdfs:label "product category for" ;
+    rdfs:comment "Relates a product category to the wines sold under it." ;
+    owl:inverseOf ns1:soldUnder .
+
+ns1:qualityRatingOf owl:inverseOf ns1:hasQualityRating .
+
+ns1:styleOfWine a owl:ObjectProperty ;
+    rdfs:label "style of wine" ;
+    rdfs:comment "Relates a wine style to the wines that exhibit it." ;
+    owl:inverseOf ns1:hasWineStyle .
+
+ns1:techniqueUsedBy a owl:ObjectProperty ;
+    rdfs:label "technique used by" ;
+    rdfs:comment "Relates a winemaking technique to the winemakers who use it." ;
+    owl:inverseOf ns1:hasWinemakingTechnique .
+
+ns1:typeOfWine owl:inverseOf ns1:hasWineType .
+
+ns1:acidityOf a owl:ObjectProperty ;
+    rdfs:domain ns1:WineAcidity ;
+    rdfs:range ns1:Wine .
+
+ns1:alcoholCompoundIn a owl:ObjectProperty ;
+    rdfs:domain ns1:WineAlcoholCompound ;
+    rdfs:range ns1:Wine .
+
+ns1:compliesWith a owl:ObjectProperty ;
+    rdfs:label "complies with" ;
+    rdfs:comment "Relates a wine label to regulations it complies with.",
+        "Relates a wine label to regulatory standards and directives.",
+        "Relates a wine label to wine labeling directives." ;
+    rdfs:domain ns1:WineLabel ;
+    rdfs:range <http://eurovoc.europa.eu/1435>,
+        <http://eurovoc.europa.eu/Legislation>,
+        <http://eurovoc.europa.eu/WineLabelingDirective> .
+
+ns1:componentOf a owl:ObjectProperty ;
+    rdfs:label "component of" ;
+    rdfs:comment "Relates a wine component to the wines it is part of." ;
+    rdfs:domain ns1:WineComponent ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:hasComponent .
+
+ns1:hasBitterness a owl:ObjectProperty ;
+    rdfs:label "has bitterness" ;
+    rdfs:comment "Relates a wine to compounds affecting its bitterness.",
+        "Relates a wine to its bitterness characteristics and compounds.",
+        "Relates a wine to its bitterness components." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://aims.fao.org/aos/agrovoc/c_7598>,
+        ns1:BitternessAttribute,
+        ns1:ChemicalCompound .
+
+ns1:hasClarificationMethod a owl:ObjectProperty ;
+    rdfs:label "has clarification method" ;
+    rdfs:comment "Relates a wine to the techniques used for clarification and stabilization." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:ClarificationMethod .
+
+ns1:hasClimate a owl:ObjectProperty ;
+    rdfs:label "has climate" ;
+    rdfs:comment "Relates a region to its characteristic climate conditions." ;
+    rdfs:domain ns1:Region ;
+    rdfs:range ns1:Climate .
+
+ns1:hasComponent owl:inverseOf ns1:componentOf .
+
+ns1:hasFoodPairing a owl:ObjectProperty ;
+    rdfs:label "has food pairing" ;
+    rdfs:comment "Relates a wine to recommended food pairings." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:FoodPairing ;
+    owl:inverseOf ns1:foodPairingFor .
+
+ns1:hasQualityRating a owl:ObjectProperty ;
+    rdfs:label "has quality rating" ;
+    rdfs:comment "Relates a wine to its official quality assessment and rating." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:QualityRating .
+
+ns1:hasVintage a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has vintage" ;
+    rdfs:comment "A wine is produced from grapes harvested in a single specific year.",
+        "Links a wine to its specific harvest year, which influences character and quality.",
+        "Relates a wine to the specific vintage year." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Vintage ;
+    owl:inverseOf ns1:vintageOf .
+
+ns1:hasWineType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has wine type" ;
+    rdfs:comment "A wine can only have one primary classification type (e.g., it cannot be both red and white simultaneously).",
+        "Relates a wine to its classification type (e.g., red, white, sparkling)." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:WineType ;
+    owl:inverseOf ns1:wineTypeOf .
+
+ns1:producedInRegion a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "produced in region" ;
+    rdfs:comment "A wine originates from one specific geographical region of production.",
+        "Relates a wine to the geographical region where it was produced." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range ns1:Region .
+
+ns1:regionProduces a owl:ObjectProperty ;
+    rdfs:label "region produces" ;
+    rdfs:comment "Relates a region to the wines produced there." ;
+    rdfs:domain ns1:WineRegion ;
+    rdfs:range ns1:Wine ;
+    owl:inverseOf ns1:producedInRegion .
+
+ns1:soldUnder a owl:ObjectProperty ;
+    rdfs:label "sold under" ;
+    rdfs:comment "Relates a wine to its UNSPSC classification.",
+        "Relates a wine to its commercial classification or product code.",
+        "Relates a wine to its product classification." ;
+    rdfs:domain ns1:Wine ;
+    rdfs:range <http://www.unspsc.org/50202201>,
+        <http://www.unspsc.org/ProductCategory> .
+
+ns1:vintageOf owl:inverseOf ns1:hasVintage .
+

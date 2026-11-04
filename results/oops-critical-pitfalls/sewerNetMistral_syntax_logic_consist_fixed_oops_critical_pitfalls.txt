@@ -1,0 +1,192 @@
+Ontology: results/mistral-ontologies/sewerNetMistral_syntax_logic_consist_fixed.ttl
+OOPS endpoint: https://oops.linkeddata.es/rest
+NOTE: Minor & Important pitfalls are ignored.
+
+
+========================================================================================================================
+PITFALL P28: Defining wrong symmetric relationships
+========================================================================================================================
+
+importance: Critical
+description: A relationship is defined as symmetric, using owl:SymmetricProperty, when the relationship is not necessarily symmetric.
+affected elements (count): 1
+
+========================================================================================================================
+OOPS description
+========================================================================================================================
+
+A relationship is defined as symmetric, using owl:SymmetricProperty, when the relationship is not necessarily symmetric.
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/sewernet#isAffectedBy
+
+========================================================================================================================
+P28 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/sewernet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:isAffectedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of occursAt.",
+        "Relates a network component to the environmental event it is affected by." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:EnvironmentalEvent ;
+    owl:inverseOf ns1:occursAt .
+
+
+========================================================================================================================
+PITFALL P05: Defining wrong inverse relationships
+========================================================================================================================
+
+importance: Critical
+description: Two relationships are defined as inverse relations when they are not necessarily inverse.
+affected elements (count): 1
+
+========================================================================================================================
+OOPS description
+========================================================================================================================
+
+Two relationships are defined as inverse relations when they are not necessarily inverse.
+
+========================================================================================================================
+Affected element URIs
+========================================================================================================================
+
+http://example.org/sewernet#isCompliedBy
+http://example.org/sewernet#resultsIn
+http://example.org/sewernet#isAddressedBy
+http://example.org/sewernet#isAlignedWith
+http://example.org/sewernet#isConnectedVia
+http://example.org/sewernet#isAffectedBy
+http://example.org/sewernet#isLocatedIn
+http://example.org/sewernet#isTargetedBy
+http://example.org/sewernet#isRestoredBy
+http://example.org/sewernet#isUsedBy
+
+========================================================================================================================
+P05 SNIPPET (local subgraph around affected elements)
+========================================================================================================================
+
+@prefix ns1: <http://example.org/sewernet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:isAddressedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of addresses." ;
+    owl:inverseOf ns1:addresses .
+
+ns1:isAffectedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of occursAt.",
+        "Relates a network component to the environmental event it is affected by." ;
+    rdfs:domain ns1:NetworkComponent ;
+    rdfs:range ns1:EnvironmentalEvent ;
+    owl:inverseOf ns1:occursAt .
+
+ns1:isAlignedWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of alignsWith." ;
+    owl:inverseOf ns1:alignsWith .
+
+ns1:isCompliedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of compliesWith." ;
+    owl:inverseOf ns1:compliesWith .
+
+ns1:isConnectedVia a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of connectedTo." ;
+    owl:inverseOf ns1:connectedTo .
+
+ns1:isLocatedIn a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of hasLocation." ;
+    owl:inverseOf ns1:hasLocation .
+
+ns1:isRestoredBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of restores." ;
+    owl:inverseOf ns1:restores .
+
+ns1:isTargetedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of targets." ;
+    owl:inverseOf ns1:targets .
+
+ns1:isUsedBy a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of usesFoundationalOntology." ;
+    owl:inverseOf ns1:usesFoundationalOntology .
+
+ns1:resultsIn a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Inverse property of resultsFrom." ;
+    owl:inverseOf ns1:resultsFrom .
+
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isCompliedBy
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#resultsIn
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isAddressedBy
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isAlignedWith
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isConnectedVia
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isAffectedBy
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isLocatedIn
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isTargetedBy
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isRestoredBy
+========================================================================================================================
+
+Inverse relationship not reciprocated
+
+========================================================================================================================
+Reason for http://example.org/sewernet#isUsedBy
+========================================================================================================================
+
+Inverse relationship not reciprocated
