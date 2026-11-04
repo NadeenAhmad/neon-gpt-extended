@@ -48,6 +48,7 @@ Figure 3: Ontology evaluation framework combining structural analysis, lexical m
   - **`validate_fix_ontology_consistency.py`**: This script is used to validate the consistency of an ontology. This script ensures compatibility with OWL standards. It interacts with reasoners such as HermiT and the ROBOT tool to verify logical coherence and consistency within the ontology. If any inconsistencies are found, the script attempts to automatically correct them using an LLM-based approach introduced in the NeOn-GPT methodology.
   - **`validate_fix_ontology_pitfall.py`**: This script is responsible for detecting and correcting critical ontology modeling pitfalls identified by the OOPS! (Ontology Pitfall Scanner!) framework. It automatically analyzes the generated ontology against common ontology design anti-patterns (e.g., missing domain/range axioms, misuse of equivalence or disjointness, hierarchy anomalies, and incomplete class descriptions).
 For each detected pitfall, the script formulates targeted corrective prompts and leverages an LLM to propose refined OWL axioms that resolve the issue while preserving the intended semantics. The corrected axioms are then reintegrated into the ontology, enabling an iterative refinement loop that improves modeling quality beyond syntactic validity and logical consistency.
+  - **`validate_fix_ontology_pitfall_final.py`**: The final version of the OOPS! pitfall detection and repair script, used for the results in the paper. `validate_fix_ontology_pitfall.py` is kept alongside it.
 - **`results/`**:
   - **`gpt-4o-ontologies/`**: Ontologies generated using GPT-4o across multiple domains, including environmental microbiology (AquaDiva), cheminformatics, urban infrastructure (SewerNet), and viticulture (wine).
   - **`mistral-ontologies/`**: Ontologies generated using Mistral across multiple domains, including environmental microbiology (AquaDiva), cheminformatics, urban infrastructure (SewerNet), and viticulture (wine).
@@ -123,7 +124,7 @@ The persona is sent with every step.
 3. Run the validation and repair scripts in order:
    1. `validate_fix_ontology_syntax.py`;
    2. `validate_fix_ontology_consistency.py`;
-   3. the OOPS! pitfall repair, `validate_fix_ontology_pitfall.py` (the folder also has `validate_fix_ontology_pitfall_final.py`).
+   3. the OOPS! pitfall repair, `validate_fix_ontology_pitfall_final.py` (the version used in the paper).
 
    `results/` keeps each model's ontology after each stage: `_raw` (the draft), `_syntax_fixed`, and `_syntax_logic_consist_fixed` (after syntax and consistency repair). `results/oops-critical-pitfalls/` lists the critical OOPS! pitfalls of the `_syntax_logic_consist_fixed` versions, which are the input to the pitfall repair.
 4. Compare the result with the gold standard using the scripts in `eval/`.
