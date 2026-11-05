@@ -14,7 +14,7 @@ Requirements:
   - Java installed (java on PATH)
   - HermiT jar (download once)
   - ROBOT jar (download once or auto-download if enabled)
-  - OpenRouter API key (env var OPENROUTER_API_KEY or config)
+  - An API key for the model provider (env var LLM_API_KEY; see api_utils.py)
 
 Usage:
   1) Edit CONFIG at the bottom (paths + model + options)
@@ -69,9 +69,7 @@ CONFIG: Dict[str, Any] = {
     # --- Slicing ---
     "SLICE_BNODE_DEPTH": 2,
 
-    # --- LLM (OpenRouter) ---
-    "OPENROUTER_API_KEY": None,  # if None, will use env var OPENROUTER_API_KEY
-    "OPENROUTER_MODEL": "deepseek/deepseek-v3.2-exp",
+    # --- LLM (key, model and endpoint: environment variables, see api_utils.py) ---
     "LLM_MAX_ITERATIONS": 25,
     "EVIDENCE_MAX_TRIPLES": 1200,
 
@@ -928,7 +926,7 @@ def load_problem_iris(report_json_path: Path) -> Set[str]:
 
 
 # =============================================================================
-# LLM patch loop (OpenRouter)
+# LLM patch loop
 # =============================================================================
 
 def build_targeted_evidence(
@@ -968,7 +966,7 @@ _JSON_OBJ_RE = re.compile(r"(\{.*\})", re.DOTALL)
 
 def openrouter_chat_json(*, prompt: str, step_name: str) -> dict:
     """
-    Uses api_utils.send_prompt() (unchanged) to call OpenRouter and returns parsed JSON dict.
+    Uses api_utils.send_prompt() to call the configured model and returns parsed JSON dict.
 
     api_utils.send_prompt() returns the extracted content between markers if present,
     otherwise it returns the full reply. We parse JSON from that string.
@@ -1301,13 +1299,8 @@ def main() -> None:
 
     # LLM fix loop
     if CONFIG["RUN_LLM_FIXES"]:
-        # If using api_utils, the key is managed there (hardcoded in api_utils.py).
-        # We still allow CONFIG/env override, but we don't require it.
-        api_key = CONFIG["OPENROUTER_API_KEY"] or os.environ.get("OPENROUTER_API_KEY")
-        if api_key:
-            log("🔑 Using OpenRouter API key from CONFIG/env (but api_utils will still use its own API_KEY unless you change api_utils).")
-        else:
-            log("🔑 No OPENROUTER_API_KEY provided to pipeline. Using api_utils.API_KEY as-is.")
+        # The key, model and endpoint come from environment variables (see api_utils.py).
+        log(f"🔑 LLM: {api_utils.describe_llm()}")
 
         llm_dir = out_dir / "llm_fixes"
         result = llm_fix_by_target_iris(

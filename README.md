@@ -115,11 +115,18 @@ The persona is sent with every step.
 
 ### Run it
 
-1. In `neon-gpt/api_utils.py`, set `API_KEY` to your OpenRouter key. Then set `MODEL` to one of the models used in the paper:
+1. Set your API key, and the model if you want another one, as environment variables:
+   ```bash
+   export LLM_API_KEY=your-openrouter-key
+   export LLM_MODEL=openai/gpt-4o   # optional; the default is deepseek/deepseek-v3.2-exp
+   ```
+   The models used in the paper are:
    - `openai/gpt-4o`
    - `mistralai/mistral-large-2512`
    - `meta-llama/llama-4-maverick-17b-128e-instruct`
    - `deepseek/deepseek-v3.2-exp`
+
+   The scripts call OpenRouter by default. To use another provider with an OpenAI-compatible API, also set `LLM_API_URL`, for example `https://api.openai.com/v1/chat/completions` for OpenAI (with `LLM_MODEL=gpt-4o`), or `http://localhost:11434/v1/chat/completions` for a local Ollama server (no key needed).
 2. In `neon-gpt/neon_gpt_ontology_generation.py`, set `SELECTED_ONTOLOGY` to `"Wine"`, `"CHEMINF"`, `"AquaDiva"` or `"SewerNet"`, and run the script. This produces the ontology draft (steps 01–20).
 3. Run the validation and repair scripts in order:
    1. `validate_fix_ontology_syntax.py`;

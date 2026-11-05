@@ -1,5 +1,5 @@
 # ==========================================================
-# api_utils.py — OpenRouter communication and output handling
+# api_utils.py — LLM communication and output handling
 # ==========================================================
 
 import requests
@@ -9,12 +9,34 @@ import os
 
 
 # === CONFIGURATION === #
-API_KEY = "API-KEY"  # <-- Replace with your actual OpenRouter API key
-OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
-#MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
-MODEL = "deepseek/deepseek-v3.2-exp"
-#MODEL = "openai/gpt-4o"
-#MODEL = "mistralai/mistral-large-2512"
+# Set these environment variables before running the scripts:
+#   LLM_API_KEY   your API key (OPENROUTER_API_KEY also works)
+#   LLM_MODEL     the model, as your provider names it (optional)
+#   LLM_API_URL   an OpenAI-compatible chat completions endpoint (optional)
+# The defaults are the setup used in the paper: OpenRouter, DeepSeek V3.2.
+# Other models used in the paper (OpenRouter names): openai/gpt-4o,
+# mistralai/mistral-large-2512, meta-llama/llama-4-maverick-17b-128e-instruct.
+# Examples of other endpoints:
+#   OpenAI:        https://api.openai.com/v1/chat/completions   (LLM_MODEL=gpt-4o)
+#   Ollama, local: http://localhost:11434/v1/chat/completions   (no key needed)
+DEFAULT_API_URL = "https://openrouter.ai/api/v1/chat/completions"
+DEFAULT_MODEL = "deepseek/deepseek-v3.2-exp"
+
+
+def llm_settings():
+    """Return (url, model, key) from the environment."""
+    url = os.environ.get("LLM_API_URL") or DEFAULT_API_URL
+    model = os.environ.get("LLM_MODEL") or DEFAULT_MODEL
+    key = os.environ.get("LLM_API_KEY") or os.environ.get("OPENROUTER_API_KEY")
+    if not key and "openrouter.ai" in url:
+        raise RuntimeError("No API key found. Set LLM_API_KEY (or OPENROUTER_API_KEY) to your OpenRouter key.")
+    return url, model, key
+
+
+def describe_llm() -> str:
+    """The model and endpoint in use, for logs (never the key)."""
+    url, model, _ = llm_settings()
+    return f"{model} at {url}"
 
 def extract_between_markers(text: str, start_marker: str, end_marker: str):
     """Extract all blocks between given markers."""
@@ -35,9 +57,13 @@ def save_output_to_file(content: str, filename: str):
 
 def send_prompt(prompt: str, persona: str, step_name: str, max_retries: int = 3, wait_time: int = 20):
     """
-    Send a single stateless prompt to OpenRouter, extract between markers,
+    Send a single stateless prompt to the configured model, extract between markers,
     save output to a file, and return the extracted content.
     """
+    url, model, key = llm_settings()
+    headers = {"Content-Type": "application/json"}
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
     system_prompt = {
         "role": "system",
         "content": f"{persona}\n"
@@ -49,13 +75,10 @@ def send_prompt(prompt: str, persona: str, step_name: str, max_retries: int = 3,
 
     for attempt in range(1, max_retries + 1):
         response = requests.post(
-            OPENROUTER_API_URL,
-            headers={
-                "Authorization": f"Bearer {API_KEY}",
-                "Content-Type": "application/json"
-            },
+            url,
+            headers=headers,
             json={
-                "model": MODEL,
+                "model": model,
                 "messages": [system_prompt, user_prompt]
             }
         )
