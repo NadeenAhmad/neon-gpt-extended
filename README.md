@@ -4,27 +4,27 @@
 
 # Extended NeOn-GPT: Advancing LLM-Powered Ontology Learning Through Ontology Reuse and Automated Verification
 
-Large Language Models (LLMs) offer promising capabilities for automating ontology engineering tasks; however, existing approaches often focus on isolated knowledge extraction rather than comprehensive ontology construction. In this paper, we present an extended version of NeOn-GPT, a pipeline that integrates prompt-engineered LLM interactions within the structured NeOn ontology engineering methodology. Building on our prior work, we enhance the pipeline with improved prompting strategies, support for ontology reuse, and more robust validation mechanisms. We apply the updated pipeline across four domains—wine, sewer networks, cheminformatics, and environmental microbiology—using both proprietary (GPT-4o) and open-source (Mistral, Deepseek, Llama) LLMs to evaluate model and domain generalization. The resulting ontologies are assessed against expert-curated gold standards using structural, lexical, and semantic metrics. Our results highlight the domain-specific strengths and limitations of different LLMs, revealing that while models can capture relevant concepts and properties (relations), challenges remain in lexical alignment, hierarchical depth, and semantic precision. This work presents a comprehensive framework for evaluating LLM-based ontology generation, offering practical insights to enhance the quality and scalability of ontology learning pipelines.  The process involves the following stages: 
+We present the extended NeOn-GPT pipeline, an LLM-powered, domain-agnostic ontology learning framework grounded in the NeOn methodology. The pipeline comprises two components: (i) ontology draft generation through multi-step prompting—covering requirement specification, competency questions, conceptualization, formal modeling, population, and documentation—and (ii) automated verification and repair through orchestrated calls to third-party tools complemented by LLM-suggested fixes. The extended pipeline introduces an explicit ontology reuse step to guide LLMs toward more consistent modeling decisions. We evaluate NeOn-GPT across four domains (Wine, Cheminformatics, Environmental Microbiology, and Sewer Networks) using both proprietary (GPT-4o) and open-source (Mistral, Llama-4, DeepSeek) models. Gold-standard alignment is assessed via structural metrics (class, property, and axiom profiles), lexical metrics, and semantic metrics based on sentence embeddings. Results show that LLMs consistently generate ontologies with rich relational structures and meaningful semantic alignment, with most entity and triple similarities falling in the 0.5–0.8 range. This study provides a comprehensive, cross-domain evaluation of NeOn-guided LLM ontology learning, clarifying its capabilities and limitations. The pipeline involves the following stages:
 
  ✍️ **1. Ontology Draft Generation**
 
-This stage begins with structured inputs: a domain description, a curated set of few-shot examples, and a carefully crafted role-play persona that primes the LLM to act as a domain expert. Guided by these inputs, the model is prompted to define the ontology’s purpose, scope, and intended users, which leads to the generation of competency questions—natural language queries that the final ontology should be able to answer. The LLM extracts key domain entities and relations from these questions, building a conceptual model with hierarchical class structures. The pipeline then supports reusing existing ontologies by integrating relevant fragments directly into the prompt. Finally, the model enriches this conceptual representation with formal axioms, descriptive metadata, and named individuals. The result of this stage is a complete ontology draft serialized in Turtle syntax. 
+This stage begins with structured inputs: a domain description, 10–15 domain keywords, a curated set of few-shot examples, and a role-play persona that primes the LLM to act as a domain expert. Guided by these inputs, the model goes through eight steps: (1) requirement specification, where it defines the ontology's purpose, scope, target group, and functional and non-functional requirements; (2) generation of competency questions, the natural language questions the final ontology should be able to answer; (3) conceptual modeling, where it extracts entities and properties from these questions and builds the class hierarchy; (4) reuse, new in this extended version, where relevant fragments of existing ontologies are added to the prompt; (5) implementation in Turtle; (6) formal modeling, which adds property axioms such as inverse, functional, symmetric, and transitive properties; (7) population with named individuals; and (8) documentation, which adds metadata and comments. The result of this stage is an ontology draft serialized in Turtle syntax.
 
 <div align="center">
   <img src="./images/ontology_draft_gen.png" width="500" alt="Ontology Draft Generation"/>
 </div>
 
- Figure 1: Ontology draft generation pipeline guided by domain description, few-shot examples, and expert role-play prompting.
+ Figure 1: Ontology draft generation stages. Step 4 (Reuse, in green) is new in this extended version.
 
  🔁 **2. NeOn-GPT pipeline**
 
-Once the draft is generated, it is passed through a three-stage validation and refinement process: (a) syntax checking using RDFLib, (b) logical consistency verification with OWL reasoners such as HermiT and Pellet, and (c) pitfall detection using the OOPS! Framework. Errors identified by these tools—such as syntax violations, logical inconsistency, or modeling pitfalls—are fed back to the LLM as diagnostic prompts. The model is then prompted to revise and repair the ontology, enabling an iterative refinement loop that produces a syntactically valid, logically consistent, and semantically robust output.
+Once the draft (a) is generated, it goes through three verification and repair stages: (b) syntax checking with RDFLib; (c) logical consistency checking with the HermiT and Pellet reasoners, where ROBOT explains each inconsistency or unsatisfiable class; and (d) pitfall detection with OOPS!, where only critical pitfalls are repaired. At each stage, the tool's diagnostic message and the affected part of the ontology are sent to the LLM, which proposes a fix. The fix is applied and the check runs again, for at most 25 attempts per stage. Finally (e), all three checks run once more on the repaired ontology, so that a fix made in one stage cannot leave an error for another.
 
 <div align="center">
   <img src="./images/pipeline.png" width="600" alt="NeOn-GPT Workflow"/>
 </div>
 
- Figure 2: Full NeOn-GPT workflow showing ontology generation, validation, and iterative refinement using LLM prompts guided by diagnostic feedback from RDFLib, OWL reasoners, and OOPS!
+ Figure 2: The full NeOn-GPT pipeline: the ontology draft (a) goes through syntax checking with RDFLib (b), consistency checking with HermiT and Pellet (c), and pitfall detection with OOPS! (d), each with LLM-based repair, and a final verification pass (e).
 
  
 
@@ -167,7 +167,8 @@ If you find this work useful, please consider citing our paper:
   journal={Semantic Web},
   volume={17},
   number={4},
-  pages={22104968261453138},
+  pages={1--47},
+  doi={10.1177/22104968261453138},
   year={2026},
   publisher={SAGE Publications, Sage UK: London, England}
 }
